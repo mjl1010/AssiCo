@@ -27,10 +27,34 @@ public class RankController {
     @FXML
     Button btnGenerarDates;
 
-    private ArrayList<LocalDate> aListRankDates = new ArrayList<>();
-    private String firstDay;
+    private static ArrayList<LocalDate> aListRankDates = new ArrayList<>();
+    private static String firstDay;
+    private static LocalDate endDay;
+    private static int contWeeks;
 
     private int cont_day = 0;
+
+
+    /***** Gettes and Setters ****/
+
+    public static ArrayList<LocalDate> getaListRankDates() {
+        return aListRankDates;
+    }
+
+    public static String getFirstDay() {
+        return firstDay;
+    }
+
+    public static int getContWeeks() {
+        return contWeeks;
+    }
+    public static LocalDate getEndDay() {
+        return endDay;
+    }
+
+
+    /******* Métodos agregados *******/
+
 
     /**
      * generador de fechas
@@ -42,28 +66,29 @@ public class RankController {
         LocalDate end = datePicker_end.getValue();
         LocalDate date_temp = init;
 
-        while (date_temp.isBefore(end)) {
-
+        while (!date_temp.isAfter(end)) {
+            if (date_temp.getDayOfWeek().name().equals("MONDAY")) {
+                System.out.println("1 semana x Lunes");
+                contWeeks++;
+            }
+            System.out.println("dia : " + date_temp.getDayOfWeek() + "-" + date_temp.getDayOfMonth());
             cont_day++;
             if (cont_day == 1) firstDay = date_temp.getDayOfWeek().name();
             aListRankDates.add(date_temp);
             date_temp = date_temp.plusDays(1);
-
         }
-        
-        datesComplement();
+
+        System.out.println("\nsize list dates : " + aListRankDates.size());
+
+        if (!firstDay.equals("MONDAY")) {
+            System.out.println("Me debias 1 semana, parcero !");
+            contWeeks++;
+        }
+        endDay = aListRankDates.get(aListRankDates.size()-1);
         openCalendary();
 
-        
     }
 
-    /**
-     * complmenta la semana inicial
-     * y final
-     */
-    private void datesComplement() {
-        
-    }
 
     /**
      * open calendary
@@ -73,7 +98,7 @@ public class RankController {
         Parent root = FXMLLoader.load(getClass().getResource("../view/intCalendary.fxml"));
         Stage stage = new Stage(StageStyle.DECORATED);
         stage.setTitle("Calendary Stage");
-        stage.setScene(new Scene(root, 850, 850));
+        stage.setScene(new Scene(root, 673, 478));
         stage.show();
     }
 
@@ -84,14 +109,5 @@ public class RankController {
     public static void closeStage(Stage stage){
         stage.close();
     }
-    
 
-    public ArrayList<LocalDate> getaListRankDates() {
-        return aListRankDates;
-    }
-    
-    public String getFirstDay() {
-        return firstDay;
-    }
-    
 }
