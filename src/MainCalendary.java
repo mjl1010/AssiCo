@@ -22,9 +22,7 @@ public class MainCalendary extends Application {
         stage.setTitle("Calendary Stage");
         stage.setScene(new Scene(root, 495, 307));
         stage.show();
-
     }
-
 
 
     /**

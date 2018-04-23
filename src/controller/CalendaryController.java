@@ -1,10 +1,12 @@
 package controller;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.MouseEvent;
 import model.TableRow;
 
 import java.net.URL;
@@ -42,7 +44,6 @@ public class CalendaryController implements Initializable {
         TableColumn<model.TableRow, String> t3 = new TableColumn<>("Wednesday");
         t3.setCellValueFactory(new PropertyValueFactory<TableRow, String>("dateWednesday"));
 
-
         TableColumn<model.TableRow, String> t4 = new TableColumn<>("ThursDay");
         t4.setCellValueFactory(new PropertyValueFactory<TableRow, String>("dateThursDay"));
 
@@ -57,11 +58,11 @@ public class CalendaryController implements Initializable {
         TableColumn<model.TableRow, String> t7 = new TableColumn<>("Sunday");
         t7.setCellValueFactory(new PropertyValueFactory<TableRow, String>("dateSunday"));
 
+        tvCalendary.getSelectionModel().setCellSelectionEnabled(true);
         tvCalendary.getColumns().addAll(t1, t2, t3, t4, t5, t6, t7);
         rellenarTableView();
 
     }
-
 
 
     /**
@@ -140,14 +141,23 @@ public class CalendaryController implements Initializable {
 
          while (!String.valueOf(RankController.getaListRankDates().get(++cont_aListDate)
                 .getDayOfWeek()).equals("MONDAY")) {
-            System.out.println("cont_aListDate++");
             dates.add(String.valueOf(RankController.getaListRankDates().get(cont_aListDate).format(formatter)));
         }
 
         TableRow tb = new TableRow();
         tb.completeWeek(RankController.getFirstDay(), dates);
-//        ObservableList<TableRow> data = FXCollections.observableArrayList(tb);
         tvCalendary.getItems().add(tb);
 
+    }
+
+    @FXML
+    public void clickItem(MouseEvent event) {
+
+        if (event.getClickCount() == 2) {
+
+            System.out.println(tvCalendary.getSelectionModel().getSelectedCells());
+            new TableCell<TableRow, String>().setStyle("-fx-background-color: yelow");
+
+        }
     }
 }

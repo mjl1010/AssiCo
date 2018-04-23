@@ -68,7 +68,7 @@ public class RankController {
 
         while (!date_temp.isAfter(end)) {
             if (date_temp.getDayOfWeek().name().equals("MONDAY")) {
-                System.out.println("1 semana x Lunes");
+//                System.out.println("1 semana x Lunes");
                 contWeeks++;
             }
             System.out.println("dia : " + date_temp.getDayOfWeek() + "-" + date_temp.getDayOfMonth());
@@ -78,10 +78,10 @@ public class RankController {
             date_temp = date_temp.plusDays(1);
         }
 
-        System.out.println("\nsize list dates : " + aListRankDates.size());
+//        System.out.println("\nsize list dates : " + aListRankDates.size());
 
         if (!firstDay.equals("MONDAY")) {
-            System.out.println("Me debias 1 semana, parcero !");
+//            System.out.println("Me debias 1 semana, parcero !");
             contWeeks++;
         }
         endDay = aListRankDates.get(aListRankDates.size()-1);
@@ -95,10 +95,13 @@ public class RankController {
      */
     public void openCalendary() throws IOException {
 
+
         Parent root = FXMLLoader.load(getClass().getResource("../view/intCalendary.fxml"));
         Stage stage = new Stage(StageStyle.DECORATED);
+        Scene scene = new Scene(root, 673, 478);
         stage.setTitle("Calendary Stage");
-        stage.setScene(new Scene(root, 673, 478));
+        stage.setScene(scene);
+        scene.getStylesheets().add(getClass().getResource("table-view.css").toExternalForm());
         stage.show();
     }
 

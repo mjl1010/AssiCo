@@ -22,7 +22,6 @@ public class MainRank extends Application {
         stage.setTitle("Rango Stage");
         stage.setScene(new Scene(root, 495, 307));
         stage.show();
-        /***/
     }
 
     public static Stage getStage() {

@@ -57,13 +57,13 @@ public class TableRow {
 
     private void addList() {
         aListDayDates = new ArrayList<StringBuilder>();
-        aListDayDates.add(this.dateMonday);
-        aListDayDates.add(this.dateTuesday);
-        aListDayDates.add(this.dateWednesday);
-        aListDayDates.add(this.dateThursDay);
-        aListDayDates.add(this.dateFriday);
-        aListDayDates.add(this.dateSaturday);
-        aListDayDates.add(this.dateSunday);
+        aListDayDates.add(dateMonday);
+        aListDayDates.add(dateTuesday);
+        aListDayDates.add(dateWednesday);
+        aListDayDates.add(dateThursDay);
+        aListDayDates.add(dateFriday);
+        aListDayDates.add(dateSaturday);
+        aListDayDates.add(dateSunday);
     }
 
     /*** Getters and Setters ***/
