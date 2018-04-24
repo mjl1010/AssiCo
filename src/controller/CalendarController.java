@@ -1,13 +1,9 @@
 package controller;
 
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.WritableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
-import model.WeekDates;
+import utilities.WeekDates;
 
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
@@ -140,7 +136,7 @@ public class CalendarController implements Initializable {
      */
     private void endWeekRegistred() {
 
-        ArrayList<String> dates = new ArrayList<>();
+        ArrayList<String> dates = new ArrayList<String>();
         int cont = -1;
 
         do {
@@ -182,7 +178,7 @@ public class CalendarController implements Initializable {
      */
     private void incompletWeekRegistred() {
 
-        ArrayList<String> dates = new ArrayList<>();
+        ArrayList<String> dates = new ArrayList<String>();
 
         while (!String.valueOf(RankController.getaListRankDates().get(++cont_aListDate)
                 .getDayOfWeek()).equals("MONDAY")) {
