@@ -96,12 +96,12 @@ public class RankController {
     public void openCalendary() throws IOException {
 
 
-        Parent root = FXMLLoader.load(getClass().getResource("../view/intCalendary.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../view/intCalendar.fxml"));
         Stage stage = new Stage(StageStyle.DECORATED);
         Scene scene = new Scene(root, 673, 478);
         stage.setTitle("Calendary Stage");
         stage.setScene(scene);
-        scene.getStylesheets().add(getClass().getResource("table-view.css").toExternalForm());
+//        scene.getStylesheets().add(getClass().getResource("table-view.css").toExternalForm());
         stage.show();
     }
 

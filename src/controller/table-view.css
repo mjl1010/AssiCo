@@ -1,11 +1,9 @@
 // formato para las celdas del tableview
 .table-cell {
-    -fx-padding: 0.5em 0.5em 0.1em 0.3em;
-    -fx-border-color: -fx-box-border -fx-box-border transparent transparent;
-    -fx-font: 13px "Segoe UI";
-    -fx-border-insets: 0;
+    -fx-selection-bar: red;
+    -fx-selection-bar-non-focused: red;
 }
-
+/****
 // color de fondo para cuando el raton este sobre la celda
 .table-cell:hover {
     -fx-background-color: #9900ff;
@@ -27,15 +25,20 @@
     -fx-background-color: rgba(28, 183, 236, 0.25);
 }
 
+/**
 // color de una fila cuando en raton se encuentra sobre una fila que esta seleccionada
 .table-view:row-selection .table-row-cell:filled:selected:hover {
     -fx-background-color: rgba(228, 183, 236, 0.90);
 }
+**/
 
 // color de una fila seleccionada por el usuario
+/**
 .table-view:row-selection .table-row-cell:filled:selected {
     -fx-background-color: rgba(28, 183, 236, 0.65);
 }
+**/
+/**
 
 // eliminar border del table que aparece cuando el mismo tiene el foco
 .table-view, .table-view:focused {
@@ -75,3 +78,6 @@
     -fx-border-color: -fx-box-border;
     -fx-border-insets: 0;
 }
+****/
+
+
