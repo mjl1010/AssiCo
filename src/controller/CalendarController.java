@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.beans.property.StringProperty;
 import javafx.beans.value.WritableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,9 +14,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-
 /**
- * Created by Michael
+ * Created by Michael and modified by Manel
  */
 public class CalendarController implements Initializable {
 
@@ -24,7 +24,8 @@ public class CalendarController implements Initializable {
 
     private int cont_aListDate = -1;
 
-    private ArrayList<TableCell> celdasSeleccionadas = new ArrayList<>();
+    private ArrayList<String> celdasSeleccionadas = new ArrayList<>();
+    private WeekDates WEEK_DATES = null;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -32,205 +33,85 @@ public class CalendarController implements Initializable {
     }
 
     private static final String CELL_BG_RED = "-fx-background-color: red";
-    private static final String CELL_BG_NONE = "-fx-background-color: green";
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/YYYY");
 
-
     private void addFilestoTable() {
+        tvCalendar.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        tvCalendar.getSelectionModel().setCellSelectionEnabled(true);
+        tvCalendar.getColumns().addAll(generarColumna("Lunes"),
+                generarColumna("Martes"),
+                generarColumna("Miércoles"),
+                generarColumna("Jueves"),
+                generarColumna("Viernes"),
+                generarColumna("Sábado"),
+                generarColumna("Domingo"));
 
+        rellenarTableView();
+    }
 
-        TableColumn<WeekDates, String> t1 = new TableColumn<>("Monday");
-        t1.setCellValueFactory(cellData -> cellData.getValue().mondayProperty());
-        t1.setCellFactory(tc -> {
-            TableCell<WeekDates, String> cell = new TableCell<WeekDates, String>() {
+    private TableColumn<WeekDates, String> generarColumna(String diaSemana) {
+        TableColumn<WeekDates, String> t = new TableColumn<>(diaSemana);
+
+        switch (diaSemana) {
+            case "Lunes":
+                t.setCellValueFactory(cellData -> cellData.getValue().mondayProperty());
+                break;
+
+            case "Martes":
+                t.setCellValueFactory(cellData -> cellData.getValue().tuesdayProperty());
+                break;
+
+            case "Miércoles":
+                t.setCellValueFactory(cellData -> cellData.getValue().wednesdayProperty());
+                break;
+
+            case "Jueves":
+                t.setCellValueFactory(cellData -> cellData.getValue().thursDayProperty());
+                break;
+
+            case "Viernes":
+                t.setCellValueFactory(cellData -> cellData.getValue().fridayProperty());
+                break;
+
+            case "Sábado":
+                t.setCellValueFactory(cellData -> cellData.getValue().saturdayProperty());
+                break;
+
+            case "Domingo":
+                t.setCellValueFactory(cellData -> cellData.getValue().sundayProperty());
+                break;
+        }
+
+        t.setCellFactory(tc -> {
+            TableCell<WeekDates, String> cell = new TableCell<>() {
                 @Override
                 protected void updateItem(String item, boolean empty) {
                     super.updateItem(item, empty);
                     setText(empty ? null : item);
+                    setStyle("");
 
-                    setStyle(CELL_BG_NONE);
-                    for (TableCell tableCell : celdasSeleccionadas) {
-                        if (tableCell.getText().replaceAll("/", "").equalsIgnoreCase(item.replaceAll("/", ""))) {
-                            setStyle(CELL_BG_RED);
-                            System.out.println("updateTest " + item + " " + tableCell.getItem());
-                        }
+                    if (item != null && !celdasSeleccionadas.isEmpty() && celdasSeleccionadas.contains(item)) {
+                        setStyle(CELL_BG_RED);
+
+                        System.out.println("updateTest " + item);
                     }
                 }
             };
             cell.setOnMouseClicked(e -> {
                 if (!cell.isEmpty() && !(cell.getStyle().equals(CELL_BG_RED))) {
-                    String userId = cell.getItem();
-                    System.out.println("pintar celda " + cell + " | " + cell.getItem() + " de red");
+                    //System.out.println("pintar celda " + cell + " | " + cell.getText() + " de red");
                     cell.setStyle(CELL_BG_RED);
-                    celdasSeleccionadas.add(cell);
+                    celdasSeleccionadas.add(cell.getText());
                 } else if (cell.getStyle().equals(CELL_BG_RED)) {
-
+                    celdasSeleccionadas.remove(cell.getText());
                     cell.setStyle("");
                 }
             });
             return cell;
         });
 
-//        t1.setCellFactory(c -> new DayCell());
-
-        TableColumn<WeekDates, String> t2 = new TableColumn<>("Tuesday");
-        t2.setCellValueFactory(cellData -> cellData.getValue().tuesdayProperty());
-        t2.setCellFactory(tc -> {
-            TableCell<WeekDates, String> cell = new TableCell<WeekDates, String>() {
-                @Override
-                protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty) ;
-                    setText(empty ? null : item);
-                }
-            };
-            cell.setOnMouseClicked(e -> {
-                if (!cell.isEmpty()
-                        && !(cell.getStyle().equals(CELL_BG_RED))) {
-                    String userId = cell.getItem();
-                    System.out.println("pintar celda " + cell + "de red");
-                    cell.setStyle(CELL_BG_RED);
-
-                } else if (cell.getStyle().equals(CELL_BG_RED))
-
-                    cell.setStyle("");
-
-            });
-            return cell ;
-        });
-
-        TableColumn<WeekDates, String> t3 = new TableColumn<>("Wednesday");
-        t3.setCellValueFactory(cellData -> cellData.getValue().wednesdayProperty());
-        t3.setCellFactory(tc -> {
-            TableCell<WeekDates, String> cell = new TableCell<WeekDates, String>() {
-                @Override
-                protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty) ;
-                    setText(empty ? null : item);
-                }
-            };
-            cell.setOnMouseClicked(e -> {
-                if (!cell.isEmpty()
-                        && !(cell.getStyle().equals(CELL_BG_RED))) {
-                    String userId = cell.getItem();
-                    System.out.println("pintar celda " + cell + "de red");
-                    cell.setStyle(CELL_BG_RED);
-
-                } else if (cell.getStyle().equals(CELL_BG_RED))
-
-                    cell.setStyle("");
-
-            });
-            return cell ;
-        });
-
-        TableColumn<WeekDates, String> t4 = new TableColumn<>("ThursDay");
-        t4.setCellValueFactory(cellData -> cellData.getValue().thursDayProperty());
-        t4.setCellFactory(tc -> {
-            TableCell<WeekDates, String> cell = new TableCell<WeekDates, String>() {
-                @Override
-                protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty) ;
-                    setText(empty ? null : item);
-                }
-            };
-            cell.setOnMouseClicked(e -> {
-                if (!cell.isEmpty()
-                        && !(cell.getStyle().equals(CELL_BG_RED))) {
-                    String userId = cell.getItem();
-                    System.out.println("pintar celda " + cell + "de red");
-                    cell.setStyle(CELL_BG_RED);
-
-                } else if (cell.getStyle().equals(CELL_BG_RED))
-
-                    cell.setStyle("");
-
-            });
-            return cell ;
-        });
-
-        TableColumn<WeekDates, String> t5 = new TableColumn<>("Friday");
-        t5.setCellValueFactory(cellData -> cellData.getValue().fridayProperty());
-        t5.setCellFactory(tc -> {
-            TableCell<WeekDates, String> cell = new TableCell<WeekDates, String>() {
-                @Override
-                protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty) ;
-                    setText(empty ? null : item);
-                }
-            };
-            cell.setOnMouseClicked(e -> {
-                if (!cell.isEmpty()
-                        && !(cell.getStyle().equals(CELL_BG_RED))) {
-                    String userId = cell.getItem();
-                    System.out.println("pintar celda " + cell + "de red");
-                    cell.setStyle(CELL_BG_RED);
-
-                } else if (cell.getStyle().equals(CELL_BG_RED))
-
-                    cell.setStyle("");
-
-            });
-            return cell ;
-        });
-
-        TableColumn<WeekDates, String> t6 = new TableColumn<>("Saturday");
-        t6.setCellValueFactory(cellData -> cellData.getValue().saturdayProperty());
-        t6.setCellFactory(tc -> {
-            TableCell<WeekDates, String> cell = new TableCell<WeekDates, String>() {
-                @Override
-                protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty) ;
-                    setText(empty ? null : item);
-                }
-            };
-            cell.setOnMouseClicked(e -> {
-                if (!cell.isEmpty()
-                        && !(cell.getStyle().equals(CELL_BG_RED))) {
-                    String userId = cell.getItem();
-                    System.out.println("pintar celda " + cell + "de red");
-                    cell.setStyle(CELL_BG_RED);
-
-                } else if (cell.getStyle().equals(CELL_BG_RED))
-
-                    cell.setStyle("");
-
-            });
-            return cell ;
-        });
-
-        TableColumn<WeekDates, String> t7 = new TableColumn<>("Sunday");
-        t7.setCellValueFactory(cellData -> cellData.getValue().sundayProperty());
-        t7.setCellFactory(tc -> {
-            TableCell<WeekDates, String> cell = new TableCell<WeekDates, String>() {
-                @Override
-                protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty) ;
-                    setText(empty ? null : item);
-                }
-            };
-            cell.setOnMouseClicked(e -> {
-                if (!cell.isEmpty()
-                        && !(cell.getStyle().equals(CELL_BG_RED))) {
-                    String userId = cell.getItem();
-                    System.out.println("pintar celda " + cell + "de red");
-                    cell.setStyle(CELL_BG_RED);
-
-                } else if (cell.getStyle().equals(CELL_BG_RED))
-
-                    cell.setStyle("");
-
-            });
-            return cell ;
-        });
-
-        tvCalendar.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        tvCalendar.getSelectionModel().setCellSelectionEnabled(true);
-        tvCalendar.getColumns().addAll(t1, t2, t3, t4, t5, t6, t7);
-
-        rellenarTableView();
-
+        return t;
     }
-
 
     /**
      * rellenar table
@@ -264,9 +145,7 @@ public class CalendarController implements Initializable {
         int cont = -1;
 
         do {
-
             dates.add(String.valueOf(RankController.getaListRankDates().get(++cont_aListDate).format(formatter)));
-
         } while (!RankController.getaListRankDates().get(cont_aListDate)
                 .isAfter(RankController.getEndDay().minusDays(1)));
 
@@ -286,7 +165,7 @@ public class CalendarController implements Initializable {
      */
     private void completWeekRegistred() {
 
-        WeekDates tb = new WeekDates(
+        WEEK_DATES = new WeekDates(
                 String.valueOf(RankController.getaListRankDates().get(++cont_aListDate).format(formatter)),
                 String.valueOf(RankController.getaListRankDates().get(++cont_aListDate).format(formatter)),
                 String.valueOf(RankController.getaListRankDates().get(++cont_aListDate).format(formatter)),
@@ -296,7 +175,7 @@ public class CalendarController implements Initializable {
                 String.valueOf(RankController.getaListRankDates().get(++cont_aListDate).format(formatter))
         );
 
-        tvCalendar.getItems().add(tb);
+        tvCalendar.getItems().add(WEEK_DATES);
     }
 
     /**
@@ -315,41 +194,5 @@ public class CalendarController implements Initializable {
         tb.completeWeek(RankController.getFirstDay(), dates);
         tvCalendar.getItems().add(tb);
 
-    }
-
-    @FXML
-    public void clickItem(MouseEvent event) {
-
-//            tvCalendar.getSelectionModel().getSelectedCells().get(0)
-
-//            tvCalendar.getSelectionModel().getSelectedCells().get(0).getTableColumn()
-//                    .setCellFactory(c -> new DayCell());
-
-        }
-//    }
-
-    public class DayCell extends TableCell<WeekDates, String> {
-
-        {
-            setOnMouseClicked(evt -> {
-                if (!isEmpty() && getItem() != null && evt.getButton() == MouseButton.PRIMARY) {
-                    WritableValue<String> property = (WritableValue<String>) getTableColumn().getCellObservableValue((WeekDates) getTableRow().getItem());
-//                    property.setValue(!getItem());
-                }
-            });
-        }
-
-
-        @Override
-        protected void updateItem(String item, boolean empty) {
-            super.updateItem(item, empty);
-
-            if (empty || item == null) {
-                setStyle(null);
-            } else {
-                System.out.println("ahora estoy desde aqui");
-                setStyle("-fx-background-color: red;");
-            }
-        }
     }
 }
