@@ -25,7 +25,6 @@ public class CalendarController implements Initializable {
     private int cont_aListDate = -1;
 
     private ArrayList<String> celdasSeleccionadas = new ArrayList<>();
-    private WeekDates WEEK_DATES = null;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -83,7 +82,7 @@ public class CalendarController implements Initializable {
         }
 
         t.setCellFactory(tc -> {
-            TableCell<WeekDates, String> cell = new TableCell<>() {
+            TableCell<WeekDates, String> cell = new TableCell<WeekDates, String>() {
                 @Override
                 protected void updateItem(String item, boolean empty) {
                     super.updateItem(item, empty);
@@ -165,7 +164,7 @@ public class CalendarController implements Initializable {
      */
     private void completWeekRegistred() {
 
-        WEEK_DATES = new WeekDates(
+        WeekDates wd = new WeekDates(
                 String.valueOf(RankController.getaListRankDates().get(++cont_aListDate).format(formatter)),
                 String.valueOf(RankController.getaListRankDates().get(++cont_aListDate).format(formatter)),
                 String.valueOf(RankController.getaListRankDates().get(++cont_aListDate).format(formatter)),
@@ -175,7 +174,7 @@ public class CalendarController implements Initializable {
                 String.valueOf(RankController.getaListRankDates().get(++cont_aListDate).format(formatter))
         );
 
-        tvCalendar.getItems().add(WEEK_DATES);
+        tvCalendar.getItems().add(wd);
     }
 
     /**
@@ -193,6 +192,16 @@ public class CalendarController implements Initializable {
         WeekDates tb = new WeekDates();
         tb.completeWeek(RankController.getFirstDay(), dates);
         tvCalendar.getItems().add(tb);
+
+    }
+
+    /**
+     * click button event
+     * @param mouseEvent
+     */
+    public void handleClickEvent(MouseEvent mouseEvent) {
+
+        System.out.println("se ha clickado : " + mouseEvent.getButton());
 
     }
 }
