@@ -1,13 +1,9 @@
 package controller;
 
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.WritableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
-import model.WeekDates;
+import utilities.WeekDates;
 
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
@@ -25,7 +21,6 @@ public class CalendarController implements Initializable {
     private int cont_aListDate = -1;
 
     private ArrayList<String> celdasSeleccionadas = new ArrayList<>();
-    private WeekDates WEEK_DATES = null;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -83,7 +78,7 @@ public class CalendarController implements Initializable {
         }
 
         t.setCellFactory(tc -> {
-            TableCell<WeekDates, String> cell = new TableCell<>() {
+            TableCell<WeekDates, String> cell = new TableCell<WeekDates, String>() {
                 @Override
                 protected void updateItem(String item, boolean empty) {
                     super.updateItem(item, empty);
@@ -141,7 +136,7 @@ public class CalendarController implements Initializable {
      */
     private void endWeekRegistred() {
 
-        ArrayList<String> dates = new ArrayList<>();
+        ArrayList<String> dates = new ArrayList<String>();
         int cont = -1;
 
         do {
@@ -165,7 +160,7 @@ public class CalendarController implements Initializable {
      */
     private void completWeekRegistred() {
 
-        WEEK_DATES = new WeekDates(
+        WeekDates wd = new WeekDates(
                 String.valueOf(RankController.getaListRankDates().get(++cont_aListDate).format(formatter)),
                 String.valueOf(RankController.getaListRankDates().get(++cont_aListDate).format(formatter)),
                 String.valueOf(RankController.getaListRankDates().get(++cont_aListDate).format(formatter)),
@@ -175,7 +170,7 @@ public class CalendarController implements Initializable {
                 String.valueOf(RankController.getaListRankDates().get(++cont_aListDate).format(formatter))
         );
 
-        tvCalendar.getItems().add(WEEK_DATES);
+        tvCalendar.getItems().add(wd);
     }
 
     /**
@@ -183,7 +178,7 @@ public class CalendarController implements Initializable {
      */
     private void incompletWeekRegistred() {
 
-        ArrayList<String> dates = new ArrayList<>();
+        ArrayList<String> dates = new ArrayList<String>();
 
         while (!String.valueOf(RankController.getaListRankDates().get(++cont_aListDate)
                 .getDayOfWeek()).equals("MONDAY")) {
