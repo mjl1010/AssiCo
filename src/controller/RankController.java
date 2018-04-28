@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -19,13 +18,7 @@ import java.util.ArrayList;
 public class RankController {
 
     @FXML
-    DatePicker datePicker_start;
-
-    @FXML
-    DatePicker datePicker_end;
-
-    @FXML
-    Button btnGenerarDates;
+    DatePicker datePicker_start, datePicker_end;
 
     private static ArrayList<LocalDate> aListRankDates = new ArrayList<>();
     private static String firstDay;
@@ -40,11 +33,10 @@ public class RankController {
     public static ArrayList<LocalDate> getaListRankDates() {
         return aListRankDates;
     }
-
+    public static void setaListRankDates(ArrayList<LocalDate> aListRankDates) { RankController.aListRankDates = aListRankDates; }
     public static String getFirstDay() {
         return firstDay;
     }
-
     public static int getContWeeks() {
         return contWeeks;
     }
@@ -54,7 +46,6 @@ public class RankController {
 
 
     /******* Métodos agregados *******/
-
 
     /**
      * generador de fechas
@@ -68,40 +59,31 @@ public class RankController {
 
         while (!date_temp.isAfter(end)) {
             if (date_temp.getDayOfWeek().name().equals("MONDAY")) {
-//                System.out.println("1 semana x Lunes");
                 contWeeks++;
             }
-            System.out.println("dia : " + date_temp.getDayOfWeek() + "-" + date_temp.getDayOfMonth());
             cont_day++;
             if (cont_day == 1) firstDay = date_temp.getDayOfWeek().name();
             aListRankDates.add(date_temp);
             date_temp = date_temp.plusDays(1);
         }
 
-//        System.out.println("\nsize list dates : " + aListRankDates.size());
-
         if (!firstDay.equals("MONDAY")) {
-//            System.out.println("Me debias 1 semana, parcero !");
             contWeeks++;
         }
         endDay = aListRankDates.get(aListRankDates.size()-1);
-        openCalendary();
+        openRankHolydays();
 
     }
-
 
     /**
      * open calendary
      */
-    public void openCalendary() throws IOException {
-
-
-        Parent root = FXMLLoader.load(getClass().getResource("../view/intCalendar.fxml"));
+    public void openRankHolydays() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../view/intVacations.fxml"));
         Stage stage = new Stage(StageStyle.DECORATED);
-        Scene scene = new Scene(root, 673, 478);
-        stage.setTitle("Calendary Stage");
+        Scene scene = new Scene(root, 495, 307);
+        stage.setTitle("Holydays Stage");
         stage.setScene(scene);
-//        scene.getStylesheets().add(getClass().getResource("table-view.css").toExternalForm());
         stage.show();
     }
 

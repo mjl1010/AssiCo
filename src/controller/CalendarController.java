@@ -3,8 +3,11 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import model.CalendarioBase;
 import utilities.WeekDates;
 
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -19,8 +22,8 @@ public class CalendarController implements Initializable {
     TableView<WeekDates> tvCalendar;
 
     private int cont_aListDate = -1;
-
     private ArrayList<String> celdasSeleccionadas = new ArrayList<>();
+    private ArrayList<CalendarioBase> aListCalBase;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -88,7 +91,9 @@ public class CalendarController implements Initializable {
                     if (item != null && !celdasSeleccionadas.isEmpty() && celdasSeleccionadas.contains(item)) {
                         setStyle(CELL_BG_RED);
 
-                        System.out.println("updateTest " + item);
+//                        System.out.println("updateTest " + item);
+//                        System.out.println("array : ");
+//                        for (String s : celdasSeleccionadas) System.out.println(s +" ");
                     }
                 }
             };
@@ -188,16 +193,54 @@ public class CalendarController implements Initializable {
         WeekDates tb = new WeekDates();
         tb.completeWeek(RankController.getFirstDay(), dates);
         tvCalendar.getItems().add(tb);
+    }
+
+    /**
+     * saveBtnEvent
+     */
+    public void saveBtnEvent() {
+
+        aListCalBase = new ArrayList<>();
+        CalendarioBase cb;
+        String day , month , year ;
+        long code = -1;
+
+        for (int i = 0; i < celdasSeleccionadas.size(); i++) {
+
+            String[] s = celdasSeleccionadas.get(i).split("/");
+
+            day = s[0];
+            month = s[1];
+            year = s[2];
+
+
+//            cb = new CalendarioBase()
+
+
+
+
+        }
 
     }
 
     /**
-     * click button event
-     * @param mouseEvent
+     * editBtnEvent
      */
-    public void handleClickEvent(MouseEvent mouseEvent) {
+    public void editBtnEvent() {
 
-        System.out.println("se ha clickado : " + mouseEvent.getButton());
+    }
+
+    /**
+     * cancelBtnEvent
+     */
+    public void cancelBtnEvent() {
+
+    }
+
+    /**
+     * backBtnEvent
+     */
+    public void backBtnEvent() {
 
     }
 }

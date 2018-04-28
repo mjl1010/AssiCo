@@ -1,6 +1,12 @@
 package model;
 
-public class CalendarioBase {
+import java.io.Serializable;
+
+/**
+ *
+ */
+public class CalendarioBase implements Serializable {
+
     private int id;
     private int id_universitat;
     private String desc_spa;
@@ -11,7 +17,21 @@ public class CalendarioBase {
     private boolean is_active;
     private String curso_academico;
 
+    /**
+     * Metodo Constructor
+     */
     public CalendarioBase() {
+    }
+
+    /**
+     * Metodo Constructor
+     * first insert calendario base
+     * @param id
+     * @param is_summer
+     */
+    public CalendarioBase(int id, boolean is_summer) {
+        this.id = id;
+        this.is_summer = is_summer;
     }
 
     public int getId() {
@@ -84,5 +104,51 @@ public class CalendarioBase {
 
     public void setCursoAcademico(String curso_academico) {
         this.curso_academico = curso_academico;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CalendarioBase that = (CalendarioBase) o;
+
+        return id == that.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
+    }
+
+//    @Override
+//    public String toString() {
+//        return "CalendarioBase{" +
+//                "id=" + id +
+//                ", is_summer=" + is_summer +
+//                '}';
+//    }
+
+
+    @Override
+    public String toString() {
+        return "CalendarioBase{" +
+                "id=" + id +
+                ", id_universitat=" + id_universitat +
+                ", desc_spa='" + desc_spa + '\'' +
+                ", desc_cat='" + desc_cat + '\'' +
+                ", week_day=" + week_day +
+                ", is_summer=" + is_summer +
+                ", is_festivo=" + is_festivo +
+                ", is_active=" + is_active +
+                ", curso_academico='" + curso_academico + '\'' +
+                '}';
+    }
+
+    public static void main(String[] args) {
+        CalendarioBase c = new CalendarioBase(123, true);
+
+        System.out.println(c);
+
     }
 }
