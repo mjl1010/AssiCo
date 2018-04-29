@@ -20,7 +20,7 @@ public class ClientExt {
      */
     public static void  connect(){
         try {
-            socket = new Socket("localhost", 9090);
+            socket = new Socket("192.168.1.38", 9090);
             dos = new ObjectOutputStream(socket.getOutputStream());
             dis = new ObjectInputStream(socket.getInputStream());
 
