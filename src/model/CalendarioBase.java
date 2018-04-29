@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class CalendarioBase implements Serializable {
 
-    private int id;
+    private String id;
     private int id_universitat;
     private String desc_spa;
     private String desc_cat;
@@ -17,28 +17,36 @@ public class CalendarioBase implements Serializable {
     private boolean is_active;
     private String curso_academico;
 
-    /**
-     * Metodo Constructor
-     */
-    public CalendarioBase() {
-    }
+    // variables para interfaz
+    private String date_format;
+    private String dayName;
 
     /**
-     * Metodo Constructor
+     * Metodo Constructor 1
+     */
+    public CalendarioBase(String id, String date_format, String dayName) {
+        this.id = id;
+        this.date_format = date_format;
+        this.dayName = dayName;
+    }
+
+
+    /**
+     * Metodo Constructor 2
      * first insert calendario base
      * @param id
      * @param is_summer
      */
-    public CalendarioBase(int id, boolean is_summer) {
+    public CalendarioBase(String id, boolean is_summer) {
         this.id = id;
         this.is_summer = is_summer;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -106,6 +114,22 @@ public class CalendarioBase implements Serializable {
         this.curso_academico = curso_academico;
     }
 
+    public String getDayName() {
+        return dayName;
+    }
+
+    public void setDayName(String dayName) {
+        this.dayName = dayName;
+    }
+
+    public String getDate_format() {
+        return date_format;
+    }
+
+    public void setDate_format(String date_format) {
+        this.date_format = date_format;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -113,22 +137,13 @@ public class CalendarioBase implements Serializable {
 
         CalendarioBase that = (CalendarioBase) o;
 
-        return id == that.id;
+        return id != null ? id.equals(that.id) : that.id == null;
     }
 
     @Override
     public int hashCode() {
-        return id;
+        return id != null ? id.hashCode() : 0;
     }
-
-//    @Override
-//    public String toString() {
-//        return "CalendarioBase{" +
-//                "id=" + id +
-//                ", is_summer=" + is_summer +
-//                '}';
-//    }
-
 
     @Override
     public String toString() {
@@ -143,12 +158,5 @@ public class CalendarioBase implements Serializable {
                 ", is_active=" + is_active +
                 ", curso_academico='" + curso_academico + '\'' +
                 '}';
-    }
-
-    public static void main(String[] args) {
-        CalendarioBase c = new CalendarioBase(123, true);
-
-        System.out.println(c);
-
     }
 }

@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import model.CalendarioBase;
+import model.ClientExt;
 import utilities.WeekDates;
 
 import java.net.URL;
@@ -18,6 +19,7 @@ import java.util.ResourceBundle;
  */
 public class CalendarHolydayController implements Initializable {
 
+
     @FXML
     TableView<WeekDates> tvCalendar;
 
@@ -26,35 +28,20 @@ public class CalendarHolydayController implements Initializable {
     private ArrayList<String> celdasVacations = new ArrayList<>();
     private static final String CELL_BG_RED = "-fx-background-color: red";
     private static final String CELL_BG_LIGHTGREY = "-fx-background-color: LIGHTGREY";
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/YYYY");
-
-    private ArrayList<CalendarioBase> aListCalBase;
-
+    private static final DateTimeFormatter FORMATTER2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private int cont_test = 0;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         fillCeldasVacations();
-        addFilestoTable();
+        columnsSetting();
+        fillTableView();
     }
 
     /**
-     * add elements to
-     * cells vacations list
+     * columns setting
      */
-    private void fillCeldasVacations() {
-        Iterator it = VacationsRankController.getHsVacations().iterator();
-        while (it.hasNext()) {
-            LocalDate aux = (LocalDate) it.next();
-            celdasVacations.add(aux.format(FORMATTER));
-        }
-    }
-
-
-    /**
-     * add rows to table
-     */
-    private void addFilestoTable() {
+    private void columnsSetting() {
         tvCalendar.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         tvCalendar.getSelectionModel().setCellSelectionEnabled(true);
         tvCalendar.getColumns().addAll(generarColumna("Lunes"),
@@ -64,8 +51,6 @@ public class CalendarHolydayController implements Initializable {
                 generarColumna("Viernes"),
                 generarColumna("Sábado"),
                 generarColumna("Domingo"));
-
-        rellenarTableView();
     }
 
     private TableColumn<WeekDates, String> generarColumna(String diaSemana) {
@@ -136,10 +121,20 @@ public class CalendarHolydayController implements Initializable {
     }
 
     /**
-     * rellenar table
+     * add elements to
+     * cells vacations list
      */
-    private void rellenarTableView() {
+    private void fillCeldasVacations() {
+        Iterator it = VacationsRankController.getHsVacations().iterator();
+        while (it.hasNext()) {
+            celdasVacations.add(String.valueOf(it.next()));
+        }
+    }
 
+    /**
+     * add rows to table
+     */
+    private void fillTableView() {
         int contWeeksReg = 0;
 
         System.out.println("numero de semanas : " + CourseRankController.getContWeeks());
@@ -149,14 +144,10 @@ public class CalendarHolydayController implements Initializable {
             cont_aListDate--;
             contWeeksReg++;
         }
-
-        for (; contWeeksReg < CourseRankController.getContWeeks() - 1; contWeeksReg++) {
-            completWeekRegistred();
-        }
-
+        for (; contWeeksReg < CourseRankController.getContWeeks() - 1; contWeeksReg++) completWeekRegistred();
         endWeekRegistred();
-
     }
+
 
     /**
      * end Week Registred
@@ -165,16 +156,17 @@ public class CalendarHolydayController implements Initializable {
 
         ArrayList<String> dates = new ArrayList<String>();
         int cont = -1;
+        LocalDate aux_localDate;
 
         do {
-            dates.add(String.valueOf(CourseRankController.getaListRankDates().get(++cont_aListDate).format(FORMATTER)));
-        } while (!CourseRankController.getaListRankDates().get(cont_aListDate)
-                .isAfter(CourseRankController.getEndDay().minusDays(1)));
+            dates.add(CourseRankController.getaListCalBase().get(++cont_aListDate).getDate_format());
+            aux_localDate = LocalDate.parse(CourseRankController.getaListCalBase().get(cont_aListDate)
+            .getDate_format(), FORMATTER2);
+
+        } while (!aux_localDate.isAfter(CourseRankController.getEndDay().minusDays(1)));
 
         int aux = 7 - dates.size();
-        for (int i = 0; i < aux; i++) {
-            dates.add("");
-        }
+        for (int i = 0; i < aux; i++) dates.add("");
 
         WeekDates tb = new WeekDates(dates.get(++cont), dates.get(++cont), dates.get(++cont), dates.get(++cont),
                 dates.get(++cont), dates.get(++cont), dates.get(++cont));
@@ -188,13 +180,13 @@ public class CalendarHolydayController implements Initializable {
     private void completWeekRegistred() {
 
         WeekDates wd = new WeekDates(
-                String.valueOf(CourseRankController.getaListRankDates().get(++cont_aListDate).format(FORMATTER)),
-                String.valueOf(CourseRankController.getaListRankDates().get(++cont_aListDate).format(FORMATTER)),
-                String.valueOf(CourseRankController.getaListRankDates().get(++cont_aListDate).format(FORMATTER)),
-                String.valueOf(CourseRankController.getaListRankDates().get(++cont_aListDate).format(FORMATTER)),
-                String.valueOf(CourseRankController.getaListRankDates().get(++cont_aListDate).format(FORMATTER)),
-                String.valueOf(CourseRankController.getaListRankDates().get(++cont_aListDate).format(FORMATTER)),
-                String.valueOf(CourseRankController.getaListRankDates().get(++cont_aListDate).format(FORMATTER))
+                String.valueOf(CourseRankController.getaListCalBase().get(++cont_aListDate).getDate_format()),
+                String.valueOf(CourseRankController.getaListCalBase().get(++cont_aListDate).getDate_format()),
+                String.valueOf(CourseRankController.getaListCalBase().get(++cont_aListDate).getDate_format()),
+                String.valueOf(CourseRankController.getaListCalBase().get(++cont_aListDate).getDate_format()),
+                String.valueOf(CourseRankController.getaListCalBase().get(++cont_aListDate).getDate_format()),
+                String.valueOf(CourseRankController.getaListCalBase().get(++cont_aListDate).getDate_format()),
+                String.valueOf(CourseRankController.getaListCalBase().get(++cont_aListDate).getDate_format())
         );
 
         tvCalendar.getItems().add(wd);
@@ -207,10 +199,10 @@ public class CalendarHolydayController implements Initializable {
 
         ArrayList<String> dates = new ArrayList<String>();
 
-        while (!String.valueOf(CourseRankController.getaListRankDates().get(++cont_aListDate)
-                .getDayOfWeek()).equals("MONDAY")) {
-            dates.add(String.valueOf(CourseRankController.getaListRankDates().get(cont_aListDate).format(FORMATTER)));
-        }
+        while (!CourseRankController.getaListCalBase().get(++cont_aListDate)
+                .getDayName().equals("MONDAY"))
+            dates.add(String.valueOf(CourseRankController.getaListCalBase()
+                    .get(cont_aListDate).getDate_format()));
 
         WeekDates tb = new WeekDates();
         tb.completeWeek(CourseRankController.getFirstDay(), dates);
@@ -222,27 +214,15 @@ public class CalendarHolydayController implements Initializable {
      */
     public void saveBtnEvent() {
 
-        aListCalBase = new ArrayList<>();
-        CalendarioBase cb;
-        String day , month , year ;
-        long code = -1;
-
-        for (int i = 0; i < celdasSeleccionadas.size(); i++) {
-
-            String[] s = celdasSeleccionadas.get(i).split("/");
-
-            day = s[0];
-            month = s[1];
-            year = s[2];
-
-
-//            cb = new CalendarioBase()
-
-
-
-
+        for (CalendarioBase cb :
+                CourseRankController.getaListCalBase()) {
+            if (celdasSeleccionadas.contains(cb.getDate_format()))
+                cb.setFestivo(true);
         }
 
+        ClientExt.connect();
+        ClientExt. send_firstListBaseCalendar(CourseRankController.getaListCalBase());
+        ClientExt.closeConnection();
     }
 
     /**

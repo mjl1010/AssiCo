@@ -19,31 +19,21 @@ public class ClientExt {
      * connect to server
      */
     public static void  connect(){
-
         try {
-
             socket = new Socket("localhost", 9090);
-
             dos = new ObjectOutputStream(socket.getOutputStream());
             dis = new ObjectInputStream(socket.getInputStream());
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     /**
      * send_firstListBaseCalendar()
      * @param data
      */
-    private static void send_firstListBaseCalendar(ArrayList<CalendarioBase> data) {
-
-        CalendarioBase cb;
-        for (int i = 0; i < 30; i++) {
-            cb = new CalendarioBase(i+1, false);
-            data.add(cb);
-        }
+    public static void send_firstListBaseCalendar(ArrayList<CalendarioBase> data) {
         message = new Message("firstListBaseCalendar", data);
         try {
             dos.writeObject(message);
@@ -52,15 +42,13 @@ public class ClientExt {
             message = (Message) dis.readObject(); // while hasta que responda
 
             System.out.printf("Servidor devuelve : MessageCode =  %s , Message = %s", message.getMessageCode()
-                    , message.getMessage());
+                    , message.getObject());
 
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
-
     }
 
     /**
@@ -80,12 +68,4 @@ public class ClientExt {
         }
 
     }
-
-
-    public static void main(String[] args) {
-        ClientExt.connect();
-
-    }
-
-
 }

@@ -9,10 +9,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import model.CalendarioBase;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.ResourceBundle;
@@ -26,8 +28,9 @@ public class VacationsRankController implements Initializable {
     @FXML
     DatePicker datePicker_start, datePicker_end;
 
-    private static HashSet<LocalDate> hsVacations = new HashSet<>();
+    private static HashSet<String> hsVacations = new HashSet<>();
     private int cont_day = 0;
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/YYYY");
 
 
     @Override
@@ -38,33 +41,45 @@ public class VacationsRankController implements Initializable {
 
     /*** Getters and Setters ***/
 
-    public static HashSet<LocalDate> getHsVacations() {
+    public static HashSet<String> getHsVacations() {
         return hsVacations;
     }
-
-    /**** Métodos Agregados ***/
-
-    public static void setHsVacations(HashSet<LocalDate> hsVacations) {
+    public static void setHsVacations(HashSet<String> hsVacations) {
         VacationsRankController.hsVacations = hsVacations;
     }
+
+
+    /**** Métodos Agregados ***/
 
     /**
      *
      * @param actionEvent
      */
     public void generarDates(ActionEvent actionEvent) throws IOException {
-
         LocalDate init = datePicker_start.getValue();
         LocalDate end = datePicker_end.getValue();
         LocalDate date_temp = init;
 
         while (!date_temp.isAfter(end)) {
             cont_day++;
-            hsVacations.add(date_temp);
+            hsVacations.add(date_temp.format(FORMATTER));
             date_temp = date_temp.plusDays(1);
         }
 
+        updateObjectsCalendarBase();
         openCalendarHolydays();
+    }
+
+    /**
+     * updateObjectsCalendarBase
+     */
+    private void updateObjectsCalendarBase() {
+        for (CalendarioBase cb :
+                CourseRankController.getaListCalBase()) {
+            if (hsVacations.contains(cb.getDate_format()))
+                cb.setSummer(true);
+
+        }
     }
 
     /**
