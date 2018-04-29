@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 /**
  * Created by Michael
  */
-public class VacationsController implements Initializable {
+public class VacationsRankController implements Initializable {
 
 
     @FXML
@@ -33,6 +33,19 @@ public class VacationsController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+    }
+
+
+    /*** Getters and Setters ***/
+
+    public static HashSet<LocalDate> getHsVacations() {
+        return hsVacations;
+    }
+
+    /**** Métodos Agregados ***/
+
+    public static void setHsVacations(HashSet<LocalDate> hsVacations) {
+        VacationsRankController.hsVacations = hsVacations;
     }
 
     /**
@@ -51,7 +64,6 @@ public class VacationsController implements Initializable {
             date_temp = date_temp.plusDays(1);
         }
 
-        filterHolydays();
         openCalendarHolydays();
     }
 
@@ -65,23 +77,5 @@ public class VacationsController implements Initializable {
         stage.setTitle("Holydays Stage");
         stage.setScene(scene);
         stage.show();
-    }
-
-    /**
-     * filter vacaitions
-     */
-    private void filterHolydays() {
-
-        ArrayList<LocalDate> aux = new ArrayList<>();
-
-        System.out.println("before : " + RankController.getaListRankDates().size()) ;
-
-        for (int i = 0; i < RankController.getaListRankDates().size(); i++) {
-            if (!hsVacations.contains(RankController.getaListRankDates().get(i)))
-                aux.add(RankController.getaListRankDates().get(i));
-        }
-
-        System.out.println("after : " + aux.size()) ;
-        RankController.setaListRankDates(aux);
     }
 }

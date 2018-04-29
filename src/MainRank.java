@@ -17,7 +17,7 @@ public class MainRank extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        root = FXMLLoader.load(getClass().getResource("view/intRango.fxml"));
+        root = FXMLLoader.load(getClass().getResource("view/intCourseRank.fxml"));
         stage = primaryStage;
         stage.setTitle("Rango Stage");
         stage.setScene(new Scene(root, 495, 307));

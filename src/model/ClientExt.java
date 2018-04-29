@@ -16,7 +16,7 @@ public class ClientExt {
     private static Message message;
 
     /**
-     *
+     * connect to server
      */
     public static void  connect(){
 
@@ -33,6 +33,10 @@ public class ClientExt {
 
     }
 
+    /**
+     * send_firstListBaseCalendar()
+     * @param data
+     */
     private static void send_firstListBaseCalendar(ArrayList<CalendarioBase> data) {
 
         CalendarioBase cb;
@@ -60,10 +64,10 @@ public class ClientExt {
     }
 
     /**
-     *
+     * close connections
+     * with server
      */
     public static void closeConnection(){
-
 
         try {
 

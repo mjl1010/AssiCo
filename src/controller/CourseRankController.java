@@ -15,7 +15,7 @@ import java.util.ArrayList;
 /**
  * Created by Michael
  */
-public class RankController {
+public class CourseRankController {
 
     @FXML
     DatePicker datePicker_start, datePicker_end;
@@ -33,7 +33,7 @@ public class RankController {
     public static ArrayList<LocalDate> getaListRankDates() {
         return aListRankDates;
     }
-    public static void setaListRankDates(ArrayList<LocalDate> aListRankDates) { RankController.aListRankDates = aListRankDates; }
+    public static void setaListRankDates(ArrayList<LocalDate> aListRankDates) { CourseRankController.aListRankDates = aListRankDates; }
     public static String getFirstDay() {
         return firstDay;
     }
@@ -79,7 +79,7 @@ public class RankController {
      * open calendary
      */
     public void openRankHolydays() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../view/intVacations.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../view/intVacationsRank.fxml"));
         Stage stage = new Stage(StageStyle.DECORATED);
         Scene scene = new Scene(root, 495, 307);
         stage.setTitle("Holydays Stage");
