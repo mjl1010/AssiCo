@@ -2,14 +2,17 @@ package model;
 
 public class CalendarioBase {
     private int id;
-    private int id_universitat;
-    private String desc_spa;
-    private String desc_cat;
-    private Integer week_day;
-    private boolean is_summer;
-    private boolean is_festivo;
-    private boolean is_active;
-    private String curso_academico;
+    private Universidad universidad;
+    private String descSpa;
+    private String descCat;
+    private Integer weekDay;
+    private boolean isSummer;
+    private boolean isFestivo;
+    private boolean isActive = true;
+    private String cursoAcademico;
+
+    // Solo para interfaz
+    private String idDate;
 
     public CalendarioBase() {
     }
@@ -22,67 +25,75 @@ public class CalendarioBase {
         this.id = id;
     }
 
-    public int getUniversitat() {
-        return id_universitat;
+    public Universidad getUniversidad() {
+        return universidad;
     }
 
-    public void setUniversitat(int id_universitat) {
-        this.id_universitat = id_universitat;
+    public void setUniversidad(Universidad universidad) {
+        this.universidad = universidad;
     }
 
     public String getDescSpa() {
-        return desc_spa;
+        return descSpa;
     }
 
-    public void setDescSpa(String desc_spa) {
-        this.desc_spa = desc_spa;
+    public void setDescSpa(String descSpa) {
+        this.descSpa = descSpa;
     }
 
     public String getDescCat() {
-        return desc_cat;
+        return descCat;
     }
 
-    public void setDescCat(String desc_cat) {
-        this.desc_cat = desc_cat;
+    public void setDescCat(String descCat) {
+        this.descCat = descCat;
     }
 
-    public Integer getWeek_day() {
-        return week_day;
+    public Integer getWeekDay() {
+        return weekDay;
     }
 
-    public void setWeekDay(Integer week_day) {
-        this.week_day = week_day;
+    public void setWeekDay(Integer weekDay) {
+        this.weekDay = weekDay;
     }
 
     public boolean isSummer() {
-        return is_summer;
+        return isSummer;
     }
 
-    public void setSummer(boolean is_summer) {
-        this.is_summer = is_summer;
+    public void setSummer(boolean summer) {
+        isSummer = summer;
     }
 
     public boolean isFestivo() {
-        return is_festivo;
+        return isFestivo;
     }
 
-    public void setFestivo(boolean is_festivo) {
-        this.is_festivo = is_festivo;
+    public void setFestivo(boolean festivo) {
+        isFestivo = festivo;
     }
 
     public boolean isActive() {
-        return is_active;
+        return isActive;
     }
 
-    public void setActive(boolean is_active) {
-        this.is_active = is_active;
+    public void setActive(boolean active) {
+        isActive = active;
     }
 
     public String getCursoAcademico() {
-        return curso_academico;
+        return cursoAcademico;
     }
 
-    public void setCursoAcademico(String curso_academico) {
-        this.curso_academico = curso_academico;
+    public void setCursoAcademico(String cursoAcademico) {
+        this.cursoAcademico = cursoAcademico;
+    }
+
+    public String getIdDate() {
+        return idDate;
+    }
+
+    public void setIdDate(String idDate) {
+        this.idDate = idDate;
     }
 }
