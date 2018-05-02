@@ -19,7 +19,6 @@ import java.util.ResourceBundle;
  */
 public class CalendarHolydayController implements Initializable {
 
-
     @FXML
     TableView<WeekDates> tvCalendar;
 
