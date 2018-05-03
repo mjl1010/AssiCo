@@ -1,150 +1,107 @@
 package model;
 
-import java.io.Serializable;
+public class CalendarioBase {
+    private int id;
+    private Universidad universidad;
+    private String descSpa;
+    private String descCat;
+    private Integer weekDay;
+    private boolean isSummer;
+    private boolean isFestivo;
+    private boolean isActive = true;
+    private String cursoAcademico;
 
-/**
- *
- */
-public class CalendarioBase implements Serializable {
+    // Solo para interfaz
+    private String idDate;
 
-    private String id;
-    private int id_universitat;
-    private String desc_spa;
-    private String desc_cat;
-    private Integer week_day;
-    private boolean is_summer;
-    private boolean is_festivo;
-    private boolean is_active;
-    private String curso_academico;
-
-    // variables para interfaz
-    private String date_format;
-    private String dayName;
-
-    /**
-     * Metodo Constructor 1
-     */
-    public CalendarioBase(String id, String date_format, String dayName) {
-        this.id = id;
-        this.date_format = date_format;
-        this.dayName = dayName;
+    public CalendarioBase() {
     }
 
-    public String getId() {
+    public CalendarioBase(int id, String date_format, int dayName) {
+        this.id = id;
+        this.idDate = date_format;
+        this.weekDay = dayName;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public int getUniversitat() {
-        return id_universitat;
+    public Universidad getUniversidad() {
+        return universidad;
     }
 
-    public void setUniversitat(int id_universitat) {
-        this.id_universitat = id_universitat;
+    public void setUniversidad(Universidad universidad) {
+        this.universidad = universidad;
     }
 
     public String getDescSpa() {
-        return desc_spa;
+        return descSpa;
     }
 
-    public void setDescSpa(String desc_spa) {
-        this.desc_spa = desc_spa;
+    public void setDescSpa(String descSpa) {
+        this.descSpa = descSpa;
     }
 
     public String getDescCat() {
-        return desc_cat;
+        return descCat;
     }
 
-    public void setDescCat(String desc_cat) {
-        this.desc_cat = desc_cat;
+    public void setDescCat(String descCat) {
+        this.descCat = descCat;
     }
 
-    public Integer getWeek_day() {
-        return week_day;
+    public Integer getWeekDay() {
+        return weekDay;
     }
 
-    public void setWeekDay(Integer week_day) {
-        this.week_day = week_day;
+    public void setWeekDay(Integer weekDay) {
+        this.weekDay = weekDay;
     }
 
     public boolean isSummer() {
-        return is_summer;
+        return isSummer;
     }
 
-    public void setSummer(boolean is_summer) {
-        this.is_summer = is_summer;
+    public void setSummer(boolean summer) {
+        isSummer = summer;
     }
 
     public boolean isFestivo() {
-        return is_festivo;
+        return isFestivo;
     }
 
-    public void setFestivo(boolean is_festivo) {
-        this.is_festivo = is_festivo;
+    public void setFestivo(boolean festivo) {
+        isFestivo = festivo;
     }
 
     public boolean isActive() {
-        return is_active;
+        return isActive;
     }
 
-    public void setActive(boolean is_active) {
-        this.is_active = is_active;
+    public void setActive(boolean active) {
+        isActive = active;
     }
 
     public String getCursoAcademico() {
-        return curso_academico;
+        return cursoAcademico;
     }
 
-    public void setCursoAcademico(String curso_academico) {
-        this.curso_academico = curso_academico;
+    public void setCursoAcademico(String cursoAcademico) {
+        this.cursoAcademico = cursoAcademico;
     }
 
-    public String getDayName() {
-        return dayName;
+    public String getIdDate() {
+        return idDate;
     }
 
-    public void setDayName(String dayName) {
-        this.dayName = dayName;
+    public void setIdDate(String idDate) {
+        this.idDate = idDate;
     }
 
-    public String getDate_format() {
-        return date_format;
-    }
 
-    public void setDate_format(String date_format) {
-        this.date_format = date_format;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        CalendarioBase that = (CalendarioBase) o;
-
-        return id != null ? id.equals(that.id) : that.id == null;
-    }
-
-    @Override
-    public int hashCode() {
-        return id != null ? id.hashCode() : 0;
-    }
-
-    @Override
-    public String toString() {
-        return "CalendarioBase{" +
-                "id=" + id +
-                ", id_universitat=" + id_universitat +
-                ", desc_spa='" + desc_spa + '\'' +
-                ", desc_cat='" + desc_cat + '\'' +
-                ", week_day=" + week_day +
-                ", is_summer=" + is_summer +
-                ", is_festivo=" + is_festivo +
-                ", is_active=" + is_active +
-                ", curso_academico='" + curso_academico + '\'' +
-                '}';
-    }
 }
