@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
@@ -83,9 +84,9 @@
                                                 <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
                                                 <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data4" GridPane.columnIndex="2" />
-                                                <Label text="s_data5" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                                 <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <ComboBox id="cbo_JunSep" prefWidth="150.0" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                              </children>
                                                         </GridPane>
                                           <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="1">
@@ -110,9 +111,9 @@
                                                 <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
                                                 <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data4" GridPane.columnIndex="2" />
-                                                <Label text="s_data5" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                                 <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <ComboBox id="cbo_JunSep" prefWidth="150.0" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                              </children>
                                           </GridPane>
                                           <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="2">
@@ -137,9 +138,9 @@
                                                 <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
                                                 <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data4" GridPane.columnIndex="2" />
-                                                <Label text="s_data5" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                                 <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <ComboBox id="cbo_JunSep" prefWidth="150.0" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                              </children>
                                           </GridPane>
                                           <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="3">
@@ -164,9 +165,9 @@
                                                 <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
                                                 <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data4" GridPane.columnIndex="2" />
-                                                <Label text="s_data5" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                                 <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <ComboBox id="cbo_JunSep" prefWidth="150.0" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                              </children>
                                           </GridPane>
                                           <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="4">
@@ -189,11 +190,10 @@
                                                 <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
                                                 <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
                                                 <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
-                                                <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data4" GridPane.columnIndex="2" />
-                                                <Label text="s_data5" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                                 <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <ComboBox id="cbo_JunSep" prefWidth="150.0" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                              </children>
                                           </GridPane>
                                           <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.rowIndex="1">
@@ -218,9 +218,9 @@
                                                 <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
                                                 <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data4" GridPane.columnIndex="2" />
-                                                <Label text="s_data5" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                                 <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <ComboBox id="cbo_JunSep" prefWidth="150.0" GridPane.columnIndex="2" />
+                                                <ComboBox prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                              </children>
                                           </GridPane>
                                           <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -245,9 +245,9 @@
                                                 <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
                                                 <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data4" GridPane.columnIndex="2" />
-                                                <Label text="s_data5" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                                 <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <ComboBox id="cbo_JunSep" prefWidth="150.0" GridPane.columnIndex="2" />
+                                                <ComboBox prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                              </children>
                                           </GridPane>
                                           <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
@@ -272,9 +272,9 @@
                                                 <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
                                                 <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data4" GridPane.columnIndex="2" />
-                                                <Label text="s_data5" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                                 <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <ComboBox id="cbo_JunSep" prefWidth="150.0" GridPane.columnIndex="2" />
+                                                <ComboBox prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                              </children>
                                           </GridPane>
                                           <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
@@ -299,9 +299,9 @@
                                                 <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
                                                 <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data4" GridPane.columnIndex="2" />
-                                                <Label text="s_data5" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                                 <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <ComboBox id="cbo_JunSep" prefWidth="150.0" GridPane.columnIndex="2" />
+                                                <ComboBox prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                              </children>
                                           </GridPane>
                                           <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="4" GridPane.rowIndex="1">
@@ -326,9 +326,9 @@
                                                 <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
                                                 <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data4" GridPane.columnIndex="2" />
-                                                <Label text="s_data5" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                                 <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <ComboBox id="cbo_JunSep" prefWidth="150.0" GridPane.columnIndex="2" />
+                                                <ComboBox prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                              </children>
                                           </GridPane>
                                           <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.rowIndex="2">
@@ -353,9 +353,9 @@
                                                 <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
                                                 <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data4" GridPane.columnIndex="2" />
-                                                <Label text="s_data5" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                                 <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <ComboBox id="cbo_JunSep" prefWidth="150.0" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                              </children>
                                           </GridPane>
                                           <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -380,9 +380,9 @@
                                                 <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
                                                 <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data4" GridPane.columnIndex="2" />
-                                                <Label text="s_data5" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                                 <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <ComboBox id="cbo_JunSep" prefWidth="150.0" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                              </children>
                                           </GridPane>
                                           <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
@@ -407,9 +407,9 @@
                                                 <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
                                                 <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data4" GridPane.columnIndex="2" />
-                                                <Label text="s_data5" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                                 <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <ComboBox id="cbo_JunSep" prefWidth="150.0" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                              </children>
                                           </GridPane>
                                           <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="3" GridPane.rowIndex="2">
@@ -434,9 +434,9 @@
                                                 <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
                                                 <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data4" GridPane.columnIndex="2" />
-                                                <Label text="s_data5" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                                 <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <ComboBox id="cbo_JunSep" prefWidth="150.0" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                              </children>
                                           </GridPane>
                                           <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="4" GridPane.rowIndex="2">
@@ -461,9 +461,9 @@
                                                 <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
                                                 <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data4" GridPane.columnIndex="2" />
-                                                <Label text="s_data5" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                                 <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <ComboBox id="cbo_JunSep" prefWidth="150.0" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                              </children>
                                           </GridPane>
                                           <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.rowIndex="3">
@@ -488,9 +488,9 @@
                                                 <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
                                                 <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data4" GridPane.columnIndex="2" />
-                                                <Label text="s_data5" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                                 <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <ComboBox id="cbo_JunSep" prefWidth="150.0" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                              </children>
                                           </GridPane>
                                           <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
@@ -515,9 +515,9 @@
                                                 <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
                                                 <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data4" GridPane.columnIndex="2" />
-                                                <Label text="s_data5" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                                 <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <ComboBox id="cbo_JunSep" prefWidth="150.0" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                              </children>
                                           </GridPane>
                                           <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="2" GridPane.rowIndex="3">
@@ -542,9 +542,9 @@
                                                 <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
                                                 <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data4" GridPane.columnIndex="2" />
-                                                <Label text="s_data5" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                                 <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <ComboBox prefWidth="150.0" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                              </children>
                                           </GridPane>
                                           <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
@@ -569,9 +569,9 @@
                                                 <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
                                                 <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data4" GridPane.columnIndex="2" />
-                                                <Label text="s_data5" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                                 <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <ComboBox id="cbo_JunSep" prefWidth="150.0" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                              </children>
                                           </GridPane>
                                           <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="4" GridPane.rowIndex="3">
@@ -596,9 +596,9 @@
                                                 <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
                                                 <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data4" GridPane.columnIndex="2" />
-                                                <Label text="s_data5" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                                 <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <ComboBox prefWidth="150.0" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                              </children>
                                           </GridPane>
                                           <GridPane id="miniGrid_1" gridLinesVisible="true" onMouseClicked="#clickCell" GridPane.rowIndex="4">
@@ -623,9 +623,9 @@
                                                 <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
                                                 <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data4" GridPane.columnIndex="2" />
-                                                <Label text="s_data5" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                                 <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <ComboBox id="cbo_JunSep" prefWidth="150.0" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                              </children>
                                           </GridPane>
                                           <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="1" GridPane.rowIndex="4">
@@ -650,9 +650,9 @@
                                                 <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
                                                 <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data4" GridPane.columnIndex="2" />
-                                                <Label text="s_data5" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                                 <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <ComboBox id="cbo_JunSep" prefWidth="150.0" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                              </children>
                                           </GridPane>
                                           <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="2" GridPane.rowIndex="4">
@@ -677,9 +677,9 @@
                                                 <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
                                                 <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data4" GridPane.columnIndex="2" />
-                                                <Label text="s_data5" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                                 <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <ComboBox id="cbo_JunSep" prefWidth="150.0" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                              </children>
                                           </GridPane>
                                           <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="3" GridPane.rowIndex="4">
@@ -704,9 +704,9 @@
                                                 <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
                                                 <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data4" GridPane.columnIndex="2" />
-                                                <Label text="s_data5" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                                 <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <ComboBox id="cbo_JunSep" prefWidth="150.0" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                              </children>
                                           </GridPane>
                                           <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="4" GridPane.rowIndex="4">
@@ -731,9 +731,9 @@
                                                 <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
                                                 <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data4" GridPane.columnIndex="2" />
-                                                <Label text="s_data5" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                                 <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <ComboBox id="cbo_JunSep" prefWidth="150.0" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                              </children>
                                           </GridPane>
                                                     </children>
@@ -763,7 +763,8 @@
                                           <MenuItem mnemonicParsing="false" text="editar s_data6" />
                                       </items>
                                     </SplitMenuButton>
-                                            </children></AnchorPane>
+                                            </children>
+                              </AnchorPane>
                                     </content>
                                 </ScrollPane>
                             </content>
