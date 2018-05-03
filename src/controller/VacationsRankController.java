@@ -76,7 +76,7 @@ public class VacationsRankController implements Initializable {
     private void updateObjectsCalendarBase() {
         for (CalendarioBase cb :
                 CourseRankController.getaListCalBase()) {
-            if (hsVacations.contains(cb.getDate_format()))
+            if (hsVacations.contains(cb.getIdDate()))
                 cb.setSummer(true);
 
         }

@@ -103,5 +103,34 @@ public class CalendarioBase {
         this.idDate = idDate;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        CalendarioBase that = (CalendarioBase) o;
+
+        return id == that.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return "CalendarioBase{" +
+                "id=" + id +
+                ", universidad=" + universidad +
+                ", descSpa='" + descSpa + '\'' +
+                ", descCat='" + descCat + '\'' +
+                ", weekDay=" + weekDay +
+                ", isSummer=" + isSummer +
+                ", isFestivo=" + isFestivo +
+                ", isActive=" + isActive +
+                ", cursoAcademico='" + cursoAcademico + '\'' +
+                ", idDate='" + idDate + '\'' +
+                '}';
+    }
 }

@@ -98,7 +98,7 @@ public class CourseRankController {
         year = s[2];
         code = year + month + day;
 
-        return new CalendarioBase(code, date_format, date_temp.getDayOfWeek().name());
+        return new CalendarioBase(Integer.parseInt(code), date_format, date_temp.getDayOfWeek().getValue());
     }
 
     /**

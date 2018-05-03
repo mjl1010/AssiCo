@@ -158,9 +158,9 @@ public class CalendarHolydayController implements Initializable {
         LocalDate aux_localDate;
 
         do {
-            dates.add(CourseRankController.getaListCalBase().get(++cont_aListDate).getDate_format());
+            dates.add(CourseRankController.getaListCalBase().get(++cont_aListDate).getIdDate());
             aux_localDate = LocalDate.parse(CourseRankController.getaListCalBase().get(cont_aListDate)
-            .getDate_format(), FORMATTER2);
+            .getIdDate(), FORMATTER2);
 
         } while (!aux_localDate.isAfter(CourseRankController.getEndDay().minusDays(1)));
 
@@ -179,13 +179,13 @@ public class CalendarHolydayController implements Initializable {
     private void completWeekRegistred() {
 
         WeekDates wd = new WeekDates(
-                String.valueOf(CourseRankController.getaListCalBase().get(++cont_aListDate).getDate_format()),
-                String.valueOf(CourseRankController.getaListCalBase().get(++cont_aListDate).getDate_format()),
-                String.valueOf(CourseRankController.getaListCalBase().get(++cont_aListDate).getDate_format()),
-                String.valueOf(CourseRankController.getaListCalBase().get(++cont_aListDate).getDate_format()),
-                String.valueOf(CourseRankController.getaListCalBase().get(++cont_aListDate).getDate_format()),
-                String.valueOf(CourseRankController.getaListCalBase().get(++cont_aListDate).getDate_format()),
-                String.valueOf(CourseRankController.getaListCalBase().get(++cont_aListDate).getDate_format())
+                String.valueOf(CourseRankController.getaListCalBase().get(++cont_aListDate).getIdDate()),
+                String.valueOf(CourseRankController.getaListCalBase().get(++cont_aListDate).getIdDate()),
+                String.valueOf(CourseRankController.getaListCalBase().get(++cont_aListDate).getIdDate()),
+                String.valueOf(CourseRankController.getaListCalBase().get(++cont_aListDate).getIdDate()),
+                String.valueOf(CourseRankController.getaListCalBase().get(++cont_aListDate).getIdDate()),
+                String.valueOf(CourseRankController.getaListCalBase().get(++cont_aListDate).getIdDate()),
+                String.valueOf(CourseRankController.getaListCalBase().get(++cont_aListDate).getIdDate())
         );
 
         tvCalendar.getItems().add(wd);
@@ -198,10 +198,10 @@ public class CalendarHolydayController implements Initializable {
 
         ArrayList<String> dates = new ArrayList<String>();
 
-        while (!CourseRankController.getaListCalBase().get(++cont_aListDate)
-                .getDayName().equals("MONDAY"))
+        while (CourseRankController.getaListCalBase().get(++cont_aListDate)
+                .getWeekDay() != 1)
             dates.add(String.valueOf(CourseRankController.getaListCalBase()
-                    .get(cont_aListDate).getDate_format()));
+                    .get(cont_aListDate).getIdDate()));
 
         WeekDates tb = new WeekDates();
         tb.completeWeek(CourseRankController.getFirstDay(), dates);
@@ -215,7 +215,7 @@ public class CalendarHolydayController implements Initializable {
 
         for (CalendarioBase cb :
                 CourseRankController.getaListCalBase()) {
-            if (celdasSeleccionadas.contains(cb.getDate_format()))
+            if (celdasSeleccionadas.contains(cb.getIdDate()))
                 cb.setFestivo(true);
         }
 
