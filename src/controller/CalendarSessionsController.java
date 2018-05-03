@@ -2,11 +2,12 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TableView;
+import javafx.scene.control.SplitMenuButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import model.TableMini;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -30,26 +31,30 @@ public class CalendarSessionsController implements Initializable {
     Pane p_sessionCal;
     Pane paneAux;
 
-    ArrayList<String> days = new ArrayList<>();
+    @FXML
+    Label lblYear, lblMonth;
 
+    @FXML
+    SplitMenuButton smb_menuOption;
+
+    ArrayList<String> days = new ArrayList<>();
+    ArrayList<String> months = new ArrayList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        fillDays();
-//        calendarSettings();
-        test();
+        fillArrays();
+        calendarSettings();
     }
 
-    private void test() {
-
-//        TableMini tableMini = new TableMini("01/01/01", "01/01/01", "01/01/01", "01/01/01");
-//        gp_calendar.add(tableMini.getTv_mini(), 1, 1);
-
-        paneAux = p_sessionCal;
-//        gp_calendar.add(paneAux, 2, 5);
+    private void calendarSettings() {
+        gp_calendar.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            smb_menuOption.setDisable(false);
+            System.out.println(event.getSource());
+        });
     }
 
-    private void fillDays() {
+
+    private void fillArrays() {
         days.add("Lunes");
         days.add("Martes");
         days.add("Miercoles");
@@ -57,18 +62,38 @@ public class CalendarSessionsController implements Initializable {
         days.add("Viernes");
         days.add("Sabado");
         days.add("Domingo");
+
+        months.add("January");
+        months.add("February");
+        months.add("March");
+        months.add("April");
+        months.add("May");
+        months.add("June");
+        months.add("July");
+        months.add("August");
+        months.add("September");
+        months.add("October");
+        months.add("November");
+        months.add("December");
     }
 
-    private void calendarSettings() {
+    /**
+     * month next
+     * @param mouseEvent
+     */
+    public void getNextMonth(MouseEvent mouseEvent) {
+        System.out.println("click en nextMonth");
+    }
 
-        ScrollPane sp = new ScrollPane();
-        sp.setContent(gp_calendar);
+    /**
+     * month previous
+     * @param mouseEvent
+     */
+    public void getPreviousMonth(MouseEvent mouseEvent) {
+        System.out.println("click en previousMonth");
+    }
 
-//        for (int i = 0; i < days.size(); i++) {
-//            gp_calendar.getColumnConstraints().add(new ColumnConstraints(95));
-//            gp_calendar.getRowConstraints().add(new RowConstraints(65));
-//        }
-
-
+    public void clickCell(MouseEvent mouseEvent) {
+        System.out.println("object : " + mouseEvent.getSource());
     }
 }
