@@ -11,6 +11,12 @@ public class Master {
     public Master() {
     }
 
+    public Master(int id, String code, String nombre) {
+        this.id = id;
+        this.code = code;
+        this.nombre = nombre;
+    }
+
     public int getId() {
         return id;
     }

@@ -1,8 +1,12 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitMenuButton;
@@ -40,6 +44,15 @@ public class CalendarSessionsController implements Initializable {
     ArrayList<String> days = new ArrayList<>();
     ArrayList<String> months = new ArrayList<>();
 
+    ObservableList<String> options =
+            FXCollections.observableArrayList(
+                    "A",
+                    "M",
+                    "P",
+                    "T",
+                    "V"
+            );
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         fillArrays();
@@ -51,6 +64,25 @@ public class CalendarSessionsController implements Initializable {
             smb_menuOption.setDisable(false);
             System.out.println(event.getSource());
         });
+        fillComboBox();
+    }
+
+    /**
+     * fill comboBox
+     */
+    private void fillComboBox() {
+        int cont = 0;
+
+        int cols = gp_calendar.getColumnConstraints().size();
+        int rows = gp_calendar.getRowConstraints().size();
+        int total = cols * rows;
+
+        for (int i = 0; i < total; i++) {
+            GridPane gridMini = (GridPane) gp_calendar.getChildren().get(i);
+            ComboBox cbo_aux = (ComboBox) gridMini.getChildren().get(7);
+            cbo_aux.getItems().addAll(options);
+            cbo_aux.setDisable(true);
+        }
     }
 
 

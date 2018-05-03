@@ -14,6 +14,7 @@ public class Sesion {
     private String confirmNota;
     private String asignatura;
     private String contenidos;
+
     private boolean activo;
     private String colorFondo;
     private String colorTexto;

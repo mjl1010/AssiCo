@@ -7,6 +7,7 @@ public class PlanificadorCalendarios {
     private Sesion sesion;
     private Master master;
 
+
     public PlanificadorCalendarios() {
     }
 
