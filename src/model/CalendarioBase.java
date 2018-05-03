@@ -1,7 +1,8 @@
 package model;
 
 public class CalendarioBase {
-    private int id;
+    private PlanificadorCalendarios planificadorCalendarios;
+    private int dia;
     private Universidad universidad;
     private String descSpa;
     private String descCat;
@@ -18,17 +19,25 @@ public class CalendarioBase {
     }
 
     public CalendarioBase(int id, String date_format, int dayName) {
-        this.id = id;
+        this.dia = id;
         this.idDate = date_format;
         this.weekDay = dayName;
     }
 
-    public int getId() {
-        return id;
+    public PlanificadorCalendarios getPlanificadorCalendarios() {
+        return planificadorCalendarios;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPlanificadorCalendarios(PlanificadorCalendarios planificadorCalendarios) {
+        this.planificadorCalendarios = planificadorCalendarios;
+    }
+
+    public int getDia() {
+        return dia;
+    }
+
+    public void setDia(int dia) {
+        this.dia = dia;
     }
 
     public Universidad getUniversidad() {
@@ -110,18 +119,18 @@ public class CalendarioBase {
 
         CalendarioBase that = (CalendarioBase) o;
 
-        return id == that.id;
+        return dia == that.dia;
     }
 
     @Override
     public int hashCode() {
-        return id;
+        return dia;
     }
 
     @Override
     public String toString() {
         return "CalendarioBase{" +
-                "id=" + id +
+                "dia=" + dia +
                 ", universidad=" + universidad +
                 ", descSpa='" + descSpa + '\'' +
                 ", descCat='" + descCat + '\'' +

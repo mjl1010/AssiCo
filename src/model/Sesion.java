@@ -1,7 +1,5 @@
 package model;
 
-import javax.print.Doc;
-
 public class Sesion {
     private int id;
     private String aula;
