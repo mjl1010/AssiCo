@@ -1,12 +1,21 @@
 package model;
 
 public class PlanificadorCalendarios {
+    private CalendarioBase calendarioBase;
     private int dia;
     private Universidad universidad;
     private Sesion sesion;
     private Master master;
 
     public PlanificadorCalendarios() {
+    }
+
+    public CalendarioBase getCalendarioBase() {
+        return calendarioBase;
+    }
+
+    public void setCalendarioBase(CalendarioBase calendarioBase) {
+        this.calendarioBase = calendarioBase;
     }
 
     public int getDia() {

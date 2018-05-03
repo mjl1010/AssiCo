@@ -1,7 +1,8 @@
 package model;
 
 public class CalendarioBase {
-    private int id;
+    private PlanificadorCalendarios planificadorCalendarios;
+    private int dia;
     private Universidad universidad;
     private String descSpa;
     private String descCat;
@@ -17,12 +18,20 @@ public class CalendarioBase {
     public CalendarioBase() {
     }
 
-    public int getId() {
-        return id;
+    public PlanificadorCalendarios getPlanificadorCalendarios() {
+        return planificadorCalendarios;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPlanificadorCalendarios(PlanificadorCalendarios planificadorCalendarios) {
+        this.planificadorCalendarios = planificadorCalendarios;
+    }
+
+    public int getDia() {
+        return dia;
+    }
+
+    public void setDia(int dia) {
+        this.dia = dia;
     }
 
     public Universidad getUniversidad() {
