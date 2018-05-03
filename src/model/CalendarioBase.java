@@ -30,18 +30,6 @@ public class CalendarioBase implements Serializable {
         this.dayName = dayName;
     }
 
-
-    /**
-     * Metodo Constructor 2
-     * first insert calendario base
-     * @param id
-     * @param is_summer
-     */
-    public CalendarioBase(String id, boolean is_summer) {
-        this.id = id;
-        this.is_summer = is_summer;
-    }
-
     public String getId() {
         return id;
     }
