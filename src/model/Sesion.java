@@ -30,7 +30,7 @@ public class Sesion {
     public  Sesion() {
     }
 
-    public Sesion(int id, String aula, String tipoAula, Docente docente1, Docente docente2,
+    public Sesion(int id, String aula, String tipoAula, Docente docente1,
                   String asignatura, String contenidos, Master master) {
         this.id = id;
         this.aula = aula;

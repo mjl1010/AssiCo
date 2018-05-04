@@ -16,6 +16,8 @@ public class VariablesAndMethodsUtils {
     /**** Variables ******/
 
     private static ArrayList<PlanificadorCalendarios> listPlanifCalend = new ArrayList<>();
+
+
     public static ObservableList<String> optionsTiposAula;
     private static ObservableList<String> optionsProfes; //TODO rellenar
     public static ArrayList<String> days = new ArrayList<>();
@@ -23,6 +25,7 @@ public class VariablesAndMethodsUtils {
     private static final DateTimeFormatter FORMATTER2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static ArrayList<String> listAsignaturas = new ArrayList<>();
     private static ArrayList<Docente> aDocentes = new ArrayList<>();
+    private static ArrayList<String> a = new ArrayList<>();
 
     static {
         optionsTiposAula = FXCollections.observableArrayList(
@@ -32,6 +35,9 @@ public class VariablesAndMethodsUtils {
                         "T",
                         "V"
                 );
+
+        a.add("J");
+        a.add("S");
 
         for (int i = 0; i < 14; i++) {
             listAsignaturas.add("Asignatura"+(i+1));
@@ -105,8 +111,12 @@ public class VariablesAndMethodsUtils {
         Master master1 = new Master(1, "M01", "master1");
         Master master2 = new Master(2, "M02", "master2");
         Sesion sesion;
+        int Max = 10, Min = 1;
 
         for (int i = 0; i < 114; i++) {
+            int sessionInt = i + 1;
+            int aula = (int) (i + (Math.random() * ( Max - Min )));
+//            int
             sesion = new Sesion();
         }
 

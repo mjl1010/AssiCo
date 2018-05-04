@@ -44,8 +44,8 @@ public class CalendarSessionsController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         calendarSettings();
 
-        monthNameInit =  VariablesAndMethodsUtils
-                .getMonthInit();
+//        monthNameInit =  VariablesAndMethodsUtils
+//                .getMonthInit();
     }
 
     private void calendarSettings() {
