@@ -23,14 +23,6 @@ public class CalendarioBase {
         this.weekDay = dayName;
     }
 
-    public PlanificadorCalendarios getPlanificadorCalendarios() {
-        return planificadorCalendarios;
-    }
-
-    public void setPlanificadorCalendarios(PlanificadorCalendarios planificadorCalendarios) {
-        this.planificadorCalendarios = planificadorCalendarios;
-    }
-
     public int getDia() {
         return dia;
     }

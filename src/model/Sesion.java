@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Sesion {
     private int id;
     private String aula;
@@ -24,14 +26,14 @@ public class Sesion {
     private String nota4;
     private String nota5;
     private String nota6;
-    private Master master;
-    private Master masterComun;
+    private Master master1;
+    private Master master2;
 
     public  Sesion() {
     }
 
     public Sesion(int id, String aula, String tipoAula, Docente docente1,
-                  String asignatura, String contenidos, Master master) {
+                  String asignatura, String contenidos, Master master1, Master master2) {
         this.id = id;
         this.aula = aula;
         this.tipoAula = tipoAula;
@@ -39,15 +41,17 @@ public class Sesion {
         this.docente2 = docente2;
         this.asignatura = asignatura;
         this.contenidos = contenidos;
-        this.master = master;
+        this.master1 = master1;
+        this.master2 = master2;
         this.activo = true;
     }
 
 
-    public Sesion(int id, boolean activo, Master master) {
+    public Sesion(int id, boolean activo, Master master1, Master master2) {
         this.id = id;
         this.activo = activo;
-        this.master = master;
+        this.master1 = master1;
+        this.master2 = master2;
     }
 
     public int getId() {
@@ -234,19 +238,64 @@ public class Sesion {
         this.nota6 = nota6;
     }
 
-    public Master getMaster() {
-        return master;
+    public Master getMaster1() {
+        return master1;
     }
 
-    public void setMaster(Master master) {
-        this.master = master;
+    public void setMaster1(Master master1) {
+        this.master1 = master1;
     }
 
-    public Master getMasterComun() {
-        return masterComun;
+    public Master getMaster2() {
+        return master2;
     }
 
-    public void setMasterComun(Master masterComun) {
-        this.masterComun = masterComun;
+    public void setMaster2(Master master2) {
+        this.master2 = master2;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Sesion sesion = (Sesion) o;
+        return id == sesion.id;
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Sesion{" +
+                "id=" + id +
+                ", aula='" + aula + '\'' +
+                ", tipoAula='" + tipoAula + '\'' +
+                ", docente1=" + docente1 +
+                ", docente2=" + docente2 +
+                ", confirmContenidos=" + confirmContenidos +
+                ", confirmAula=" + confirmAula +
+                ", confirmDocente1=" + confirmDocente1 +
+                ", confirmDocente2=" + confirmDocente2 +
+                ", confirmWarning=" + confirmWarning +
+                ", confirmNota='" + confirmNota + '\'' +
+                ", asignatura='" + asignatura + '\'' +
+                ", contenidos='" + contenidos + '\'' +
+                ", activo=" + activo +
+                ", colorFondo='" + colorFondo + '\'' +
+                ", colorTexto='" + colorTexto + '\'' +
+                ", nota0='" + nota0 + '\'' +
+                ", nota1='" + nota1 + '\'' +
+                ", nota2='" + nota2 + '\'' +
+                ", nota3='" + nota3 + '\'' +
+                ", nota4='" + nota4 + '\'' +
+                ", nota5='" + nota5 + '\'' +
+                ", nota6='" + nota6 + '\'' +
+                ", master1=" + master1 +
+                ", master2=" + master2 +
+                '}';
     }
 }
