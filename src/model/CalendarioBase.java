@@ -1,7 +1,6 @@
 package model;
 
 public class CalendarioBase {
-    private PlanificadorCalendarios planificadorCalendarios;
     private int dia;
     private Universidad universidad;
     private String descSpa;
@@ -16,14 +15,6 @@ public class CalendarioBase {
     private String idDate;
 
     public CalendarioBase() {
-    }
-
-    public PlanificadorCalendarios getPlanificadorCalendarios() {
-        return planificadorCalendarios;
-    }
-
-    public void setPlanificadorCalendarios(PlanificadorCalendarios planificadorCalendarios) {
-        this.planificadorCalendarios = planificadorCalendarios;
     }
 
     public int getDia() {

@@ -1,13 +1,13 @@
 package model;
 
-public class PlanificadorCalendarios {
+public class PlanificacionCalendarios {
     private CalendarioBase calendarioBase;
     private int dia;
     private Universidad universidad;
     private Sesion sesion;
     private Master master;
 
-    public PlanificadorCalendarios() {
+    public PlanificacionCalendarios() {
     }
 
     public CalendarioBase getCalendarioBase() {
