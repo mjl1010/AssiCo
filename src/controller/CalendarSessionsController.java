@@ -4,14 +4,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import utilities.VariablesAndMethodsUtils;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -32,31 +31,21 @@ public class CalendarSessionsController implements Initializable {
     AnchorPane ap_limbo;
 
     @FXML
-    Pane p_sessionCal;
-    Pane paneAux;
-
-    @FXML
     Label lblYear, lblMonth;
 
     @FXML
     SplitMenuButton smb_menuOption;
 
-    ArrayList<String> days = new ArrayList<>();
-    ArrayList<String> months = new ArrayList<>();
+    String monthNameInit;
 
-    ObservableList<String> options =
-            FXCollections.observableArrayList(
-                    "A",
-                    "M",
-                    "P",
-                    "T",
-                    "V"
-            );
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        fillArrays();
         calendarSettings();
+
+        monthNameInit =  VariablesAndMethodsUtils
+                .getMonthInit();
     }
 
     private void calendarSettings() {
@@ -80,33 +69,9 @@ public class CalendarSessionsController implements Initializable {
         for (int i = 0; i < total; i++) {
             GridPane gridMini = (GridPane) gp_calendar.getChildren().get(i);
             ComboBox cbo_aux = (ComboBox) gridMini.getChildren().get(7);
-            cbo_aux.getItems().addAll(options);
+            cbo_aux.getItems().addAll(VariablesAndMethodsUtils.optionsTiposAula);
             cbo_aux.setDisable(true);
         }
-    }
-
-
-    private void fillArrays() {
-        days.add("Lunes");
-        days.add("Martes");
-        days.add("Miercoles");
-        days.add("Jueves");
-        days.add("Viernes");
-        days.add("Sabado");
-        days.add("Domingo");
-
-        months.add("January");
-        months.add("February");
-        months.add("March");
-        months.add("April");
-        months.add("May");
-        months.add("June");
-        months.add("July");
-        months.add("August");
-        months.add("September");
-        months.add("October");
-        months.add("November");
-        months.add("December");
     }
 
     /**
@@ -127,5 +92,14 @@ public class CalendarSessionsController implements Initializable {
 
     public void clickCell(MouseEvent mouseEvent) {
         System.out.println("object : " + mouseEvent.getSource());
+    }
+
+    /**
+     * asignar mes a
+     * la interfaz
+     * //TODO necesito variable de curso academico
+     */
+    public void AsignarMesaInterfaz(){
+
     }
 }

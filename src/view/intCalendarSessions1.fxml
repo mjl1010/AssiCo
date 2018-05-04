@@ -51,8 +51,6 @@
                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="170.0" />
                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="170.0" />
                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="170.0" />
-                                                        <!--<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="95.0" />-->
-                                                        <!--<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="95.0" />-->
                                                     </columnConstraints>
                                                     <rowConstraints>
                                                         <RowConstraints minHeight="10.0" prefHeight="65.0" vgrow="SOMETIMES" />
@@ -60,6 +58,7 @@
                                                         <RowConstraints minHeight="10.0" prefHeight="65.0" vgrow="SOMETIMES" />
                                                         <RowConstraints minHeight="10.0" prefHeight="65.0" vgrow="SOMETIMES" />
                                                         <RowConstraints minHeight="10.0" prefHeight="65.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="65.0" vgrow="SOMETIMES" />
                                                     </rowConstraints>
                                                     <children>
                                                         <GridPane id="miniGrid_1" gridLinesVisible="true">
@@ -82,11 +81,16 @@
                                                 <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
                                                 <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
                                                 <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
-                                                <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                <ComboBox prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <Label text="contAsig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <HBox prefHeight="28.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                   </children>
+                                                </HBox>
                                                 <Label id="lblJuntSep1" text="lbljunSep" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <Label text="lblAula" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                              </children>
                                                         </GridPane>
                                           <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="1">
@@ -109,11 +113,16 @@
                                                 <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
                                                 <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
                                                 <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
-                                                <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <Label text="contAsig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <HBox prefHeight="28.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Label id="lblJuntSep1" text="lbljunSep" GridPane.columnIndex="2" />
                                                 <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <Label id="lblJuntSep20" text="lbljunSep" GridPane.columnIndex="2" />
+                                                <Label text="lblAula" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                              </children>
                                           </GridPane>
                                           <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="2">
@@ -136,551 +145,16 @@
                                                 <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
                                                 <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
                                                 <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
-                                                <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <Label text="contAsig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <HBox prefHeight="28.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Label id="lblJuntSep1" text="lbljunSep" GridPane.columnIndex="2" />
                                                 <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <Label id="lblJuntSep30" text="lbljunSep" GridPane.columnIndex="2" />
-                                             </children>
-                                          </GridPane>
-                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.rowIndex="1">
-                                             <columnConstraints>
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                             <children>
-                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
-                                                   <font>
-                                                      <Font name="System Bold" size="10.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
-                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
-                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
-                                                <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                <ComboBox prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <Label id="lblJuntSep2" text="lbljunSep" GridPane.columnIndex="2" />
-                                             </children>
-                                          </GridPane>
-                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                             <columnConstraints>
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                             <children>
-                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
-                                                   <font>
-                                                      <Font name="System Bold" size="10.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
-                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
-                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
-                                                <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                <ComboBox prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <Label id="lblJuntSep" text="lbljunSep" GridPane.columnIndex="2" />
-                                             </children>
-                                          </GridPane>
-                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                             <columnConstraints>
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                             <children>
-                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
-                                                   <font>
-                                                      <Font name="System Bold" size="10.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
-                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
-                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
-                                                <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                <ComboBox prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <Label id="lblJuntSep" text="lbljunSep" GridPane.columnIndex="2" />
-                                             </children>
-                                          </GridPane>
-                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                                             <columnConstraints>
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                             <children>
-                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
-                                                   <font>
-                                                      <Font name="System Bold" size="10.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
-                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
-                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
-                                                <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                <ComboBox prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <Label id="lblJuntSep" text="lbljunSep" GridPane.columnIndex="2" />
-                                             </children>
-                                          </GridPane>
-                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                                             <columnConstraints>
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                             <children>
-                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
-                                                   <font>
-                                                      <Font name="System Bold" size="10.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
-                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
-                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
-                                                <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                <ComboBox prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <Label id="lblJuntSep" text="lbljunSep" GridPane.columnIndex="2" />
-                                             </children>
-                                          </GridPane>
-                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.rowIndex="2">
-                                             <columnConstraints>
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                             <children>
-                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
-                                                   <font>
-                                                      <Font name="System Bold" size="10.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
-                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
-                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
-                                                <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <Label id="lblJuntSep3" text="lbljunSep" GridPane.columnIndex="2" />
-                                             </children>
-                                          </GridPane>
-                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                             <columnConstraints>
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                             <children>
-                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
-                                                   <font>
-                                                      <Font name="System Bold" size="10.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
-                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
-                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
-                                                <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <Label id="lblJuntSep" text="lbljunSep" GridPane.columnIndex="2" />
-                                             </children>
-                                          </GridPane>
-                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                             <columnConstraints>
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                             <children>
-                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
-                                                   <font>
-                                                      <Font name="System Bold" size="10.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
-                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
-                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
-                                                <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <Label id="lblJuntSep" text="lbljunSep" GridPane.columnIndex="2" />
-                                             </children>
-                                          </GridPane>
-                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="3" GridPane.rowIndex="2">
-                                             <columnConstraints>
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                             <children>
-                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
-                                                   <font>
-                                                      <Font name="System Bold" size="10.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
-                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
-                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
-                                                <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <Label id="lblJuntSep" text="lbljunSep" GridPane.columnIndex="2" />
-                                             </children>
-                                          </GridPane>
-                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="4" GridPane.rowIndex="2">
-                                             <columnConstraints>
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                             <children>
-                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
-                                                   <font>
-                                                      <Font name="System Bold" size="10.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
-                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
-                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
-                                                <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <Label id="lblJuntSep" text="lbljunSep" GridPane.columnIndex="2" />
-                                             </children>
-                                          </GridPane>
-                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                             <columnConstraints>
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                             <children>
-                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
-                                                   <font>
-                                                      <Font name="System Bold" size="10.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
-                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
-                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
-                                                <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <Label id="lblJuntSep" text="lbljunSep" GridPane.columnIndex="2" />
-                                             </children>
-                                          </GridPane>
-                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                                             <columnConstraints>
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                             <children>
-                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
-                                                   <font>
-                                                      <Font name="System Bold" size="10.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
-                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
-                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
-                                                <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <Label id="lblJuntSep" text="lbljunSep" GridPane.columnIndex="2" />
-                                             </children>
-                                          </GridPane>
-                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                                             <columnConstraints>
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                             <children>
-                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
-                                                   <font>
-                                                      <Font name="System Bold" size="10.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
-                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
-                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
-                                                <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <Label id="lblJuntSep" text="lbljunSep" GridPane.columnIndex="2" />
-                                             </children>
-                                          </GridPane>
-                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="4" GridPane.rowIndex="3">
-                                             <columnConstraints>
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                             <children>
-                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
-                                                   <font>
-                                                      <Font name="System Bold" size="10.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
-                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
-                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
-                                                <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <Label id="lblJuntSep" text="lbljunSep" GridPane.columnIndex="2" />
-                                             </children>
-                                          </GridPane>
-                                          <GridPane id="miniGrid_1" gridLinesVisible="true" onMouseClicked="#clickCell" GridPane.rowIndex="4">
-                                             <columnConstraints>
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                             <children>
-                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
-                                                   <font>
-                                                      <Font name="System Bold" size="10.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
-                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
-                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
-                                                <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <Label id="lblJuntSep5" text="lbljunSep" GridPane.columnIndex="2" />
-                                             </children>
-                                          </GridPane>
-                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                                             <columnConstraints>
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                             <children>
-                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
-                                                   <font>
-                                                      <Font name="System Bold" size="10.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
-                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
-                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
-                                                <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <Label id="lblJuntSep" text="lbljunSep" GridPane.columnIndex="2" />
-                                             </children>
-                                          </GridPane>
-                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="2" GridPane.rowIndex="4">
-                                             <columnConstraints>
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                             <children>
-                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
-                                                   <font>
-                                                      <Font name="System Bold" size="10.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
-                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
-                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
-                                                <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <Label id="lblJuntSep" text="lbljunSep" GridPane.columnIndex="2" />
-                                             </children>
-                                          </GridPane>
-                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="3" GridPane.rowIndex="4">
-                                             <columnConstraints>
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                             <children>
-                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
-                                                   <font>
-                                                      <Font name="System Bold" size="10.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
-                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
-                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
-                                                <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <Label id="lblJuntSep" text="lbljunSep" GridPane.columnIndex="2" />
-                                             </children>
-                                          </GridPane>
-                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="4" GridPane.rowIndex="4">
-                                             <columnConstraints>
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                             <children>
-                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
-                                                   <font>
-                                                      <Font name="System Bold" size="10.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
-                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
-                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
-                                                <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <Label id="lblJuntSep" text="lbljunSep" GridPane.columnIndex="2" />
-                                             </children>
-                                          </GridPane>
-                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.rowIndex="3">
-                                             <columnConstraints>
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                             <children>
-                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
-                                                   <font>
-                                                      <Font name="System Bold" size="10.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
-                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
-                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
-                                                <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <Label id="lblJuntSep4" text="lbljunSep" GridPane.columnIndex="2" />
+                                                <Label text="lblAula" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                              </children>
                                           </GridPane>
                                           <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="3">
@@ -703,11 +177,16 @@
                                                 <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
                                                 <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
                                                 <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
-                                                <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <Label text="contAsig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <HBox prefHeight="28.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Label id="lblJuntSep1" text="lbljunSep" GridPane.columnIndex="2" />
                                                 <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <Label id="lblJuntSep30" text="lbljunSep" GridPane.columnIndex="2" />
+                                                <Label text="lblAula" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                              </children>
                                           </GridPane>
                                           <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="4">
@@ -730,11 +209,816 @@
                                                 <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
                                                 <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
                                                 <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
-                                                <Label text="s_data2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label text="s_data3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="s_data6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <Label text="contAsig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <HBox prefHeight="28.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Label id="lblJuntSep1" text="lbljunSep" GridPane.columnIndex="2" />
                                                 <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <Label id="lblJuntSep30" text="lbljunSep" GridPane.columnIndex="2" />
+                                                <Label text="lblAula" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.rowIndex="1">
+                                             <columnConstraints>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
+                                                   <font>
+                                                      <Font name="System Bold" size="10.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
+                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
+                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
+                                                <Label text="contAsig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <HBox prefHeight="28.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Label id="lblJuntSep1" text="lbljunSep" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <Label text="lblAula" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <columnConstraints>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
+                                                   <font>
+                                                      <Font name="System Bold" size="10.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
+                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
+                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
+                                                <Label text="contAsig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <HBox prefHeight="28.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Label id="lblJuntSep1" text="lbljunSep" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <Label text="lblAula" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                             <columnConstraints>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
+                                                   <font>
+                                                      <Font name="System Bold" size="10.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
+                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
+                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
+                                                <Label text="contAsig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <HBox prefHeight="28.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Label id="lblJuntSep1" text="lbljunSep" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <Label text="lblAula" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                             <columnConstraints>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
+                                                   <font>
+                                                      <Font name="System Bold" size="10.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
+                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
+                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
+                                                <Label text="contAsig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <HBox prefHeight="28.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Label id="lblJuntSep1" text="lbljunSep" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <Label text="lblAula" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                             <columnConstraints>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
+                                                   <font>
+                                                      <Font name="System Bold" size="10.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
+                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
+                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
+                                                <Label text="contAsig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <HBox prefHeight="28.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Label id="lblJuntSep1" text="lbljunSep" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <Label text="lblAula" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.rowIndex="2">
+                                             <columnConstraints>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
+                                                   <font>
+                                                      <Font name="System Bold" size="10.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
+                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
+                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
+                                                <Label text="contAsig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <HBox prefHeight="28.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Label id="lblJuntSep1" text="lbljunSep" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <Label text="lblAula" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                             <columnConstraints>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
+                                                   <font>
+                                                      <Font name="System Bold" size="10.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
+                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
+                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
+                                                <Label text="contAsig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <HBox prefHeight="28.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Label id="lblJuntSep1" text="lbljunSep" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <Label text="lblAula" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                             <columnConstraints>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
+                                                   <font>
+                                                      <Font name="System Bold" size="10.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
+                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
+                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
+                                                <Label text="contAsig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <HBox prefHeight="28.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Label id="lblJuntSep1" text="lbljunSep" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <Label text="lblAula" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                             <columnConstraints>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
+                                                   <font>
+                                                      <Font name="System Bold" size="10.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
+                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
+                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
+                                                <Label text="contAsig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <HBox prefHeight="28.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Label id="lblJuntSep1" text="lbljunSep" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <Label text="lblAula" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                                             <columnConstraints>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
+                                                   <font>
+                                                      <Font name="System Bold" size="10.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
+                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
+                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
+                                                <Label text="contAsig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <HBox prefHeight="28.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Label id="lblJuntSep1" text="lbljunSep" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <Label text="lblAula" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.rowIndex="3">
+                                             <columnConstraints>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
+                                                   <font>
+                                                      <Font name="System Bold" size="10.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
+                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
+                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
+                                                <Label text="contAsig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <HBox prefHeight="28.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Label id="lblJuntSep1" text="lbljunSep" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <Label text="lblAula" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                             <columnConstraints>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
+                                                   <font>
+                                                      <Font name="System Bold" size="10.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
+                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
+                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
+                                                <Label text="contAsig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <HBox prefHeight="28.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Label id="lblJuntSep1" text="lbljunSep" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <Label text="lblAula" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                             <columnConstraints>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
+                                                   <font>
+                                                      <Font name="System Bold" size="10.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
+                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
+                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
+                                                <Label text="contAsig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <HBox prefHeight="28.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Label id="lblJuntSep1" text="lbljunSep" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <Label text="lblAula" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                             <columnConstraints>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
+                                                   <font>
+                                                      <Font name="System Bold" size="10.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
+                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
+                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
+                                                <Label text="contAsig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <HBox prefHeight="28.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Label id="lblJuntSep1" text="lbljunSep" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <Label text="lblAula" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                                             <columnConstraints>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
+                                                   <font>
+                                                      <Font name="System Bold" size="10.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
+                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
+                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
+                                                <Label text="contAsig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <HBox prefHeight="28.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Label id="lblJuntSep1" text="lbljunSep" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <Label text="lblAula" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.rowIndex="4">
+                                             <columnConstraints>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
+                                                   <font>
+                                                      <Font name="System Bold" size="10.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
+                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
+                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
+                                                <Label text="contAsig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <HBox prefHeight="28.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Label id="lblJuntSep1" text="lbljunSep" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <Label text="lblAula" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                             <columnConstraints>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
+                                                   <font>
+                                                      <Font name="System Bold" size="10.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
+                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
+                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
+                                                <Label text="contAsig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <HBox prefHeight="28.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Label id="lblJuntSep1" text="lbljunSep" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <Label text="lblAula" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                             <columnConstraints>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
+                                                   <font>
+                                                      <Font name="System Bold" size="10.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
+                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
+                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
+                                                <Label text="contAsig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <HBox prefHeight="28.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Label id="lblJuntSep1" text="lbljunSep" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <Label text="lblAula" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                                             <columnConstraints>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
+                                                   <font>
+                                                      <Font name="System Bold" size="10.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
+                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
+                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
+                                                <Label text="contAsig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <HBox prefHeight="28.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Label id="lblJuntSep1" text="lbljunSep" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <Label text="lblAula" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                                             <columnConstraints>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
+                                                   <font>
+                                                      <Font name="System Bold" size="10.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
+                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
+                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
+                                                <Label text="contAsig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <HBox prefHeight="28.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Label id="lblJuntSep1" text="lbljunSep" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <Label text="lblAula" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.rowIndex="5">
+                                             <columnConstraints>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
+                                                   <font>
+                                                      <Font name="System Bold" size="10.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
+                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
+                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
+                                                <Label text="contAsig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <HBox prefHeight="28.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Label id="lblJuntSep1" text="lbljunSep" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <Label text="lblAula" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                             <columnConstraints>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
+                                                   <font>
+                                                      <Font name="System Bold" size="10.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
+                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
+                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
+                                                <Label text="contAsig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <HBox prefHeight="28.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Label id="lblJuntSep1" text="lbljunSep" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <Label text="lblAula" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                             <columnConstraints>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
+                                                   <font>
+                                                      <Font name="System Bold" size="10.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
+                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
+                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
+                                                <Label text="contAsig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <HBox prefHeight="28.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Label id="lblJuntSep1" text="lbljunSep" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <Label text="lblAula" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                                             <columnConstraints>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
+                                                   <font>
+                                                      <Font name="System Bold" size="10.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
+                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
+                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
+                                                <Label text="contAsig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <HBox prefHeight="28.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Label id="lblJuntSep1" text="lbljunSep" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <Label text="lblAula" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                          <GridPane id="miniGrid_1" gridLinesVisible="true" GridPane.columnIndex="4" GridPane.rowIndex="5">
+                                             <columnConstraints>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="57.66668701171875" minWidth="10.0" prefWidth="57.66668701171875" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="97.66665649414062" minWidth="10.0" prefWidth="71.33331298828125" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="46.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label prefHeight="27.0" prefWidth="64.0" style="-fx-background-color: #BE81F7;" text="01/01/2000" textFill="#f2efef">
+                                                   <font>
+                                                      <Font name="System Bold" size="10.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="aux1" textAlignment="CENTER" GridPane.rowIndex="1" />
+                                                <Label text="aux2" textAlignment="CENTER" GridPane.rowIndex="2" />
+                                                <Label prefHeight="18.0" prefWidth="41.0" text="lblAsignatura" GridPane.columnIndex="1" />
+                                                <Label text="contAsig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <HBox prefHeight="28.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                      <ComboBox minWidth="-Infinity" prefHeight="25.0" prefWidth="36.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Label id="lblJuntSep1" text="lbljunSep" GridPane.columnIndex="2" />
+                                                <ComboBox id="cbo_tipoAula" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <Label text="lblAula" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                              </children>
                                           </GridPane>
                                                     </children>

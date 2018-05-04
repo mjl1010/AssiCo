@@ -14,7 +14,6 @@ public class Sesion {
     private String confirmNota;
     private String asignatura;
     private String contenidos;
-
     private boolean activo;
     private String colorFondo;
     private String colorTexto;
@@ -28,7 +27,27 @@ public class Sesion {
     private Master master;
     private Master masterComun;
 
-    public Sesion() {
+    public  Sesion() {
+    }
+
+    public Sesion(int id, String aula, String tipoAula, Docente docente1, Docente docente2,
+                  String asignatura, String contenidos, Master master) {
+        this.id = id;
+        this.aula = aula;
+        this.tipoAula = tipoAula;
+        this.docente1 = docente1;
+        this.docente2 = docente2;
+        this.asignatura = asignatura;
+        this.contenidos = contenidos;
+        this.master = master;
+        this.activo = true;
+    }
+
+
+    public Sesion(int id, boolean activo, Master master) {
+        this.id = id;
+        this.activo = activo;
+        this.master = master;
     }
 
     public int getId() {
