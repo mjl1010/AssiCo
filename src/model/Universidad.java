@@ -7,6 +7,11 @@ public class Universidad {
     public Universidad() {
     }
 
+    public Universidad(int id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
+
     public int getId() {
         return id;
     }

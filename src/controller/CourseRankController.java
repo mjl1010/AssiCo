@@ -4,47 +4,43 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import model.CalendarioBase;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
  * Created by Michael
  */
-public class RankController {
+public class CourseRankController {
 
     @FXML
-    DatePicker datePicker_start;
+    DatePicker datePicker_start, datePicker_end;
 
-    @FXML
-    DatePicker datePicker_end;
-
-    @FXML
-    Button btnGenerarDates;
-
-    private static ArrayList<LocalDate> aListRankDates = new ArrayList<>();
     private static String firstDay;
     private static LocalDate endDay;
     private static int contWeeks;
-
     private int cont_day = 0;
+    private static ArrayList<CalendarioBase> aListCalBase;
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/YYYY");
 
 
     /***** Gettes and Setters ****/
 
-    public static ArrayList<LocalDate> getaListRankDates() {
-        return aListRankDates;
+    public static ArrayList<CalendarioBase> getaListCalBase() {
+        return aListCalBase;
     }
-
+    public static void setaListCalBase(ArrayList<CalendarioBase> aListCalBase) {
+        CourseRankController.aListCalBase = aListCalBase;
+    }
     public static String getFirstDay() {
         return firstDay;
     }
-
     public static int getContWeeks() {
         return contWeeks;
     }
@@ -53,8 +49,8 @@ public class RankController {
     }
 
 
-    /******* Métodos agregados *******/
 
+    /******* Métodos agregados *******/
 
     /**
      * generador de fechas
@@ -65,43 +61,55 @@ public class RankController {
         LocalDate init = datePicker_start.getValue();
         LocalDate end = datePicker_end.getValue();
         LocalDate date_temp = init;
+        CalendarioBase cb;
 
+        aListCalBase = new ArrayList<>();
         while (!date_temp.isAfter(end)) {
             if (date_temp.getDayOfWeek().name().equals("MONDAY")) {
-//                System.out.println("1 semana x Lunes");
                 contWeeks++;
             }
-            System.out.println("dia : " + date_temp.getDayOfWeek() + "-" + date_temp.getDayOfMonth());
             cont_day++;
             if (cont_day == 1) firstDay = date_temp.getDayOfWeek().name();
-            aListRankDates.add(date_temp);
+            aListCalBase.add(generarObjectCalendarBase(date_temp));
             date_temp = date_temp.plusDays(1);
         }
 
-//        System.out.println("\nsize list dates : " + aListRankDates.size());
-
         if (!firstDay.equals("MONDAY")) {
-//            System.out.println("Me debias 1 semana, parcero !");
             contWeeks++;
         }
-        endDay = aListRankDates.get(aListRankDates.size()-1);
-        openCalendary();
+        endDay = date_temp.minusDays(1);
+        openRankHolydays();
 
     }
 
+    /**
+     *
+     * @param date_temp
+     * @return obj CalendarBase
+     */
+    public static CalendarioBase generarObjectCalendarBase(LocalDate date_temp) {
+        String day , month , year ;
+        String code;
+        String date_format = date_temp.format(FORMATTER);
+        String[] s = date_format.split("/");
+
+        day = s[0];
+        month = s[1];
+        year = s[2];
+        code = year + month + day;
+
+        return new CalendarioBase(Integer.parseInt(code), date_format, date_temp.getDayOfWeek().getValue());
+    }
 
     /**
      * open calendary
      */
-    public void openCalendary() throws IOException {
-
-
-        Parent root = FXMLLoader.load(getClass().getResource("../view/intCalendar.fxml"));
+    public void openRankHolydays() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../view/intVacationsRank.fxml"));
         Stage stage = new Stage(StageStyle.DECORATED);
-        Scene scene = new Scene(root, 673, 478);
-        stage.setTitle("Calendary Stage");
+        Scene scene = new Scene(root, 495, 307);
+        stage.setTitle("Holydays Stage");
         stage.setScene(scene);
-//        scene.getStylesheets().add(getClass().getResource("table-view.css").toExternalForm());
         stage.show();
     }
 

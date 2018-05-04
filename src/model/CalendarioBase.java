@@ -17,6 +17,20 @@ public class CalendarioBase {
     public CalendarioBase() {
     }
 
+    public CalendarioBase(int id, String date_format, int dayName) {
+        this.dia = id;
+        this.idDate = date_format;
+        this.weekDay = dayName;
+    }
+
+    public PlanificadorCalendarios getPlanificadorCalendarios() {
+        return planificadorCalendarios;
+    }
+
+    public void setPlanificadorCalendarios(PlanificadorCalendarios planificadorCalendarios) {
+        this.planificadorCalendarios = planificadorCalendarios;
+    }
+
     public int getDia() {
         return dia;
     }
@@ -95,5 +109,36 @@ public class CalendarioBase {
 
     public void setIdDate(String idDate) {
         this.idDate = idDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CalendarioBase that = (CalendarioBase) o;
+
+        return dia == that.dia;
+    }
+
+    @Override
+    public int hashCode() {
+        return dia;
+    }
+
+    @Override
+    public String toString() {
+        return "CalendarioBase{" +
+                "dia=" + dia +
+                ", universidad=" + universidad +
+                ", descSpa='" + descSpa + '\'' +
+                ", descCat='" + descCat + '\'' +
+                ", weekDay=" + weekDay +
+                ", isSummer=" + isSummer +
+                ", isFestivo=" + isFestivo +
+                ", isActive=" + isActive +
+                ", cursoAcademico='" + cursoAcademico + '\'' +
+                ", idDate='" + idDate + '\'' +
+                '}';
     }
 }
