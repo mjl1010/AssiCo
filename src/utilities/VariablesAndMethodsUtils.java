@@ -1,8 +1,8 @@
 package utilities;
 
+import entity.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -15,7 +15,7 @@ public class VariablesAndMethodsUtils {
 
     /**** Variables ******/
 
-    private static ArrayList<PlanificadorCalendarios> listPlanifCalend = new ArrayList<>();
+    private static ArrayList<PlanificacionCalendarios> listPlanifCalend = new ArrayList<>();
 
 
     public static ObservableList<String> optionsTiposAula;
@@ -75,7 +75,7 @@ public class VariablesAndMethodsUtils {
      * set Planicador Calendario List
      * @param listPlanifCalend
      */
-    public static void setListPlanifCalend(ArrayList<PlanificadorCalendarios> listPlanifCalend) {
+    public static void setListPlanifCalend(ArrayList<PlanificacionCalendarios> listPlanifCalend) {
         VariablesAndMethodsUtils.listPlanifCalend = listPlanifCalend;
     }
 

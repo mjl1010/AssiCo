@@ -1,6 +1,8 @@
-package model;
+package entity;
 
-public class Docente {
+import java.io.Serializable;
+
+public class Docente implements Serializable {
     private int id;
     private String code;
     private String nombre;

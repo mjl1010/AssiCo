@@ -1,8 +1,9 @@
-package model;
+package entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Usuario {
+public class Usuario implements Serializable {
     private int id;
     private String avatar;
     private String nick;

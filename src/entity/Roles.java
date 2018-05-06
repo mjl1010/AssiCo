@@ -1,6 +1,8 @@
-package model;
+package entity;
 
-public class Roles {
+import java.io.Serializable;
+
+public class Roles implements Serializable {
     private int id;
     private String nombre;
     private String perms;

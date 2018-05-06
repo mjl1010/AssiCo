@@ -1,6 +1,8 @@
-package model;
+package entity;
 
-public class Universidad {
+import java.io.Serializable;
+
+public class Universidad implements Serializable {
     private int id;
     private String nombre;
 

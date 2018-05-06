@@ -1,6 +1,8 @@
-package model;
+package entity;
 
-public class Master {
+import java.io.Serializable;
+
+public class Master implements Serializable {
     private int id;
     private String code;
     private String nombre;

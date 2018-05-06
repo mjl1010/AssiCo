@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import model.CalendarioBase;
+import entity.CalendarioBase;
 
 import java.io.IOException;
 import java.time.LocalDate;
