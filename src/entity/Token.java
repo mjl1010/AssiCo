@@ -1,8 +1,9 @@
-package model;
+package entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Token {
+public class Token implements Serializable {
     private int id;
     private String token;
     private Usuario usuario;

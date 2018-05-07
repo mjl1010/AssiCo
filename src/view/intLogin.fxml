@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+     <children>
+        <VBox layoutX="60.0" prefHeight="200.0" prefWidth="100.0" spacing="7.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+            <children>
+                <HBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
+                    <children>
+                        <ImageView id="logo" cache="true" fitHeight="150.0" fitWidth="200.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                           <image>
+                              <Image url="@res/AssiCoLogo@0,1x.png" />
+                           </image>
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </ImageView>
+                    </children>
+                </HBox>
+
+                <HBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
+                    <children>
+                        <TextField fx:id="usuario" prefWidth="149.0" promptText="Usuari" />
+                    </children>
+                </HBox>
+
+                <HBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
+                    <children>
+                        <PasswordField fx:id="clave" promptText="Clau" />
+                    </children>
+                </HBox>
+
+                <HBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
+                    <children>
+                        <Hyperlink fx:id="olvido" text="No recorda la seva clau?" />
+                    </children>
+                </HBox>
+
+                <HBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
+                    <children>
+                        <Button fx:id="acceder" mnemonicParsing="false" onAction="#alAcceder" text="Accedir" />
+                    </children>
+                </HBox>
+
+                <HBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
+                    <children>
+                        <Label text="© 2018 AssiCo" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="281.0" AnchorPane.rightAnchor="280.0" AnchorPane.topAnchor="350.0" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+     </children>
+</AnchorPane>

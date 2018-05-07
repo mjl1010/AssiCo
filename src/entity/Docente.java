@@ -1,17 +1,20 @@
-package model;
+package entity;
 
-public class Master {
+import java.io.Serializable;
+
+public class Docente implements Serializable {
     private int id;
     private String code;
     private String nombre;
-    private String diasLesctivosPrincipales;
+    private String apellidos;
+    private String email;
+    private String telefono;
     private Universidad universidad;
-    private Master masterVinculado;
 
-    public Master() {
+    public Docente() {
     }
 
-    public Master(int id, String code, String nombre) {
+    public Docente(int id, String code, String nombre) {
         this.id = id;
         this.code = code;
         this.nombre = nombre;
@@ -41,12 +44,28 @@ public class Master {
         this.nombre = nombre;
     }
 
-    public String getDiasLesctivosPrincipales() {
-        return diasLesctivosPrincipales;
+    public String getApellidos() {
+        return apellidos;
     }
 
-    public void setDiasLesctivosPrincipales(String diasLesctivosPrincipales) {
-        this.diasLesctivosPrincipales = diasLesctivosPrincipales;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     public Universidad getUniversidad() {
@@ -57,17 +76,13 @@ public class Master {
         this.universidad = universidad;
     }
 
-    public Master getMasterVinculado() {
-        return masterVinculado;
-    }
-
-    public void setMasterVinculado(Master master_vinculado) {
-        this.masterVinculado = master_vinculado;
+    public Docente(String code) {
+        this.code = code;
     }
 
     @Override
     public String toString() {
-        return "Master{" + code + '\'' +
+        return "Docente{" + code + '\'' +
                 '}';
     }
 }

@@ -1,6 +1,8 @@
-package model;
+package entity;
 
-public class CalendarioBase {
+import java.io.Serializable;
+
+public class CalendarioBase implements Serializable {
     private int dia;
     private Universidad universidad;
     private String descSpa;

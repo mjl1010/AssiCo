@@ -1,8 +1,9 @@
-package model;
+package entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Sesion {
+public class Sesion implements Serializable {
     private int id;
     private String aula; // TODO int
     private String tipoAula;

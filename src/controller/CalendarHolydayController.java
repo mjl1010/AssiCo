@@ -3,7 +3,7 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import model.CalendarioBase;
+import entity.CalendarioBase;
 import model.ClientExt;
 import utilities.WeekDates;
 

@@ -1,11 +1,14 @@
 package model;
 
+import entity.CalendarioBase;
+
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 
 /**
- *
+ *  Classe Deprecated
+ *  @deprecated Ahora se usa DatosModel
  */
 public class ClientExt {
 
@@ -13,7 +16,7 @@ public class ClientExt {
     private static ObjectOutputStream dos;
     private static ObjectInputStream dis;
 
-    private static Message message;
+    private static Dato dato;
 
     /**
      * connect to server
@@ -34,15 +37,15 @@ public class ClientExt {
      * @param data
      */
     public static void send_firstListBaseCalendar(ArrayList<CalendarioBase> data) {
-        message = new Message("firstListBaseCalendar", data);
+        dato = new Dato("firstListBaseCalendar", data);
         try {
-            dos.writeObject(message);
+            dos.writeObject(dato);
 
-            message = null;
-            message = (Message) dis.readObject(); // while hasta que responda
+            dato = null;
+            dato = (Dato) dis.readObject(); // while hasta que responda
 
-            System.out.printf("Servidor devuelve : MessageCode =  %s , Message = %s", message.getMessageCode()
-                    , message.getObject());
+            System.out.printf("Servidor devuelve : MessageCode =  %s , Dato = %s", dato.getMessageCode()
+                    , dato.getObject());
 
         } catch (IOException e) {
             e.printStackTrace();
