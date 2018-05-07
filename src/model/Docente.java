@@ -73,4 +73,14 @@ public class Docente {
     public void setUniversidad(Universidad universidad) {
         this.universidad = universidad;
     }
+
+    public Docente(String code) {
+        this.code = code;
+    }
+
+    @Override
+    public String toString() {
+        return "Docente{" + code + '\'' +
+                '}';
+    }
 }

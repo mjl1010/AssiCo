@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Sesion {
     private int id;
-    private String aula;
+    private String aula; // TODO int
     private String tipoAula;
     private Docente docente1;
     private Docente docente2;
@@ -32,8 +32,8 @@ public class Sesion {
     public  Sesion() {
     }
 
-    public Sesion(int id, String aula, String tipoAula, Docente docente1,
-                  String asignatura, String contenidos, Master master1, Master master2) {
+    public Sesion(int id, Master master1, Master master2, String asignatura, String contenidos,
+                  Docente docente1, Docente docente2, String aula, String tipoAula) {
         this.id = id;
         this.aula = aula;
         this.tipoAula = tipoAula;
@@ -268,6 +268,37 @@ public class Sesion {
         return Objects.hash(id);
     }
 
+//    @Override
+//    public String toString() {
+////        return "Sesion{" +
+////                "id=" + id +
+////                ", aula='" + aula + '\'' +
+////                ", tipoAula='" + tipoAula + '\'' +
+////                ", docente1=" + docente1 +
+////                ", docente2=" + docente2 +
+////                ", confirmContenidos=" + confirmContenidos +
+////                ", confirmAula=" + confirmAula +
+////                ", confirmDocente1=" + confirmDocente1 +
+////                ", confirmDocente2=" + confirmDocente2 +
+////                ", confirmWarning=" + confirmWarning +
+////                ", confirmNota='" + confirmNota + '\'' +
+////                ", asignatura='" + asignatura + '\'' +
+////                ", contenidos='" + contenidos + '\'' +
+////                ", activo=" + activo +
+////                ", colorFondo='" + colorFondo + '\'' +
+////                ", colorTexto='" + colorTexto + '\'' +
+////                ", nota0='" + nota0 + '\'' +
+////                ", nota1='" + nota1 + '\'' +
+////                ", nota2='" + nota2 + '\'' +
+////                ", nota3='" + nota3 + '\'' +
+////                ", nota4='" + nota4 + '\'' +
+////                ", nota5='" + nota5 + '\'' +
+////                ", nota6='" + nota6 + '\'' +
+////                ", master1=" + master1 +
+////                ", master2=" + master2 +
+////                '}';
+////    }
+
     @Override
     public String toString() {
         return "Sesion{" +
@@ -276,24 +307,8 @@ public class Sesion {
                 ", tipoAula='" + tipoAula + '\'' +
                 ", docente1=" + docente1 +
                 ", docente2=" + docente2 +
-                ", confirmContenidos=" + confirmContenidos +
-                ", confirmAula=" + confirmAula +
-                ", confirmDocente1=" + confirmDocente1 +
-                ", confirmDocente2=" + confirmDocente2 +
-                ", confirmWarning=" + confirmWarning +
-                ", confirmNota='" + confirmNota + '\'' +
                 ", asignatura='" + asignatura + '\'' +
                 ", contenidos='" + contenidos + '\'' +
-                ", activo=" + activo +
-                ", colorFondo='" + colorFondo + '\'' +
-                ", colorTexto='" + colorTexto + '\'' +
-                ", nota0='" + nota0 + '\'' +
-                ", nota1='" + nota1 + '\'' +
-                ", nota2='" + nota2 + '\'' +
-                ", nota3='" + nota3 + '\'' +
-                ", nota4='" + nota4 + '\'' +
-                ", nota5='" + nota5 + '\'' +
-                ", nota6='" + nota6 + '\'' +
                 ", master1=" + master1 +
                 ", master2=" + master2 +
                 '}';

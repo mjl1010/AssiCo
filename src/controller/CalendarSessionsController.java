@@ -1,7 +1,5 @@
 package controller;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -13,7 +11,6 @@ import javafx.scene.layout.*;
 import utilities.VariablesAndMethodsUtils;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
@@ -46,6 +43,8 @@ public class CalendarSessionsController implements Initializable {
 
 //        monthNameInit =  VariablesAndMethodsUtils
 //                .getMonthInit();
+
+        VariablesAndMethodsUtils.addData();
     }
 
     private void calendarSettings() {
@@ -69,7 +68,7 @@ public class CalendarSessionsController implements Initializable {
         for (int i = 0; i < total; i++) {
             GridPane gridMini = (GridPane) gp_calendar.getChildren().get(i);
             ComboBox cbo_aux = (ComboBox) gridMini.getChildren().get(7);
-            cbo_aux.getItems().addAll(VariablesAndMethodsUtils.optionsTiposAula);
+            cbo_aux.getItems().addAll(VariablesAndMethodsUtils.aTiposAula);
             cbo_aux.setDisable(true);
         }
     }

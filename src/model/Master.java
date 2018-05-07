@@ -64,4 +64,10 @@ public class Master {
     public void setMasterVinculado(Master master_vinculado) {
         this.masterVinculado = master_vinculado;
     }
+
+    @Override
+    public String toString() {
+        return "Master{" + code + '\'' +
+                '}';
+    }
 }
