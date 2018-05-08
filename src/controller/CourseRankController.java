@@ -8,10 +8,12 @@ import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import entity.CalendarioBase;
+import utilities.VariablesAndMethodsUtils;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 
 /**
@@ -88,17 +90,9 @@ public class CourseRankController {
      * @return obj CalendarBase
      */
     public static CalendarioBase generarObjectCalendarBase(LocalDate date_temp) {
-        String day , month , year ;
-        String code;
-        String date_format = date_temp.format(FORMATTER);
-        String[] s = date_format.split("/");
-
-        day = s[0];
-        month = s[1];
-        year = s[2];
-        code = year + month + day;
-
-        return new CalendarioBase(Integer.parseInt(code), date_format, date_temp.getDayOfWeek().getValue());
+        return new CalendarioBase(Integer.parseInt(date_temp.format(DateTimeFormatter.BASIC_ISO_DATE)),
+                VariablesAndMethodsUtils.uni, DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).format(date_temp),
+                 date_temp.getDayOfWeek().getValue(), date_temp.format(FORMATTER), "");
     }
 
     /**

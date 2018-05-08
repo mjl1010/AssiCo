@@ -39,15 +39,22 @@ public class CalendarSessionsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        calendarSettings();
-
-//        monthNameInit =  VariablesAndMethodsUtils
-//                .getMonthInit();
+        addEventCalendars();
 
         VariablesAndMethodsUtils.addData();
+
+//        Master master1 = new Master(1, "M01", "master1");
+//        Master master2 = new Master(2, "M02", "master2");
+//
+//        DatosModel.connect(null);
+//        if (DatosModel.getPlanificacionCalendarios(LoginController.token.getUsuario(), "2017-2018",
+//                master1, master2) == null) System.out.println("Es nulo xD!");
+//
+//        DatosModel.closeConnection();
+
     }
 
-    private void calendarSettings() {
+    private void addEventCalendars() {
         gp_calendar.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             smb_menuOption.setDisable(false);
             System.out.println(event.getSource());
@@ -65,12 +72,12 @@ public class CalendarSessionsController implements Initializable {
         int rows = gp_calendar.getRowConstraints().size();
         int total = cols * rows;
 
-        for (int i = 0; i < total; i++) {
-            GridPane gridMini = (GridPane) gp_calendar.getChildren().get(i);
-            ComboBox cbo_aux = (ComboBox) gridMini.getChildren().get(7);
-            cbo_aux.getItems().addAll(VariablesAndMethodsUtils.aTiposAula);
-            cbo_aux.setDisable(true);
-        }
+//        for (int i = 0; i < total; i++) {
+//            GridPane gridMini = (GridPane) gp_calendar.getChildren().get(i);
+//            ComboBox cbo_aux = (ComboBox) gridMini.getChildren().get(7);
+//            cbo_aux.getItems().addAll(VariablesAndMethodsUtils.aTiposAula);
+//            cbo_aux.setDisable(true);
+//        }
     }
 
     /**

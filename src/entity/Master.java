@@ -66,10 +66,4 @@ public class Master implements Serializable {
     public void setMasterVinculado(Master master_vinculado) {
         this.masterVinculado = master_vinculado;
     }
-
-    @Override
-    public String toString() {
-        return "Master{" + code + '\'' +
-                '}';
-    }
 }

@@ -33,6 +33,8 @@ public class LoginController implements Initializable {
     @FXML
     private Hyperlink olvido;
 
+    protected static Token token;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -49,6 +51,8 @@ public class LoginController implements Initializable {
             return;
         }
 
+        DatosModel.connect(owner);
+
         acceder.setStyle("-fx-base: #00AA00;");
         acceder.setDisable(true);
 
@@ -56,7 +60,7 @@ public class LoginController implements Initializable {
         datos.put("usuario", usuario.getText());
         datos.put("clave", clave.getText());
 
-        Token token = DatosModel.comprobarCuenta(datos);
+        token = DatosModel.comprobarCuenta(datos);
         if (token == null) {
             AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error - AssiCo", "Usuari o clau incorrectes!\nTambé és possible que sigui un error de conexió.");
             acceder.setStyle("");
@@ -72,6 +76,7 @@ public class LoginController implements Initializable {
             stage.show();
             stage = (Stage) owner;
             stage.close();
+            DatosModel.closeConnection();
         }
     }
 }

@@ -1,5 +1,7 @@
 package utilities;
 
+import controller.CourseRankController;
+import entity.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.*;
@@ -7,6 +9,8 @@ import model.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Random;
 
 /**
@@ -25,42 +29,26 @@ public class VariablesAndMethodsUtils {
     private static ArrayList<String> aListAsignaturas = new ArrayList<>();
     private static ArrayList<Docente> aDocentes = new ArrayList<>();
 
-    static Universidad uni;
-    private static Master master1;
-    private static Master master2;
+    public static Universidad uni;
+    public static String curso;
+    public static Master master1;
+    public static Master master2;
 
     private static int sesionID = 0;
-
     private static final ArrayList<String> aTipoSession = new ArrayList<>();
 
-    static {
+    private static ArrayList<String> dateTest = new ArrayList<>();
 
+    static {
+        uni = new Universidad(1, "uoc");
+        curso = "2018-2019";
+        master1 = new Master(1, "M01", "master1");
+        master2 = new Master(2, "M02", "master2");
         aTiposAula = FXCollections.observableArrayList(
                 "A", "M", "P", "T", "V"
         );
-
         aTipoSession.add("J");
         aTipoSession.add("S");
-//        aDays.add("Lunes");
-//        aDays.add("Martes");
-//        aDays.add("Miercoles");
-//        aDays.add("Jueves");
-//        aDays.add("Viernes");
-//        aDays.add("Sabado");
-//        aDays.add("Domingo");
-//
-//        aMonths.add("January");
-//        aMonths.add("February");
-//        aMonths.add("March");
-//        aMonths.add("April");
-//        aMonths.add("May");
-//        aMonths.add("June");
-//        aMonths.add("July");
-//        aMonths.add("August");
-//        aMonths.add("September");
-//        aMonths.add("October");
-//        aMonths.add("November");
-//        aMonths.add("December");
     }
 
     /**** Métodos ******/
@@ -98,42 +86,16 @@ public class VariablesAndMethodsUtils {
         return LocalDate.parse(data, FORMATTER2);
     }
 
-//    /**
-//     * metodo de test
-//     */
-//    public void test_fillData(){
-//        Sesion sesion;
-//        int Max = 10, Min = 1;
-//
-//        for (int i = 0; i < 114; i++) {
-//            int sessionInt = i + 1;
-//            int aula = (int) (i + (Math.random() * ( Max - Min )));
-//            sesion = new Sesion();
-//        }
-//    }
-
     /**
      * registra data
      * para test
      */
     public static void addData() {
-        regStaticData();
         regDocentes();
         regAsignaturas();
         regSesiones();
-//        System.out.println("sesiones : \n" + aSession);
-//        for (int i = 0; i < aSession.size(); i++) System.out.println(aSession.get(i).toString()+"\n");
-
-        int numComun = 0;
-
-        for (int i = 0; i < aSession.size(); i++) {
-            if (aSession.get(i).getMaster1() != null &&
-                    aSession.get(i).getMaster2() != null) numComun++;
-        }
-
-        System.out.println("numero de sesiones comunes : " + numComun);
-
     }
+
 
     private static void regSesiones() {
         for (int i = 0; i < aListAsignaturas.size(); i++) {
@@ -191,6 +153,7 @@ public class VariablesAndMethodsUtils {
                     break;
             }
         }
+        Collections.shuffle(aSession);
     }
 
 
@@ -225,9 +188,4 @@ public class VariablesAndMethodsUtils {
                             "profesor" + (i + 1)));
     }
 
-    private static void regStaticData() {
-        uni = new Universidad(1, "uoc");
-        master1 = new Master(1, "M01", "master1");
-        master2 = new Master(2, "M02", "master2");
-    }
 }

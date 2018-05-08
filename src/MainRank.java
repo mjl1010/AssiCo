@@ -26,7 +26,7 @@ public class MainRank extends Application {
         root = FXMLLoader.load(getClass().getResource("view/intCalendarSessions1.fxml"));
         stage = primaryStage;
         stage.setTitle("Sessions Calendar");
-        stage.setScene(new Scene(root, 1000 , 650));
+        stage.setScene(new Scene(root, 1197 , 650));
         stage.show();
     }
 
