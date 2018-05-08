@@ -30,16 +30,13 @@ public class Sesion implements Serializable {
     private Master master1;
     private Master master2;
 
-    public  Sesion() {
-    }
+    public Sesion() {}
 
-    public Sesion(int id, String aula, String tipoAula, Docente docente1,
-                  String asignatura, String contenidos, Master master1, Master master2) {
+    public Sesion(int id, String aula, String tipoAula, Docente docente1, String asignatura, String contenidos, Master master1, Master master2) {
         this.id = id;
         this.aula = aula;
         this.tipoAula = tipoAula;
         this.docente1 = docente1;
-        this.docente2 = docente2;
         this.asignatura = asignatura;
         this.contenidos = contenidos;
         this.master1 = master1;
@@ -265,7 +262,6 @@ public class Sesion implements Serializable {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(id);
     }
 

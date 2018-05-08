@@ -1,6 +1,7 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class PlanificacionCalendarios implements Serializable {
     private CalendarioBase calendarioBase;
@@ -9,8 +10,7 @@ public class PlanificacionCalendarios implements Serializable {
     private Sesion sesion;
     private Master master;
 
-    public PlanificacionCalendarios() {
-    }
+    public PlanificacionCalendarios() {}
 
     public CalendarioBase getCalendarioBase() {
         return calendarioBase;
@@ -50,5 +50,33 @@ public class PlanificacionCalendarios implements Serializable {
 
     public void setMaster(Master master) {
         this.master = master;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PlanificacionCalendarios that = (PlanificacionCalendarios) o;
+        return dia == that.dia &&
+                Objects.equals(calendarioBase, that.calendarioBase) &&
+                Objects.equals(universidad, that.universidad) &&
+                Objects.equals(sesion, that.sesion) &&
+                Objects.equals(master, that.master);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(calendarioBase, dia, universidad, sesion, master);
+    }
+
+    @Override
+    public String toString() {
+        return "PlanificacionCalendarios{" +
+                "calendarioBase=" + calendarioBase +
+                ", dia=" + dia +
+                ", universidad=" + universidad +
+                ", sesion=" + sesion +
+                ", master=" + master +
+                '}';
     }
 }

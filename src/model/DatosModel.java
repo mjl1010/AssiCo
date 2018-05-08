@@ -17,8 +17,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Esta clase debe inicializarse a la vez que se establece conexión con el servidor, será el intermediario entre api - cliente y servidor.
- * By mjl1010
+ * @apiNote Para usar los métodos de esta clase hay que conectarse, usar el método y desconectarse
+ * @author mjl1010
  */
 public class DatosModel {
     private static Socket socket;
@@ -37,7 +37,7 @@ public class DatosModel {
             dos = new ObjectOutputStream(socket.getOutputStream());
             dis = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
-            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error - AssiCo", "No s'ha pogut establir connexió amb el servidor!");
+            if (owner != null) AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error - AssiCo", "No s'ha pogut establir connexió amb el servidor!");
         }
     }
 
@@ -55,7 +55,7 @@ public class DatosModel {
     }
 
     /**
-     *
+     * reiniciar conexión
      */
     public static void resetConnection() {
         closeConnection();
