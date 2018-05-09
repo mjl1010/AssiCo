@@ -24,8 +24,9 @@ public class CourseRankController {
     @FXML
     DatePicker datePicker_start, datePicker_end;
 
-    private static String firstDay;
-    private static LocalDate endDay;
+    public static LocalDate firtDay;
+    private static String firstDayName;
+    public static LocalDate endDay;
     private static int contWeeks;
     private int cont_day = 0;
     private static ArrayList<CalendarioBase> aListCalBase;
@@ -40,8 +41,8 @@ public class CourseRankController {
     public static void setaListCalBase(ArrayList<CalendarioBase> aListCalBase) {
         CourseRankController.aListCalBase = aListCalBase;
     }
-    public static String getFirstDay() {
-        return firstDay;
+    public static String getFirstDayName() {
+        return firstDayName;
     }
     public static int getContWeeks() {
         return contWeeks;
@@ -71,16 +72,27 @@ public class CourseRankController {
                 contWeeks++;
             }
             cont_day++;
-            if (cont_day == 1) firstDay = date_temp.getDayOfWeek().name();
+            if (cont_day == 1) {
+                firtDay = date_temp;
+                firstDayName = firtDay.getDayOfWeek().name();
+            }
             aListCalBase.add(generarObjectCalendarBase(date_temp));
             date_temp = date_temp.plusDays(1);
         }
 
-        if (!firstDay.equals("MONDAY")) {
+        if (!firstDayName.equals("MONDAY")) {
             contWeeks++;
         }
         endDay = date_temp.minusDays(1);
+        writeConfigCalendar();
         openRankHolydays();
+
+    }
+
+    /**
+     * writeConfigCalendar
+     */
+    private void writeConfigCalendar() {
 
     }
 

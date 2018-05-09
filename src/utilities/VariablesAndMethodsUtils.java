@@ -1,16 +1,13 @@
 package utilities;
 
-import controller.CourseRankController;
 import entity.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Random;
 
 /**
@@ -41,7 +38,7 @@ public class VariablesAndMethodsUtils {
 
     static {
         uni = new Universidad(1, "uoc");
-        curso = "2018-2019";
+//        curso = "2018-2019";
         master1 = new Master(1, "M01", "master1");
         master2 = new Master(2, "M02", "master2");
         aTiposAula = FXCollections.observableArrayList(

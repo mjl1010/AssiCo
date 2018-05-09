@@ -8,9 +8,12 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import model.GridSesion;
 import utilities.VariablesAndMethodsUtils;
 
+import java.io.*;
 import java.net.URL;
+import java.util.Properties;
 import java.util.ResourceBundle;
 
 /**
@@ -33,24 +36,52 @@ public class CalendarSessionsController implements Initializable {
     @FXML
     SplitMenuButton smb_menuOption;
 
-    String monthNameInit;
+    public static final String PATH_PROPERTIES = "config/initCalendar.properties";
 
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         addEventCalendars();
-
         VariablesAndMethodsUtils.addData();
 
 //        Master master1 = new Master(1, "M01", "master1");
 //        Master master2 = new Master(2, "M02", "master2");
-//
 //        DatosModel.connect(null);
 //        if (DatosModel.getPlanificacionCalendarios(LoginController.token.getUsuario(), "2017-2018",
 //                master1, master2) == null) System.out.println("Es nulo xD!");
-//
 //        DatosModel.closeConnection();
+
+        verificarCurrentMonth();
+
+        GridSesion gs;
+        int index = -1;
+        for (int i = 0; i < 6; i++) for (int j = 0; j < 5; j++) {
+//            gs = new GridSesion("20/10/200"+i, "x1", "x2", "Programacion",
+//                    "fundamentos", "S", "104");
+            gs = new GridSesion("20/10/200");
+            gp_calendar.add(gs.getMiniGrid(), j, i);
+
+        }
+
+
+
+    }
+
+    private void verificarCurrentMonth()  {
+        String curso = CourseRankController.firtDay.getYear() + "-" + CourseRankController.endDay.getYear();
+        Properties p = new Properties();
+//        InputStream propstream = ClassLoader.getSystemResourceAsStream(PATH_PROPERTIES);
+        try {
+            p.load(new FileReader(PATH_PROPERTIES));
+            p.setProperty("curso", curso);
+            p.store(new FileWriter(PATH_PROPERTIES), "first comment");
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println(e.getCause() + "&" + e.getMessage());
+        } finally {
+
+        }
 
     }
 
@@ -66,18 +97,6 @@ public class CalendarSessionsController implements Initializable {
      * fill comboBox
      */
     private void fillComboBox() {
-        int cont = 0;
-
-        int cols = gp_calendar.getColumnConstraints().size();
-        int rows = gp_calendar.getRowConstraints().size();
-        int total = cols * rows;
-
-//        for (int i = 0; i < total; i++) {
-//            GridPane gridMini = (GridPane) gp_calendar.getChildren().get(i);
-//            ComboBox cbo_aux = (ComboBox) gridMini.getChildren().get(7);
-//            cbo_aux.getItems().addAll(VariablesAndMethodsUtils.aTiposAula);
-//            cbo_aux.setDisable(true);
-//        }
     }
 
     /**
@@ -103,7 +122,6 @@ public class CalendarSessionsController implements Initializable {
     /**
      * asignar mes a
      * la interfaz
-     * //TODO necesito variable de curso academico
      */
     public void AsignarMesaInterfaz(){
 

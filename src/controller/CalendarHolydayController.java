@@ -9,7 +9,6 @@ import javafx.scene.control.*;
 import entity.CalendarioBase;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import model.ClientExt;
 import utilities.WeekDates;
 
 import java.io.IOException;
@@ -148,7 +147,7 @@ public class CalendarHolydayController implements Initializable {
 
         System.out.println("numero de semanas : " + CourseRankController.getContWeeks());
 
-        if (!CourseRankController.getFirstDay().equals("MONDAY")) {
+        if (!CourseRankController.getFirstDayName().equals("MONDAY")) {
             incompletWeekRegistred();
             cont_aListDate--;
             contWeeksReg++;
@@ -214,7 +213,7 @@ public class CalendarHolydayController implements Initializable {
                     .get(cont_aListDate).getIdDate()));
 
         WeekDates tb = new WeekDates();
-        tb.completeWeek(CourseRankController.getFirstDay(), dates);
+        tb.completeWeek(CourseRankController.getFirstDayName(), dates);
         tvCalendar.getItems().add(tb);
     }
 
@@ -233,19 +232,25 @@ public class CalendarHolydayController implements Initializable {
 //        ClientExt. send_firstListBaseCalendar(CourseRankController.getaListCalBase());
 //        ClientExt.closeConnection();
 
-//        openIntCalendarSession();
+        openIntCalendarSession();
 
-        for (int i = 0; i < CourseRankController.getaListCalBase().size(); i++) {
-            System.out.println(CourseRankController.getaListCalBase().get(i));
-        }
+//        for (int i = 0; i < CourseRankController.getaListCalBase().size(); i++) {
+//            System.out.println(CourseRankController.getaListCalBase().get(i));
+//        }
     }
 
     private void openIntCalendarSession() throws IOException {
+//        Parent root = FXMLLoader.load(getClass().getResource("../view/intCalendarSessions1.fxml"));
+//        Stage stage = new Stage(StageStyle.DECORATED);
+//        Scene scene = new Scene(root, 1000, 650);
+//        stage.setTitle("Holydays Stage");
+//        stage.setScene(scene);
+//        stage.show();
+
         Parent root = FXMLLoader.load(getClass().getResource("../view/intCalendarSessions1.fxml"));
         Stage stage = new Stage(StageStyle.DECORATED);
-        Scene scene = new Scene(root, 1000, 650);
-        stage.setTitle("Holydays Stage");
-        stage.setScene(scene);
+        stage.setTitle("Sessions Calendar");
+        stage.setScene(new Scene(root, 1120 , 650));
         stage.show();
     }
 

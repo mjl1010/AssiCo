@@ -44,7 +44,7 @@
                                     <content>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="533.0" prefWidth="983.0">
                                             <children>
-                                                <GridPane fx:id="gp_calendar" gridLinesVisible="true" layoutX="11.0" layoutY="63.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="958.0">
+                                                <GridPane fx:id="gp_calendar" gridLinesVisible="true" layoutX="11.0" layoutY="63.0" prefHeight="463.0" prefWidth="958.0">
                                                     <columnConstraints>
                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="192.0" />
                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="192.0" />
@@ -84,7 +84,7 @@
                                                 <Label text="contAsig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <HBox id="hBox_Doc" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                                    <children>
-                                                      <ComboBox id="cbo_doc1" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="40.0" />
+                                                      <ComboBox id="cbo_doc1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="40.0" />
                                                       <ComboBox id="cbo_doc2" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="40.0" />
                                                    </children>
                                                 </HBox>
