@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class Sesion implements Serializable {
     private int id;
-    private String aula; // TODO int
+    private String aula;
     private String tipoAula;
     private Docente docente1;
     private Docente docente2;
@@ -29,9 +29,9 @@ public class Sesion implements Serializable {
     private String nota6;
     private Master master1;
     private Master master2;
+    private int version;
 
-    public  Sesion() {
-    }
+    public Sesion() {}
 
     public Sesion(int id, Master master1, Master master2, String asignatura, String contenidos,
                   Docente docente1, Docente docente2, String aula, String tipoAula) {
@@ -44,15 +44,35 @@ public class Sesion implements Serializable {
         this.contenidos = contenidos;
         this.master1 = master1;
         this.master2 = master2;
-        this.activo = true;
     }
 
-
-    public Sesion(int id, boolean activo, Master master1, Master master2) {
+    public Sesion(int id, String aula, String tipoAula, Docente docente1, Docente docente2, boolean confirmContenidos, boolean confirmAula, boolean confirmDocente1, boolean confirmDocente2, boolean confirmWarning, String confirmNota, String asignatura, String contenidos, boolean activo, String colorFondo, String colorTexto, String nota0, String nota1, String nota2, String nota3, String nota4, String nota5, String nota6, Master master1, Master master2, int version) {
         this.id = id;
+        this.aula = aula;
+        this.tipoAula = tipoAula;
+        this.docente1 = docente1;
+        this.docente2 = docente2;
+        this.confirmContenidos = confirmContenidos;
+        this.confirmAula = confirmAula;
+        this.confirmDocente1 = confirmDocente1;
+        this.confirmDocente2 = confirmDocente2;
+        this.confirmWarning = confirmWarning;
+        this.confirmNota = confirmNota;
+        this.asignatura = asignatura;
+        this.contenidos = contenidos;
         this.activo = activo;
+        this.colorFondo = colorFondo;
+        this.colorTexto = colorTexto;
+        this.nota0 = nota0;
+        this.nota1 = nota1;
+        this.nota2 = nota2;
+        this.nota3 = nota3;
+        this.nota4 = nota4;
+        this.nota5 = nota5;
+        this.nota6 = nota6;
         this.master1 = master1;
         this.master2 = master2;
+        this.version = version;
     }
 
     public int getId() {
@@ -255,50 +275,27 @@ public class Sesion implements Serializable {
         this.master2 = master2;
     }
 
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Sesion sesion = (Sesion) o;
-        return id == sesion.id;
+        return id == sesion.id &&
+                version == sesion.version;
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(id);
+        return Objects.hash(id, version);
     }
-
-//    @Override
-//    public String toString() {
-////        return "Sesion{" +
-////                "id=" + id +
-////                ", aula='" + aula + '\'' +
-////                ", tipoAula='" + tipoAula + '\'' +
-////                ", docente1=" + docente1 +
-////                ", docente2=" + docente2 +
-////                ", confirmContenidos=" + confirmContenidos +
-////                ", confirmAula=" + confirmAula +
-////                ", confirmDocente1=" + confirmDocente1 +
-////                ", confirmDocente2=" + confirmDocente2 +
-////                ", confirmWarning=" + confirmWarning +
-////                ", confirmNota='" + confirmNota + '\'' +
-////                ", asignatura='" + asignatura + '\'' +
-////                ", contenidos='" + contenidos + '\'' +
-////                ", activo=" + activo +
-////                ", colorFondo='" + colorFondo + '\'' +
-////                ", colorTexto='" + colorTexto + '\'' +
-////                ", nota0='" + nota0 + '\'' +
-////                ", nota1='" + nota1 + '\'' +
-////                ", nota2='" + nota2 + '\'' +
-////                ", nota3='" + nota3 + '\'' +
-////                ", nota4='" + nota4 + '\'' +
-////                ", nota5='" + nota5 + '\'' +
-////                ", nota6='" + nota6 + '\'' +
-////                ", master1=" + master1 +
-////                ", master2=" + master2 +
-////                '}';
-////    }
 
     @Override
     public String toString() {
@@ -308,10 +305,27 @@ public class Sesion implements Serializable {
                 ", tipoAula='" + tipoAula + '\'' +
                 ", docente1=" + docente1 +
                 ", docente2=" + docente2 +
+                ", confirmContenidos=" + confirmContenidos +
+                ", confirmAula=" + confirmAula +
+                ", confirmDocente1=" + confirmDocente1 +
+                ", confirmDocente2=" + confirmDocente2 +
+                ", confirmWarning=" + confirmWarning +
+                ", confirmNota='" + confirmNota + '\'' +
                 ", asignatura='" + asignatura + '\'' +
                 ", contenidos='" + contenidos + '\'' +
+                ", activo=" + activo +
+                ", colorFondo='" + colorFondo + '\'' +
+                ", colorTexto='" + colorTexto + '\'' +
+                ", nota0='" + nota0 + '\'' +
+                ", nota1='" + nota1 + '\'' +
+                ", nota2='" + nota2 + '\'' +
+                ", nota3='" + nota3 + '\'' +
+                ", nota4='" + nota4 + '\'' +
+                ", nota5='" + nota5 + '\'' +
+                ", nota6='" + nota6 + '\'' +
                 ", master1=" + master1 +
                 ", master2=" + master2 +
+                ", version=" + version +
                 '}';
     }
 }

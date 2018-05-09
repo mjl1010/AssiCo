@@ -1,6 +1,7 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class CalendarioBase implements Serializable {
     private int dia;
@@ -16,8 +17,7 @@ public class CalendarioBase implements Serializable {
     // Solo para interfaz
     private String idDate;
 
-    public CalendarioBase() {
-    }
+    public CalendarioBase() {}
 
     public CalendarioBase(int dia, Universidad universidad, String descSpa, Integer weekDay,
                           String idDate, String cursoAcademico) {
@@ -113,15 +113,15 @@ public class CalendarioBase implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         CalendarioBase that = (CalendarioBase) o;
-
-        return dia == that.dia;
+        return dia == that.dia &&
+                Objects.equals(universidad, that.universidad) &&
+                Objects.equals(idDate, that.idDate);
     }
 
     @Override
     public int hashCode() {
-        return dia;
+        return Objects.hash(dia, universidad, idDate);
     }
 
     @Override

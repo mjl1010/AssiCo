@@ -1,5 +1,7 @@
 package model;
 
+import entity.Token;
+
 import java.io.Serializable;
 
 public class Dato implements Serializable {
@@ -8,6 +10,7 @@ public class Dato implements Serializable {
 
     private String message;
     private Object object;
+    private Token token;
 
     /**
      * Constructor de envío de mensajes
@@ -25,6 +28,17 @@ public class Dato implements Serializable {
     public Dato(String messageCode, Object object) {
         this.messageCode = messageCode;
         this.object = object;
+    }
+
+    /**
+     * Constructor con parametrización de código de envío, objeto y sesión válida (token)
+     * @param messageCode
+     * @param object
+     */
+    public Dato(String messageCode, Object object, Token token) {
+        this.messageCode = messageCode;
+        this.object = object;
+        this.token = token;
     }
 
     /***** Getters and Setters ******/
@@ -53,6 +67,14 @@ public class Dato implements Serializable {
         this.object = object;
     }
 
+    public Token getToken() {
+        return token;
+    }
+
+    public void setToken(Token token) {
+        this.token = token;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -74,6 +96,7 @@ public class Dato implements Serializable {
                 "messageCode='" + messageCode + '\'' +
                 ", message='" + message + '\'' +
                 ", object=" + object +
+                ", token=" + token +
                 '}';
     }
 }

@@ -7,6 +7,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
@@ -41,7 +43,25 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void alAcceder(ActionEvent event) throws IOException {
+    private void alAccederTeclado(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.ENTER))
+        try {
+            alAcceder();
+        } catch (IOException e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, null, "Error - AssiCo", "Error al carregar la següent pantalla!");
+        }
+    }
+
+    @FXML
+    private void alAcceder(ActionEvent event) {
+        try {
+            alAcceder();
+        } catch (IOException e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, null, "Error - AssiCo", "Error al carregar la següent pantalla!");
+        }
+    }
+
+    private void alAcceder() throws IOException {
         Window owner = acceder.getScene().getWindow();
         if (usuario.getText().isEmpty()) {
             AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error - AssiCo", "No s'ha introduït ningun usuari!");

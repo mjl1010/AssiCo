@@ -17,20 +17,22 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Esta clase debe inicializarse a la vez que se establece conexión con el servidor, será el intermediario entre api - cliente y servidor.
- * By mjl1010
+ * @apiNote Para usar los métodos de esta clase hay que conectarse, usar el método y desconectarse
+ * @author mjl1010
  */
 public class DatosModel {
     private static Socket socket;
     private static ObjectOutputStream dos;
     private static ObjectInputStream dis;
     private static Window window;
+    private static Token token;
 
     /**
      * connect to server
      */
-    public static void connect(Window owner) {
+    public static void connect(Window owner, Token toke) {
         window = owner;
+        token = toke;
         try {
             //socket = new Socket("skimdoo.ddns.jazztel.es", 9090);
             socket = new Socket("192.168.5.229", 9090);
@@ -55,11 +57,26 @@ public class DatosModel {
     }
 
     /**
-     *
+     * reiniciar conexión
      */
     public static void resetConnection() {
         closeConnection();
-        connect(window);
+        connect(window, null);
+    }
+
+    /**
+     * comprobarCuenta
+     * @param token
+     */
+    public static boolean comprobarToken(Token token) {
+        Dato dato = new Dato("comprobarToken", token);
+        try {
+            dos.writeObject(dato);
+            dato = (Dato) dis.readObject();
+            return (boolean) dato.getObject();
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     /**
@@ -89,7 +106,7 @@ public class DatosModel {
         datos.put("master1", master1);
         datos.put("master2", master2);
 
-        Dato dato = new Dato("getPlanificacionCalendarios", datos);
+        Dato dato = new Dato("getPlanificacionCalendarios", datos, token);
         try {
             dos.writeObject(dato);
             dato = (Dato) dis.readObject();
