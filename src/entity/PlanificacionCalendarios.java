@@ -12,6 +12,13 @@ public class PlanificacionCalendarios implements Serializable {
     public PlanificacionCalendarios() {
     }
 
+    public PlanificacionCalendarios(CalendarioBase pc, int dia, Universidad uni, Master master) {
+        this.calendarioBase = pc;
+        this.dia = dia;
+        this.universidad = uni;
+        this.master = master;
+    }
+
     public CalendarioBase getCalendarioBase() {
         return calendarioBase;
     }

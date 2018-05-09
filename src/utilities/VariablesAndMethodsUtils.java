@@ -16,7 +16,9 @@ import java.util.Random;
 public class VariablesAndMethodsUtils {
 
     /**** Variables ******/
-    private static ArrayList<PlanificacionCalendarios> aPlanifCalend = new ArrayList<>();
+    public static ArrayList<PlanificacionCalendarios> aPlanifCalend = new ArrayList<>();
+    public static ArrayList<PlanificacionCalendarios> aPlanifCalend_Master1 = new ArrayList<>();
+    public static ArrayList<PlanificacionCalendarios> aPlanifCalend_Master2 = new ArrayList<>();
     private static ArrayList<Sesion> aSession = new ArrayList<>();
     public static ObservableList<String> aTiposAula;
     private static ObservableList<String> aProfes; //TODO rellenar
@@ -75,14 +77,14 @@ public class VariablesAndMethodsUtils {
     /**
      * set Planicador Calendario List
      *
-     * @param aPlanifCalend
+     * @param aPlanifCalend_Master1
      */
-    public static void setaPlanifCalend(ArrayList<PlanificacionCalendarios> aPlanifCalend) {
-        VariablesAndMethodsUtils.aPlanifCalend = aPlanifCalend;
+    public static void setaPlanifCalend_Master1(ArrayList<PlanificacionCalendarios> aPlanifCalend_Master1) {
+        VariablesAndMethodsUtils.aPlanifCalend_Master1 = aPlanifCalend_Master1;
     }
 
     public static String getMonthInit() {
-        String pcIDstring = String.valueOf(aPlanifCalend.get(0).getCalendarioBase().getDia());
+        String pcIDstring = String.valueOf(aPlanifCalend_Master1.get(0).getCalendarioBase().getDia());
         String y = pcIDstring.substring(0, 4);
         String m = pcIDstring.substring(4, 6);
         String d = pcIDstring.substring(6, 8);

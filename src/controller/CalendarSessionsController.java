@@ -54,13 +54,13 @@ public class CalendarSessionsController implements Initializable {
 //                master1, master2) == null) System.out.println("Es nulo xD!");
 //        DatosModel.closeConnection();
 
-//        GridSesion gs;
-//        int index = -1;
-//        for (int i = 0; i < 6; i++) for (int j = 0; j < 5; j++) {
-//            gs = new GridSesion("20/10/2000");
-//            gp_calendar.add(gs.getMiniGrid(), j, i);
-//
-//        }
+        GridSesion gs;
+        int index = -1;
+        for (int i = 0; i < 6; i++) for (int j = 0; j < 5; j++) {
+            gs = new GridSesion("20/10/2000");
+            gp_calendar.add(gs.getMiniGrid(), j, i);
+
+        }
         configurarPantalla();
 
     }

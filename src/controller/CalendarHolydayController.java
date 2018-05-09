@@ -1,5 +1,6 @@
 package controller;
 
+import entity.PlanificacionCalendarios;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -9,6 +10,7 @@ import javafx.scene.control.*;
 import entity.CalendarioBase;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import utilities.VariablesAndMethodsUtils;
 import utilities.WeekDates;
 
 import java.io.IOException;
@@ -18,6 +20,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.ResourceBundle;
+
+import static utilities.VariablesAndMethodsUtils.aPlanifCalend;
+import static utilities.VariablesAndMethodsUtils.aPlanifCalend_Master1;
+import static utilities.VariablesAndMethodsUtils.aPlanifCalend_Master2;
 
 /**
  * Created by Michael and modified by Manel
@@ -228,6 +234,8 @@ public class CalendarHolydayController implements Initializable {
                 cb.setFestivo(true);
         }
 
+        createPlanificacionObjects();
+
 //        ClientExt.connect();
 //        ClientExt. send_firstListBaseCalendar(CourseRankController.getaListCalBase());
 //        ClientExt.closeConnection();
@@ -237,6 +245,20 @@ public class CalendarHolydayController implements Initializable {
 //        for (int i = 0; i < CourseRankController.getaListCalBase().size(); i++) {
 //            System.out.println(CourseRankController.getaListCalBase().get(i));
 //        }
+    }
+
+    private void createPlanificacionObjects() {
+        aPlanifCalend_Master1 = new ArrayList<>();
+        aPlanifCalend_Master2 = new ArrayList<>();
+        CalendarioBase pc;
+        for (int i = 0; i < CourseRankController.getaListCalBase().size(); i++) {
+            pc = CourseRankController.getaListCalBase().get(i);
+            aPlanifCalend.add(new PlanificacionCalendarios(pc, pc.getDia(), VariablesAndMethodsUtils.uni,
+                    VariablesAndMethodsUtils.master1));
+            aPlanifCalend.add(new PlanificacionCalendarios(pc, pc.getDia(), VariablesAndMethodsUtils.uni,
+                    VariablesAndMethodsUtils.master2));
+        }
+        System.out.println("se registró todo correctamente !!");
     }
 
     private void openIntCalendarSession() throws IOException {
