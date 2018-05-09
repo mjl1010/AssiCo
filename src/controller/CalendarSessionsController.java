@@ -2,7 +2,6 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitMenuButton;
@@ -13,6 +12,7 @@ import utilities.VariablesAndMethodsUtils;
 
 import java.io.*;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
@@ -36,10 +36,6 @@ public class CalendarSessionsController implements Initializable {
     @FXML
     SplitMenuButton smb_menuOption;
 
-    public static final String PATH_PROPERTIES = "config/initCalendar.properties";
-
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         addEventCalendars();
@@ -52,8 +48,6 @@ public class CalendarSessionsController implements Initializable {
 //                master1, master2) == null) System.out.println("Es nulo xD!");
 //        DatosModel.closeConnection();
 
-        verificarCurrentMonth();
-
         GridSesion gs;
         int index = -1;
         for (int i = 0; i < 6; i++) for (int j = 0; j < 5; j++) {
@@ -61,25 +55,6 @@ public class CalendarSessionsController implements Initializable {
 //                    "fundamentos", "S", "104");
             gs = new GridSesion("20/10/200");
             gp_calendar.add(gs.getMiniGrid(), j, i);
-
-        }
-
-
-
-    }
-
-    private void verificarCurrentMonth()  {
-        String curso = CourseRankController.firtDay.getYear() + "-" + CourseRankController.endDay.getYear();
-        Properties p = new Properties();
-//        InputStream propstream = ClassLoader.getSystemResourceAsStream(PATH_PROPERTIES);
-        try {
-            p.load(new FileReader(PATH_PROPERTIES));
-            p.setProperty("curso", curso);
-            p.store(new FileWriter(PATH_PROPERTIES), "first comment");
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println(e.getCause() + "&" + e.getMessage());
-        } finally {
 
         }
 

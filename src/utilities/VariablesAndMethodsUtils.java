@@ -38,7 +38,6 @@ public class VariablesAndMethodsUtils {
 
     static {
         uni = new Universidad(1, "uoc");
-//        curso = "2018-2019";
         master1 = new Master(1, "M01", "master1");
         master2 = new Master(2, "M02", "master2");
         aTiposAula = FXCollections.observableArrayList(
@@ -46,6 +45,7 @@ public class VariablesAndMethodsUtils {
         );
         aTipoSession.add("J");
         aTipoSession.add("S");
+        
     }
 
     /**** Métodos ******/

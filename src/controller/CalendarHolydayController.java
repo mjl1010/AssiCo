@@ -240,13 +240,6 @@ public class CalendarHolydayController implements Initializable {
     }
 
     private void openIntCalendarSession() throws IOException {
-//        Parent root = FXMLLoader.load(getClass().getResource("../view/intCalendarSessions1.fxml"));
-//        Stage stage = new Stage(StageStyle.DECORATED);
-//        Scene scene = new Scene(root, 1000, 650);
-//        stage.setTitle("Holydays Stage");
-//        stage.setScene(scene);
-//        stage.show();
-
         Parent root = FXMLLoader.load(getClass().getResource("../view/intCalendarSessions1.fxml"));
         Stage stage = new Stage(StageStyle.DECORATED);
         stage.setTitle("Sessions Calendar");

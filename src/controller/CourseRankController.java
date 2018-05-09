@@ -10,11 +10,14 @@ import javafx.stage.StageStyle;
 import entity.CalendarioBase;
 import utilities.VariablesAndMethodsUtils;
 
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
+import java.util.Properties;
 
 /**
  * Created by Michael
@@ -24,13 +27,17 @@ public class CourseRankController {
     @FXML
     DatePicker datePicker_start, datePicker_end;
 
-    public static LocalDate firtDay;
     private static String firstDayName;
-    public static LocalDate endDay;
+
     private static int contWeeks;
     private int cont_day = 0;
     private static ArrayList<CalendarioBase> aListCalBase;
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/YYYY");
+
+    public static LocalDate firtDay;
+    public static LocalDate endDay;
+    public static final String PATH_PROPERTIES = "config/init.properties";
+    private Properties p;
 
 
     /***** Gettes and Setters ****/
@@ -84,16 +91,30 @@ public class CourseRankController {
             contWeeks++;
         }
         endDay = date_temp.minusDays(1);
-        writeConfigCalendar();
+        updateInitData();
         openRankHolydays();
 
     }
 
     /**
-     * writeConfigCalendar
+     * update properti
      */
-    private void writeConfigCalendar() {
+    private void updateInitData()  {
+        p = new Properties();
+        VariablesAndMethodsUtils.curso = CourseRankController.firtDay.getYear() + "-"
+                + CourseRankController.endDay.getYear();
 
+        try {
+            p.load(new FileReader(PATH_PROPERTIES));
+            p.setProperty("curso", VariablesAndMethodsUtils.curso);
+            p.setProperty("year", String.valueOf(CourseRankController.firtDay.getYear()));
+            p.setProperty("month", String.valueOf(CourseRankController.firtDay.getMonth().name()));
+            p.store(new FileWriter(PATH_PROPERTIES), "first comment");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println(e.getCause() + "&" + e.getMessage());
+        }
     }
 
     /**

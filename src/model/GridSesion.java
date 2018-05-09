@@ -143,5 +143,4 @@ public class GridSesion {
         miniGrid.getColumnConstraints().get(1).setHalignment(HPos.CENTER);
         miniGrid.getColumnConstraints().get(2).setHalignment(HPos.CENTER);
     }
-
 }
