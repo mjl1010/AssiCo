@@ -32,11 +32,14 @@ public class Sesion implements Serializable {
 
     public Sesion() {}
 
-    public Sesion(int id, String aula, String tipoAula, Docente docente1, String asignatura, String contenidos, Master master1, Master master2) {
+    public Sesion(int id, String aula, String tipoAula, Docente docente1, Docente docente2, String asignatura, String contenidos, Master master1, Master master2) {
+    public Sesion(int id, Master master1, Master master2, String asignatura, String contenidos,
+                  Docente docente1, Docente docente2, String aula, String tipoAula) {
         this.id = id;
         this.aula = aula;
         this.tipoAula = tipoAula;
         this.docente1 = docente1;
+        this.docente2 = docente2;
         this.asignatura = asignatura;
         this.contenidos = contenidos;
         this.master1 = master1;

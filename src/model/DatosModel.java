@@ -33,7 +33,7 @@ public class DatosModel {
         window = owner;
         try {
             //socket = new Socket("skimdoo.ddns.jazztel.es", 9090);
-            socket = new Socket("localhost", 9090);
+            socket = new Socket("192.168.5.229", 9090);
             dos = new ObjectOutputStream(socket.getOutputStream());
             dis = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
@@ -97,6 +97,7 @@ public class DatosModel {
         } catch (Exception e) {
             //TODO Quitar ese mensaje cuando se ponga a producción
             e.printStackTrace();
+            System.out.println(e.getCause() + e.getMessage());
             AlertHelper.showAlert(Alert.AlertType.WARNING, window, "Error - AssiCo", "No s'ha pogut obtenir les dades de la planificació de calendaris.");
             return null;
         }

@@ -21,9 +21,6 @@ public class MainLogin extends Application {
         stage.setTitle("Assistent de Coordinació Acadèmica - AssiCo");
         stage.setScene(new Scene(root, 640 , 400));
         stage.show();
-
-        // Establecer conexión
-        DatosModel.connect(stage);
     }
 
     public static Stage getStage() {

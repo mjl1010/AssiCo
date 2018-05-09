@@ -152,7 +152,7 @@ public class WeekDates {
         int cont_days = -1;
 
         for (int i = numDay - 1; i < aListDayDates.size(); i++) {
-//            aListDayDates.set(i, aListDayDates.get(i).toString().replace(0, 1, days.get(++cont_days)));
+//            aListDayDates.set(i, aListDayDates.get(i).toString().replace(0, 1, aDays.get(++cont_days)));
 
             aListDayDates.get(i).set(days.get(++cont_days));
         }
