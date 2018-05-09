@@ -26,6 +26,7 @@ public class VariablesAndMethodsUtils {
     private static ArrayList<String> aListAsignaturas = new ArrayList<>();
     private static ArrayList<Docente> aDocentes = new ArrayList<>();
 
+    public static final String PATH_PROPERTIES = "config/init.properties";
     public static Universidad uni;
     public static String curso;
     public static Master master1;
@@ -45,6 +46,27 @@ public class VariablesAndMethodsUtils {
         );
         aTipoSession.add("J");
         aTipoSession.add("S");
+
+        aDays.add("Lunes");
+        aDays.add("Martes");
+        aDays.add("Miercoles");
+        aDays.add("Jueves");
+        aDays.add("Viernes");
+        aDays.add("Sabado");
+        aDays.add("Domingo");
+
+        aMonths.add("January");
+        aMonths.add("February");
+        aMonths.add("March");
+        aMonths.add("April");
+        aMonths.add("May");
+        aMonths.add("June");
+        aMonths.add("July");
+        aMonths.add("August");
+        aMonths.add("September");
+        aMonths.add("October");
+        aMonths.add("November");
+        aMonths.add("December");
         
     }
 

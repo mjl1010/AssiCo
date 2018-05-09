@@ -19,6 +19,8 @@ import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import static utilities.VariablesAndMethodsUtils.PATH_PROPERTIES;
+
 /**
  * Created by Michael
  */
@@ -36,7 +38,6 @@ public class CourseRankController {
 
     public static LocalDate firtDay;
     public static LocalDate endDay;
-    public static final String PATH_PROPERTIES = "config/init.properties";
     private Properties p;
 
 
@@ -105,7 +106,7 @@ public class CourseRankController {
                 + CourseRankController.endDay.getYear();
 
         try {
-            p.load(new FileReader(PATH_PROPERTIES));
+            p.load(new FileReader(VariablesAndMethodsUtils.PATH_PROPERTIES));
             p.setProperty("curso", VariablesAndMethodsUtils.curso);
             p.setProperty("year", String.valueOf(CourseRankController.firtDay.getYear()));
             p.setProperty("month", String.valueOf(CourseRankController.firtDay.getMonth().name()));

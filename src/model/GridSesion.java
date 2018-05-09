@@ -121,7 +121,7 @@ public class GridSesion {
 
         lblDateID.setStyle("-fx-background-color: #BE81F7");
         lblDateID.setTextFill(Paint.valueOf("#f2efef"));
-        lblDateID.setFont(new Font("System Bold", 10));
+        lblDateID.setFont(new Font("System Bold", 9));
         lblAsign.setFont(new Font(9));
         lblContenido.setFont(new Font(9));
 
