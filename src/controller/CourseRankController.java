@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import static utilities.VariablesAndMethodsUtils.PATH_PROPERTIES;
+import static utilities.VariablesAndMethodsUtils.aCalendarioBase;
 
 /**
  * Created by Michael
@@ -33,7 +34,7 @@ public class CourseRankController {
 
     private static int contWeeks;
     private int cont_day = 0;
-    private static ArrayList<CalendarioBase> aListCalBase;
+//    private static ArrayList<CalendarioBase> aListCalBase;
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/YYYY");
 
     public static LocalDate firtDay;
@@ -42,13 +43,6 @@ public class CourseRankController {
 
 
     /***** Gettes and Setters ****/
-
-    public static ArrayList<CalendarioBase> getaListCalBase() {
-        return aListCalBase;
-    }
-    public static void setaListCalBase(ArrayList<CalendarioBase> aListCalBase) {
-        CourseRankController.aListCalBase = aListCalBase;
-    }
     public static String getFirstDayName() {
         return firstDayName;
     }
@@ -74,7 +68,7 @@ public class CourseRankController {
         LocalDate date_temp = init;
         CalendarioBase cb;
 
-        aListCalBase = new ArrayList<>();
+        aCalendarioBase = new ArrayList<>();
         while (!date_temp.isAfter(end)) {
             if (date_temp.getDayOfWeek().name().equals("MONDAY")) {
                 contWeeks++;
@@ -84,7 +78,7 @@ public class CourseRankController {
                 firtDay = date_temp;
                 firstDayName = firtDay.getDayOfWeek().name();
             }
-            aListCalBase.add(generarObjectCalendarBase(date_temp));
+            aCalendarioBase.add(generarObjectCalendarBase(date_temp));
             date_temp = date_temp.plusDays(1);
         }
 

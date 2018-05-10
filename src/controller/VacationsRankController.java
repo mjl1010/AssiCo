@@ -18,6 +18,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 
+import static utilities.VariablesAndMethodsUtils.aCalendarioBase;
+
 /**
  * Created by Michael
  */
@@ -73,8 +75,7 @@ public class VacationsRankController implements Initializable {
      * updateObjectsCalendarBase
      */
     private void updateObjectsCalendarBase() {
-        for (CalendarioBase cb :
-                CourseRankController.getaListCalBase()) {
+        for (CalendarioBase cb : aCalendarioBase) {
             if (hsVacations.contains(cb.getIdDate()))
                 cb.setSummer(true);
 

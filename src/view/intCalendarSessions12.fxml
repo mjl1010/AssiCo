@@ -96,7 +96,7 @@
                                                     </children>
                                                 </GridPane>
                                                 <Label fx:id="lblYear" layoutX="326.0" layoutY="13.0" text="Year" />
-                                                <ImageView id="flechaLeft" fitHeight="34.0" fitWidth="46.0" layoutX="264.0" layoutY="17.0" onKeyPressed="#getPreviousMonth" onMouseClicked="#getPreviousMonth" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView id="flechaLeft" fitHeight="34.0" fitWidth="46.0" layoutX="264.0" layoutY="17.0" onKeyPressed="#updateMonth" onMouseClicked="#updateMonth" pickOnBounds="true" preserveRatio="true">
                                                     <image>
                                                         <Image url="@res/fecla_left.png" />
                                                     </image>

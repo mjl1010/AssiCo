@@ -1,10 +1,12 @@
 package controller;
 
+import entity.PlanificacionCalendarios;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitMenuButton;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import model.GridSesion;
@@ -13,11 +15,12 @@ import utilities.VariablesAndMethodsUtils;
 import java.io.*;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
-import static utilities.VariablesAndMethodsUtils.PATH_PROPERTIES;
-import static utilities.VariablesAndMethodsUtils.aMonths;
+import static utilities.VariablesAndMethodsUtils.*;
 
 /**
  *
@@ -42,25 +45,13 @@ public class CalendarSessionsController implements Initializable {
     String yearInit, monthInit;
     private Properties p;
 
+    ArrayList<GridSesion> aGridSesions;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         addEventCalendars();
 //        VariablesAndMethodsUtils.addData();
 
-//        Master master1 = new Master(1, "M01", "master1");
-//        Master master2 = new Master(2, "M02", "master2");
-//        DatosModel.connect(null);
-//        if (DatosModel.getPlanificacionCalendarios(LoginController.token.getUsuario(), "2017-2018",
-//                master1, master2) == null) System.out.println("Es nulo xD!");
-//        DatosModel.closeConnection();
-
-        GridSesion gs;
-        int index = -1;
-        for (int i = 0; i < 6; i++) for (int j = 0; j < 5; j++) {
-            gs = new GridSesion("20/10/2000");
-            gp_calendar.add(gs.getMiniGrid(), j, i);
-
-        }
         configurarPantalla();
 
     }
@@ -68,12 +59,60 @@ public class CalendarSessionsController implements Initializable {
     private void configurarPantalla() {
         extraerValoresProperties();
         asignarValoresLabel();
+        updateListsCurrentMonth_tab1();
+        registredGridSessions();
+        updateCalendarMaster1();
+    }
+
+    private void registredGridSessions() {
+        aGridSesions = new ArrayList<>();
+        GridSesion gs;
+        int index = -1;
+        for (int i = 0; i < 6; i++)
+            for (int j = 0; j < 5; j++) {
+                gs = new GridSesion("01/01/1900", j, i);
+                gp_calendar.add(gs.getMiniGrid(), j, i);
+                aGridSesions.add(gs);
+            }
+    }
+
+    private void updateCalendarMaster1() {
+        int contWeeks = 1;
+        int numDiaSemana = -1;
+        for (int i = 0; i < aPlanCalCurrentMonthMaster1.size(); i++) {
+            PlanificacionCalendarios pc = aPlanCalCurrentMonthMaster1.get(i);
+            numDiaSemana = pc.getCalendarioBase().getWeekDay();
+            updatesDatesMiniGridCalendar(numDiaSemana, contWeeks, pc);
+            if (numDiaSemana==7) contWeeks++;
+        }
+    }
+
+    private void updatesDatesMiniGridCalendar(int numDiaSemana, int contWeeks, PlanificacionCalendarios pc) {
+        for (GridSesion gd:
+             aGridSesions) {
+//            if (gd.getNumSemana())
+        }
+    }
+
+    private void updateListsCurrentMonth_tab1() { //TODO de momento siempre master1 está en tab1
+        for (int i = 0; i < aPlanifCalend.size(); i++) {
+            String date = String.valueOf(aPlanifCalend.get(i).getCalendarioBase().getDia());
+
+            if (LocalDate.parse(date, DateTimeFormatter.BASIC_ISO_DATE).getMonth().name()
+                    .equalsIgnoreCase(lblMonth.getText()) && aPlanifCalend.get(i).getMaster()
+                    .equals(master1))
+                aPlanCalCurrentMonthMaster1.add(aPlanifCalend.get(i));
+        }
+
+        for (int i = 0; i < aPlanCalCurrentMonthMaster1.size(); i++) {
+            System.out.println(aPlanCalCurrentMonthMaster1.get(i));
+        }
     }
 
     private void asignarValoresLabel() {
         lblYear.setText(yearInit);
         for (int i = 0; i < aMonths.size(); i++) {
-            if (aMonths.get(i).equalsIgnoreCase(monthInit)){
+            if (aMonths.get(i).equalsIgnoreCase(monthInit)) {
                 lblMonth.setText(aMonths.get(i));
                 break;
             }
@@ -109,33 +148,36 @@ public class CalendarSessionsController implements Initializable {
     }
 
     /**
-     * month next
-     * @param mouseEvent
-     */
-    public void getNextMonth(MouseEvent mouseEvent) {
-        for (int i = 0; i < aMonths.size(); i++) {
-            if (aMonths.get(i).equalsIgnoreCase(lblMonth.getText())){
-                if (i == aMonths.size()-1) lblMonth.setText(aMonths.get(0));
-                else lblMonth.setText(aMonths.get(++i));
-                break;
-            }
-        }
-        System.out.println("click en nextMonth");
-    }
-
-    /**
      * month previous
+     *
      * @param mouseEvent
      */
-    public void getPreviousMonth(MouseEvent mouseEvent) {
+    public void updateMonth(MouseEvent mouseEvent) {
+        ImageView iv = (ImageView) mouseEvent.getSource();
         for (int i = 0; i < aMonths.size(); i++) {
-            if (aMonths.get(i).equalsIgnoreCase(lblMonth.getText())){
-                if (i == 0) lblMonth.setText(aMonths.get(aMonths.size()-1));
-                else lblMonth.setText(aMonths.get(--i));
+            if (aMonths.get(i).equalsIgnoreCase(lblMonth.getText())) {
+                if (iv.getId().equalsIgnoreCase("flechaLeft")) {
+                    if (lblMonth.getText().equalsIgnoreCase(CourseRankController.firtDay.getMonth().name()) &&
+                            lblYear.getText().equalsIgnoreCase(String.valueOf(CourseRankController.firtDay
+                                    .getYear()))) break;
+                    if (i == 0) {
+                        lblMonth.setText(aMonths.get(aMonths.size() - 1));
+                        yearInit = String.valueOf(Integer.parseInt(yearInit) - 1);
+                        lblYear.setText(yearInit);
+                    } else lblMonth.setText(aMonths.get(--i));
+                } else { // flechaRigth
+                    if (lblMonth.getText().equalsIgnoreCase(CourseRankController.endDay.getMonth().name()) &&
+                            lblYear.getText().equalsIgnoreCase(String.valueOf(CourseRankController.endDay
+                                    .getYear()))) break;
+                    if (i == aMonths.size() - 1) {
+                        lblMonth.setText(aMonths.get(0));
+                        yearInit = String.valueOf(Integer.parseInt(yearInit) + 1);
+                        lblYear.setText(yearInit);
+                    } else lblMonth.setText(aMonths.get(++i));
+                }
                 break;
             }
         }
-        System.out.println("click en previousMonth");
     }
 
     public void clickCell(MouseEvent mouseEvent) {

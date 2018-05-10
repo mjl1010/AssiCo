@@ -21,9 +21,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.ResourceBundle;
 
-import static utilities.VariablesAndMethodsUtils.aPlanifCalend;
-import static utilities.VariablesAndMethodsUtils.aPlanifCalend_Master1;
-import static utilities.VariablesAndMethodsUtils.aPlanifCalend_Master2;
+import static utilities.VariablesAndMethodsUtils.*;
 
 /**
  * Created by Michael and modified by Manel
@@ -173,8 +171,8 @@ public class CalendarHolydayController implements Initializable {
         LocalDate aux_localDate;
 
         do {
-            dates.add(CourseRankController.getaListCalBase().get(++cont_aListDate).getIdDate());
-            aux_localDate = LocalDate.parse(CourseRankController.getaListCalBase().get(cont_aListDate)
+            dates.add(aCalendarioBase.get(++cont_aListDate).getIdDate());
+            aux_localDate = LocalDate.parse(aCalendarioBase.get(cont_aListDate)
             .getIdDate(), FORMATTER2);
 
         } while (!aux_localDate.isAfter(CourseRankController.getEndDay().minusDays(1)));
@@ -194,13 +192,13 @@ public class CalendarHolydayController implements Initializable {
     private void completWeekRegistred() {
 
         WeekDates wd = new WeekDates(
-                String.valueOf(CourseRankController.getaListCalBase().get(++cont_aListDate).getIdDate()),
-                String.valueOf(CourseRankController.getaListCalBase().get(++cont_aListDate).getIdDate()),
-                String.valueOf(CourseRankController.getaListCalBase().get(++cont_aListDate).getIdDate()),
-                String.valueOf(CourseRankController.getaListCalBase().get(++cont_aListDate).getIdDate()),
-                String.valueOf(CourseRankController.getaListCalBase().get(++cont_aListDate).getIdDate()),
-                String.valueOf(CourseRankController.getaListCalBase().get(++cont_aListDate).getIdDate()),
-                String.valueOf(CourseRankController.getaListCalBase().get(++cont_aListDate).getIdDate())
+                String.valueOf(aCalendarioBase.get(++cont_aListDate).getIdDate()),
+                String.valueOf(aCalendarioBase.get(++cont_aListDate).getIdDate()),
+                String.valueOf(aCalendarioBase.get(++cont_aListDate).getIdDate()),
+                String.valueOf(aCalendarioBase.get(++cont_aListDate).getIdDate()),
+                String.valueOf(aCalendarioBase.get(++cont_aListDate).getIdDate()),
+                String.valueOf(aCalendarioBase.get(++cont_aListDate).getIdDate()),
+                String.valueOf(aCalendarioBase.get(++cont_aListDate).getIdDate())
         );
 
         tvCalendar.getItems().add(wd);
@@ -213,9 +211,9 @@ public class CalendarHolydayController implements Initializable {
 
         ArrayList<String> dates = new ArrayList<String>();
 
-        while (CourseRankController.getaListCalBase().get(++cont_aListDate)
+        while (aCalendarioBase.get(++cont_aListDate)
                 .getWeekDay() != 1)
-            dates.add(String.valueOf(CourseRankController.getaListCalBase()
+            dates.add(String.valueOf(aCalendarioBase
                     .get(cont_aListDate).getIdDate()));
 
         WeekDates tb = new WeekDates();
@@ -228,8 +226,7 @@ public class CalendarHolydayController implements Initializable {
      */
     public void saveBtnEvent() throws IOException {
 
-        for (CalendarioBase cb :
-                CourseRankController.getaListCalBase()) {
+        for (CalendarioBase cb : aCalendarioBase) {
             if (celdasSeleccionadas.contains(cb.getIdDate()))
                 cb.setFestivo(true);
         }
@@ -248,11 +245,11 @@ public class CalendarHolydayController implements Initializable {
     }
 
     private void createPlanificacionObjects() {
-        aPlanifCalend_Master1 = new ArrayList<>();
-        aPlanifCalend_Master2 = new ArrayList<>();
+        aPlanCalCurrentMonthMaster1 = new ArrayList<>();
+        aPlanCalCurrentMonthMaster2 = new ArrayList<>();
         CalendarioBase pc;
-        for (int i = 0; i < CourseRankController.getaListCalBase().size(); i++) {
-            pc = CourseRankController.getaListCalBase().get(i);
+        for (int i = 0; i < aCalendarioBase.size(); i++) {
+            pc = aCalendarioBase.get(i);
             aPlanifCalend.add(new PlanificacionCalendarios(pc, pc.getDia(), VariablesAndMethodsUtils.uni,
                     VariablesAndMethodsUtils.master1));
             aPlanifCalend.add(new PlanificacionCalendarios(pc, pc.getDia(), VariablesAndMethodsUtils.uni,

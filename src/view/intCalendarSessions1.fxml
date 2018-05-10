@@ -49,12 +49,12 @@
                                        <font>
                                           <Font size="14.0" />
                                        </font></Label>
-                                                <ImageView id="flechaLeft" fitHeight="50.0" fitWidth="49.0" layoutX="398.0" layoutY="14.0" onKeyPressed="#getPreviousMonth" onMouseClicked="#getPreviousMonth" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView id="flechaLeft" fitHeight="50.0" fitWidth="49.0" layoutX="398.0" layoutY="14.0" onKeyPressed="#updateMonth" onMouseClicked="#updateMonth" pickOnBounds="true" preserveRatio="true">
                                                     <image>
                                                         <Image url="@res/fecla_left.png" />
                                                     </image>
                                                 </ImageView>
-                                                <ImageView fx:id="flechaRigth" fitHeight="50.0" fitWidth="49.0" layoutX="546.0" layoutY="17.0" onKeyPressed="#getNextMonth" onMouseClicked="#getNextMonth" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fx:id="flechaRigth" fitHeight="50.0" fitWidth="49.0" layoutX="546.0" layoutY="17.0" onKeyPressed="#updateMonth" onMouseClicked="#updateMonth" pickOnBounds="true" preserveRatio="true">
                                                     <image>
                                                         <Image url="@res/flecha_rigth.png" />
                                                     </image>

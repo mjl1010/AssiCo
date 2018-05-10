@@ -27,12 +27,16 @@ public class GridSesion {
     private GridPane miniGrid;
     private HBox hBox_doc;
     private ComboBox cbo_tipoAula, cbo_doc1, cbo_doc2;
+    private int numDiaSemana, numSemana;
+
+    public GridSesion() {
+    }
 
     /**
-     * Método Constructor 1
+     * Método Constructor 2
      * @param dateID
      */
-    public GridSesion(String dateID) {
+    public GridSesion(String dateID, int numDiaSemana, int numSemana) {
         lblDateID = new Label(dateID);
         lblAux1 = new Label();
         lblAux2 = new Label();
@@ -44,6 +48,8 @@ public class GridSesion {
         cbo_doc2 = new ComboBox();
         cbo_tipoAula = new ComboBox();
         hBox_doc = new HBox();
+        this.numDiaSemana = numDiaSemana;
+        this.numSemana = numSemana;
         settingMiniGrid();
     }
 
@@ -100,6 +106,22 @@ public class GridSesion {
         return lblAula;
     }
 
+    public int getNumDiaSemana() {
+        return numDiaSemana;
+    }
+
+    public void setNumDiaSemana(int numDiaSemana) {
+        this.numDiaSemana = numDiaSemana;
+    }
+
+    public int getNumSemana() {
+        return numSemana;
+    }
+
+    public void setNumSemana(int numSemana) {
+        this.numSemana = numSemana;
+    }
+
     /**** Métodos Agregados ****/
 
     /**
@@ -119,7 +141,8 @@ public class GridSesion {
 
         lblDateID.setPrefHeight(26);
 
-        lblDateID.setStyle("-fx-background-color: #BE81F7");
+        if (lblContenido.getText().isEmpty()) lblDateID.setStyle("-fx-background-color: #FFFFFF");
+        else lblDateID.setStyle("-fx-background-color: #BE81F7");
         lblDateID.setTextFill(Paint.valueOf("#f2efef"));
         lblDateID.setFont(new Font("System Bold", 9));
         lblAsign.setFont(new Font(9));
