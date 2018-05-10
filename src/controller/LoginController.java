@@ -71,7 +71,7 @@ public class LoginController implements Initializable {
             return;
         }
 
-        DatosModel.connect(owner);
+        DatosModel.connect(owner, null);
 
         acceder.setStyle("-fx-base: #00AA00;");
         acceder.setDisable(true);
