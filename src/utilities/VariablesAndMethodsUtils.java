@@ -16,7 +16,7 @@ import java.util.Random;
 public class VariablesAndMethodsUtils {
 
     /**** Variables ******/
-    private static ArrayList<PlanificacionCalendarios> aPlanifCalend = new ArrayList<>();
+    private static ArrayList<DiaPlanificado> aPlanifCalend = new ArrayList<>();
     private static ArrayList<Sesion> aSession = new ArrayList<>();
     public static ObservableList<String> aTiposAula;
     private static ObservableList<String> aProfes; //TODO rellenar
@@ -77,7 +77,7 @@ public class VariablesAndMethodsUtils {
      *
      * @param aPlanifCalend
      */
-    public static void setaPlanifCalend(ArrayList<PlanificacionCalendarios> aPlanifCalend) {
+    public static void setaPlanifCalend(ArrayList<DiaPlanificado> aPlanifCalend) {
         VariablesAndMethodsUtils.aPlanifCalend = aPlanifCalend;
     }
 

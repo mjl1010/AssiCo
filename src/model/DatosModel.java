@@ -1,7 +1,7 @@
 package model;
 
+import entity.DiaPlanificado;
 import entity.Master;
-import entity.PlanificacionCalendarios;
 import entity.Token;
 import entity.Usuario;
 import javafx.scene.control.Alert;
@@ -118,7 +118,7 @@ public class DatosModel {
     /**
      * obtenerCalendario
      */
-    public static ArrayList<PlanificacionCalendarios> getPlanificacionCalendarios(Usuario usuario, String cursoAcademico, Master master1, Master master2) {
+    public static ArrayList<DiaPlanificado> getPlanificacionCalendarios(Usuario usuario, String cursoAcademico, Master master1, Master master2) {
         if (!comprobarToken()) return null;
 
         Map<String, Object> datos = new HashMap<>();
@@ -131,7 +131,7 @@ public class DatosModel {
         try {
             dos.writeObject(dato);
             dato = (Dato) dis.readObject();
-            return (ArrayList<PlanificacionCalendarios>) dato.getObject();
+            return (ArrayList<DiaPlanificado>) dato.getObject();
         } catch (Exception e) {
             //TODO Quitar ese mensaje cuando se ponga a producción
             e.printStackTrace();
