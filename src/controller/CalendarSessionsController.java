@@ -1,9 +1,12 @@
 package controller;
 
 import entity.PlanificacionCalendarios;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.image.ImageView;
@@ -41,6 +44,9 @@ public class CalendarSessionsController implements Initializable {
 
     @FXML
     SplitMenuButton smb_menuOption;
+    @FXML
+    MenuItem menuOpt1, menuOpt2, menuOpt3, menuOpt4, menuOpt5, menuOpt6, menuOpt7, menuOpt8;
+    ArrayList<MenuItem> aSplitMenuButton;
 
     String yearInit, monthInit;
     private Properties p;
@@ -54,14 +60,74 @@ public class CalendarSessionsController implements Initializable {
 
         configurarPantalla();
 
+
     }
 
     private void configurarPantalla() {
+        settingsSplitMenuButton();
         extraerValoresProperties();
         asignarValoresLabel();
         updateListsCurrentMonth_tab1();
         registredGridSessions();
         updateCalendarMaster1();
+//        for (int i = 0; i < aGridSesions.size(); i++) {
+//            System.out.println(aGridSesions.get(i).toString());
+//        }
+        configSplitMenuButton();
+
+    }
+
+    private void settingsSplitMenuButton() {
+        aSplitMenuButton = new ArrayList<>();
+        aSplitMenuButton.add(menuOpt1);
+        aSplitMenuButton.add(menuOpt2);
+        aSplitMenuButton.add(menuOpt3);
+        aSplitMenuButton.add(menuOpt4);
+        aSplitMenuButton.add(menuOpt5);
+        aSplitMenuButton.add(menuOpt6);
+        aSplitMenuButton.add(menuOpt7);
+        aSplitMenuButton.add(menuOpt8);
+    }
+
+    private void configSplitMenuButton() {
+        for (MenuItem mi :
+                aSplitMenuButton) {
+            mi.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    gestionarOpcion(mi.getId());
+                }
+                private void gestionarOpcion(String id) {
+                    switch (id){
+                        case "menuOpt1" :
+                            System.out.println("agrega sesion");
+                            break;
+                        case "menuOpt2" :
+                            System.out.println("Intercambio de Sesión");
+                            break;
+                        case "menuOpt3" :
+                            System.out.println("Editar Practica 1");
+                            break;
+                        case "menuOpt4" :
+                            System.out.println("Editar Practica 2");
+                            break;
+                        case "menuOpt5" :
+                            System.out.println("Editar Contenido de Asignatura");
+                            break;
+                        case "menuOpt6" :
+                            System.out.println("Editar Profesor(s)");
+                            break;
+                        case "menuOpt7" :
+                            System.out.println("Editar Tipo de Aula");
+                            break;
+                        case "menuOpt8" :
+                            System.out.println("Editar Aula");
+                            break;
+
+                    }
+                }
+            });
+        }
     }
 
     private void registredGridSessions() {
@@ -70,42 +136,48 @@ public class CalendarSessionsController implements Initializable {
         int index = -1;
         for (int i = 0; i < 6; i++)
             for (int j = 0; j < 5; j++) {
-                gs = new GridSesion("01/01/1900", j, i);
+                gs = new GridSesion("01/01/1900", i, j);
                 gp_calendar.add(gs.getMiniGrid(), j, i);
                 aGridSesions.add(gs);
             }
     }
 
     private void updateCalendarMaster1() {
-        int contWeeks = 1;
-        int numDiaSemana = -1;
+        int contRow = 0;
+        int numDiaSemana = 0;
         for (int i = 0; i < aPlanCalCurrentMonthMaster1.size(); i++) {
             PlanificacionCalendarios pc = aPlanCalCurrentMonthMaster1.get(i);
             numDiaSemana = pc.getCalendarioBase().getWeekDay();
-            updatesDatesMiniGridCalendar(numDiaSemana, contWeeks, pc);
-            if (numDiaSemana==7) contWeeks++;
+            if (numDiaSemana == 6 || numDiaSemana == 7) {
+                if (numDiaSemana == 7) contRow++;
+                continue;
+            }
+            updatesDatesMiniGridCalendar(contRow, numDiaSemana - 1, pc);
         }
     }
 
-    private void updatesDatesMiniGridCalendar(int numDiaSemana, int contWeeks, PlanificacionCalendarios pc) {
-        for (GridSesion gd:
-             aGridSesions) {
-//            if (gd.getNumSemana())
+    private void updatesDatesMiniGridCalendar(int indexRow, int indexColumn,
+                                              PlanificacionCalendarios pc) {
+        for (int i = 0; i < aGridSesions.size(); i++) {
+            if (aGridSesions.get(i).getIndexRow() == indexRow &&
+                    aGridSesions.get(i).getIndexColum() == indexColumn) {
+                aGridSesions.get(i).getLblDateID().setText(pc.getCalendarioBase().getIdDate());
+                aGridSesions.get(i).getLblDateID().setStyle("-fx-background-color: #BE81F7");
+                break;
+            }
         }
+
     }
 
-    private void updateListsCurrentMonth_tab1() { //TODO de momento siempre master1 está en tab1
+    private void updateListsCurrentMonth_tab1() { //de momento siempre master1 está en tab1, TODO validar break;
+        aPlanCalCurrentMonthMaster1 = new ArrayList<>();
         for (int i = 0; i < aPlanifCalend.size(); i++) {
             String date = String.valueOf(aPlanifCalend.get(i).getCalendarioBase().getDia());
-
-            if (LocalDate.parse(date, DateTimeFormatter.BASIC_ISO_DATE).getMonth().name()
-                    .equalsIgnoreCase(lblMonth.getText()) && aPlanifCalend.get(i).getMaster()
-                    .equals(master1))
+            LocalDate ld = LocalDate.parse(date, DateTimeFormatter.BASIC_ISO_DATE);
+            if (String.valueOf(ld.getYear()).equalsIgnoreCase(lblYear.getText()) &&
+                    ld.getMonth().name().equalsIgnoreCase(lblMonth.getText()) &&
+                    aPlanifCalend.get(i).getMaster().equals(master1))
                 aPlanCalCurrentMonthMaster1.add(aPlanifCalend.get(i));
-        }
-
-        for (int i = 0; i < aPlanCalCurrentMonthMaster1.size(); i++) {
-            System.out.println(aPlanCalCurrentMonthMaster1.get(i));
         }
     }
 
@@ -123,7 +195,6 @@ public class CalendarSessionsController implements Initializable {
         p = new Properties();
         try {
             p.load(new FileReader(VariablesAndMethodsUtils.PATH_PROPERTIES));
-
             yearInit = p.getProperty("year");
             monthInit = p.getProperty("month");
 
@@ -175,6 +246,9 @@ public class CalendarSessionsController implements Initializable {
                         lblYear.setText(yearInit);
                     } else lblMonth.setText(aMonths.get(++i));
                 }
+                updateListsCurrentMonth_tab1();
+                registredGridSessions();
+                updateCalendarMaster1();
                 break;
             }
         }
@@ -183,5 +257,8 @@ public class CalendarSessionsController implements Initializable {
     public void clickCell(MouseEvent mouseEvent) {
         System.out.println("object : " + mouseEvent.getSource());
     }
-
 }
+
+
+
+

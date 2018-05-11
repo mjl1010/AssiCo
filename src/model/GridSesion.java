@@ -1,21 +1,11 @@
 package model;
 
-import com.sun.javafx.geom.BaseBounds;
-import com.sun.javafx.geom.transform.BaseTransform;
-import com.sun.javafx.jmx.MXNodeAlgorithm;
-import com.sun.javafx.jmx.MXNodeAlgorithmContext;
-import com.sun.javafx.sg.prism.NGNode;
 import javafx.geometry.HPos;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
-import javafx.scene.text.TextAlignment;
-
-import java.awt.*;
 
 
 /**
@@ -27,7 +17,7 @@ public class GridSesion {
     private GridPane miniGrid;
     private HBox hBox_doc;
     private ComboBox cbo_tipoAula, cbo_doc1, cbo_doc2;
-    private int numDiaSemana, numSemana;
+    private int indexRow, indexColum;
 
     public GridSesion() {
     }
@@ -36,7 +26,7 @@ public class GridSesion {
      * Método Constructor 2
      * @param dateID
      */
-    public GridSesion(String dateID, int numDiaSemana, int numSemana) {
+    public GridSesion(String dateID, int indexRow, int indexColum) {
         lblDateID = new Label(dateID);
         lblAux1 = new Label();
         lblAux2 = new Label();
@@ -48,8 +38,8 @@ public class GridSesion {
         cbo_doc2 = new ComboBox();
         cbo_tipoAula = new ComboBox();
         hBox_doc = new HBox();
-        this.numDiaSemana = numDiaSemana;
-        this.numSemana = numSemana;
+        this.indexRow = indexRow;
+        this.indexColum = indexColum;
         settingMiniGrid();
     }
 
@@ -106,20 +96,60 @@ public class GridSesion {
         return lblAula;
     }
 
-    public int getNumDiaSemana() {
-        return numDiaSemana;
+    public int getIndexRow() {
+        return indexRow;
     }
 
-    public void setNumDiaSemana(int numDiaSemana) {
-        this.numDiaSemana = numDiaSemana;
+    public void setIndexRow(int indexRow) {
+        this.indexRow = indexRow;
     }
 
-    public int getNumSemana() {
-        return numSemana;
+    public int getIndexColum() {
+        return indexColum;
     }
 
-    public void setNumSemana(int numSemana) {
-        this.numSemana = numSemana;
+    public ComboBox getCbo_tipoAula() {
+        return cbo_tipoAula;
+    }
+
+    public ComboBox getCbo_doc1() {
+        return cbo_doc1;
+    }
+
+    public ComboBox getCbo_doc2() {
+        return cbo_doc2;
+    }
+
+    public void setIndexColum(int indexColum) {
+        this.indexColum = indexColum;
+    }
+
+    public void setLblDateID(Label lblDateID) {
+        this.lblDateID = lblDateID;
+    }
+
+    public void setLblAux1(Label lblAux1) {
+        this.lblAux1 = lblAux1;
+    }
+
+    public void setLblAux2(Label lblAux2) {
+        this.lblAux2 = lblAux2;
+    }
+
+    public void setLblAsign(Label lblAsign) {
+        this.lblAsign = lblAsign;
+    }
+
+    public void setLblContenido(Label lblContenido) {
+        this.lblContenido = lblContenido;
+    }
+
+    public void setLblJuntSep(Label lblJuntSep) {
+        this.lblJuntSep = lblJuntSep;
+    }
+
+    public void setLblAula(Label lblAula) {
+        this.lblAula = lblAula;
     }
 
     /**** Métodos Agregados ****/
@@ -165,5 +195,17 @@ public class GridSesion {
         miniGrid.getColumnConstraints().get(0).setHalignment(HPos.CENTER);
         miniGrid.getColumnConstraints().get(1).setHalignment(HPos.CENTER);
         miniGrid.getColumnConstraints().get(2).setHalignment(HPos.CENTER);
+
+//        miniGrid.setStyle("-fx-border-color:black;-fx-border-width:1px;-fx-border-style:solid;");
+    }
+
+    @Override
+    public String toString() {
+        return "GridSesion{" +
+                "lblDateID=" + lblDateID +
+                ", miniGrid=" + miniGrid +
+                ", indexRow=" + indexRow +
+                ", indexColum=" + indexColum +
+                '}';
     }
 }
