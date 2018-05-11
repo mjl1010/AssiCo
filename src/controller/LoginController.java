@@ -88,7 +88,7 @@ public class LoginController implements Initializable {
             DatosModel.resetConnection();
         } else {
             //TODO Lanzar MenuController
-            Parent root = FXMLLoader.load(getClass().getResource("../view/intCalendarSessions1.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../view/intSesionsCalendar.fxml"));
             Stage stage = new Stage(StageStyle.DECORATED);
             Scene scene = new Scene(root, 1000, 650);
             stage.setTitle("Holydays Stage");

@@ -127,7 +127,7 @@ public class CourseRankController {
      * open calendary
      */
     public void openRankHolydays() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../view/intVacationsRank.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../view/intVacationsRange.fxml"));
         Stage stage = new Stage(StageStyle.DECORATED);
         Scene scene = new Scene(root, 495, 307);
         stage.setTitle("Holydays Stage");

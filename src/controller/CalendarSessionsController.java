@@ -56,11 +56,7 @@ public class CalendarSessionsController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         addEventCalendars();
-//        VariablesAndMethodsUtils.addData();
-
         configurarPantalla();
-
-
     }
 
     private void configurarPantalla() {
@@ -123,7 +119,6 @@ public class CalendarSessionsController implements Initializable {
                         case "menuOpt8" :
                             System.out.println("Editar Aula");
                             break;
-
                     }
                 }
             });
@@ -166,7 +161,6 @@ public class CalendarSessionsController implements Initializable {
                 break;
             }
         }
-
     }
 
     private void updateListsCurrentMonth_tab1() { //de momento siempre master1 está en tab1, TODO validar break;

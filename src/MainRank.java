@@ -17,13 +17,13 @@ public class MainRank extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        root = FXMLLoader.load(getClass().getResource("view/intCourseRank.fxml"));
+        root = FXMLLoader.load(getClass().getResource("view/intCourseRange.fxml"));
         stage = primaryStage;
         stage.setTitle("Rango Stage");
         stage.setScene(new Scene(root, 495, 307));
         stage.show();
 
-//        root = FXMLLoader.load(getClass().getResource("view/intCalendarSessions1.fxml"));
+//        root = FXMLLoader.load(getClass().getResource("view/intSesionsCalendar.fxml"));
 //        stage = primaryStage;
 //        stage.setTitle("Sessions Calendar");
 //        stage.setScene(new Scene(root, 1120 , 650));

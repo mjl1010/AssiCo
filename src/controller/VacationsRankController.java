@@ -86,7 +86,7 @@ public class VacationsRankController implements Initializable {
      * open Calendar Holy Days
      */
     private void openCalendarHolydays() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../view/intCalendarHolydays.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../view/intHolydaysCalendar.fxml"));
         Stage stage = new Stage(StageStyle.DECORATED);
         Scene scene = new Scene(root, 697, 515);
         stage.setTitle("Holydays Stage");
