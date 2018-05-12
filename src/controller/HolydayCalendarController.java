@@ -26,7 +26,7 @@ import static utilities.VariablesAndMethodsUtils.*;
 /**
  * Created by Michael and modified by Manel
  */
-public class CalendarHolydayController implements Initializable {
+public class HolydayCalendarController implements Initializable {
 
     @FXML
     TableView<WeekDates> tvCalendar;
@@ -44,8 +44,8 @@ public class CalendarHolydayController implements Initializable {
         columnsSetting();
         fillTableView();
 
-//        for (int i = 0; i < CourseRankController.getaListCalBase().size(); i++) {
-//            System.out.println(CourseRankController.getaListCalBase().get(i));
+//        for (int i = 0; i < CourseRangeController.getaListCalBase().size(); i++) {
+//            System.out.println(CourseRangeController.getaListCalBase().get(i));
 //        }
 
     }
@@ -137,7 +137,7 @@ public class CalendarHolydayController implements Initializable {
      * cells vacations list
      */
     private void fillCeldasVacations() {
-        Iterator it = VacationsRankController.getHsVacations().iterator();
+        Iterator it = VacationsRangeController.getHsVacations().iterator();
         while (it.hasNext()) {
             celdasVacations.add(String.valueOf(it.next()));
         }
@@ -149,14 +149,14 @@ public class CalendarHolydayController implements Initializable {
     private void fillTableView() {
         int contWeeksReg = 0;
 
-        System.out.println("numero de semanas : " + CourseRankController.getContWeeks());
+        System.out.println("numero de semanas : " + CourseRangeController.getContWeeks());
 
-        if (!CourseRankController.getFirstDayName().equals("MONDAY")) {
+        if (!CourseRangeController.getFirstDayName().equals("MONDAY")) {
             incompletWeekRegistred();
             cont_aListDate--;
             contWeeksReg++;
         }
-        for (; contWeeksReg < CourseRankController.getContWeeks() - 1; contWeeksReg++) completWeekRegistred();
+        for (; contWeeksReg < CourseRangeController.getContWeeks() - 1; contWeeksReg++) completWeekRegistred();
         endWeekRegistred();
     }
 
@@ -175,7 +175,7 @@ public class CalendarHolydayController implements Initializable {
             aux_localDate = LocalDate.parse(aCalendarioBase.get(cont_aListDate)
             .getIdDate(), FORMATTER2);
 
-        } while (!aux_localDate.isAfter(CourseRankController.getEndDay().minusDays(1)));
+        } while (!aux_localDate.isAfter(CourseRangeController.getEndDay().minusDays(1)));
 
         int aux = 7 - dates.size();
         for (int i = 0; i < aux; i++) dates.add("");
@@ -217,7 +217,7 @@ public class CalendarHolydayController implements Initializable {
                     .get(cont_aListDate).getIdDate()));
 
         WeekDates tb = new WeekDates();
-        tb.completeWeek(CourseRankController.getFirstDayName(), dates);
+        tb.completeWeek(CourseRangeController.getFirstDayName(), dates);
         tvCalendar.getItems().add(tb);
     }
 
@@ -234,13 +234,13 @@ public class CalendarHolydayController implements Initializable {
         createPlanificacionObjects();
 
 //        ClientExt.connect();
-//        ClientExt. send_firstListBaseCalendar(CourseRankController.getaListCalBase());
+//        ClientExt. send_firstListBaseCalendar(CourseRangeController.getaListCalBase());
 //        ClientExt.closeConnection();
 
         openIntCalendarSession();
 
-//        for (int i = 0; i < CourseRankController.getaListCalBase().size(); i++) {
-//            System.out.println(CourseRankController.getaListCalBase().get(i));
+//        for (int i = 0; i < CourseRangeController.getaListCalBase().size(); i++) {
+//            System.out.println(CourseRangeController.getaListCalBase().get(i));
 //        }
     }
 

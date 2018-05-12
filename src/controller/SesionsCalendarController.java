@@ -1,10 +1,14 @@
 package controller;
 
+import entity.Master;
 import entity.PlanificacionCalendarios;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
@@ -12,6 +16,8 @@ import javafx.scene.control.SplitMenuButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.GridSesion;
 import utilities.VariablesAndMethodsUtils;
 
@@ -28,7 +34,7 @@ import static utilities.VariablesAndMethodsUtils.*;
 /**
  *
  */
-public class CalendarSessionsController implements Initializable {
+public class SesionsCalendarController implements Initializable {
 
     @FXML
     GridPane gp_calendar;
@@ -44,10 +50,12 @@ public class CalendarSessionsController implements Initializable {
 
     @FXML
     SplitMenuButton smb_menuOption;
+
     @FXML
     MenuItem menuOpt1, menuOpt2, menuOpt3, menuOpt4, menuOpt5, menuOpt6, menuOpt7, menuOpt8;
-    ArrayList<MenuItem> aSplitMenuButton;
 
+    ArrayList<MenuItem> aSplitMenuButton;
+    public static Master master_current;
     String yearInit, monthInit;
     private Properties p;
 
@@ -91,12 +99,17 @@ public class CalendarSessionsController implements Initializable {
             mi.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    gestionarOpcion(mi.getId());
+                    try {
+                        gestionarOpcion(mi.getId());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
-                private void gestionarOpcion(String id) {
+                private void gestionarOpcion(String id) throws IOException {
                     switch (id){
                         case "menuOpt1" :
                             System.out.println("agrega sesion");
+                            openSesionsTablePopUp();
                             break;
                         case "menuOpt2" :
                             System.out.println("Intercambio de Sesión");
@@ -120,6 +133,15 @@ public class CalendarSessionsController implements Initializable {
                             System.out.println("Editar Aula");
                             break;
                     }
+                }
+
+                private void openSesionsTablePopUp() throws IOException {
+                    Parent root = FXMLLoader.load(getClass().getResource("../view/intSesionTable.fxml"));
+                    Stage stage = new Stage(StageStyle.DECORATED);
+                    Scene scene = new Scene(root, 600, 400);
+                    stage.setTitle("Lista de Sesiones");
+                    stage.setScene(scene);
+                    stage.show();
                 }
             });
         }
@@ -189,6 +211,7 @@ public class CalendarSessionsController implements Initializable {
         p = new Properties();
         try {
             p.load(new FileReader(VariablesAndMethodsUtils.PATH_PROPERTIES));
+            master_current = retornarMaster(p.getProperty("masterID"));
             yearInit = p.getProperty("year");
             monthInit = p.getProperty("month");
 
@@ -196,6 +219,13 @@ public class CalendarSessionsController implements Initializable {
             e.printStackTrace();
             System.out.println(e.getCause() + "&" + e.getMessage());
         }
+    }
+
+    private Master retornarMaster(String masterID) {
+        Master m;
+        if (master1.getCode().equals(masterID)) m = master1;
+        else m = master2;
+        return m;
     }
 
     private void addEventCalendars() {
@@ -222,8 +252,8 @@ public class CalendarSessionsController implements Initializable {
         for (int i = 0; i < aMonths.size(); i++) {
             if (aMonths.get(i).equalsIgnoreCase(lblMonth.getText())) {
                 if (iv.getId().equalsIgnoreCase("flechaLeft")) {
-                    if (lblMonth.getText().equalsIgnoreCase(CourseRankController.firtDay.getMonth().name()) &&
-                            lblYear.getText().equalsIgnoreCase(String.valueOf(CourseRankController.firtDay
+                    if (lblMonth.getText().equalsIgnoreCase(CourseRangeController.firtDay.getMonth().name()) &&
+                            lblYear.getText().equalsIgnoreCase(String.valueOf(CourseRangeController.firtDay
                                     .getYear()))) break;
                     if (i == 0) {
                         lblMonth.setText(aMonths.get(aMonths.size() - 1));
@@ -231,8 +261,8 @@ public class CalendarSessionsController implements Initializable {
                         lblYear.setText(yearInit);
                     } else lblMonth.setText(aMonths.get(--i));
                 } else { // flechaRigth
-                    if (lblMonth.getText().equalsIgnoreCase(CourseRankController.endDay.getMonth().name()) &&
-                            lblYear.getText().equalsIgnoreCase(String.valueOf(CourseRankController.endDay
+                    if (lblMonth.getText().equalsIgnoreCase(CourseRangeController.endDay.getMonth().name()) &&
+                            lblYear.getText().equalsIgnoreCase(String.valueOf(CourseRangeController.endDay
                                     .getYear()))) break;
                     if (i == aMonths.size() - 1) {
                         lblMonth.setText(aMonths.get(0));

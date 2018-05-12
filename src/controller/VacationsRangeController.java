@@ -23,7 +23,7 @@ import static utilities.VariablesAndMethodsUtils.aCalendarioBase;
 /**
  * Created by Michael
  */
-public class VacationsRankController implements Initializable {
+public class VacationsRangeController implements Initializable {
 
 
     @FXML
@@ -46,7 +46,7 @@ public class VacationsRankController implements Initializable {
         return hsVacations;
     }
     public static void setHsVacations(HashSet<String> hsVacations) {
-        VacationsRankController.hsVacations = hsVacations;
+        VacationsRangeController.hsVacations = hsVacations;
     }
 
 

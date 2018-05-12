@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Random;
 
 /**
@@ -116,6 +117,16 @@ public class VariablesAndMethodsUtils {
         regDocentes();
         regAsignaturas();
         regSesiones();
+        sortListSession();
+    }
+
+    private static void sortListSession() {
+        Collections.sort(aSession, new Comparator<Sesion>() {
+            @Override
+            public int compare(Sesion o1, Sesion o2) {
+                return o1.getId() - o2.getId();
+            }
+        });
     }
 
 
@@ -195,6 +206,7 @@ public class VariablesAndMethodsUtils {
             aSession
                     .add(new Sesion(++sesionID, master1_aux, master2_aux, aListAsignaturas.get(indexAsign),
                             contenido + j, docente1, docente2, aula, tipoAula));
+
     }
 
     private static void regAsignaturas() {

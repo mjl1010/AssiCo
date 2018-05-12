@@ -25,7 +25,7 @@ import static utilities.VariablesAndMethodsUtils.aCalendarioBase;
 /**
  * Created by Michael
  */
-public class CourseRankController {
+public class CourseRangeController {
 
     @FXML
     DatePicker datePicker_start, datePicker_end;
@@ -96,14 +96,14 @@ public class CourseRankController {
      */
     private void updateInitData()  {
         p = new Properties();
-        VariablesAndMethodsUtils.curso = CourseRankController.firtDay.getYear() + "-"
-                + CourseRankController.endDay.getYear();
+        VariablesAndMethodsUtils.curso = CourseRangeController.firtDay.getYear() + "-"
+                + CourseRangeController.endDay.getYear();
 
         try {
             p.load(new FileReader(VariablesAndMethodsUtils.PATH_PROPERTIES));
             p.setProperty("curso", VariablesAndMethodsUtils.curso);
-            p.setProperty("year", String.valueOf(CourseRankController.firtDay.getYear()));
-            p.setProperty("month", String.valueOf(CourseRankController.firtDay.getMonth().name()));
+            p.setProperty("year", String.valueOf(CourseRangeController.firtDay.getYear()));
+            p.setProperty("month", String.valueOf(CourseRangeController.firtDay.getMonth().name()));
             p.store(new FileWriter(PATH_PROPERTIES), "first comment");
 
         } catch (IOException e) {
