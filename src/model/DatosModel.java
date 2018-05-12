@@ -1,7 +1,7 @@
 package model;
 
+import entity.DiaPlanificado;
 import entity.Master;
-import entity.PlanificacionCalendarios;
 import entity.Token;
 import entity.Usuario;
 import javafx.scene.control.Alert;
@@ -27,15 +27,28 @@ public class DatosModel {
     private static Window window;
     private static Token token;
 
+    // API
+
     /**
-     * connect to server
+     * Conectar con el servidor para peticiones simples y públicas como verificación de datos primarios.
+     * @param owner
+     */
+    public static void connect(Window owner) {
+        connect(owner, token);
+    }
+
+    /**
+     * Conectar con el servidor para qualquier tipo de cosa, pasándole el token de sesión, claro.
+     * @apiNote Para obtener el Token, o bien lo 'heredas' de la clase anterior, o bien usas connect(windows) sin pasarle el token, lo cogerá de la sesión anterior, habiendo hecho un connect with token o comprobarCuenta.
+     * @param owner
+     * @param toke
      */
     public static void connect(Window owner, Token toke) {
         window = owner;
         token = toke;
         try {
             //socket = new Socket("skimdoo.ddns.jazztel.es", 9090);
-            socket = new Socket("192.168.5.229", 9090);
+            socket = new Socket("localhost", 9090);
             dos = new ObjectOutputStream(socket.getOutputStream());
             dis = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
@@ -64,11 +77,13 @@ public class DatosModel {
         connect(window, null);
     }
 
+    // COMPROBACIONES
+
     /**
-     * comprobarCuenta
-     * @param token
+     * comprobarToken verifica si tiene una sesión válida para poder usar los métodos que requieran estar autentificado
      */
-    public static boolean comprobarToken(Token token) {
+    public static boolean comprobarToken() {
+        if (token == null) return false;
         Dato dato = new Dato("comprobarToken", token);
         try {
             dos.writeObject(dato);
@@ -88,7 +103,9 @@ public class DatosModel {
         try {
             dos.writeObject(dato);
             dato = (Dato) dis.readObject();
-            return (Token) dato.getObject();
+            Token t = (Token) dato.getObject();
+            if (t != null) token = t;
+            return t;
         } catch (Exception e) {
             //TODO Quitar ese mensaje cuando se ponga a producción
             e.printStackTrace();
@@ -96,21 +113,25 @@ public class DatosModel {
         }
     }
 
+    // GETTERS
+
     /**
      * obtenerCalendario
      */
-    public static ArrayList<PlanificacionCalendarios> getPlanificacionCalendarios(Usuario usuario, String cursoAcademico, Master master1, Master master2) {
+    public static ArrayList<DiaPlanificado> getPlanificacionCalendarios(Usuario usuario, String cursoAcademico, Master master1, Master master2) {
+        if (!comprobarToken()) return null;
+
         Map<String, Object> datos = new HashMap<>();
         datos.put("usuario", usuario);
         datos.put("cursoAcademico", cursoAcademico);
         datos.put("master1", master1);
         datos.put("master2", master2);
 
-        Dato dato = new Dato("getPlanificacionCalendarios", datos, token);
+        Dato dato = new Dato("getPlanificacionCalendarios", datos);
         try {
             dos.writeObject(dato);
             dato = (Dato) dis.readObject();
-            return (ArrayList<PlanificacionCalendarios>) dato.getObject();
+            return (ArrayList<DiaPlanificado>) dato.getObject();
         } catch (Exception e) {
             //TODO Quitar ese mensaje cuando se ponga a producción
             e.printStackTrace();

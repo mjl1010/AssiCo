@@ -22,6 +22,8 @@ public class VariablesAndMethodsUtils {
     public static ArrayList<PlanificacionCalendarios> aPlanCalCurrentMonthMaster1 = new ArrayList<>();
     public static ArrayList<PlanificacionCalendarios> aPlanCalCurrentMonthMaster2 = new ArrayList<>();
     public static ArrayList<Sesion> aSession = new ArrayList<>();
+    private static ArrayList<DiaPlanificado> aPlanifCalend = new ArrayList<>();
+    private static ArrayList<Sesion> aSession = new ArrayList<>();
     public static ObservableList<String> aTiposAula;
     private static ObservableList<String> aProfes; //TODO rellenar
     public static ArrayList<String> aDays = new ArrayList<>();
