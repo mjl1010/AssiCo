@@ -1,7 +1,7 @@
 package controller;
 
 import entity.Master;
-import entity.PlanificacionCalendarios;
+import entity.DiaPlanificado;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -19,6 +19,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.GridSesion;
+import utilities.SesionTableRow;
 import utilities.VariablesAndMethodsUtils;
 
 import java.io.*;
@@ -54,34 +55,32 @@ public class SesionsCalendarController implements Initializable {
     @FXML
     MenuItem menuOpt1, menuOpt2, menuOpt3, menuOpt4, menuOpt5, menuOpt6, menuOpt7, menuOpt8;
 
-    ArrayList<MenuItem> aSplitMenuButton;
+    private ArrayList<MenuItem> aSplitMenuButton;
     public static Master master_current;
-    String yearInit, monthInit;
+    private String yearInit, monthInit;
     private Properties p;
-
-    ArrayList<GridSesion> aGridSesions;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        addEventCalendars();
         configurarPantalla();
+        addEventCalendars();
     }
 
+    /**
+     * configura pantalla
+     * de usuario
+     */
     private void configurarPantalla() {
-        settingsSplitMenuButton();
+        addOptionsToSplitMenu();
         extraerValoresProperties();
         asignarValoresLabel();
         updateListsCurrentMonth_tab1();
         registredGridSessions();
         updateCalendarMaster1();
-//        for (int i = 0; i < aGridSesions.size(); i++) {
-//            System.out.println(aGridSesions.get(i).toString());
-//        }
         configSplitMenuButton();
-
     }
 
-    private void settingsSplitMenuButton() {
+    private void addOptionsToSplitMenu() {
         aSplitMenuButton = new ArrayList<>();
         aSplitMenuButton.add(menuOpt1);
         aSplitMenuButton.add(menuOpt2);
@@ -105,43 +104,35 @@ public class SesionsCalendarController implements Initializable {
                         e.printStackTrace();
                     }
                 }
+
                 private void gestionarOpcion(String id) throws IOException {
-                    switch (id){
-                        case "menuOpt1" :
+                    switch (id) {
+                        case "menuOpt1":
                             System.out.println("agrega sesion");
-                            openSesionsTablePopUp();
+                            new SesionTableController().openScene();
                             break;
-                        case "menuOpt2" :
+                        case "menuOpt2":
                             System.out.println("Intercambio de Sesión");
                             break;
-                        case "menuOpt3" :
+                        case "menuOpt3":
                             System.out.println("Editar Practica 1");
                             break;
-                        case "menuOpt4" :
+                        case "menuOpt4":
                             System.out.println("Editar Practica 2");
                             break;
-                        case "menuOpt5" :
+                        case "menuOpt5":
                             System.out.println("Editar Contenido de Asignatura");
                             break;
-                        case "menuOpt6" :
+                        case "menuOpt6":
                             System.out.println("Editar Profesor(s)");
                             break;
-                        case "menuOpt7" :
+                        case "menuOpt7":
                             System.out.println("Editar Tipo de Aula");
                             break;
-                        case "menuOpt8" :
+                        case "menuOpt8":
                             System.out.println("Editar Aula");
                             break;
                     }
-                }
-
-                private void openSesionsTablePopUp() throws IOException {
-                    Parent root = FXMLLoader.load(getClass().getResource("../view/intSesionTable.fxml"));
-                    Stage stage = new Stage(StageStyle.DECORATED);
-                    Scene scene = new Scene(root, 600, 400);
-                    stage.setTitle("Lista de Sesiones");
-                    stage.setScene(scene);
-                    stage.show();
                 }
             });
         }
@@ -163,7 +154,7 @@ public class SesionsCalendarController implements Initializable {
         int contRow = 0;
         int numDiaSemana = 0;
         for (int i = 0; i < aPlanCalCurrentMonthMaster1.size(); i++) {
-            PlanificacionCalendarios pc = aPlanCalCurrentMonthMaster1.get(i);
+            DiaPlanificado pc = aPlanCalCurrentMonthMaster1.get(i);
             numDiaSemana = pc.getCalendarioBase().getWeekDay();
             if (numDiaSemana == 6 || numDiaSemana == 7) {
                 if (numDiaSemana == 7) contRow++;
@@ -174,7 +165,7 @@ public class SesionsCalendarController implements Initializable {
     }
 
     private void updatesDatesMiniGridCalendar(int indexRow, int indexColumn,
-                                              PlanificacionCalendarios pc) {
+                                              DiaPlanificado pc) {
         for (int i = 0; i < aGridSesions.size(); i++) {
             if (aGridSesions.get(i).getIndexRow() == indexRow &&
                     aGridSesions.get(i).getIndexColum() == indexColumn) {
@@ -229,17 +220,29 @@ public class SesionsCalendarController implements Initializable {
     }
 
     private void addEventCalendars() {
-        gp_calendar.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            smb_menuOption.setDisable(false);
-            System.out.println(event.getSource());
-        });
-        fillComboBox();
+        GridPane gp = new GridPane();
+        for (int i = 0; i < gp_calendar.getChildren().size()-1; i++) {
+            if (gp_calendar.getChildren().get(i) instanceof javafx.scene.Group) continue;
+            gp_calendar.getChildren().get(i).addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                if (event.getClickCount() == 2){
+                    smb_menuOption.setDisable(false);
+                    marcarGrid((GridPane) event.getSource());
+                }
+            });
+        }
     }
 
     /**
-     * fill comboBox
+     * tratamiento de grid seleccionado
+     * @param miniGrid
      */
-    private void fillComboBox() {
+    private void marcarGrid(GridPane miniGrid) {
+        gp_waiting = miniGrid;
+        gp_waiting.setStyle("-fx-border-color: #A9D0F5;" +
+                "-fx-border-style: solid inside;" +
+                "-fx-border-width: 2;" +
+                "-fx-border-insets: 5;" +
+                "-fx-border-radius: 5;" );
     }
 
     /**
@@ -276,10 +279,6 @@ public class SesionsCalendarController implements Initializable {
                 break;
             }
         }
-    }
-
-    public void clickCell(MouseEvent mouseEvent) {
-        System.out.println("object : " + mouseEvent.getSource());
     }
 }
 

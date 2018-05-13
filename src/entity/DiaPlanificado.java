@@ -15,7 +15,7 @@ public class DiaPlanificado implements Serializable {
 
     public DiaPlanificado() {}
 
-    public PlanificacionCalendarios(CalendarioBase pc, int dia, Universidad uni, Master master) {
+    public DiaPlanificado(CalendarioBase pc, int dia, Universidad uni, Master master) {
         this.calendarioBase = pc;
         this.dia = dia;
         this.universidad = uni;

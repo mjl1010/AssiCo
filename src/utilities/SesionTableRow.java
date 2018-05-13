@@ -3,6 +3,9 @@ package utilities;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+/**
+ * Created by Michael
+ */
 public class SesionTableRow {
 
     private StringProperty sesionID;
@@ -46,7 +49,7 @@ public class SesionTableRow {
     /**** Getters and Setters *****/
 
     public String getSesionID() {
-        return sesionID.toString();
+        return sesionID.get();
     }
     public void setSesionID(String sesionID) {
         this.sesionID.set(sesionID);
@@ -56,7 +59,7 @@ public class SesionTableRow {
     }
 
     public String getMaster1() {
-        return master1.toString();
+        return master1.get();
     }
     public void setMaster1(String master1) {
         this.master1.set(master1);
@@ -66,7 +69,7 @@ public class SesionTableRow {
     }
 
     public String getMaster2() {
-        return master2.toString();
+        return master2.get();
     }
     public void setMaster2(String master2) {
         this.master2.set(master2);
@@ -76,7 +79,7 @@ public class SesionTableRow {
     }
 
     public String getAsignatura() {
-        return asignatura.toString();
+        return asignatura.get();
     }
     public void setAsignatura(String asignatura) {
         this.asignatura.set(asignatura);
@@ -86,7 +89,7 @@ public class SesionTableRow {
     }
 
     public String getContenido() {
-        return contenido.toString();
+        return contenido.get();
     }
     public void setContenido(String contenido) {
         this.contenido.set(contenido);
@@ -96,7 +99,7 @@ public class SesionTableRow {
     }
 
     public String getDocentet1() {
-        return docentet1.toString();
+        return docentet1.get();
     }
     public void setDocentet1(String docentet1) {
         this.docentet1.set(docentet1);
@@ -106,7 +109,7 @@ public class SesionTableRow {
     }
 
     public String getDocentet2() {
-        return docentet2.toString();
+        return docentet2.get();
     }
     public void setDocentet2(String docentet2) {
         this.docentet2.set(docentet2);
@@ -116,7 +119,7 @@ public class SesionTableRow {
     }
 
     public String getTipoAula() {
-        return tipoAula.toString();
+        return tipoAula.get();
     }
     public void setTipoAula(String tipoAula) {
         this.tipoAula.set(tipoAula);
@@ -126,7 +129,7 @@ public class SesionTableRow {
     }
 
     public String getAula() {
-        return aula.toString();
+        return aula.get();
     }
     public void setAula(String aula) {
         this.aula.set(aula);
@@ -136,7 +139,7 @@ public class SesionTableRow {
     }
 
     public String getNota() {
-        return nota.toString();
+        return nota.get();
     }
     public void setNota(String nota) {
         this.nota.set(nota);
@@ -158,5 +161,21 @@ public class SesionTableRow {
     @Override
     public int hashCode() {
         return sesionID != null ? sesionID.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "SesionTableRow{" +
+                "sesionID=" + sesionID +
+                ", master1=" + master1 +
+                ", master2=" + master2 +
+                ", asignatura=" + asignatura +
+                ", contenido=" + contenido +
+                ", docentet1=" + docentet1 +
+                ", docentet2=" + docentet2 +
+                ", tipoAula=" + tipoAula +
+                ", aula=" + aula +
+                ", nota=" + nota +
+                '}';
     }
 }

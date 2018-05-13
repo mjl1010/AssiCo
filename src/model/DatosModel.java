@@ -1,9 +1,6 @@
 package model;
 
-import entity.DiaPlanificado;
-import entity.Master;
-import entity.Token;
-import entity.Usuario;
+import entity.*;
 import javafx.scene.control.Alert;
 import javafx.stage.Window;
 import utilities.AlertHelper;
@@ -138,6 +135,31 @@ public class DatosModel {
             System.out.println(e.getCause() + e.getMessage());
             AlertHelper.showAlert(Alert.AlertType.WARNING, window, "Error - AssiCo", "No s'ha pogut obtenir les dades de la planificació de calendaris.");
             return null;
+        }
+    }
+
+    // SETTERS
+
+    /**
+     * send_firstListBaseCalendar()
+     * **TODO add PlanificaciosList
+     * @param data
+     */
+    public static void send_firstListBaseCalendar(ArrayList<CalendarioBase> data) {
+        Dato dato = new Dato("firstListBaseCalendar", data);
+        try {
+            dos.writeObject(dato);
+
+            dato = null;
+            dato = (Dato) dis.readObject(); // while hasta que responda
+
+            System.out.printf("Servidor devuelve : MessageCode =  %s , Dato = %s", dato.getMessageCode()
+                    , dato.getObject());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -3,6 +3,9 @@ package utilities;
 import entity.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+import model.GridSesion;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -16,22 +19,19 @@ import java.util.Random;
  */
 public class VariablesAndMethodsUtils {
 
-    /**** Variables ******/
+    // Varibales
     public static ArrayList<CalendarioBase> aCalendarioBase = new ArrayList<>();
-    public static ArrayList<PlanificacionCalendarios> aPlanifCalend = new ArrayList<>();
-    public static ArrayList<PlanificacionCalendarios> aPlanCalCurrentMonthMaster1 = new ArrayList<>();
-    public static ArrayList<PlanificacionCalendarios> aPlanCalCurrentMonthMaster2 = new ArrayList<>();
+    public static ArrayList<DiaPlanificado> aPlanifCalend = new ArrayList<>();
+    public static ArrayList<DiaPlanificado> aPlanCalCurrentMonthMaster1 = new ArrayList<>();
+    public static ArrayList<DiaPlanificado> aPlanCalCurrentMonthMaster2 = new ArrayList<>();
     public static ArrayList<Sesion> aSession = new ArrayList<>();
-    private static ArrayList<DiaPlanificado> aPlanifCalend = new ArrayList<>();
-    private static ArrayList<Sesion> aSession = new ArrayList<>();
     public static ObservableList<String> aTiposAula;
-    private static ObservableList<String> aProfes; //TODO rellenar
     public static ArrayList<String> aDays = new ArrayList<>();
     public static ArrayList<String> aMonths = new ArrayList<>();
     private static final DateTimeFormatter FORMATTER2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static ArrayList<String> aListAsignaturas = new ArrayList<>();
     private static ArrayList<Docente> aDocentes = new ArrayList<>();
-
+    public static ArrayList<String> aDocentesID = new ArrayList<>();
     public static final String PATH_PROPERTIES = "config/init.properties";
     public static Universidad uni;
     public static String curso;
@@ -41,8 +41,14 @@ public class VariablesAndMethodsUtils {
     private static int sesionID = 0;
     private static final ArrayList<String> aTipoSession = new ArrayList<>();
 
-    private static ArrayList<String> dateTest = new ArrayList<>();
+    // var crud ses
+    public static ArrayList<GridSesion> aGridSesions;
+    public static GridPane gp_waiting;
 
+
+    /**
+     * static function
+     */
     static {
         uni = new Universidad(1, "uoc");
         master1 = new Master(1, "M01", "master1");
@@ -73,17 +79,31 @@ public class VariablesAndMethodsUtils {
         aMonths.add("October");
         aMonths.add("November");
         aMonths.add("December");
+
+        addData();
         
     }
 
     /**** Métodos ******/
+
+
+    /**
+     * close stage
+     * @param stage
+     */
+    public static void closeStage(Stage stage){
+        stage.close();
+    }
+
+
+
 
     /**
      * set Planicador Calendario List
      *
      * @param aPlanCalCurrentMonthMaster1
      */
-    public static void setaPlanCalCurrentMonthMaster1(ArrayList<PlanificacionCalendarios> aPlanCalCurrentMonthMaster1) {
+    public static void setaPlanCalCurrentMonthMaster1(ArrayList<DiaPlanificado> aPlanCalCurrentMonthMaster1) {
         VariablesAndMethodsUtils.aPlanCalCurrentMonthMaster1 = aPlanCalCurrentMonthMaster1;
     }
 
@@ -218,10 +238,16 @@ public class VariablesAndMethodsUtils {
     }
 
     private static void regDocentes() {
-        for (int i = 0; i < 40; i++)
+        String code = "";
+        String prof_name = "";
+        for (int i = 0; i < 40; i++){
+            code = "D"+String.valueOf((i+1));
+            prof_name = "profesor" + String.valueOf(i+1);
             aDocentes
-                    .add(new Docente(i + 1, "D" + (i + 1),
-                            "profesor" + (i + 1)));
+                    .add(new Docente(i + 1, code, prof_name));
+            aDocentesID
+                    .add(code);
+        }
     }
 
 }

@@ -328,6 +328,4 @@ public class Sesion implements Serializable {
                 ", version=" + version +
                 '}';
     }
-
-
 }

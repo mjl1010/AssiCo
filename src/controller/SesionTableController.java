@@ -1,25 +1,33 @@
 package controller;
 
-import entity.Master;
 import entity.Sesion;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import model.GridSesion;
 import utilities.SesionTableRow;
+import utilities.VariablesAndMethodsUtils;
 
+import java.io.IOException;
 import java.net.URL;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.ResourceBundle;
 
-import static utilities.VariablesAndMethodsUtils.aSession;
-import static utilities.VariablesAndMethodsUtils.addData;
-import static utilities.VariablesAndMethodsUtils.master1;
 import static controller.SesionsCalendarController.master_current;
+import static utilities.VariablesAndMethodsUtils.*;
 
-public class sesionTableController implements Initializable {
+public class SesionTableController implements Initializable {
+
+    private static Parent root;
+    private static Stage stage;
+    private static Scene scene;
 
     @FXML
     TableView<SesionTableRow> tv_session;
@@ -31,16 +39,30 @@ public class sesionTableController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         settingsTable();
-        addData();
         printDataInTable();
     }
 
+    public void openScene() throws IOException {
+        root = FXMLLoader.load(getClass().getResource("../view/intSesionTable.fxml"));
+        stage = new Stage(StageStyle.DECORATED);
+        scene = new Scene(root, 600, 400);
+        stage.setTitle("Lista de Sesiones");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    /**
+     * printDataInTable()
+     */
     private void printDataInTable() {
         if (master_current.equals(master1)) printM1();
         else printM2();
 
     }
 
+    /**
+     * printM1
+     */
     private void printM1() {
         for (int i = 0; i < aSession.size(); i++) {
             if ( aSession.get(i).getMaster1() != null
@@ -49,6 +71,9 @@ public class sesionTableController implements Initializable {
         }
     }
 
+    /**
+     * printM2
+     */
     private void printM2() {
         for (int i = 0; i < aSession.size(); i++) {
             if ( aSession.get(i).getMaster2() != null
@@ -57,23 +82,30 @@ public class sesionTableController implements Initializable {
         }
     }
 
+    /**
+     * add Sesion In Table
+     * @param s
+     */
     private void addSesionInTable(Sesion s) {
         String master1, master2, doc1, doc2;
 
-        if (s.getMaster1() == null) master1 = "null";
+        if (s.getMaster1() == null) master1 = "";
         else master1 = s.getMaster1().getCode();
-        if (s.getMaster2() == null) master2 = "null";
+        if (s.getMaster2() == null) master2 = "";
         else master2 = s.getMaster2().getCode();
-        if (s.getDocente1() == null) doc1 = "null";
+        if (s.getDocente1() == null) doc1 = "";
         else doc1 = s.getDocente1().getCode();
-        if (s.getDocente2() == null) doc2 = "null";
+        if (s.getDocente2() == null) doc2 = "";
         else doc2 = s.getDocente2().getCode();
 
         tv_session.getItems().add(new SesionTableRow(String.valueOf(s.getId()), master1,
                 master2, s.getAsignatura(), s.getContenidos(), doc1, doc2,
-                s.getTipoAula(), s.getAula(), "Hello Moto "));
+                s.getTipoAula(), s.getAula(), ""));
     }
 
+    /**
+     * settingsTable
+     */
     private void settingsTable() {
         tv_session.getColumns().addAll(generarColumn("sesionID"),
                 generarColumn("master1"),
@@ -86,8 +118,43 @@ public class sesionTableController implements Initializable {
                 generarColumn("Aula"),
                 generarColumn("nota")
                 );
+        tv_session.setRowFactory(tv -> {
+            TableRow<SesionTableRow> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (!row.isEmpty() && event.getButton()==MouseButton.PRIMARY
+                        && event.getClickCount() == 2) {
+                    SesionTableRow objSesionTableRow = row.getItem();
+                    registredSesion(objSesionTableRow);
+                    VariablesAndMethodsUtils.closeStage(stage);
+                }
+            });
+            return row ;
+        });
     }
 
+    /**
+     * registra sesion
+     * @param obj
+     */
+    private void registredSesion(SesionTableRow obj) {
+        for (GridSesion gs :
+                aGridSesions) {
+            if (gs.getMiniGrid().equals(gp_waiting)) {
+                gs.getLblAsign().setText(obj.getAsignatura());
+                gs.getLblContenido().setText(obj.getContenido());
+//                gs.getLblJuntSep().setText(obj.get
+
+                break;
+            }
+        }
+    }
+    
+
+    /**
+     * generar Column
+     * @param nomColumnInObj
+     * @return
+     */
     private TableColumn<SesionTableRow, String> generarColumn(String nomColumnInObj) {
         TableColumn<SesionTableRow, String> t = new TableColumn<>(nomColumnInObj);
         switch (nomColumnInObj){

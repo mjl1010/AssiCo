@@ -6,6 +6,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
+import static utilities.VariablesAndMethodsUtils.aDocentesID;
+import static utilities.VariablesAndMethodsUtils.aTiposAula;
 
 
 /**
@@ -174,7 +176,7 @@ public class GridSesion {
         if (lblContenido.getText().isEmpty()) lblDateID.setStyle("-fx-background-color: #FFFFFF");
         else lblDateID.setStyle("-fx-background-color: #BE81F7");
         lblDateID.setTextFill(Paint.valueOf("#f2efef"));
-        lblDateID.setFont(new Font("System Bold", 9));
+        lblDateID.setFont(new Font("System Bold", 8));
         lblAsign.setFont(new Font(9));
         lblContenido.setFont(new Font(9));
 
@@ -196,7 +198,11 @@ public class GridSesion {
         miniGrid.getColumnConstraints().get(1).setHalignment(HPos.CENTER);
         miniGrid.getColumnConstraints().get(2).setHalignment(HPos.CENTER);
 
-//        miniGrid.setStyle("-fx-border-color:black;-fx-border-width:1px;-fx-border-style:solid;");
+        cbo_tipoAula.getItems().addAll(aTiposAula);
+        cbo_doc1.getItems().addAll(aDocentesID);
+        cbo_doc2.getItems().addAll(aDocentesID);
+
+        cbo_tipoAula.setStyle("-fx-font: 30px \"Serif\";");
     }
 
     @Override

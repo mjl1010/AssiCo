@@ -1,6 +1,6 @@
 package controller;
 
-import entity.PlanificacionCalendarios;
+import entity.DiaPlanificado;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -250,9 +250,9 @@ public class HolydayCalendarController implements Initializable {
         CalendarioBase pc;
         for (int i = 0; i < aCalendarioBase.size(); i++) {
             pc = aCalendarioBase.get(i);
-            aPlanifCalend.add(new PlanificacionCalendarios(pc, pc.getDia(), VariablesAndMethodsUtils.uni,
+            aPlanifCalend.add(new DiaPlanificado(pc, pc.getDia(), VariablesAndMethodsUtils.uni,
                     VariablesAndMethodsUtils.master1));
-            aPlanifCalend.add(new PlanificacionCalendarios(pc, pc.getDia(), VariablesAndMethodsUtils.uni,
+            aPlanifCalend.add(new DiaPlanificado(pc, pc.getDia(), VariablesAndMethodsUtils.uni,
                     VariablesAndMethodsUtils.master2));
         }
         System.out.println("se registró todo correctamente !!");

@@ -135,12 +135,4 @@ public class CourseRangeController {
         stage.show();
     }
 
-    /**
-     * close stage
-     * @param stage
-     */
-    public static void closeStage(Stage stage){
-        stage.close();
-    }
-
 }
