@@ -1,10 +1,18 @@
+package start;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model.DatosModel;
+import utilities.AlertHelper;
+
+import java.io.File;
+import java.net.URISyntaxException;
+import java.util.Random;
 
 public class MainLogin extends Application {
 
@@ -15,11 +23,11 @@ public class MainLogin extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        root = FXMLLoader.load(getClass().getResource("view/intLogin.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/view/intLogin.fxml"));
         stage = primaryStage;
-        stage.getIcons().add(new Image("view/res/AssiCoLogo@0,1x.png"));
+        stage.getIcons().add(new Image("/view/res/AssiCoLogo@0,1x.png"));
         stage.setTitle("Assistent de Coordinació Acadèmica - AssiCo");
-        stage.setScene(new Scene(root, 640 , 400));
+        stage.setScene(new Scene(root, 600 , 440));
         stage.show();
     }
 
@@ -33,5 +41,12 @@ public class MainLogin extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public static String generateRandomColor() {
+        Random random = new Random();
+        int nextInt = random.nextInt(256*256*256);
+
+        return String.format("#%06x", nextInt);
     }
 }
