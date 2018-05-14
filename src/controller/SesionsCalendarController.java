@@ -2,11 +2,13 @@ package controller;
 
 import entity.Master;
 import entity.DiaPlanificado;
+import entity.Sesion;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -53,12 +55,14 @@ public class SesionsCalendarController implements Initializable {
     SplitMenuButton smb_menuOption;
 
     @FXML
-    MenuItem menuOpt1, menuOpt2, menuOpt3, menuOpt4, menuOpt5, menuOpt6, menuOpt7, menuOpt8;
+    MenuItem menuOpt1, menuOpt2, menuOpt3, menuOpt4, menuOpt5, menuOpt6, menuOpt7, menuOpt8, menuOpt9;
 
     private ArrayList<MenuItem> aSplitMenuButton;
     public static Master master_current;
     private String yearInit, monthInit;
     private Properties p;
+
+    private static SplitMenuButton smb_menuOption_st;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -90,6 +94,7 @@ public class SesionsCalendarController implements Initializable {
         aSplitMenuButton.add(menuOpt6);
         aSplitMenuButton.add(menuOpt7);
         aSplitMenuButton.add(menuOpt8);
+        aSplitMenuButton.add(menuOpt9);
     }
 
     private void configSplitMenuButton() {
@@ -108,33 +113,77 @@ public class SesionsCalendarController implements Initializable {
                 private void gestionarOpcion(String id) throws IOException {
                     switch (id) {
                         case "menuOpt1":
-                            System.out.println("agrega sesion");
+                            System.out.println("agrega sesión");
                             new SesionTableController().openScene();
                             break;
                         case "menuOpt2":
-                            System.out.println("Intercambio de Sesión");
+                            System.out.println("Quitar sesión");
+                            outSesion();
+                            printSesionReg();
                             break;
                         case "menuOpt3":
-                            System.out.println("Editar Practica 1");
+                            System.out.println("Intercambio de Sesión");
+                            new UpdateAsignController().openScene();
                             break;
                         case "menuOpt4":
-                            System.out.println("Editar Practica 2");
+                            System.out.println("Editar Practica 1");
                             break;
                         case "menuOpt5":
-                            System.out.println("Editar Contenido de Asignatura");
+                            System.out.println("Editar Practica 2");
                             break;
                         case "menuOpt6":
-                            System.out.println("Editar Profesor(s)");
+                            System.out.println("Editar Contenido de Asignatura");
                             break;
                         case "menuOpt7":
-                            System.out.println("Editar Tipo de Aula");
+                            System.out.println("Editar Profesor(s)");
                             break;
                         case "menuOpt8":
+                            System.out.println("Editar Tipo de Aula");
+                            break;
+                        case "menuOpt9":
                             System.out.println("Editar Aula");
                             break;
+
                     }
                 }
             });
+        }
+    }
+
+    /**
+     * sesion sube
+     * al limpio
+     */
+    private void outSesion() {
+        for (GridSesion gs :
+                aGridSesions) {
+            if (gs.getMiniGrid().equals(gp_waiting)){
+                if (getSesion(gs.getSesionID()).getMaster1() != null)
+                    removeSesionToPlanifList(getCalBasID(gs.getLblDateID().getText()), master1);
+                if (getSesion(gs.getSesionID()).getMaster2() != null)
+                    removeSesionToPlanifList(getCalBasID(gs.getLblDateID().getText()), master2);
+                gs.getLblAsign().setText("");
+                gs.getLblContenido().setText("");
+                gs.getLblAula().setText("");
+                gs.getLblJuntSep().setText("");
+                gs.getCbo_doc1().setValue("");
+                gs.getCbo_doc2().setValue("");
+                gs.getCbo_tipoAula().setValue("");
+                setActiveValueSesion(gs.getSesionID());
+                break;
+            }
+        }
+    }
+
+    private void setActiveValueSesion(int sesionID) {
+        for (Sesion s :
+                aSession) {
+            System.out.println(s.getId() + " vs " + sesionID);
+            if (s.getId() == sesionID) {
+                System.out.println("VUELVE AL LIMBO");
+                s.setActivo(false);
+                break;
+            }
         }
     }
 
@@ -171,9 +220,23 @@ public class SesionsCalendarController implements Initializable {
                     aGridSesions.get(i).getIndexColum() == indexColumn) {
                 aGridSesions.get(i).getLblDateID().setText(pc.getCalendarioBase().getIdDate());
                 aGridSesions.get(i).getLblDateID().setStyle("-fx-background-color: #BE81F7");
+                if (pc.getSesion() != null) regDatosSesion(aGridSesions.get(i), pc.getSesion());
                 break;
             }
         }
+    }
+
+    private void regDatosSesion(GridSesion gs, Sesion s) {
+        String jp = "S";
+        if (s.getMaster1() != null
+                && s.getMaster2() != null) jp = "J";
+        gs.getLblAsign().setText(s.getAsignatura());
+        gs.getLblContenido().setText(s.getContenidos());
+        gs.getLblJuntSep().setText(jp);
+        gs.getLblAula().setText(s.getAula());
+        if (s.getDocente1() != null) gs.getCbo_doc1().setValue(s.getDocente1().getCode());
+        if (s.getDocente2() != null) gs.getCbo_doc2().setValue(s.getDocente2().getCode());
+        gs.getCbo_tipoAula().setValue(s.getTipoAula());
     }
 
     private void updateListsCurrentMonth_tab1() { //de momento siempre master1 está en tab1, TODO validar break;
@@ -237,12 +300,22 @@ public class SesionsCalendarController implements Initializable {
      * @param miniGrid
      */
     private void marcarGrid(GridPane miniGrid) {
+        smb_menuOption_st = smb_menuOption;
         gp_waiting = miniGrid;
         gp_waiting.setStyle("-fx-border-color: #A9D0F5;" +
                 "-fx-border-style: solid inside;" +
                 "-fx-border-width: 2;" +
                 "-fx-border-insets: 5;" +
                 "-fx-border-radius: 5;" );
+    }
+
+    public static void desmarcarGridWaiting(){
+        gp_waiting.setStyle("-fx-border-color: ;" +
+                "-fx-border-style: ;" +
+                "-fx-border-width: 0;" +
+                "-fx-border-insets: 0;" +
+                "-fx-border-radius: 0;");
+        smb_menuOption_st.setDisable(true);
     }
 
     /**
@@ -273,12 +346,18 @@ public class SesionsCalendarController implements Initializable {
                         lblYear.setText(yearInit);
                     } else lblMonth.setText(aMonths.get(++i));
                 }
+                clearGridTab1();
                 updateListsCurrentMonth_tab1();
                 registredGridSessions();
                 updateCalendarMaster1();
+                addEventCalendars();
                 break;
             }
         }
+    }
+
+    private void clearGridTab1() {
+        gp_calendar.getChildren().clear();
     }
 }
 

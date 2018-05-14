@@ -1,6 +1,8 @@
 package model;
 
+import entity.Sesion;
 import javafx.geometry.HPos;
+import javafx.geometry.Pos;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
@@ -20,6 +22,7 @@ public class GridSesion {
     private HBox hBox_doc;
     private ComboBox cbo_tipoAula, cbo_doc1, cbo_doc2;
     private int indexRow, indexColum;
+    private int sesionID;
 
     public GridSesion() {
     }
@@ -154,6 +157,14 @@ public class GridSesion {
         this.lblAula = lblAula;
     }
 
+    public int getSesionID() {
+        return sesionID;
+    }
+
+    public void setSesionID(int sesionID) {
+        this.sesionID = sesionID;
+    }
+
     /**** Métodos Agregados ****/
 
     /**
@@ -181,6 +192,7 @@ public class GridSesion {
         lblContenido.setFont(new Font(9));
 
         hBox_doc.getChildren().addAll(cbo_doc1, cbo_doc2);
+        hBox_doc.setAlignment(Pos.CENTER);
 
         miniGrid.add(lblDateID, 0, 0);
         miniGrid.add(lblAux1, 0, 1);
@@ -200,9 +212,14 @@ public class GridSesion {
 
         cbo_tipoAula.getItems().addAll(aTiposAula);
         cbo_doc1.getItems().addAll(aDocentesID);
+        cbo_doc1.setPrefHeight(20);
         cbo_doc2.getItems().addAll(aDocentesID);
+        cbo_doc2.setPrefHeight(20);
 
-        cbo_tipoAula.setStyle("-fx-font: 30px \"Serif\";");
+        cbo_tipoAula.setStyle("-fx-font: 10px \"Serif\";");
+        cbo_doc1.setStyle("-fx-font: 9px \"Serif\";");
+        cbo_doc2.setStyle("-fx-font: 9px \"Serif\";");
+
     }
 
     @Override

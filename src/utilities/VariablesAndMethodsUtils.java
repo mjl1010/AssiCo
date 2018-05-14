@@ -31,7 +31,7 @@ public class VariablesAndMethodsUtils {
     private static final DateTimeFormatter FORMATTER2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static ArrayList<String> aListAsignaturas = new ArrayList<>();
     private static ArrayList<Docente> aDocentes = new ArrayList<>();
-    public static ArrayList<String> aDocentesID = new ArrayList<>();
+    public static ObservableList<String> aDocentesID = FXCollections.observableArrayList();
     public static final String PATH_PROPERTIES = "config/init.properties";
     public static Universidad uni;
     public static String curso;
@@ -81,7 +81,7 @@ public class VariablesAndMethodsUtils {
         aMonths.add("December");
 
         addData();
-        
+
     }
 
     /**** Métodos ******/
@@ -93,6 +93,66 @@ public class VariablesAndMethodsUtils {
      */
     public static void closeStage(Stage stage){
         stage.close();
+    }
+
+    /**
+     * add sesion into PlanificacionList
+     * @param sesion
+     * @param calBaseID
+     */
+    public static void addSesionToPlanifList(Sesion sesion, int calBaseID, Master master){
+        for (DiaPlanificado dp :
+            aPlanifCalend) {
+            if (dp.getMaster().equals(master) &&
+                    dp.getCalendarioBase().getDia() == calBaseID) {
+                System.out.println("se reristró correctamente en el array");
+                dp.setSesion(sesion); //TODO validar sesiones comunes
+                break;
+            }
+        }
+    }
+
+    /**
+     * getSesion
+     * @param sesionID
+     * @return
+     */
+    public static Sesion getSesion(int sesionID) {
+        Sesion ses = null;
+        for (Sesion s :
+                aSession) {
+            if (s.getId() == sesionID) ses = s;
+        }
+        return ses;
+    }
+
+    /**
+     * getCalBasID
+     * @param dateFormat
+     * @return
+     */
+    public static int getCalBasID(String dateFormat) {
+        int calBasID = -1;
+        for (CalendarioBase cb :
+                aCalendarioBase) {
+            if (cb.getIdDate().equalsIgnoreCase(dateFormat)) calBasID = cb.getDia();
+        }
+        return calBasID;
+    }
+
+    /**
+     * remove sesion into PlanificacionList
+     * @param calBaseID
+     */
+    public static void removeSesionToPlanifList(int calBaseID, Master master){
+        for (DiaPlanificado dp :
+                aPlanifCalend) {
+            if (dp.getMaster().equals(master) &&
+                    dp.getCalendarioBase().getDia() == calBaseID) {
+                dp.setSesion(null); //TODO validar para sesiones comunes
+                break;
+            }
+        }
     }
 
 
@@ -218,7 +278,7 @@ public class VariablesAndMethodsUtils {
         Docente docente1 = aDocentes.get(new Random().nextInt(aDocentes.size()));
         Docente docente2 = aDocentes.get(new Random().nextInt(aDocentes.size())); //TODO validar repetir docenteID
         String contenido = "Asg" + (indexAsign + 1) + "cont";
-        String aula = String.valueOf(Math.floor(Math.random() * (210 - 201 + 1) + 201));
+        String aula = String.valueOf(201 + (int)(Math.random() * 210));
         String tipoAula = aTiposAula.get(new Random().nextInt(aTiposAula.size()));
 
         if (!isComun) master2_aux = null;
@@ -247,6 +307,15 @@ public class VariablesAndMethodsUtils {
                     .add(new Docente(i + 1, code, prof_name));
             aDocentesID
                     .add(code);
+        }
+    }
+
+    public static void printSesionReg(){
+        System.out.println("/**** LISTA DE SESIONES RERIGSTRADAS *****/");
+        for (DiaPlanificado dp :
+                aPlanifCalend) {
+            if (dp.getSesion() != null)
+                System.out.println("dp : " + dp);
         }
     }
 
