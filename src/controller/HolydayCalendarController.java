@@ -239,9 +239,6 @@ public class HolydayCalendarController implements Initializable {
 
         openIntCalendarSession();
 
-//        for (int i = 0; i < CourseRangeController.getaListCalBase().size(); i++) {
-//            System.out.println(CourseRangeController.getaListCalBase().get(i));
-//        }
     }
 
     private void createPlanificacionObjects() {

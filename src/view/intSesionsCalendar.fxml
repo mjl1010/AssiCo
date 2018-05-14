@@ -66,13 +66,14 @@
                                     <SplitMenuButton fx:id="smb_menuOption" disable="true" layoutX="54.0" layoutY="17.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="131.0" text="OPTIONS" textAlignment="JUSTIFY">
                                       <items>
                                           <MenuItem fx:id="menuOpt1" mnemonicParsing="false" text="Agregar Sesión" />
-                                        <MenuItem fx:id="menuOpt2" mnemonicParsing="false" text="Intercambio de Sesión" />
-                                        <MenuItem fx:id="menuOpt3" mnemonicParsing="false" text="Intercambio Practica1" />
-                                          <MenuItem fx:id="menuOpt4" mnemonicParsing="false" text="Intercambio Practica 2" />
-                                          <MenuItem fx:id="menuOpt5" mnemonicParsing="false" text="Editar contenido de Asignatura" />
-                                          <MenuItem fx:id="menuOpt6" mnemonicParsing="false" text="Editar Profesor(s)" />
-                                          <MenuItem fx:id="menuOpt7" mnemonicParsing="false" text="Editar Tipo de Aula" />
-                                          <MenuItem fx:id="menuOpt8" mnemonicParsing="false" text="Editar Aula" />
+                                          <MenuItem fx:id="menuOpt2" mnemonicParsing="false" text="Quitar Sesión" />
+                                        <MenuItem fx:id="menuOpt3" mnemonicParsing="false" text="Intercambio de Sesión" />
+                                        <MenuItem fx:id="menuOpt4" mnemonicParsing="false" text="Intercambio Practica1" />
+                                          <MenuItem fx:id="menuOpt5" mnemonicParsing="false" text="Intercambio Practica 2" />
+                                          <MenuItem fx:id="menuOpt6" mnemonicParsing="false" text="Editar contenido de Asignatura" />
+                                          <MenuItem fx:id="menuOpt7" mnemonicParsing="false" text="Editar Profesor(s)" />
+                                          <MenuItem fx:id="menuOpt8" mnemonicParsing="false" text="Editar Tipo de Aula" />
+                                          <MenuItem fx:id="menuOpt9" mnemonicParsing="false" text="Editar Aula" />
                                       </items>
                                        <font>
                                           <Font size="14.0" />
