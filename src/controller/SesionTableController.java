@@ -130,7 +130,7 @@ public class SesionTableController implements Initializable {
                     registredSesion(objSesionTableRow);
                     setObjSesion(objSesionTableRow);
                     desmarcarGridWaiting();
-                    VariablesAndMethodsUtils.closeStage(stage);
+                    closeStage(stage);
                     printSesionReg();
                 }
             });
@@ -173,6 +173,7 @@ public class SesionTableController implements Initializable {
                     addSesionToPlanifList(
                             getSesion(Integer.parseInt(obj.getSesionID())), getCalBasID(gs.getLblDateID().getText()),
                             master2);
+                gs.setVisibleComboBoxs(true);
                 break;
             }
         }

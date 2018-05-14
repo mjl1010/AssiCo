@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import model.GridSesion;
 
 import java.time.LocalDate;
@@ -86,6 +87,35 @@ public class VariablesAndMethodsUtils {
 
     /**** Métodos ******/
 
+    /**
+     * Set Asignatura of sesion
+     * @param newContent
+     */
+    public static void setContenido(String newContent){
+        for (GridSesion gs :
+                aGridSesions) {
+            if (gs.getMiniGrid()
+                    .equals(gp_waiting)){
+                getSesion(gs.getSesionID()).setContenidos(newContent);
+                gs.getLblContenido().setText((newContent));
+            }
+        }
+    }
+
+    /**
+     * Set Asignatura of sesion
+     * @param newAsign
+     */
+    public static void setAsign(String newAsign){
+        for (GridSesion gs :
+                aGridSesions) {
+            if (gs.getMiniGrid()
+                    .equals(gp_waiting)){
+                getSesion(gs.getSesionID()).setAsignatura(newAsign);
+                gs.getLblAsign().setText((newAsign));
+            }
+        }
+    }
 
     /**
      * close stage
@@ -93,6 +123,14 @@ public class VariablesAndMethodsUtils {
      */
     public static void closeStage(Stage stage){
         stage.close();
+    }
+
+    /**
+     * close stage
+     * @param stage
+     */
+    public static void closeStage(Window stage){
+        ((Stage) stage).close();
     }
 
     /**

@@ -10,29 +10,26 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import static utilities.VariablesAndMethodsUtils.closeStage;
-import static utilities.VariablesAndMethodsUtils.setAsign;
+import static utilities.VariablesAndMethodsUtils.setContenido;
 
 /**
  * Created by Michael
  */
-public class UpdateAsignController implements Initializable {
-
+public class UpdateContenidoController implements Initializable {
     private static Parent root;
     private static Stage stage;
 
     @FXML
-    TextField txtAsign;
-
+    TextField txtCont;
 
     public void savedAsig(MouseEvent mouseEvent) {
-        if (!txtAsign.getText().isEmpty()){
-            setAsign(txtAsign.getText());
+        if (!txtCont.getText().isEmpty()){
+            setContenido(txtCont.getText());
         }
         closeStage(stage);
     }
@@ -42,9 +39,9 @@ public class UpdateAsignController implements Initializable {
     }
 
     public void openScene() throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/view/intUpdateAsig.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/view/intUpdateCont.fxml"));
         stage = new Stage(StageStyle.DECORATED);
-        stage.setTitle("Editar Asignaturas");
+        stage.setTitle("Editar Contenido");
         stage.setScene(new Scene(root, 329, 70));
         stage.show();
     }

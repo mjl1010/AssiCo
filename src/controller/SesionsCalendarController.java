@@ -43,12 +43,6 @@ public class SesionsCalendarController implements Initializable {
     GridPane gp_calendar;
 
     @FXML
-    ScrollPane sp_tab1;
-
-    @FXML
-    AnchorPane ap_limbo;
-
-    @FXML
     Label lblYear, lblMonth;
 
     @FXML
@@ -123,7 +117,6 @@ public class SesionsCalendarController implements Initializable {
                             break;
                         case "menuOpt3":
                             System.out.println("Intercambio de Sesión");
-                            new UpdateAsignController().openScene();
                             break;
                         case "menuOpt4":
                             System.out.println("Editar Practica 1");
@@ -132,15 +125,20 @@ public class SesionsCalendarController implements Initializable {
                             System.out.println("Editar Practica 2");
                             break;
                         case "menuOpt6":
-                            System.out.println("Editar Contenido de Asignatura");
+                            System.out.println("Editar de Asignatura");
+                            new UpdateAsignController().openScene();
                             break;
                         case "menuOpt7":
-                            System.out.println("Editar Profesor(s)");
+                            System.out.println("Editar Contenido");
+                            new UpdateContenidoController().openScene();
                             break;
                         case "menuOpt8":
-                            System.out.println("Editar Tipo de Aula");
+                            System.out.println("Editar Profesor(s)");
                             break;
                         case "menuOpt9":
+                            System.out.println("Editar Tipo de Aula");
+                            break;
+                        case "menuOpt10":
                             System.out.println("Editar Aula");
                             break;
 
