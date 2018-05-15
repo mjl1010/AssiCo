@@ -37,6 +37,8 @@ public class UpdateDocenteController implements Initializable {
     private ObservableList obsOption1 = FXCollections.observableArrayList("Docente1");
     private ObservableList obsOption2 = FXCollections.observableArrayList("Docente2");
 
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         fillComboBox();
@@ -67,7 +69,6 @@ public class UpdateDocenteController implements Initializable {
             setDocente(String.valueOf(cbo_doc1.getValue()), 1);
         if (!cbo_doc2.getValue().equals(obsOption2.get(0)))
             setDocente(String.valueOf(cbo_doc2.getValue()), 2);
-        scc.updateCalendar();
         closeStage(stage);
     }
 
@@ -79,17 +80,17 @@ public class UpdateDocenteController implements Initializable {
      */
     private void setDocente(String value, int numDocente) {
         for (GridSesion gs : aGridSesions) {
-            System.out.println("for i++");
             if (gs.getMiniGrid().equals(gp_waiting)) {
                 switch (numDocente) {
                     case 1:
                         getSesion(gs.getSesionID()).setDocente1(findNewDocente(value));
+                        gs.getCbo_doc1().setValue(value);
                         break;
                     case 2:
                         getSesion(gs.getSesionID()).setDocente2(findNewDocente(value));
+                        gs.getCbo_doc2().setValue(value);
                         break;
                 }
-                System.out.println("cambio de docente : " + getSesion(gs.getSesionID()));
                 break;
             }
         }
@@ -113,8 +114,7 @@ public class UpdateDocenteController implements Initializable {
     }
 
 
-    public void openScene(SesionsCalendarController scc) throws IOException {
-        this.scc = scc;
+    public void openScene() throws IOException {
         root = FXMLLoader.load(getClass().getResource("/view/popUp/intUpdateDocente.fxml"));
         stage = new Stage(StageStyle.DECORATED);
         stage.setTitle("Editar Docente");

@@ -13,13 +13,13 @@ import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.GridSesion;
+import model.TabCalendarMaster;
 import utilities.SesionTableRow;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static controller.SesionsCalendarController.desmarcarGridWaiting;
 import static controller.SesionsCalendarController.master_current;
 import static utilities.VariablesAndMethodsUtils.*;
 
@@ -28,6 +28,9 @@ public class SesionTableController implements Initializable {
     private static Parent root;
     private static Stage stage;
     private static Scene scene;
+
+
+    private static TabCalendarMaster tcm;
 
     @FXML
     TableView<SesionTableRow> tv_session;
@@ -41,20 +44,22 @@ public class SesionTableController implements Initializable {
         printDataInTable();
     }
 
-    public void openScene() throws IOException {
-        root = FXMLLoader.load(getClass().getResource("../view/popUp/intSesionTable.fxml"));
+    public void openScene(TabCalendarMaster tcm) throws IOException {
+        this.tcm = tcm;
+        root = FXMLLoader.load(getClass().getResource("/view/popUp/intSesionTable.fxml"));
         stage = new Stage(StageStyle.DECORATED);
         scene = new Scene(root, 600, 400);
         stage.setTitle("Lista de Sesiones");
         stage.setScene(scene);
         stage.show();
+        System.out.println("lo manda !!");
     }
 
     /**
      * printDataInTable()
      */
     private void printDataInTable() {
-        if (master_current.equals(master1)) printM1();
+        if (tcm.getMaster().equals(master1)) printM1();
         else printM2();
 
     }
@@ -65,7 +70,7 @@ public class SesionTableController implements Initializable {
     private void printM1() {
         for (int i = 0; i < aSession.size(); i++) {
             if (aSession.get(i).getMaster1() != null
-                    && aSession.get(i).getMaster1().equals(master_current)
+                    && aSession.get(i).getMaster1().equals(tcm.getMaster())
                     && !aSession.get(i).isActivo()) addSesionInTable(aSession.get(i));
         }
     }
@@ -126,7 +131,7 @@ public class SesionTableController implements Initializable {
                     SesionTableRow objSesionTableRow = row.getItem();
                     registredSesion(objSesionTableRow);
                     setObjSesion(objSesionTableRow);
-                    desmarcarGridWaiting();
+                    tcm.desmarcarGridWaiting();
                     closeStage(stage);
                     printSesionReg();
                 }

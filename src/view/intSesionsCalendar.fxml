@@ -16,132 +16,78 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0"
-            prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controller.SesionsCalendarController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SesionsCalendarController">
 
     <children>
-        <HBox layoutX="4.0" layoutY="12.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-              AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-              AnchorPane.topAnchor="0.0">
+        <HBox layoutX="4.0" layoutY="12.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
-                         minWidth="-Infinity" tabClosingPolicy="UNAVAILABLE" HBox.hgrow="ALWAYS">
+                <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" tabClosingPolicy="UNAVAILABLE" HBox.hgrow="ALWAYS">
                     <tabs>
-                        <Tab text="Master 1">
+                        <Tab fx:id="tab_m1" id="tab_m1" text="Master 1">
                             <content>
                                 <AnchorPane>
                                     <children>
-                                        <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                                              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                        <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <children>
-                                                <AnchorPane maxHeight="1.7976931348623157E308"
-                                                            maxWidth="1.7976931348623157E308" minHeight="-Infinity"
-                                                            minWidth="-Infinity">
+                                                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity">
                                                     <children>
-                                                        <GridPane fx:id="gp_calendar" gridLinesVisible="true"
-                                                                  layoutX="11.0" layoutY="76.0" maxHeight="-Infinity"
-                                                                  maxWidth="-Infinity" minHeight="-Infinity"
-                                                                  minWidth="-Infinity" AnchorPane.bottomAnchor="0.0"
-                                                                  AnchorPane.leftAnchor="0.0"
-                                                                  AnchorPane.rightAnchor="0.0"
-                                                                  AnchorPane.topAnchor="90.0">
+                                                        <GridPane fx:id="gp_calendar1" gridLinesVisible="true" layoutX="11.0" layoutY="76.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="90.0">
                                                             <columnConstraints>
-                                                                <ColumnConstraints hgrow="ALWAYS" maxWidth="-Infinity"
-                                                                                   minWidth="200.0"
-                                                                                   percentWidth="100.0"/>
-                                                                <ColumnConstraints hgrow="ALWAYS" maxWidth="-Infinity"
-                                                                                   minWidth="200.0"
-                                                                                   percentWidth="100.0"/>
-                                                                <ColumnConstraints hgrow="ALWAYS" maxWidth="-Infinity"
-                                                                                   minWidth="200.0"
-                                                                                   percentWidth="100.0"/>
-                                                                <ColumnConstraints hgrow="ALWAYS" maxWidth="-Infinity"
-                                                                                   minWidth="200.0"
-                                                                                   percentWidth="100.0"/>
-                                                                <ColumnConstraints hgrow="ALWAYS" maxWidth="-Infinity"
-                                                                                   minWidth="200.0"
-                                                                                   percentWidth="100.0"/>
+                                                                <ColumnConstraints hgrow="ALWAYS" maxWidth="-Infinity" minWidth="200.0" percentWidth="100.0" />
+                                                                <ColumnConstraints hgrow="ALWAYS" maxWidth="-Infinity" minWidth="200.0" percentWidth="100.0" />
+                                                                <ColumnConstraints hgrow="ALWAYS" maxWidth="-Infinity" minWidth="200.0" percentWidth="100.0" />
+                                                                <ColumnConstraints hgrow="ALWAYS" maxWidth="-Infinity" minWidth="200.0" percentWidth="100.0" />
+                                                                <ColumnConstraints hgrow="ALWAYS" maxWidth="-Infinity" minWidth="200.0" percentWidth="100.0" />
                                                             </columnConstraints>
                                                             <rowConstraints>
-                                                                <RowConstraints maxHeight="-Infinity" minHeight="90.0"
-                                                                                percentHeight="100.0" vgrow="ALWAYS"/>
-                                                                <RowConstraints maxHeight="-Infinity" minHeight="90.0"
-                                                                                percentHeight="100.0" vgrow="ALWAYS"/>
-                                                                <RowConstraints maxHeight="-Infinity" minHeight="90.0"
-                                                                                percentHeight="100.0" vgrow="ALWAYS"/>
-                                                                <RowConstraints maxHeight="-Infinity" minHeight="90.0"
-                                                                                percentHeight="100.0" vgrow="ALWAYS"/>
-                                                                <RowConstraints maxHeight="-Infinity" minHeight="90.0"
-                                                                                percentHeight="100.0" vgrow="ALWAYS"/>
-                                                                <RowConstraints maxHeight="-Infinity" minHeight="90.0"
-                                                                                percentHeight="100.0" vgrow="ALWAYS"/>
+                                                                <RowConstraints maxHeight="-Infinity" minHeight="90.0" percentHeight="100.0" vgrow="ALWAYS" />
+                                                                <RowConstraints maxHeight="-Infinity" minHeight="90.0" percentHeight="100.0" vgrow="ALWAYS" />
+                                                                <RowConstraints maxHeight="-Infinity" minHeight="90.0" percentHeight="100.0" vgrow="ALWAYS" />
+                                                                <RowConstraints maxHeight="-Infinity" minHeight="90.0" percentHeight="100.0" vgrow="ALWAYS" />
+                                                                <RowConstraints maxHeight="-Infinity" minHeight="90.0" percentHeight="100.0" vgrow="ALWAYS" />
+                                                                <RowConstraints maxHeight="-Infinity" minHeight="90.0" percentHeight="100.0" vgrow="ALWAYS" />
                                                             </rowConstraints>
                                                         </GridPane>
-                                                        <Label id="lblYear" fx:id="lblYear" layoutX="475.0"
-                                                               layoutY="46.0" text="Year">
+                                                        <Label id="lblYear" fx:id="lblYear1" layoutX="475.0" layoutY="46.0" text="Year">
                                                             <font>
-                                                                <Font size="24.0"/>
+                                                                <Font size="24.0" />
                                                             </font>
                                                         </Label>
-                                                        <ImageView id="flechaLeft" fitHeight="58.0" fitWidth="57.0"
-                                                                   layoutX="370.0" layoutY="14.0"
-                                                                   onKeyPressed="#updateMonth"
-                                                                   onMouseClicked="#updateMonth" pickOnBounds="true"
-                                                                   preserveRatio="true">
+                                                        <ImageView id="flechaLeft" fitHeight="58.0" fitWidth="57.0" layoutX="370.0" layoutY="14.0" onKeyPressed="#updateMonth" onMouseClicked="#updateMonth" pickOnBounds="true" preserveRatio="true">
                                                             <image>
-                                                                <Image url="@res/fecla_left.png"/>
+                                                                <Image url="@res/fecla_left.png" />
                                                             </image>
                                                         </ImageView>
-                                                        <ImageView fx:id="flechaRigth" fitHeight="58.0" fitWidth="57.0"
-                                                                   layoutX="572.0" layoutY="17.0"
-                                                                   onKeyPressed="#updateMonth"
-                                                                   onMouseClicked="#updateMonth" pickOnBounds="true"
-                                                                   preserveRatio="true">
+                                                        <ImageView fx:id="flechaRigth" fitHeight="58.0" fitWidth="57.0" layoutX="572.0" layoutY="17.0" onKeyPressed="#updateMonth" onMouseClicked="#updateMonth" pickOnBounds="true" preserveRatio="true">
                                                             <image>
-                                                                <Image url="@res/flecha_rigth.png"/>
+                                                                <Image url="@res/flecha_rigth.png" />
                                                             </image>
                                                         </ImageView>
-                                                        <Label id="lblMonth" fx:id="lblMonth" layoutX="453.0"
-                                                               layoutY="12.0" text="MONTH">
+                                                        <Label id="lblMonth" fx:id="lblMonth1" layoutX="453.0" layoutY="12.0" text="MONTH">
                                                             <font>
-                                                                <Font size="24.0"/>
+                                                                <Font size="24.0" />
                                                             </font>
                                                         </Label>
-                                                        <SplitMenuButton fx:id="smb_menuOption" disable="true"
-                                                                         layoutX="29.0" layoutY="17.0"
-                                                                         mnemonicParsing="false" prefHeight="47.0"
-                                                                         prefWidth="222.0" text="OPTIONS"
-                                                                         textAlignment="JUSTIFY">
+                                                        <SplitMenuButton fx:id="smb_menuOption1" disable="true" layoutX="29.0" layoutY="17.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="222.0" text="OPTIONS" textAlignment="JUSTIFY">
                                                             <items>
-                                                                <MenuItem fx:id="menuOpt1" mnemonicParsing="false"
-                                                                          text="Agregar Sesión"/>
-                                                                <MenuItem fx:id="menuOpt2" mnemonicParsing="false"
-                                                                          text="Quitar Sesión"/>
-                                                                <MenuItem fx:id="menuOpt3" mnemonicParsing="false"
-                                                                          text="Intercambio de Sesión"/>
-                                                                <MenuItem fx:id="menuOpt4" mnemonicParsing="false"
-                                                                          text="Intercambio Practica1"/>
-                                                                <MenuItem fx:id="menuOpt5" mnemonicParsing="false"
-                                                                          text="Intercambio Practica 2"/>
-                                                                <MenuItem fx:id="menuOpt6" mnemonicParsing="false"
-                                                                          text="Editar Asignatura"/>
-                                                                <MenuItem fx:id="menuOpt7" mnemonicParsing="false"
-                                                                          text="Editar Contenido"/>
-                                                                <MenuItem fx:id="menuOpt8" mnemonicParsing="false"
-                                                                          text="Editar Profesor(s)"/>
-                                                                <MenuItem fx:id="menuOpt9" mnemonicParsing="false"
-                                                                          text="Editar Tipo de Aula"/>
-                                                                <MenuItem fx:id="menuOpt10" mnemonicParsing="false"
-                                                                          text="Editar Aula"/>
+                                                                <MenuItem fx:id="menuOpt1_1" mnemonicParsing="false" text="Agregar Sesión" />
+                                                                <MenuItem fx:id="menuOpt2_1" mnemonicParsing="false" text="Quitar Sesión" />
+                                                                <MenuItem fx:id="menuOpt3_1" mnemonicParsing="false" text="Intercambio de Sesión" />
+                                                                <MenuItem fx:id="menuOpt4_1" mnemonicParsing="false" text="Intercambio Practica1" />
+                                                                <MenuItem fx:id="menuOpt5_1" mnemonicParsing="false" text="Intercambio Practica 2" />
+                                                                <MenuItem fx:id="menuOpt6_1" mnemonicParsing="false" text="Editar Asignatura" />
+                                                                <MenuItem fx:id="menuOpt7_1" mnemonicParsing="false" text="Editar Contenido" />
+                                                                <MenuItem fx:id="menuOpt8_1" mnemonicParsing="false" text="Editar Profesor(s)" />
+                                                                <MenuItem fx:id="menuOpt9_1" mnemonicParsing="false" text="Editar Tipo de Aula" />
+                                                                <MenuItem fx:id="menuOpt10_1" mnemonicParsing="false" text="Editar Aula" />
                                                             </items>
                                                             <font>
-                                                                <Font size="14.0"/>
+                                                                <Font size="14.0" />
                                                             </font>
                                                         </SplitMenuButton>
                                                     </children>
                                                     <VBox.margin>
-                                                        <Insets left="20.0" right="20.0"/>
+                                                        <Insets left="20.0" right="20.0" />
                                                     </VBox.margin>
                                                 </AnchorPane>
                                             </children>
@@ -150,10 +96,82 @@
                                 </AnchorPane>
                             </content>
                         </Tab>
-                        <Tab text="Master 2"/>
-                        <Tab text="Confirmación">
+                        <Tab fx:id="tb_m2" text="Master 2">
                             <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+                                <AnchorPane>
+                                    <children>
+                                        <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <children>
+                                                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity">
+                                                    <children>
+                                                        <GridPane fx:id="gp_calendar2" gridLinesVisible="true" layoutX="11.0" layoutY="76.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="90.0">
+                                                            <columnConstraints>
+                                                                <ColumnConstraints hgrow="ALWAYS" maxWidth="-Infinity" minWidth="200.0" percentWidth="100.0" />
+                                                                <ColumnConstraints hgrow="ALWAYS" maxWidth="-Infinity" minWidth="200.0" percentWidth="100.0" />
+                                                                <ColumnConstraints hgrow="ALWAYS" maxWidth="-Infinity" minWidth="200.0" percentWidth="100.0" />
+                                                                <ColumnConstraints hgrow="ALWAYS" maxWidth="-Infinity" minWidth="200.0" percentWidth="100.0" />
+                                                                <ColumnConstraints hgrow="ALWAYS" maxWidth="-Infinity" minWidth="200.0" percentWidth="100.0" />
+                                                            </columnConstraints>
+                                                            <rowConstraints>
+                                                                <RowConstraints maxHeight="-Infinity" minHeight="90.0" percentHeight="100.0" vgrow="ALWAYS" />
+                                                                <RowConstraints maxHeight="-Infinity" minHeight="90.0" percentHeight="100.0" vgrow="ALWAYS" />
+                                                                <RowConstraints maxHeight="-Infinity" minHeight="90.0" percentHeight="100.0" vgrow="ALWAYS" />
+                                                                <RowConstraints maxHeight="-Infinity" minHeight="90.0" percentHeight="100.0" vgrow="ALWAYS" />
+                                                                <RowConstraints maxHeight="-Infinity" minHeight="90.0" percentHeight="100.0" vgrow="ALWAYS" />
+                                                                <RowConstraints maxHeight="-Infinity" minHeight="90.0" percentHeight="100.0" vgrow="ALWAYS" />
+                                                            </rowConstraints>
+                                                        </GridPane>
+                                                        <Label id="lblYear" fx:id="lblYear2" layoutX="475.0" layoutY="46.0" text="Year">
+                                                            <font>
+                                                                <Font size="24.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <ImageView id="flechaLeft" fitHeight="58.0" fitWidth="57.0" layoutX="370.0" layoutY="14.0" onKeyPressed="#updateMonth" onMouseClicked="#updateMonth" pickOnBounds="true" preserveRatio="true">
+                                                            <image>
+                                                                <Image url="@res/fecla_left.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                        <ImageView fx:id="flechaRigt2" fitHeight="58.0" fitWidth="57.0" layoutX="572.0" layoutY="17.0" onKeyPressed="#updateMonth" onMouseClicked="#updateMonth" pickOnBounds="true" preserveRatio="true">
+                                                            <image>
+                                                                <Image url="@res/flecha_rigth.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                        <Label id="lblMonth" fx:id="lblMonth2" layoutX="453.0" layoutY="12.0" text="MONTH">
+                                                            <font>
+                                                                <Font size="24.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <SplitMenuButton fx:id="smb_menuOption2" disable="true" layoutX="29.0" layoutY="17.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="222.0" text="OPTIONS" textAlignment="JUSTIFY">
+                                                            <items>
+                                                                <MenuItem fx:id="menuOpt1_2" mnemonicParsing="false" text="Agregar Sesión" />
+                                                                <MenuItem fx:id="menuOpt2_2" mnemonicParsing="false" text="Quitar Sesión" />
+                                                                <MenuItem fx:id="menuOpt3_2" mnemonicParsing="false" text="Intercambio de Sesión" />
+                                                                <MenuItem fx:id="menuOpt4_2" mnemonicParsing="false" text="Intercambio Practica1" />
+                                                                <MenuItem fx:id="menuOpt5_2" mnemonicParsing="false" text="Intercambio Practica 2" />
+                                                                <MenuItem fx:id="menuOpt6_2" mnemonicParsing="false" text="Editar Asignatura" />
+                                                                <MenuItem fx:id="menuOpt7_2" mnemonicParsing="false" text="Editar Contenido" />
+                                                                <MenuItem fx:id="menuOpt8_2" mnemonicParsing="false" text="Editar Profesor(s)" />
+                                                                <MenuItem fx:id="menuOpt9_2" mnemonicParsing="false" text="Editar Tipo de Aula" />
+                                                                <MenuItem fx:id="menuOpt10_2" mnemonicParsing="false" text="Editar Aula" />
+                                                            </items>
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </SplitMenuButton>
+                                                    </children>
+                                                    <VBox.margin>
+                                                        <Insets left="20.0" right="20.0" />
+                                                    </VBox.margin>
+                                                </AnchorPane>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab fx:id="tb_conf" text="Confirmación">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                             </content>
                         </Tab>
                     </tabs>

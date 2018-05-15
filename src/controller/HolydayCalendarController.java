@@ -242,8 +242,6 @@ public class HolydayCalendarController implements Initializable {
     }
 
     private void createPlanificacionObjects() {
-        aPlanCalCurrentMonthMaster1 = new ArrayList<>();
-        aPlanCalCurrentMonthMaster2 = new ArrayList<>();
         CalendarioBase pc;
         for (int i = 0; i < aCalendarioBase.size(); i++) {
             pc = aCalendarioBase.get(i);

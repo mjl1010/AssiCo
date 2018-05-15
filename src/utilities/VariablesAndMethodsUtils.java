@@ -87,6 +87,17 @@ public class VariablesAndMethodsUtils {
 
     /**** Métodos ******/
 
+    public static void setTipoAulaSet(String newTipAul){
+        for (GridSesion gs :
+                aGridSesions) {
+            if (gs.getMiniGrid()
+                    .equals(gp_waiting)){
+                getSesion(gs.getSesionID()).setTipoAula(newTipAul);
+                gs.getCbo_tipoAula().setValue((newTipAul));
+            }
+        }
+    }
+
 
     /**
      * Set Contenido of sesion
@@ -164,6 +175,18 @@ public class VariablesAndMethodsUtils {
                 break;
             }
         }
+    }
+
+    /**
+     *
+     * @param masterID
+     * @return
+     */
+    public static Master getMasterSes(String masterID) {
+        Master m;
+        if (master1.getCode().equals(masterID)) m = master1;
+        else m = master2;
+        return m;
     }
 
     /**
