@@ -61,9 +61,7 @@ public class DatosModel {
             dis.close();
             dos.close();
             socket.close();
-        } catch (IOException e) {
-            //TODO Avisar que no se ha podido cerrar la conexión?
-        }
+        } catch (Exception e) {}
     }
 
     /**

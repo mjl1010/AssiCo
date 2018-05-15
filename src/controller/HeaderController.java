@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import model.DatosModel;
+import start.MainLogin;
 import utilities.AlertHelper;
 import utilities.TextResponsive;
 import utilities.VariablesAndMethodsUtils;
@@ -44,15 +45,8 @@ public class HeaderController implements Initializable {
     @FXML
     private void irMenu(ActionEvent event) throws IOException {
         // Abrir menú y cerrar parent
-        Window owner = menu_btn.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/intMenu.fxml"));
-        Parent root1 = fxmlLoader.load();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root1));
-        stage.setTitle("AssiCo - Menú");
-        stage.show();
-        stage = (Stage) owner;
-        stage.close();
+        MainLogin.openStage(getClass().getResource("/view/intMenu.fxml"), "Menú", null);
+        ((Stage) menu_btn.getScene().getWindow()).close();
     }
 
     @FXML
@@ -67,14 +61,8 @@ public class HeaderController implements Initializable {
             p.setProperty("token", "");
             p.store(new FileWriter(VariablesAndMethodsUtils.PATH_PROPERTIES), "Token removed");
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/intLogin.fxml"));
-            Parent root = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("AssiCo - Asistente de Coordinación Academica");
-            stage.show();
-            stage = (Stage) owner;
-            stage.close();
+            MainLogin.openStage(getClass().getResource("/view/intLogin.fxml"), "Asistente de Coordinación Academica", null);
+            ((Stage) owner).close();
         } else {
             AlertHelper.showAlert(Alert.AlertType.WARNING, owner, "Error - AssiCo", "No se ha podido cerrar la sesión.");
         }

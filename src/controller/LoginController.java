@@ -15,6 +15,7 @@ import javafx.stage.Window;
 import model.Dato;
 import model.DatosModel;
 import entity.Token;
+import start.MainLogin;
 import utilities.AlertHelper;
 import utilities.TextResponsive;
 import utilities.VariablesAndMethodsUtils;
@@ -79,34 +80,24 @@ public class LoginController implements Initializable {
             }
 
             DatosModel.connect(owner);
-
             acceder.setDisable(true);
-
             token = DatosModel.comprobarCuenta(usuario.getText(), clave.getText());
 
             if (token == null) {
                 AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error - AssiCo", "Usuario o clave incorrectos.");
                 acceder.setDisable(false);
             } else {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/intMenu.fxml"));
-                Parent root1 = fxmlLoader.load();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root1));
-                stage.setTitle("AssiCo - Menú");
-                stage.show();
-                stage = (Stage) owner;
-                stage.close();
+                MainLogin.openStage(getClass().getResource("/view/intMenu.fxml"), "Menú", null);
+                ((Stage) owner).close();
 
                 Properties p = new Properties();
                 p.load(new FileReader(VariablesAndMethodsUtils.PATH_PROPERTIES));
                 p.setProperty("token", token.getToken());
                 p.store(new FileWriter(VariablesAndMethodsUtils.PATH_PROPERTIES), "Token added");
             }
-
-            DatosModel.closeConnection();
         } catch (Exception ex) {
-            AlertHelper.showAlert(Alert.AlertType.ERROR, null, "Error - AssiCo", ex.getMessage());
-            //ex.printStackTrace();
+            AlertHelper.showAlert(Alert.AlertType.ERROR, null, "Error - AssiCo", "No se puede cargar el menú por un error interno, ¿volvemos a intentarlo?");
+        } finally {
             DatosModel.closeConnection();
         }
     }

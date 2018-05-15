@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
+import start.MainLogin;
 import sun.rmi.runtime.Log;
 import utilities.TextResponsive;
 
@@ -43,26 +44,14 @@ public class MenuController implements Initializable {
 
     @FXML
     private void irPlanificacion() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/intSelectCourse.fxml"));
-        Parent root1 = fxmlLoader.load();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root1));
-        stage.setTitle("AssiCo - Planificaciones - Selector de cursos");
-        stage.show();
-        stage = (Stage) menu_masters.getScene().getWindow();
-        stage.close();
+        MainLogin.openStage(getClass().getResource("/view/intSelectCourse.fxml"), "Planificaciones - Selector de cursos", null);
+        ((Stage) menu_masters.getScene().getWindow()).close();
     }
 
     @FXML
     private void irMasters() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/intMasters.fxml"));
-        Parent root1 = fxmlLoader.load();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root1));
-        stage.setTitle("AssiCo - Másters");
-        stage.show();
-        stage = (Stage) menu_masters.getScene().getWindow();
-        stage.close();
+        MainLogin.openStage(getClass().getResource("/view/intMasters.fxml"), "Másters", null);
+        ((Stage) menu_masters.getScene().getWindow()).close();
     }
 
     @FXML

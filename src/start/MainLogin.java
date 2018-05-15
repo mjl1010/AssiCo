@@ -15,6 +15,8 @@ import utilities.VariablesAndMethodsUtils;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.net.URL;
 import java.util.Properties;
 import java.util.Random;
 
@@ -48,28 +50,17 @@ public class MainLogin extends Application {
             DatosModel.closeConnection();
 
             if (!stoken.isEmpty() && LoginController.token != null && LoginController.token.isActivo()) {
-                root = FXMLLoader.load(getClass().getResource("/view/intMenu.fxml"));
-                stage = primaryStage;
-                stage.getIcons().add(new Image("/view/res/AssiCoLogo@0,1x.png"));
-                stage.setScene(new Scene(root));
-                stage.setTitle("AssiCo - Menú");
-                stage.show();
+                openStage(getClass().getResource("/view/intMenu.fxml"), "Menú", primaryStage);
                 return;
             } else if (!stoken.isEmpty()) {
                 AlertHelper.showAlert(Alert.AlertType.ERROR, null, "Error - AssiCo", "No se ha podido verificar la sesión anterior, por favor, accede de nuevo.");
             }
-
-            root = FXMLLoader.load(getClass().getResource("/view/intLogin.fxml"));
-            stage = primaryStage;
-            stage.getIcons().add(new Image("/view/res/AssiCoLogo@0,1x.png"));
-            stage.setTitle("AssiCo - Asistente de Coordinación Academica");
-            stage.setScene(new Scene(root, 1000 , 540));
-            stage.show();
-
         } catch (Exception e) {
-            AlertHelper.showAlert(Alert.AlertType.ERROR, null, "Error - AssiCo", "Hay un problema entre la pantalla y la silla. Vuelve a intentarlo.");
+            //AlertHelper.showAlert(Alert.AlertType.ERROR, null, "Error - AssiCo", "Hay un problema entre la pantalla y la silla. Vuelve a intentarlo.");
             //e.printStackTrace();
         }
+
+        openStage(getClass().getResource("/view/intLogin.fxml"), "Asistente de Coordinación Academica", primaryStage);
     }
 
     public static Stage getStage() {
@@ -89,5 +80,15 @@ public class MainLogin extends Application {
         int nextInt = random.nextInt(256*256*256);
 
         return String.format("#%06x", nextInt);
+    }
+
+    public static void openStage(URL url, String title, Stage primaryStage) {
+        try {root = FXMLLoader.load(url);} catch (IOException e) {e.printStackTrace();}
+        stage = primaryStage != null ? primaryStage : new Stage();
+        stage.getIcons().add(new Image("/view/res/AssiCoLogo@0,1x.png"));
+        stage.setTitle("AssiCo - " + title);
+        stage.setScene(new Scene(root));
+        stage.setMaximized(true);
+        stage.show();
     }
 }
