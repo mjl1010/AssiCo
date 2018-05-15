@@ -22,7 +22,7 @@ public class DatosModel {
     private static ObjectOutputStream dos;
     private static ObjectInputStream dis;
     private static Window window;
-    protected static Token token;
+    private static Token token;
 
     // API
 
@@ -118,6 +118,21 @@ public class DatosModel {
     }
 
     // GETTERS
+
+    /**
+     * comprobarToken verifica si tiene una sesión válida para poder usar los métodos que requieran estar autentificado
+     */
+    public static Token getToken(String sToken) {
+        if (token != null) return token;
+        Dato dato = new Dato("getToken", sToken);
+        try {
+            dos.writeObject(dato);
+            dato = (Dato) dis.readObject();
+            return (Token) dato.getObject();
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
     /**
      * obtener Masters de la Universidad

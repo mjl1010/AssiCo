@@ -26,8 +26,8 @@ public class MainLogin extends Application {
         root = FXMLLoader.load(getClass().getResource("/view/intLogin.fxml"));
         stage = primaryStage;
         stage.getIcons().add(new Image("/view/res/AssiCoLogo@0,1x.png"));
-        stage.setTitle("Assistent de Coordinació Acadèmica - AssiCo");
-        stage.setScene(new Scene(root, 600 , 440));
+        stage.setTitle("AssiCo - Asistente de Coordinación Academica");
+        stage.setScene(new Scene(root, 1000 , 540));
         stage.show();
     }
 
