@@ -33,7 +33,7 @@ public class VariablesAndMethodsUtils {
     private static ArrayList<String> aListAsignaturas = new ArrayList<>();
     public static ArrayList<Docente> aDocentes = new ArrayList<>();
     public static ObservableList<String> aDocentesID = FXCollections.observableArrayList();
-    public static final String PATH_PROPERTIES = "config/init.properties";
+    public static String PATH_PROPERTIES = "config.properties";
     public static Universidad uni;
     public static String curso;
     public static Master master1;

@@ -44,12 +44,12 @@ public class DatosModel {
         window = owner;
         token = toke;
         try {
-            //socket = new Socket("skimdoo.ddns.jazztel.es", 9090);
-            socket = new Socket("localhost", 9090);
+            socket = new Socket("skimdoo.ddns.jazztel.es", 9090);
+            //socket = new Socket("localhost", 9090);
             dos = new ObjectOutputStream(socket.getOutputStream());
             dis = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
-            if (owner != null) AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error - AssiCo", "No s'ha pogut establir connexió amb el servidor!");
+            if (owner != null) AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error - AssiCo", "¡No se ha podido conectar con el servidor!");
         }
     }
 
@@ -61,9 +61,7 @@ public class DatosModel {
             dis.close();
             dos.close();
             socket.close();
-        } catch (IOException e) {
-            //TODO Avisar que no se ha podido cerrar la conexión?
-        }
+        } catch (Exception e) {}
     }
 
     /**
@@ -85,7 +83,10 @@ public class DatosModel {
         try {
             dos.writeObject(dato);
             dato = (Dato) dis.readObject();
-            return (boolean) dato.getObject();
+            boolean result = (boolean) dato.getObject();
+            closeConnection();
+            connect(window);
+            return result;
         } catch (Exception e) {
             return false;
         }
@@ -93,10 +94,16 @@ public class DatosModel {
 
     /**
      * comprobarCuenta
-     * @param data
+     * @param usuario Nombre del usuario de la cuenta
+     * @param clave Clave del usuario de la cuenta
+     * @return Token
      */
-    public static Token comprobarCuenta(Map<String, String> data) {
-        Dato dato = new Dato("comprobarCuenta", data);
+    public static Token comprobarCuenta(String usuario, String clave) {
+        Map<String, String> datos = new HashMap<>();
+        datos.put("usuario", usuario);
+        datos.put("clave", clave);
+
+        Dato dato = new Dato("comprobarCuenta", datos);
         try {
             dos.writeObject(dato);
             dato = (Dato) dis.readObject();
@@ -104,13 +111,42 @@ public class DatosModel {
             if (t != null) token = t;
             return t;
         } catch (Exception e) {
-            //TODO Quitar ese mensaje cuando se ponga a producción
-            e.printStackTrace();
             return null;
         }
     }
 
     // GETTERS
+
+    /**
+     * comprobarToken verifica si tiene una sesión válida para poder usar los métodos que requieran estar autentificado
+     */
+    public static Token getToken(String sToken) {
+        if (token != null) return token;
+        Dato dato = new Dato("getToken", sToken);
+        try {
+            dos.writeObject(dato);
+            dato = (Dato) dis.readObject();
+            return (Token) dato.getObject();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * obtener Masters de la Universidad
+     */
+    public static ArrayList<Master> getMasters(Universidad universidad) {
+        if (!comprobarToken()) return null;
+
+        Dato dato = new Dato("getMasters", universidad);
+        try {
+            dos.writeObject(dato);
+            dato = (Dato) dis.readObject();
+            return (ArrayList<Master>) dato.getObject();
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
     /**
      * obtenerCalendario
@@ -130,15 +166,25 @@ public class DatosModel {
             dato = (Dato) dis.readObject();
             return (ArrayList<DiaPlanificado>) dato.getObject();
         } catch (Exception e) {
-            //TODO Quitar ese mensaje cuando se ponga a producción
-            e.printStackTrace();
-            System.out.println(e.getCause() + e.getMessage());
-            AlertHelper.showAlert(Alert.AlertType.WARNING, window, "Error - AssiCo", "No s'ha pogut obtenir les dades de la planificació de calendaris.");
             return null;
         }
     }
 
     // SETTERS
+
+    /**
+     * Send Token to logout
+     * @param token
+     */
+    public static boolean logoutToken(Token token) {
+        Dato dato = new Dato("logoutToken", token);
+        try {
+            dos.writeObject(dato);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
     /**
      * send_firstListBaseCalendar()

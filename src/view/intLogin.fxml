@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+<AnchorPane prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
      <children>
         <VBox alignment="TOP_CENTER" layoutX="60.0" prefHeight="200.0" prefWidth="100.0" spacing="15.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
             <children>
@@ -26,18 +26,35 @@
                               <Glow />
                            </effect>
                         </ImageView>
-                        <TextField fx:id="usuario" maxWidth="200.0" promptText="Usuari" />
-                        <PasswordField fx:id="clave" maxWidth="200.0" onKeyPressed="#alAccederTeclado" promptText="Clau" />
-
-                        <Hyperlink fx:id="olvido" text="No recorda la seva clau?" />
-
-                        <Button fx:id="acceder" mnemonicParsing="false" onAction="#alAcceder" onKeyPressed="#alAccederTeclado" text="Accedir" />
-
-                        <Label text="© 2018 AssiCo" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="281.0" AnchorPane.rightAnchor="280.0" AnchorPane.topAnchor="350.0">
+                        <TextField fx:id="usuario" maxWidth="200.0" promptText="Usuario">
                <font>
-                  <Font size="10.0" />
-               </font></Label>
+                  <Font size="16.0" />
+               </font></TextField>
+                        <PasswordField fx:id="clave" maxWidth="200.0" onKeyPressed="#alAccederTeclado" promptText="Clave">
+               <font>
+                  <Font size="16.0" />
+               </font></PasswordField>
 
+                        <Hyperlink fx:id="olvido" text="¿Ha olvidado su clave?">
+               <font>
+                  <Font size="14.0" />
+               </font></Hyperlink>
+
+                        <Button fx:id="acceder" mnemonicParsing="false" onAction="#alAcceder" onKeyPressed="#alAccederTeclado" style="-fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #cccccc; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Acceder">
+               <font>
+                  <Font size="16.0" />
+               </font></Button>
+
+                        <Label fx:id="legal" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="600.0" minHeight="-Infinity" minWidth="570.0" text="Usamos los datos facilitados en este formulario únicamente con el fin de validar la cuenta del usuario y tener constancia de las sesiones que se crean tras verificar la cuenta. Al pulsar Acceder/Intro se enviará la petición al servidor." textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="281.0" AnchorPane.rightAnchor="280.0" AnchorPane.topAnchor="350.0" VBox.vgrow="ALWAYS">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                <HBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS">
+                    <children>
+                        <fx:include source="intFooter.fxml" />
+                    </children>
+                </HBox>
             </children>
         </VBox>
      </children>
