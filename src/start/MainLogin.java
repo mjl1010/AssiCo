@@ -25,8 +25,7 @@ public class MainLogin extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        String[] dirs = getClass().getProtectionDomain().getCodeSource().getLocation().getPath().split("AssiCo.jar");
-        VariablesAndMethodsUtils.PATH_PROPERTIES = dirs[0] + "config.properties";
+        VariablesAndMethodsUtils.PATH_PROPERTIES = "assiconfig.properties";
 
         Properties p = new Properties();
         File f = new File(VariablesAndMethodsUtils.PATH_PROPERTIES);
