@@ -21,7 +21,7 @@ public class GridSesion {
     private HBox hBox_doc;
     private ComboBox cbo_tipoAula, cbo_doc1, cbo_doc2;
     private int indexRow, indexColum;
-    private int sesionID;
+    private int sesionID = -1;
 
     public GridSesion() {
     }

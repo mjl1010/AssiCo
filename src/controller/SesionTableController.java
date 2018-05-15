@@ -1,7 +1,5 @@
 package controller;
 
-import entity.DiaPlanificado;
-import entity.Master;
 import entity.Sesion;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +14,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.GridSesion;
 import utilities.SesionTableRow;
-import utilities.VariablesAndMethodsUtils;
 
 import java.io.IOException;
 import java.net.URL;
@@ -45,7 +42,7 @@ public class SesionTableController implements Initializable {
     }
 
     public void openScene() throws IOException {
-        root = FXMLLoader.load(getClass().getResource("../view/intSesionTable.fxml"));
+        root = FXMLLoader.load(getClass().getResource("../view/popUp/intSesionTable.fxml"));
         stage = new Stage(StageStyle.DECORATED);
         scene = new Scene(root, 600, 400);
         stage.setTitle("Lista de Sesiones");

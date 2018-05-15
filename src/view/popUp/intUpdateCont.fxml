@@ -12,7 +12,7 @@
    <children>
       <HBox alignment="CENTER" layoutX="154.0" layoutY="127.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label text="Asignatura :" />
+            <Label text="Contenido :" />
             <TextField fx:id="txtCont"/>
             <Button fx:id="btnSave" onMouseClicked="#savedAsig" onKeyPressed="#savedAsig" mnemonicParsing="false" text="Guardar" />
          </children>

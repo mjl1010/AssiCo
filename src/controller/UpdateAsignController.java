@@ -10,7 +10,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -42,10 +41,11 @@ public class UpdateAsignController implements Initializable {
     }
 
     public void openScene() throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/view/intUpdateAsig.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/view/popUp/intUpdateAsig.fxml"));
         stage = new Stage(StageStyle.DECORATED);
         stage.setTitle("Editar Asignaturas");
         stage.setScene(new Scene(root, 329, 70));
         stage.show();
     }
+
 }

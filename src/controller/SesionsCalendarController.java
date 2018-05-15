@@ -49,7 +49,7 @@ public class SesionsCalendarController implements Initializable {
     SplitMenuButton smb_menuOption;
 
     @FXML
-    MenuItem menuOpt1, menuOpt2, menuOpt3, menuOpt4, menuOpt5, menuOpt6, menuOpt7, menuOpt8, menuOpt9;
+    MenuItem menuOpt1, menuOpt2, menuOpt3, menuOpt4, menuOpt5, menuOpt6, menuOpt7, menuOpt8, menuOpt9, menuOpt10;
 
     private ArrayList<MenuItem> aSplitMenuButton;
     public static Master master_current;
@@ -89,6 +89,7 @@ public class SesionsCalendarController implements Initializable {
         aSplitMenuButton.add(menuOpt7);
         aSplitMenuButton.add(menuOpt8);
         aSplitMenuButton.add(menuOpt9);
+        aSplitMenuButton.add(menuOpt10);
     }
 
     private void configSplitMenuButton() {
@@ -107,39 +108,42 @@ public class SesionsCalendarController implements Initializable {
                 private void gestionarOpcion(String id) throws IOException {
                     switch (id) {
                         case "menuOpt1":
-                            System.out.println("agrega sesión");
+                            // agrega sesión
                             new SesionTableController().openScene();
                             break;
                         case "menuOpt2":
-                            System.out.println("Quitar sesión");
+                            // Quitar sesión
                             outSesion();
                             printSesionReg();
                             break;
                         case "menuOpt3":
-                            System.out.println("Intercambio de Sesión");
+                            // Intercambio de Sesión
                             break;
                         case "menuOpt4":
-                            System.out.println("Editar Practica 1");
+                            // Editar Practica 1
                             break;
                         case "menuOpt5":
-                            System.out.println("Editar Practica 2");
+                            // Editar Practica 2
                             break;
                         case "menuOpt6":
-                            System.out.println("Editar de Asignatura");
+                            // Editar de Asignatura
                             new UpdateAsignController().openScene();
+
                             break;
                         case "menuOpt7":
-                            System.out.println("Editar Contenido");
+                            // Editar Contenido
                             new UpdateContenidoController().openScene();
                             break;
                         case "menuOpt8":
-                            System.out.println("Editar Profesor(s)");
+                            // Editar Profesor(s)
+//                            new UpdateDocenteController().openScene();
                             break;
                         case "menuOpt9":
-                            System.out.println("Editar Tipo de Aula");
+                            // Editar Tipo de Aula
                             break;
                         case "menuOpt10":
-                            System.out.println("Editar Aula");
+                            // Editar Aula
+                            new UpdateAulaController().openScene();
                             break;
 
                     }
@@ -156,6 +160,8 @@ public class SesionsCalendarController implements Initializable {
         for (GridSesion gs :
                 aGridSesions) {
             if (gs.getMiniGrid().equals(gp_waiting)){
+                System.out.println("gs.getSesionID() : " + gs.getSesionID());
+                System.out.println("getSesion(gs.getSesionID()) : " + getSesion(gs.getSesionID()));
                 if (getSesion(gs.getSesionID()).getMaster1() != null)
                     removeSesionToPlanifList(getCalBasID(gs.getLblDateID().getText()), master1);
                 if (getSesion(gs.getSesionID()).getMaster2() != null)
@@ -224,6 +230,11 @@ public class SesionsCalendarController implements Initializable {
         }
     }
 
+    /**
+     * registrar sesion
+     * @param gs
+     * @param s
+     */
     private void regDatosSesion(GridSesion gs, Sesion s) {
         String jp = "S";
         if (s.getMaster1() != null
@@ -235,8 +246,12 @@ public class SesionsCalendarController implements Initializable {
         if (s.getDocente1() != null) gs.getCbo_doc1().setValue(s.getDocente1().getCode());
         if (s.getDocente2() != null) gs.getCbo_doc2().setValue(s.getDocente2().getCode());
         gs.getCbo_tipoAula().setValue(s.getTipoAula());
+        gs.setSesionID(s.getId());
     }
 
+    /**
+     * updateListsCurrentMonth_tab1
+     */
     private void updateListsCurrentMonth_tab1() { //de momento siempre master1 está en tab1, TODO validar break;
         aPlanCalCurrentMonthMaster1 = new ArrayList<>();
         for (int i = 0; i < aPlanifCalend.size(); i++) {
@@ -249,6 +264,9 @@ public class SesionsCalendarController implements Initializable {
         }
     }
 
+    /**
+     * asignar valores label
+     */
     private void asignarValoresLabel() {
         lblYear.setText(yearInit);
         for (int i = 0; i < aMonths.size(); i++) {
@@ -259,6 +277,9 @@ public class SesionsCalendarController implements Initializable {
         }
     }
 
+    /**
+     * extraer valores del property file
+     */
     private void extraerValoresProperties() {
         p = new Properties();
         try {
@@ -273,6 +294,12 @@ public class SesionsCalendarController implements Initializable {
         }
     }
 
+    /**
+     * retornar master
+     * desde un masterID
+     * @param masterID
+     * @return
+     */
     private Master retornarMaster(String masterID) {
         Master m;
         if (master1.getCode().equals(masterID)) m = master1;
@@ -280,6 +307,9 @@ public class SesionsCalendarController implements Initializable {
         return m;
     }
 
+    /**
+     * add event to calendar
+     */
     private void addEventCalendars() {
         GridPane gp = new GridPane();
         for (int i = 0; i < gp_calendar.getChildren().size()-1; i++) {
@@ -299,12 +329,14 @@ public class SesionsCalendarController implements Initializable {
      */
     private void marcarGrid(GridPane miniGrid) {
         smb_menuOption_st = smb_menuOption;
+        if (gp_waiting != null) desmarcarGridWaiting();
         gp_waiting = miniGrid;
         gp_waiting.setStyle("-fx-border-color: #A9D0F5;" +
                 "-fx-border-style: solid inside;" +
                 "-fx-border-width: 2;" +
                 "-fx-border-insets: 5;" +
                 "-fx-border-radius: 5;" );
+        smb_menuOption_st.setDisable(false);
     }
 
     public static void desmarcarGridWaiting(){
@@ -344,14 +376,18 @@ public class SesionsCalendarController implements Initializable {
                         lblYear.setText(yearInit);
                     } else lblMonth.setText(aMonths.get(++i));
                 }
-                clearGridTab1();
-                updateListsCurrentMonth_tab1();
-                registredGridSessions();
-                updateCalendarMaster1();
-                addEventCalendars();
+                updateCalendar();
                 break;
             }
         }
+    }
+
+    public void updateCalendar() {
+        clearGridTab1();
+        updateListsCurrentMonth_tab1();
+        registredGridSessions();
+        updateCalendarMaster1();
+        addEventCalendars();
     }
 
     private void clearGridTab1() {

@@ -31,7 +31,7 @@ public class VariablesAndMethodsUtils {
     public static ArrayList<String> aMonths = new ArrayList<>();
     private static final DateTimeFormatter FORMATTER2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static ArrayList<String> aListAsignaturas = new ArrayList<>();
-    private static ArrayList<Docente> aDocentes = new ArrayList<>();
+    public static ArrayList<Docente> aDocentes = new ArrayList<>();
     public static ObservableList<String> aDocentesID = FXCollections.observableArrayList();
     public static final String PATH_PROPERTIES = "config/init.properties";
     public static Universidad uni;
@@ -87,8 +87,24 @@ public class VariablesAndMethodsUtils {
 
     /**** Métodos ******/
 
+
     /**
-     * Set Asignatura of sesion
+     * Set Contenido of sesion
+     * @param newSes
+     */
+    public static void setAulaSes(int newSes){
+        for (GridSesion gs :
+                aGridSesions) {
+            if (gs.getMiniGrid()
+                    .equals(gp_waiting)){
+                getSesion(gs.getSesionID()).setAula(String.valueOf(newSes));
+                gs.getLblAula().setText(String.valueOf((newSes)));
+            }
+        }
+    }
+
+    /**
+     * Set Contenido of sesion
      * @param newContent
      */
     public static void setContenido(String newContent){
@@ -159,7 +175,10 @@ public class VariablesAndMethodsUtils {
         Sesion ses = null;
         for (Sesion s :
                 aSession) {
-            if (s.getId() == sesionID) ses = s;
+            if (s.getId() == sesionID){
+                ses = s;
+                break;
+            }
         }
         return ses;
     }

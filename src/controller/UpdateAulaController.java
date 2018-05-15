@@ -15,21 +15,19 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import static utilities.VariablesAndMethodsUtils.closeStage;
+import static utilities.VariablesAndMethodsUtils.setAulaSes;
 import static utilities.VariablesAndMethodsUtils.setContenido;
 
-/**
- * Created by Michael
- */
-public class UpdateContenidoController implements Initializable {
+public class UpdateAulaController implements Initializable {
     private static Parent root;
     private static Stage stage;
 
     @FXML
-    TextField txtCont;
+    TextField txtAula;
 
     public void savedAsig(MouseEvent mouseEvent) {
-        if (!txtCont.getText().isEmpty()){
-            setContenido(txtCont.getText());
+        if (!txtAula.getText().isEmpty()){
+            setAulaSes(Integer.parseInt(txtAula.getText()));
         }
         closeStage(stage);
     }
@@ -39,9 +37,9 @@ public class UpdateContenidoController implements Initializable {
     }
 
     public void openScene() throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/view/popUp/intUpdateCont.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/view/popUp/intUpdateAula.fxml"));
         stage = new Stage(StageStyle.DECORATED);
-        stage.setTitle("Editar Contenido");
+        stage.setTitle("Editar Aula");
         stage.setScene(new Scene(root, 329, 70));
         stage.show();
     }
