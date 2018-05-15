@@ -32,7 +32,7 @@ import java.util.ResourceBundle;
 import static utilities.VariablesAndMethodsUtils.PATH_PROPERTIES;
 
 public class LoginController implements Initializable {
-    private static LoginController main;
+    protected static LoginController main;
 
     @FXML
     private TextField usuario;
@@ -41,46 +41,20 @@ public class LoginController implements Initializable {
     private PasswordField clave;
 
     @FXML
-    private Button acceder;
+    Button acceder;
 
     @FXML
-    private Hyperlink olvido;
+    Hyperlink olvido;
 
     @FXML
     private Label legal;
 
-    protected static Token token;
+    public static Token token;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         main = this;
         refreshText();
-
-        Properties p = new Properties();
-        try {
-            p.load(new FileReader(VariablesAndMethodsUtils.PATH_PROPERTIES));
-            String stoken = p.getProperty("token");
-
-            DatosModel.connect(null, null);
-            token = DatosModel.getToken(stoken);
-            DatosModel.closeConnection();
-
-            if (token != null && token.isActivo()) {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/intMenu.fxml"));
-                Parent root1 = fxmlLoader.load();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root1));
-                stage.setTitle("AssiCo - Menú");
-                stage.show();
-                stage = (Stage) acceder.getScene().getWindow();
-                stage.close();
-            } else if (token != null) {
-                AlertHelper.showAlert(Alert.AlertType.ERROR, null, "Error - AssiCo", "No se ha podido verificar la sesión anterior, por favor, accede de nuevo.");
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     @FXML
@@ -126,7 +100,7 @@ public class LoginController implements Initializable {
                 Properties p = new Properties();
                 p.load(new FileReader(VariablesAndMethodsUtils.PATH_PROPERTIES));
                 p.setProperty("token", token.getToken());
-                p.store(new FileWriter(VariablesAndMethodsUtils.PATH_PROPERTIES), "first comment");
+                p.store(new FileWriter(VariablesAndMethodsUtils.PATH_PROPERTIES), "Token added");
             }
 
             DatosModel.closeConnection();

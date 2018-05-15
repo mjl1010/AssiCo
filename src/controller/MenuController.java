@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
+import sun.rmi.runtime.Log;
 import utilities.TextResponsive;
 
 import java.io.IOException;

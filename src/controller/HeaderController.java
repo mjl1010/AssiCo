@@ -14,9 +14,13 @@ import javafx.stage.Window;
 import model.DatosModel;
 import utilities.AlertHelper;
 import utilities.TextResponsive;
+import utilities.VariablesAndMethodsUtils;
 
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Properties;
 import java.util.ResourceBundle;
 
 public class HeaderController implements Initializable {
@@ -58,10 +62,15 @@ public class HeaderController implements Initializable {
         DatosModel.connect(owner);
 
         if (DatosModel.logoutToken(LoginController.token)) {
+            Properties p = new Properties();
+            p.load(new FileReader(VariablesAndMethodsUtils.PATH_PROPERTIES));
+            p.setProperty("token", "");
+            p.store(new FileWriter(VariablesAndMethodsUtils.PATH_PROPERTIES), "Token removed");
+
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/intLogin.fxml"));
-            Parent root1 = fxmlLoader.load();
+            Parent root = fxmlLoader.load();
             Stage stage = new Stage();
-            stage.setScene(new Scene(root1));
+            stage.setScene(new Scene(root));
             stage.setTitle("AssiCo - Asistente de Coordinación Academica");
             stage.show();
             stage = (Stage) owner;
