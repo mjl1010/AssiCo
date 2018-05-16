@@ -44,8 +44,8 @@ public class DatosModel {
         window = owner;
         token = toke;
         try {
-            socket = new Socket("skimdoo.ddns.jazztel.es", 9090);
-            //socket = new Socket("localhost", 9090);
+            //socket = new Socket("skimdoo.ddns.jazztel.es", 9090);
+            socket = new Socket("localhost", 9090);
             dos = new ObjectOutputStream(socket.getOutputStream());
             dis = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
@@ -126,7 +126,9 @@ public class DatosModel {
         try {
             dos.writeObject(dato);
             dato = (Dato) dis.readObject();
-            return (Token) dato.getObject();
+            Token t = (Token) dato.getObject();
+            if (t != null) token = t;
+            return t;
         } catch (Exception e) {
             return null;
         }
@@ -165,6 +167,22 @@ public class DatosModel {
             dos.writeObject(dato);
             dato = (Dato) dis.readObject();
             return (ArrayList<DiaPlanificado>) dato.getObject();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * obtenerCalendario
+     */
+    public static ArrayList<String> getCursos(Universidad universidad) {
+        if (!comprobarToken()) return null;
+
+        Dato dato = new Dato("getCursos", universidad);
+        try {
+            dos.writeObject(dato);
+            dato = (Dato) dis.readObject();
+            return (ArrayList<String>) dato.getObject();
         } catch (Exception e) {
             return null;
         }

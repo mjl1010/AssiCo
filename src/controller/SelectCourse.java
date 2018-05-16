@@ -40,26 +40,25 @@ public class SelectCourse implements Initializable {
 
     private void generarMasters() {
         DatosModel.connect(null);
-        //ArrayList<String> masters = DatosModel.getCursos(LoginController.token.getUsuario().getUniversidad());
+        ArrayList<String> cursos = DatosModel.getCursos(LoginController.token.getUsuario().getUniversidad());
         DatosModel.closeConnection();
 
-//        if (masters != null) {
-//            for (int i = 0; i<masters.size(); i++) {
-//                Button btn = new Button();
-//                if (masters.get(i).getMasterVinculado() != null) btn.setText(masters.get(i).getNombre() + " / " + masters.get(i).getMasterVinculado().getNombre());
-//                else btn.setText(masters.get(i).getNombre());
-//                btn.setMinHeight(60);
-//                btn.setMinWidth(200);
-//                btn.setTextAlignment(TextAlignment.CENTER);
-//                btn.setAlignment(Pos.CENTER);
-//                btn.setWrapText(true);
-//                btn.setTextOverrun(OverrunStyle.CLIP);
-//
-//                if (i%2 == 0) curso_col_1.getChildren().add(btn);
-//                else curso_col_2.getChildren().add(btn);
-//            }
-//            refreshText();
-//        } else AlertHelper.showAlert(Alert.AlertType.ERROR, null, "Error - AssiCo", "En esta universidad no hay cursos :/");
+        if (cursos != null) {
+            for (int i = 0; i<cursos.size(); i++) {
+                Button btn = new Button();
+                btn.setText(cursos.get(i));
+                btn.setMinHeight(60);
+                btn.setMinWidth(360);
+                btn.setMaxWidth(360);
+                btn.setTextAlignment(TextAlignment.CENTER);
+                btn.setAlignment(Pos.CENTER);
+                btn.setWrapText(true);
+
+                if (i%2 == 0) curso_col_1.getChildren().add(btn);
+                else curso_col_2.getChildren().add(btn);
+            }
+            refreshText();
+        } else AlertHelper.showAlert(Alert.AlertType.ERROR, null, "Error - AssiCo", "En esta universidad no hay cursos :/");
     }
 
     @FXML

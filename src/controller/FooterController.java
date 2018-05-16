@@ -101,6 +101,7 @@ public class FooterController implements Initializable {
         HeaderController.refreshText();
         LoginController.refreshText();
         MenuController.refreshText();
+        SelectCourse.refreshText();
         SelectMaster.refreshText();
     }
 }

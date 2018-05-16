@@ -7,7 +7,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.OverrunStyle;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
 import model.DatosModel;
@@ -22,18 +21,18 @@ public class SelectMaster implements Initializable {
     private static SelectMaster main;
 
     @FXML
-    VBox curso_col_1;
+    VBox master_col_1;
 
     @FXML
-    VBox curso_col_2;
+    VBox master_col_2;
 
     @FXML
-    Button select_course_nuevo;
+    Button masters_agregar;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         main = this;
-        if (HeaderController.main.titulo != null) HeaderController.main.titulo.setText("Seleccione un curso");
+        if (HeaderController.main.titulo != null) HeaderController.main.titulo.setText("Seleccione un máster");
         generarMasters();
     }
 
@@ -45,44 +44,46 @@ public class SelectMaster implements Initializable {
         if (masters != null) {
             for (int i = 0; i<masters.size(); i++) {
                 Button btn = new Button();
-                if (masters.get(i).getMasterVinculado() != null) btn.setText(masters.get(i).getNombre() + " / " + masters.get(i).getMasterVinculado().getNombre());
+                if (masters.get(i).getMasterVinculado() != null) btn.setText(masters.get(i).getNombre() + "\n" + masters.get(i).getMasterVinculado().getNombre());
                 else btn.setText(masters.get(i).getNombre());
                 btn.setMinHeight(60);
-                btn.setMinWidth(200);
+                btn.setMinWidth(360);
+                btn.setMaxWidth(360);
                 btn.setTextAlignment(TextAlignment.CENTER);
                 btn.setAlignment(Pos.CENTER);
                 btn.setWrapText(true);
-                btn.setTextOverrun(OverrunStyle.CLIP);
 
-                if (i%2 == 0) curso_col_1.getChildren().add(btn);
-                else curso_col_2.getChildren().add(btn);
+                if (i%2 == 0) master_col_1.getChildren().add(btn);
+                else master_col_2.getChildren().add(btn);
             }
             refreshText();
         } else AlertHelper.showAlert(Alert.AlertType.ERROR, null, "Error - AssiCo", "En esta universidad no hay cursos :/");
     }
 
     @FXML
-    private void newCurso() {
+    private void newMaster() {
 
     }
 
     public static void refreshText() {
         if (main == null) return;
 
-        if (main.select_course_nuevo != null) main.select_course_nuevo.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;");
+        if (main.masters_agregar != null) main.masters_agregar.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;");
 
-        if (main.curso_col_1 != null)
-        for (Node node : main.curso_col_1.getChildren()) {
+        if (main.master_col_1 != null)
+        for (Node node : main.master_col_1.getChildren()) {
             if (node instanceof Button) {
                 node.setStyle(TextResponsive.getFontStyle("h3") + " -fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;");
+                //((Button)node).setWrapText(true);
             }
         }
 
-        if (main.curso_col_2 != null)
-            for (Node node : main.curso_col_2.getChildren()) {
-                if (node instanceof Button) {
-                    node.setStyle(TextResponsive.getFontStyle("h3") + " -fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;");
-                }
+        if (main.master_col_2 != null)
+        for (Node node : main.master_col_2.getChildren()) {
+            if (node instanceof Button) {
+                node.setStyle(TextResponsive.getFontStyle("h3") + " -fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;");
+                //((Button)node).setWrapText(true);
             }
+        }
     }
 }
