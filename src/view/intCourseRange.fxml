@@ -26,24 +26,63 @@
                                       <children>
                                           <VBox alignment="TOP_RIGHT" spacing="30.0" HBox.hgrow="ALWAYS">
                                               <HBox.margin>
-                                                  <Insets right="10.0" />
+                                                  <Insets />
                                               </HBox.margin>
                                  <children>
                                     <Label fx:id="courseRange1" text="Fecha inicial del curso" />
-                                    <Label fx:id="courseRange2" text="Fecha final del curso" />
-                                    <Label fx:id="courseRange3" text="Fecha inicial de las vacaciones" />
-                                    <Label fx:id="courseRange4" text="Fecha final de las vacaciones" />
+                                    <VBox alignment="CENTER_RIGHT" spacing="30.0" style="-fx-background-color: #dddddd;">
+                                       <children>
+                                          <Label fx:id="courseRange2" text="Fecha inicial de las vacaciones">
+                                             <VBox.margin>
+                                                <Insets top="40.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                          <Label fx:id="courseRange3" text="Fecha final de las vacaciones">
+                                             <VBox.margin>
+                                                <Insets bottom="40.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" top="5.0" />
+                                       </padding>
+                                       <VBox.margin>
+                                          <Insets top="-5.0" />
+                                       </VBox.margin>
+                                    </VBox>
+                                     <Label fx:id="courseRange4" text="Fecha final del curso" />
                                  </children>
+                                 <padding>
+                                    <Insets top="5.0" />
+                                 </padding>
                                           </VBox>
                                           <VBox spacing="20.0" HBox.hgrow="ALWAYS">
                                               <HBox.margin>
-                                                  <Insets left="10.0" />
+                                                  <Insets />
                                               </HBox.margin>
                                  <children>
-                                    <DatePicker fx:id="initCurso" />
-                                    <DatePicker fx:id="endCurso" />
-                                    <DatePicker fx:id="initVacations" />
-                                    <DatePicker fx:id="endVacations" />
+                                    <DatePicker fx:id="initCurso">
+                                       <VBox.margin>
+                                          <Insets left="20.0" />
+                                       </VBox.margin></DatePicker>
+                                    <VBox alignment="CENTER_LEFT" spacing="20.0" style="-fx-background-color: #dddddd;">
+                                       <children>
+                                          <DatePicker fx:id="initVacations">
+                                             <VBox.margin>
+                                                <Insets left="20.0" top="40.0" />
+                                             </VBox.margin>
+                                          </DatePicker>
+                                          <DatePicker fx:id="endVacations">
+                                             <VBox.margin>
+                                                <Insets bottom="40.0" left="20.0" />
+                                             </VBox.margin>
+                                          </DatePicker>
+                                       </children>
+                                    </VBox>
+                                     <DatePicker fx:id="endCurso">
+                                       <VBox.margin>
+                                          <Insets left="20.0" />
+                                       </VBox.margin></DatePicker>
                                  </children>
                                           </VBox>
                                       </children>
@@ -52,6 +91,9 @@
                            </padding>
                                   </HBox>
                               </children>
+                     <HBox.margin>
+                        <Insets top="100.0" />
+                     </HBox.margin>
                           </AnchorPane>
                         <VBox alignment="TOP_RIGHT" minWidth="-Infinity" spacing="20.0">
                             <children>
@@ -63,7 +105,7 @@
                                         <Insets />
                                     </VBox.margin>
                                 </Button>
-                                <Button fx:id="generarCursoBack" ellipsisString="" mnemonicParsing="false" onAction="#back" style="-fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Generar curso" textOverrun="CLIP" wrapText="true" VBox.vgrow="ALWAYS">
+                                <Button fx:id="generarCursoBack" ellipsisString="" mnemonicParsing="false" onAction="#back" style="-fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Atrás" textOverrun="CLIP" wrapText="true" VBox.vgrow="ALWAYS">
                                     <font>
                                         <Font size="16.0" />
                                     </font>

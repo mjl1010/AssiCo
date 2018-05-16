@@ -87,14 +87,14 @@ public class UpdateDocenteController implements Initializable {
                         gs.getCbo_doc1().setValue(value);
                         if (getSesion(gs.getSesionID()).getMaster1() != null &&
                                 getSesion(gs.getSesionID()).getMaster2() != null)
-                            setCboxInCalendarVinculado(gs.getLblDateID().getText(), value, 1);
+                            setCboxInCalendarVinculado(gs.getLblDateID().getId(), value, 1);
                         break;
                     case 2:
                         getSesion(gs.getSesionID()).setDocente2(findNewDocente(value));
                         gs.getCbo_doc2().setValue(value);
                         if (getSesion(gs.getSesionID()).getMaster1() != null &&
                                 getSesion(gs.getSesionID()).getMaster2() != null)
-                            setCboxInCalendarVinculado(gs.getLblDateID().getText(), value, 2);
+                            setCboxInCalendarVinculado(gs.getLblDateID().getId(), value, 2);
                         break;
                 }
                 break;
@@ -104,7 +104,7 @@ public class UpdateDocenteController implements Initializable {
 
     private void setCboxInCalendarVinculado(String date, String newValue, int numCbo) {
         for (GridSesion gs : tcm.getTcm_vinculado().getaGridSesions()) {
-            if (gs.getLblDateID().getText().equals(date)){
+            if (gs.getLblDateID().getId().equals(date)){
                 if (numCbo == 1) gs.getCbo_doc1().setValue(newValue);
                 else gs.getCbo_doc2().setValue(newValue);
                 break;

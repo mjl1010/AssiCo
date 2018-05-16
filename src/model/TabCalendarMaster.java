@@ -9,6 +9,7 @@ import javafx.scene.control.SplitMenuButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import start.MainLogin;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -86,7 +87,7 @@ public class TabCalendarMaster {
     }
 
     public void desmarcarGridWaiting() {
-        gp_waiting.setStyle("-fx-border-color: ;" + "-fx-border-style: ;" + "-fx-border-width: 0;" + "-fx-border-insets: 0;" + "-fx-border-radius: 0;");
+        gp_waiting.setStyle("-fx-border-color: transparent;" + "-fx-border-style: none;" + "-fx-border-width: 0;" + "-fx-border-insets: 0;" + "-fx-border-radius: 0;");
         smb_menuOption.setDisable(true);
     }
 
@@ -107,8 +108,9 @@ public class TabCalendarMaster {
     private void updatesDatesMiniGridCalendar(int indexRow, int indexColumn, DiaPlanificado pc) {
         for (int i = 0; i < aGridSesions.size(); i++) {
             if (aGridSesions.get(i).getIndexRow() == indexRow && aGridSesions.get(i).getIndexColum() == indexColumn) {
-                aGridSesions.get(i).getLblDateID().setText(pc.getCalendarioBase().getIdDate());
-                aGridSesions.get(i).getLblDateID().setStyle("-fx-background-color: #BE81F7");
+                aGridSesions.get(i).getLblDateID().setId(pc.getCalendarioBase().getIdDate());
+                aGridSesions.get(i).getLblDateID().setText(pc.getCalendarioBase().getIdDate().split("/")[0]);
+                aGridSesions.get(i).getLblDateID().setStyle("-fx-text-fill: #000000;");
                 if (pc.getSesion() != null) regDatosSesion(aGridSesions.get(i), pc.getSesion());
                 break;
             }
@@ -132,6 +134,8 @@ public class TabCalendarMaster {
         if (s.getDocente2() != null) gs.getCbo_doc2().setValue(s.getDocente2().getCode());
         gs.getCbo_tipoAula().setValue(s.getTipoAula());
         gs.setSesionID(s.getId());
+        gs.setBackgroundColor(s.getColorFondo());
+        gs.setTextColor(s.getColorTexto());
         gs.setVisibleComboBoxs(true);
     }
 
@@ -287,9 +291,9 @@ public class TabCalendarMaster {
                 System.out.println("gs.getSesionID() : " + gs.getSesionID());
                 System.out.println("getSesion(gs.getSesionID()) : " + getSesion(gs.getSesionID()));
                 if (getSesion(gs.getSesionID()).getMaster1() != null)
-                    removeSesionToPlanifList(getCalBasID(gs.getLblDateID().getText()), master1);
+                    removeSesionToPlanifList(getCalBasID(gs.getLblDateID().getId()), master1);
                 if (getSesion(gs.getSesionID()).getMaster2() != null)
-                    removeSesionToPlanifList(getCalBasID(gs.getLblDateID().getText()), master2);
+                    removeSesionToPlanifList(getCalBasID(gs.getLblDateID().getId()), master2);
                 setActiveValueSesion(gs.getSesionID());
                 break;
             }
@@ -319,7 +323,7 @@ public class TabCalendarMaster {
     public void synchronizeSesion(String dia_gpWaiting){
         for (GridSesion gridSesion:
              aGridSesions) {
-            if (gridSesion.getLblDateID().getText()
+            if (gridSesion.getLblDateID().getId()
                     .equals(dia_gpWaiting)){
                 gp_waiting = gridSesion.getMiniGrid();
                 break;

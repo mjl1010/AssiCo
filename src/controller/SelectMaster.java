@@ -57,7 +57,10 @@ public class SelectMaster implements Initializable {
                 btn.setWrapText(true);
 
                 if (SelectCourse.postSelectMaster != null) {
-
+                    btn.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                        MainLogin.openStage(getClass().getResource("/view/intSesionsCalendar.fxml"), "Planificaciones - Calendario " + SelectCourse.postSelectMaster, null);
+                        ((Stage) main.smaster_atras.getScene().getWindow()).close();
+                    });
                 }
 
                 if (i%2 == 0) smaster_col_1.getChildren().add(btn);

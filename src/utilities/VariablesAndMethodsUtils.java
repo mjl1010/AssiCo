@@ -7,6 +7,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import model.GridSesion;
+import start.MainLogin;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -307,10 +308,15 @@ public class VariablesAndMethodsUtils {
         if (!isComun) master2_aux = null;
         if (!isDocenteDoble) docente2 = null;
 
-        for (int j = 0; j < quantCont; j++)
-            aSession
-                    .add(new Sesion(++sesionID, master1_aux, master2_aux, aListAsignaturas.get(indexAsign),
-                            contenido + j, docente1, docente2, aula, tipoAula));
+        for (int j = 0; j < quantCont; j++) {
+            Sesion sesion = new Sesion(++sesionID, master1_aux, master2_aux, aListAsignaturas.get(indexAsign),
+                    contenido + j, docente1, docente2, aula, tipoAula);
+
+            sesion.setColorFondo(MainLogin.generateRandomColor());
+            sesion.setColorTexto("#000000");
+
+            aSession.add(sesion);
+        }
 
     }
 

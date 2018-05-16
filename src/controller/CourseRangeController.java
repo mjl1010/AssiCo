@@ -46,7 +46,7 @@ public class CourseRangeController implements Initializable {
     Label courseRange1, courseRange2, courseRange3, courseRange4;
 
     @FXML
-    Button generarCurso;
+    Button generarCurso, generarCursoBack;
 
     private static String firstDayName;
 
@@ -204,6 +204,12 @@ public class CourseRangeController implements Initializable {
         refreshText();
     }
 
+    @FXML
+    private void back() {
+        MainLogin.openStage(getClass().getResource("/view/intSelectCourse.fxml"), "Planificaciones - Selector de cursos", null);
+        ((Stage) generarCurso.getScene().getWindow()).close();
+    }
+
     public static void refreshText() {
         if (main == null) return;
 
@@ -217,7 +223,8 @@ public class CourseRangeController implements Initializable {
         main.courseRange3.setStyle(TextResponsive.getFontStyle("h4"));
         main.courseRange4.setStyle(TextResponsive.getFontStyle("h4"));
 
-        if (main.generarCurso != null) main.generarCurso.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;");
+        main.generarCurso.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;");
+        main.generarCursoBack.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;");
 
     }
 }

@@ -165,10 +165,10 @@ public class SesionTableController implements Initializable {
                 gs.setSesionID(Integer.parseInt(obj.getSesionID()));
                 gs.setVisibleComboBoxs(true);
                 if (obj.getMaster1().length() > 0)
-                    addSesionToPlanifList(getSesion(Integer.parseInt(obj.getSesionID())), getCalBasID(gs.getLblDateID().getText()),
+                    addSesionToPlanifList(getSesion(Integer.parseInt(obj.getSesionID())), getCalBasID(gs.getLblDateID().getId()),
                             master1);
                 if (obj.getMaster2().length() > 0)
-                    addSesionToPlanifList(getSesion(Integer.parseInt(obj.getSesionID())), getCalBasID(gs.getLblDateID().getText()),
+                    addSesionToPlanifList(getSesion(Integer.parseInt(obj.getSesionID())), getCalBasID(gs.getLblDateID().getId()),
                             master2);
                 if (!obj.getMaster1().isEmpty() &&
                         !obj.getMaster2().isEmpty())
@@ -180,7 +180,8 @@ public class SesionTableController implements Initializable {
 
     private void registedSesionInCalendarVinculado(Label lblDateID, SesionTableRow obj) {
         for (GridSesion gd : tcm.getTcm_vinculado().getaGridSesions()) {
-            if (gd.getLblDateID().getText().equals(lblDateID.getText())){
+            if (gd.getLblDateID().getId().equals(lblDateID.getId())){
+                gd.getLblDateID().setText(gd.getLblDateID().getId().split("/")[0]);
                 gd.getLblAsign().setText(obj.getAsignatura());
                 gd.getLblContenido().setText(obj.getContenido());
                 gd.getLblJuntSep().setText(getValueJunSep(obj));
