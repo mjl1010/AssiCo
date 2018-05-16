@@ -137,7 +137,7 @@ public class HolydayCalendarController implements Initializable {
      * cells vacations list
      */
     private void fillCeldasVacations() {
-        Iterator it = VacationsRangeController.getHsVacations().iterator();
+        Iterator it = CourseRangeController.getHsVacations().iterator();
         while (it.hasNext()) {
             celdasVacations.add(String.valueOf(it.next()));
         }

@@ -7,9 +7,12 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
 import model.DatosModel;
+import start.MainLogin;
 import utilities.AlertHelper;
 import utilities.TextResponsive;
 
@@ -21,13 +24,13 @@ public class SelectMaster implements Initializable {
     private static SelectMaster main;
 
     @FXML
-    VBox master_col_1;
+    VBox smaster_col_1;
 
     @FXML
-    VBox master_col_2;
+    VBox smaster_col_2;
 
     @FXML
-    Button masters_agregar;
+    Button smaster_atras;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -53,33 +56,38 @@ public class SelectMaster implements Initializable {
                 btn.setAlignment(Pos.CENTER);
                 btn.setWrapText(true);
 
-                if (i%2 == 0) master_col_1.getChildren().add(btn);
-                else master_col_2.getChildren().add(btn);
+                if (SelectCourse.postSelectMaster != null) {
+
+                }
+
+                if (i%2 == 0) smaster_col_1.getChildren().add(btn);
+                else smaster_col_2.getChildren().add(btn);
             }
             refreshText();
         } else AlertHelper.showAlert(Alert.AlertType.ERROR, null, "Error - AssiCo", "En esta universidad no hay cursos :/");
     }
 
     @FXML
-    private void newMaster() {
-
+    private void back() {
+        MainLogin.openStage(getClass().getResource("/view/intSelectCourse.fxml"), "Planificaciones - Selector de cursos", null);
+        ((Stage) smaster_atras.getScene().getWindow()).close();
     }
 
     public static void refreshText() {
         if (main == null) return;
 
-        if (main.masters_agregar != null) main.masters_agregar.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;");
+        if (main.smaster_atras != null) main.smaster_atras.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;");
 
-        if (main.master_col_1 != null)
-        for (Node node : main.master_col_1.getChildren()) {
+        if (main.smaster_col_1 != null)
+        for (Node node : main.smaster_col_1.getChildren()) {
             if (node instanceof Button) {
                 node.setStyle(TextResponsive.getFontStyle("h3") + " -fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;");
                 //((Button)node).setWrapText(true);
             }
         }
 
-        if (main.master_col_2 != null)
-        for (Node node : main.master_col_2.getChildren()) {
+        if (main.smaster_col_2 != null)
+        for (Node node : main.smaster_col_2.getChildren()) {
             if (node instanceof Button) {
                 node.setStyle(TextResponsive.getFontStyle("h3") + " -fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;");
                 //((Button)node).setWrapText(true);

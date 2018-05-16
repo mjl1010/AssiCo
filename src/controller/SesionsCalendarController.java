@@ -32,7 +32,6 @@ public class SesionsCalendarController implements Initializable {
 
     @FXML
     SplitMenuButton smb_menuOption1, smb_menuOption2;
-    ;
 
     @FXML
     MenuItem menuOpt1_1, menuOpt2_1, menuOpt3_1, menuOpt4_1, menuOpt5_1, menuOpt6_1, menuOpt7_1, menuOpt8_1, menuOpt9_1, menuOpt10_1,

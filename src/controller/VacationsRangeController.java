@@ -21,6 +21,7 @@ import java.util.ResourceBundle;
 import static utilities.VariablesAndMethodsUtils.aCalendarioBase;
 
 /**
+ * @deprecated Use CourseRangeController
  * Created by Michael
  */
 public class VacationsRangeController implements Initializable {
