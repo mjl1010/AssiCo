@@ -53,12 +53,12 @@
                                                                 <Font size="24.0" />
                                                             </font>
                                                         </Label>
-                                                        <ImageView id="flechaLeft" fitHeight="58.0" fitWidth="57.0" layoutX="370.0" layoutY="14.0" onKeyPressed="#updateMonth" onMouseClicked="#updateMonth" pickOnBounds="true" preserveRatio="true">
+                                                        <ImageView id="flechaLeft" fitHeight="58.0" fitWidth="57.0" layoutX="370.0" layoutY="14.0" onKeyPressed="#updateMonth1" onMouseClicked="#updateMonth1" pickOnBounds="true" preserveRatio="true">
                                                             <image>
                                                                 <Image url="@res/fecla_left.png" />
                                                             </image>
                                                         </ImageView>
-                                                        <ImageView fx:id="flechaRigth" fitHeight="58.0" fitWidth="57.0" layoutX="572.0" layoutY="17.0" onKeyPressed="#updateMonth" onMouseClicked="#updateMonth" pickOnBounds="true" preserveRatio="true">
+                                                        <ImageView fx:id="flechaRigth" fitHeight="58.0" fitWidth="57.0" layoutX="572.0" layoutY="17.0" onKeyPressed="#updateMonth1" onMouseClicked="#updateMonth1" pickOnBounds="true" preserveRatio="true">
                                                             <image>
                                                                 <Image url="@res/flecha_rigth.png" />
                                                             </image>
@@ -126,12 +126,12 @@
                                                                 <Font size="24.0" />
                                                             </font>
                                                         </Label>
-                                                        <ImageView id="flechaLeft" fitHeight="58.0" fitWidth="57.0" layoutX="370.0" layoutY="14.0" onKeyPressed="#updateMonth" onMouseClicked="#updateMonth" pickOnBounds="true" preserveRatio="true">
+                                                        <ImageView id="flechaLeft" fitHeight="58.0" fitWidth="57.0" layoutX="370.0" layoutY="14.0" onKeyPressed="#updateMonth2" onMouseClicked="#updateMonth2" pickOnBounds="true" preserveRatio="true">
                                                             <image>
                                                                 <Image url="@res/fecla_left.png" />
                                                             </image>
                                                         </ImageView>
-                                                        <ImageView fx:id="flechaRigt2" fitHeight="58.0" fitWidth="57.0" layoutX="572.0" layoutY="17.0" onKeyPressed="#updateMonth" onMouseClicked="#updateMonth" pickOnBounds="true" preserveRatio="true">
+                                                        <ImageView fx:id="flechaRigt2" fitHeight="58.0" fitWidth="57.0" layoutX="572.0" layoutY="17.0" onKeyPressed="#updateMonth2" onMouseClicked="#updateMonth2" pickOnBounds="true" preserveRatio="true">
                                                             <image>
                                                                 <Image url="@res/flecha_rigth.png" />
                                                             </image>

@@ -21,7 +21,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import static controller.SesionsCalendarController.master_current;
+import static controller.SesionsCalendarController.master_current1;
 import static utilities.VariablesAndMethodsUtils.*;
 
 public class SesionTableController implements Initializable {
@@ -33,8 +33,6 @@ public class SesionTableController implements Initializable {
 
     @FXML
     TableView<SesionTableRow> tv_session;
-    TableColumn<Sesion, Integer> tb_session, tb_master1, tb_master2;
-    TableColumn<Sesion, String> tb_asig, tb_content, tb_doc1, tb_doc2, tb_tipAula, tb_aula, tb_nota;
 
 
     @Override
@@ -79,7 +77,7 @@ public class SesionTableController implements Initializable {
     private void printM2() {
         for (int i = 0; i < aSession.size(); i++) {
             if (aSession.get(i).getMaster2() != null
-                    && aSession.get(i).getMaster2().equals(master_current)
+                    && aSession.get(i).getMaster2().equals(tcm.getMaster())
                     && !aSession.get(i).isActivo()) addSesionInTable(aSession.get(i));
         }
     }
@@ -155,10 +153,8 @@ public class SesionTableController implements Initializable {
      */
     private void registredSesion(SesionTableRow obj,
                                  ArrayList<GridSesion> aGridSesions) {
-        boolean ret = false;
         for (GridSesion gs : aGridSesions) {
             if (gs.getMiniGrid().equals(gp_waiting)) {
-                ret = true;
                 gs.getLblAsign().setText(obj.getAsignatura());
                 gs.getLblContenido().setText(obj.getContenido());
                 gs.getLblJuntSep().setText(getValueJunSep(obj));
@@ -179,7 +175,6 @@ public class SesionTableController implements Initializable {
                 break;
             }
         }
-        System.out.println("encontró grid ?  " + ret);
     }
 
     private String getValueDoc(SesionTableRow obj, int numDoc) {

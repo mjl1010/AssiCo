@@ -114,7 +114,6 @@ public class VariablesAndMethodsUtils {
             aPlanifCalend) {
             if (dp.getMaster().equals(master) &&
                     dp.getCalendarioBase().getDia() == calBaseID) {
-                System.out.println("se reristró correctamente en el array");
                 dp.setSesion(sesion); //TODO validar sesiones comunes
                 break;
             }

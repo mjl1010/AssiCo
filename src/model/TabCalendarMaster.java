@@ -27,13 +27,14 @@ public class TabCalendarMaster {
     private Label lblYear, lblMonth;
     private Properties p;
     private String yearInit, monthInit;
-    public  Master master_current;
+    public Master master_current;
     private ArrayList<DiaPlanificado> aPlanCalCurrentMonth;
 
-    public  ArrayList<GridSesion> aGridSesions;
+    public ArrayList<GridSesion> aGridSesions;
 
     /**
      * Método constructor
+     *
      * @param gp_calendar
      * @param master
      * @param smb_menuOption
@@ -60,10 +61,10 @@ public class TabCalendarMaster {
      */
     private void addEventCalendars() {
         GridPane gp = new GridPane();
-        for (int i = 0; i < gp_calendar.getChildren().size()-1; i++) {
+        for (int i = 0; i < gp_calendar.getChildren().size() - 1; i++) {
             if (gp_calendar.getChildren().get(i) instanceof javafx.scene.Group) continue;
             gp_calendar.getChildren().get(i).addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-                if (event.getClickCount() == 2){
+                if (event.getClickCount() == 2) {
                     smb_menuOption.setDisable(false);
                     marcarGrid((GridPane) event.getSource());
                 }
@@ -73,26 +74,19 @@ public class TabCalendarMaster {
 
     /**
      * tratamiento de grid seleccionado
+     *
      * @param miniGrid
      */
     private void marcarGrid(GridPane miniGrid) {
 //        smb_menuOption_st = smb_menuOption;
         if (gp_waiting != null) desmarcarGridWaiting();
         gp_waiting = miniGrid;
-        gp_waiting.setStyle("-fx-border-color: #A9D0F5;" +
-                "-fx-border-style: solid inside;" +
-                "-fx-border-width: 2;" +
-                "-fx-border-insets: 5;" +
-                "-fx-border-radius: 5;" );
+        gp_waiting.setStyle("-fx-border-color: #A9D0F5;" + "-fx-border-style: solid inside;" + "-fx-border-width: 2;" + "-fx-border-insets: 5;" + "-fx-border-radius: 5;");
         smb_menuOption.setDisable(false);
     }
 
-    public void desmarcarGridWaiting(){
-        gp_waiting.setStyle("-fx-border-color: ;" +
-                "-fx-border-style: ;" +
-                "-fx-border-width: 0;" +
-                "-fx-border-insets: 0;" +
-                "-fx-border-radius: 0;");
+    public void desmarcarGridWaiting() {
+        gp_waiting.setStyle("-fx-border-color: ;" + "-fx-border-style: ;" + "-fx-border-width: 0;" + "-fx-border-insets: 0;" + "-fx-border-radius: 0;");
         smb_menuOption.setDisable(true);
     }
 
@@ -110,11 +104,9 @@ public class TabCalendarMaster {
         }
     }
 
-    private void updatesDatesMiniGridCalendar(int indexRow, int indexColumn,
-                                              DiaPlanificado pc) {
+    private void updatesDatesMiniGridCalendar(int indexRow, int indexColumn, DiaPlanificado pc) {
         for (int i = 0; i < aGridSesions.size(); i++) {
-            if (aGridSesions.get(i).getIndexRow() == indexRow &&
-                    aGridSesions.get(i).getIndexColum() == indexColumn) {
+            if (aGridSesions.get(i).getIndexRow() == indexRow && aGridSesions.get(i).getIndexColum() == indexColumn) {
                 aGridSesions.get(i).getLblDateID().setText(pc.getCalendarioBase().getIdDate());
                 aGridSesions.get(i).getLblDateID().setStyle("-fx-background-color: #BE81F7");
                 if (pc.getSesion() != null) regDatosSesion(aGridSesions.get(i), pc.getSesion());
@@ -125,13 +117,13 @@ public class TabCalendarMaster {
 
     /**
      * registrar sesion
+     *
      * @param gs
      * @param s
      */
     private void regDatosSesion(GridSesion gs, Sesion s) {
         String jp = "S";
-        if (s.getMaster1() != null
-                && s.getMaster2() != null) jp = "J";
+        if (s.getMaster1() != null && s.getMaster2() != null) jp = "J";
         gs.getLblAsign().setText(s.getAsignatura());
         gs.getLblContenido().setText(s.getContenidos());
         gs.getLblJuntSep().setText(jp);
@@ -166,9 +158,7 @@ public class TabCalendarMaster {
         for (int i = 0; i < aPlanifCalend.size(); i++) {
             String date = String.valueOf(aPlanifCalend.get(i).getCalendarioBase().getDia());
             LocalDate ld = LocalDate.parse(date, DateTimeFormatter.BASIC_ISO_DATE);
-            if (String.valueOf(ld.getYear()).equalsIgnoreCase(lblYear.getText()) &&
-                    ld.getMonth().name().equalsIgnoreCase(lblMonth.getText()) &&
-                    aPlanifCalend.get(i).getMaster().equals(master))
+            if (String.valueOf(ld.getYear()).equalsIgnoreCase(lblYear.getText()) && ld.getMonth().name().equalsIgnoreCase(lblMonth.getText()) && aPlanifCalend.get(i).getMaster().equals(master))
                 aPlanCalCurrentMonth.add(aPlanifCalend.get(i));
         }
     }
@@ -208,18 +198,16 @@ public class TabCalendarMaster {
         for (int i = 0; i < aMonths.size(); i++) {
             if (aMonths.get(i).equalsIgnoreCase(lblMonth.getText())) {
                 if (iv.getId().equalsIgnoreCase("flechaLeft")) {
-                    if (lblMonth.getText().equalsIgnoreCase(CourseRangeController.firtDay.getMonth().name()) &&
-                            lblYear.getText().equalsIgnoreCase(String.valueOf(CourseRangeController.firtDay
-                                    .getYear()))) break;
+                    if (lblMonth.getText().equalsIgnoreCase(CourseRangeController.firtDay.getMonth().name()) && lblYear.getText().equalsIgnoreCase(String.valueOf(CourseRangeController.firtDay.getYear())))
+                        break;
                     if (i == 0) {
                         lblMonth.setText(aMonths.get(aMonths.size() - 1));
                         yearInit = String.valueOf(Integer.parseInt(yearInit) - 1);
                         lblYear.setText(yearInit);
                     } else lblMonth.setText(aMonths.get(--i));
                 } else { // flechaRigth
-                    if (lblMonth.getText().equalsIgnoreCase(CourseRangeController.endDay.getMonth().name()) &&
-                            lblYear.getText().equalsIgnoreCase(String.valueOf(CourseRangeController.endDay
-                                    .getYear()))) break;
+                    if (lblMonth.getText().equalsIgnoreCase(CourseRangeController.endDay.getMonth().name()) && lblYear.getText().equalsIgnoreCase(String.valueOf(CourseRangeController.endDay.getYear())))
+                        break;
                     if (i == aMonths.size() - 1) {
                         lblMonth.setText(aMonths.get(0));
                         yearInit = String.valueOf(Integer.parseInt(yearInit) + 1);
@@ -243,10 +231,9 @@ public class TabCalendarMaster {
 
     // metodos de grid
 
-    public void setTipoAulaSet(String newTipAul){
+    public void setTipoAulaSet(String newTipAul) {
         for (GridSesion gs : aGridSesions) {
-            if (gs.getMiniGrid()
-                    .equals(gp_waiting)){
+            if (gs.getMiniGrid().equals(gp_waiting)) {
                 getSesion(gs.getSesionID()).setTipoAula(newTipAul);
                 gs.getCbo_tipoAula().setValue((newTipAul));
                 break;
@@ -257,12 +244,12 @@ public class TabCalendarMaster {
 
     /**
      * Set Contenido of sesion
+     *
      * @param newSes
      */
-    public  void setAulaSes(int newSes){
+    public void setAulaSes(int newSes) {
         for (GridSesion gs : aGridSesions) {
-            if (gs.getMiniGrid()
-                    .equals(gp_waiting)){
+            if (gs.getMiniGrid().equals(gp_waiting)) {
                 getSesion(gs.getSesionID()).setAula(String.valueOf(newSes));
                 gs.getLblAula().setText(String.valueOf((newSes)));
                 break;
@@ -272,12 +259,12 @@ public class TabCalendarMaster {
 
     /**
      * Set Contenido of sesion
+     *
      * @param newContent
      */
-    public  void setContenido(String newContent){
+    public void setContenido(String newContent) {
         for (GridSesion gs : aGridSesions) {
-            if (gs.getMiniGrid()
-                    .equals(gp_waiting)){
+            if (gs.getMiniGrid().equals(gp_waiting)) {
                 getSesion(gs.getSesionID()).setContenidos(newContent);
                 gs.getLblContenido().setText((newContent));
                 break;
@@ -287,12 +274,12 @@ public class TabCalendarMaster {
 
     /**
      * Set Asignatura of sesion
+     *
      * @param newAsign
      */
-    public  void setAsign(String newAsign){
+    public void setAsign(String newAsign) {
         for (GridSesion gs : aGridSesions) {
-            if (gs.getMiniGrid()
-                    .equals(gp_waiting)){
+            if (gs.getMiniGrid().equals(gp_waiting)) {
                 getSesion(gs.getSesionID()).setAsignatura(newAsign);
                 gs.getLblAsign().setText((newAsign));
                 break;
@@ -306,7 +293,7 @@ public class TabCalendarMaster {
      */
     public void outSesion() {
         for (GridSesion gs : aGridSesions) {
-            if (gs.getMiniGrid().equals(gp_waiting)){
+            if (gs.getMiniGrid().equals(gp_waiting)) {
                 System.out.println("gs.getSesionID() : " + gs.getSesionID());
                 System.out.println("getSesion(gs.getSesionID()) : " + getSesion(gs.getSesionID()));
                 if (getSesion(gs.getSesionID()).getMaster1() != null)
@@ -322,11 +309,11 @@ public class TabCalendarMaster {
     /**
      * setActive() - sesion object
      * back limbo
+     *
      * @param sesionID
      */
     private void setActiveValueSesion(int sesionID) {
-        for (Sesion s :
-                aSession) {
+        for (Sesion s : aSession) {
             if (s.getId() == sesionID) {
                 s.setActivo(false);
                 break;
