@@ -4,10 +4,7 @@ import controller.*;
 import entity.DiaPlanificado;
 import entity.Master;
 import entity.Sesion;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -30,8 +27,10 @@ public class TabCalendarMaster {
     private Label lblYear, lblMonth;
     private Properties p;
     private String yearInit, monthInit;
-    public static Master master_current;
+    public  Master master_current;
     private ArrayList<DiaPlanificado> aPlanCalCurrentMonth;
+
+    public  ArrayList<GridSesion> aGridSesions;
 
     /**
      * Método constructor
@@ -169,7 +168,7 @@ public class TabCalendarMaster {
             LocalDate ld = LocalDate.parse(date, DateTimeFormatter.BASIC_ISO_DATE);
             if (String.valueOf(ld.getYear()).equalsIgnoreCase(lblYear.getText()) &&
                     ld.getMonth().name().equalsIgnoreCase(lblMonth.getText()) &&
-                    aPlanifCalend.get(i).getMaster().equals(master1))
+                    aPlanifCalend.get(i).getMaster().equals(master))
                 aPlanCalCurrentMonth.add(aPlanifCalend.get(i));
         }
     }
@@ -203,25 +202,6 @@ public class TabCalendarMaster {
             System.out.println(e.getCause() + "&" + e.getMessage());
         }
     }
-
-    // Getters and Setters
-
-    public GridPane getGp_calendar() {
-        return gp_calendar;
-    }
-
-    public void setGp_calendar(GridPane gp_calendar) {
-        this.gp_calendar = gp_calendar;
-    }
-
-    public Master getMaster() {
-        return master;
-    }
-
-    public void setMaster(Master master) {
-        this.master = master;
-    }
-
 
     public void updateMonth(MouseEvent mouseEvent) {
         ImageView iv = (ImageView) mouseEvent.getSource();
@@ -258,5 +238,125 @@ public class TabCalendarMaster {
         registredGridSessions();
         updateCalendarMaster();
         addEventCalendars();
+    }
+
+
+    // metodos de grid
+
+    public void setTipoAulaSet(String newTipAul){
+        for (GridSesion gs : aGridSesions) {
+            if (gs.getMiniGrid()
+                    .equals(gp_waiting)){
+                getSesion(gs.getSesionID()).setTipoAula(newTipAul);
+                gs.getCbo_tipoAula().setValue((newTipAul));
+                break;
+            }
+        }
+    }
+
+
+    /**
+     * Set Contenido of sesion
+     * @param newSes
+     */
+    public  void setAulaSes(int newSes){
+        for (GridSesion gs : aGridSesions) {
+            if (gs.getMiniGrid()
+                    .equals(gp_waiting)){
+                getSesion(gs.getSesionID()).setAula(String.valueOf(newSes));
+                gs.getLblAula().setText(String.valueOf((newSes)));
+                break;
+            }
+        }
+    }
+
+    /**
+     * Set Contenido of sesion
+     * @param newContent
+     */
+    public  void setContenido(String newContent){
+        for (GridSesion gs : aGridSesions) {
+            if (gs.getMiniGrid()
+                    .equals(gp_waiting)){
+                getSesion(gs.getSesionID()).setContenidos(newContent);
+                gs.getLblContenido().setText((newContent));
+                break;
+            }
+        }
+    }
+
+    /**
+     * Set Asignatura of sesion
+     * @param newAsign
+     */
+    public  void setAsign(String newAsign){
+        for (GridSesion gs : aGridSesions) {
+            if (gs.getMiniGrid()
+                    .equals(gp_waiting)){
+                getSesion(gs.getSesionID()).setAsignatura(newAsign);
+                gs.getLblAsign().setText((newAsign));
+                break;
+            }
+        }
+    }
+
+    /**
+     * sesion sube
+     * al limpio
+     */
+    public void outSesion() {
+        for (GridSesion gs : aGridSesions) {
+            if (gs.getMiniGrid().equals(gp_waiting)){
+                System.out.println("gs.getSesionID() : " + gs.getSesionID());
+                System.out.println("getSesion(gs.getSesionID()) : " + getSesion(gs.getSesionID()));
+                if (getSesion(gs.getSesionID()).getMaster1() != null)
+                    removeSesionToPlanifList(getCalBasID(gs.getLblDateID().getText()), master1);
+                if (getSesion(gs.getSesionID()).getMaster2() != null)
+                    removeSesionToPlanifList(getCalBasID(gs.getLblDateID().getText()), master2);
+                setActiveValueSesion(gs.getSesionID());
+                break;
+            }
+        }
+    }
+
+    /**
+     * setActive() - sesion object
+     * back limbo
+     * @param sesionID
+     */
+    private void setActiveValueSesion(int sesionID) {
+        for (Sesion s :
+                aSession) {
+            if (s.getId() == sesionID) {
+                s.setActivo(false);
+                break;
+            }
+        }
+    }
+
+    // Getters and Setters
+
+    public GridPane getGp_calendar() {
+        return gp_calendar;
+    }
+
+    public void setGp_calendar(GridPane gp_calendar) {
+        this.gp_calendar = gp_calendar;
+    }
+
+    public Master getMaster() {
+        return master;
+    }
+
+    public void setMaster(Master master) {
+        this.master = master;
+    }
+
+    public ArrayList<GridSesion> getaGridSesions() {
+        return aGridSesions;
+    }
+
+    public void setaGridSesions(ArrayList<GridSesion> aGridSesions) {
+        this.aGridSesions = aGridSesions;
     }
 }

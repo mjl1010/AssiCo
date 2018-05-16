@@ -13,13 +13,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.GridSesion;
+import model.TabCalendarMaster;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import static utilities.VariablesAndMethodsUtils.*;
-import controller.SesionsCalendarController.*;
 
 
 /**
@@ -29,7 +29,7 @@ public class UpdateDocenteController implements Initializable {
 
     private static Parent root;
     private static Stage stage;
-    private SesionsCalendarController scc;
+    private static TabCalendarMaster tcm;
 
     @FXML
     ComboBox cbo_doc1, cbo_doc2;
@@ -79,7 +79,7 @@ public class UpdateDocenteController implements Initializable {
      * @param numDocente
      */
     private void setDocente(String value, int numDocente) {
-        for (GridSesion gs : aGridSesions) {
+        for (GridSesion gs : tcm.aGridSesions) {
             if (gs.getMiniGrid().equals(gp_waiting)) {
                 switch (numDocente) {
                     case 1:
@@ -114,7 +114,8 @@ public class UpdateDocenteController implements Initializable {
     }
 
 
-    public void openScene() throws IOException {
+    public void openScene(TabCalendarMaster tcm) throws IOException {
+        this.tcm = tcm;
         root = FXMLLoader.load(getClass().getResource("/view/popUp/intUpdateDocente.fxml"));
         stage = new Stage(StageStyle.DECORATED);
         stage.setTitle("Editar Docente");

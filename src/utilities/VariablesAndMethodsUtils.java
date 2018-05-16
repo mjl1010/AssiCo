@@ -43,7 +43,6 @@ public class VariablesAndMethodsUtils {
     private static final ArrayList<String> aTipoSession = new ArrayList<>();
 
     // var crud ses
-    public static ArrayList<GridSesion> aGridSesions;
     public static GridPane gp_waiting;
 
 
@@ -87,62 +86,7 @@ public class VariablesAndMethodsUtils {
 
     /**** Métodos ******/
 
-    public static void setTipoAulaSet(String newTipAul){
-        for (GridSesion gs :
-                aGridSesions) {
-            if (gs.getMiniGrid()
-                    .equals(gp_waiting)){
-                getSesion(gs.getSesionID()).setTipoAula(newTipAul);
-                gs.getCbo_tipoAula().setValue((newTipAul));
-            }
-        }
-    }
 
-
-    /**
-     * Set Contenido of sesion
-     * @param newSes
-     */
-    public static void setAulaSes(int newSes){
-        for (GridSesion gs :
-                aGridSesions) {
-            if (gs.getMiniGrid()
-                    .equals(gp_waiting)){
-                getSesion(gs.getSesionID()).setAula(String.valueOf(newSes));
-                gs.getLblAula().setText(String.valueOf((newSes)));
-            }
-        }
-    }
-
-    /**
-     * Set Contenido of sesion
-     * @param newContent
-     */
-    public static void setContenido(String newContent){
-        for (GridSesion gs :
-                aGridSesions) {
-            if (gs.getMiniGrid()
-                    .equals(gp_waiting)){
-                getSesion(gs.getSesionID()).setContenidos(newContent);
-                gs.getLblContenido().setText((newContent));
-            }
-        }
-    }
-
-    /**
-     * Set Asignatura of sesion
-     * @param newAsign
-     */
-    public static void setAsign(String newAsign){
-        for (GridSesion gs :
-                aGridSesions) {
-            if (gs.getMiniGrid()
-                    .equals(gp_waiting)){
-                getSesion(gs.getSesionID()).setAsignatura(newAsign);
-                gs.getLblAsign().setText((newAsign));
-            }
-        }
-    }
 
     /**
      * close stage

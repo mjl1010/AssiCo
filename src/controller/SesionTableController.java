@@ -18,6 +18,7 @@ import utilities.SesionTableRow;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import static controller.SesionsCalendarController.master_current;
@@ -28,8 +29,6 @@ public class SesionTableController implements Initializable {
     private static Parent root;
     private static Stage stage;
     private static Scene scene;
-
-
     private static TabCalendarMaster tcm;
 
     @FXML
@@ -52,7 +51,6 @@ public class SesionTableController implements Initializable {
         stage.setTitle("Lista de Sesiones");
         stage.setScene(scene);
         stage.show();
-        System.out.println("lo manda !!");
     }
 
     /**
@@ -129,7 +127,7 @@ public class SesionTableController implements Initializable {
                 if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY
                         && event.getClickCount() == 2) {
                     SesionTableRow objSesionTableRow = row.getItem();
-                    registredSesion(objSesionTableRow);
+                    registredSesion(objSesionTableRow, tcm.aGridSesions);
                     setObjSesion(objSesionTableRow);
                     tcm.desmarcarGridWaiting();
                     closeStage(stage);
@@ -155,10 +153,12 @@ public class SesionTableController implements Initializable {
      *
      * @param obj
      */
-    private void registredSesion(SesionTableRow obj) {
-        for (GridSesion gs :
-                aGridSesions) {
+    private void registredSesion(SesionTableRow obj,
+                                 ArrayList<GridSesion> aGridSesions) {
+        boolean ret = false;
+        for (GridSesion gs : aGridSesions) {
             if (gs.getMiniGrid().equals(gp_waiting)) {
+                ret = true;
                 gs.getLblAsign().setText(obj.getAsignatura());
                 gs.getLblContenido().setText(obj.getContenido());
                 gs.getLblJuntSep().setText(getValueJunSep(obj));
@@ -179,6 +179,7 @@ public class SesionTableController implements Initializable {
                 break;
             }
         }
+        System.out.println("encontró grid ?  " + ret);
     }
 
     private String getValueDoc(SesionTableRow obj, int numDoc) {

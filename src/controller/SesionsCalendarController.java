@@ -47,14 +47,14 @@ public class SesionsCalendarController implements Initializable {
 
     private static SplitMenuButton smb_menuOption_st;
 
-    private TabCalendarMaster tcm1, tcm2;
+    private static TabCalendarMaster tcm1, tcm2;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        addOptionsToSplitMenu();
-        configSplitMenuButton();
         tcm1 = new TabCalendarMaster(gp_calendar1, master1, smb_menuOption1, lblYear1, lblMonth1);
         tcm2 = new TabCalendarMaster(gp_calendar2, master2, smb_menuOption2, lblYear2, lblMonth2);
+        addOptionsToSplitMenu();
+        configSplitMenuButton();
     }
 
     /**
@@ -93,11 +93,12 @@ public class SesionsCalendarController implements Initializable {
                     switch (id) {
                         case "menuOpt1_1":
                             // agrega sesión
+                            System.out.println("beforee tcm1 : " + tcm1);
                             new SesionTableController().openScene(tcm1);
                             break;
                         case "menuOpt2_1":
                             // Quitar sesión
-                            outSesion();
+                            tcm1.outSesion();
                             tcm1.updateCalendar();
                             printSesionReg();
                             break;
@@ -112,24 +113,24 @@ public class SesionsCalendarController implements Initializable {
                             break;
                         case "menuOpt6_1":
                             // Editar de Asignatura
-                            new UpdateAsignController().openScene();
+                            new UpdateAsignController().openScene(tcm1);
 
                             break;
                         case "menuOpt7_1":
                             // Editar Contenido
-                            new UpdateContenidoController().openScene();
+                            new UpdateContenidoController().openScene(tcm1);
                             break;
                         case "menuOpt8_1":
                             // Editar Profesor(s)
-                            new UpdateDocenteController().openScene();
+                            new UpdateDocenteController().openScene(tcm1);
                             break;
                         case "menuOpt9_1":
                             // Editar Tipo de Aula
-                            new UpdateTipoAulaController().openScene();
+                            new UpdateTipoAulaController().openScene(tcm1);
                             break;
                         case "menuOpt10_1":
                             // Editar Aula
-                            new UpdateAulaController().openScene();
+                            new UpdateAulaController().openScene(tcm1);
                             break;
                     }
                 }
@@ -137,40 +138,6 @@ public class SesionsCalendarController implements Initializable {
         }
     }
 
-    /**
-     * sesion sube
-     * al limpio
-     */
-    private void outSesion() {
-        for (GridSesion gs :
-                aGridSesions) {
-            if (gs.getMiniGrid().equals(gp_waiting)){
-                System.out.println("gs.getSesionID() : " + gs.getSesionID());
-                System.out.println("getSesion(gs.getSesionID()) : " + getSesion(gs.getSesionID()));
-                if (getSesion(gs.getSesionID()).getMaster1() != null)
-                    removeSesionToPlanifList(getCalBasID(gs.getLblDateID().getText()), master1);
-                if (getSesion(gs.getSesionID()).getMaster2() != null)
-                    removeSesionToPlanifList(getCalBasID(gs.getLblDateID().getText()), master2);
-                setActiveValueSesion(gs.getSesionID());
-                break;
-            }
-        }
-    }
-
-    /**
-     * setActive() - sesion object
-     * back limbo
-     * @param sesionID
-     */
-    private void setActiveValueSesion(int sesionID) {
-        for (Sesion s :
-                aSession) {
-            if (s.getId() == sesionID) {
-                s.setActivo(false);
-                break;
-            }
-        }
-    }
 
     /**
      * month previous

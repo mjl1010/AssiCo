@@ -9,6 +9,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import model.TabCalendarMaster;
 
 import java.io.IOException;
 import java.net.URL;
@@ -16,7 +17,6 @@ import java.util.ResourceBundle;
 
 import static utilities.VariablesAndMethodsUtils.aTiposAula;
 import static utilities.VariablesAndMethodsUtils.closeStage;
-import static utilities.VariablesAndMethodsUtils.setTipoAulaSet;
 
 /**
  * Created by MIchael
@@ -25,6 +25,8 @@ public class UpdateTipoAulaController implements Initializable {
 
     private static Parent root;
     private static Stage stage;
+    private static TabCalendarMaster tcm;
+
 
     @FXML
     ComboBox cbo_tipoAula;
@@ -39,11 +41,12 @@ public class UpdateTipoAulaController implements Initializable {
     }
 
     public void savedTipoAula(MouseEvent mouseEvent) {
-        setTipoAulaSet(cbo_tipoAula.getValue().toString());
+        tcm.setTipoAulaSet(cbo_tipoAula.getValue().toString());
         closeStage(stage);
     }
 
-    public void openScene() throws IOException {
+    public void openScene(TabCalendarMaster tcm) throws IOException {
+        this.tcm = tcm;
         root = FXMLLoader.load(getClass().getResource("/view/popUp/intUpdateTipoAula.fxml"));
         stage = new Stage(StageStyle.DECORATED);
         stage.setTitle("Editar Tipo de Aula");

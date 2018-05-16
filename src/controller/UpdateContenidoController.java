@@ -9,13 +9,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import model.TabCalendarMaster;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import static utilities.VariablesAndMethodsUtils.closeStage;
-import static utilities.VariablesAndMethodsUtils.setContenido;
 
 /**
  * Created by Michael
@@ -23,13 +24,14 @@ import static utilities.VariablesAndMethodsUtils.setContenido;
 public class UpdateContenidoController implements Initializable {
     private static Parent root;
     private static Stage stage;
+    private static TabCalendarMaster tcm;
 
     @FXML
     TextField txtCont;
 
     public void savedAsig(MouseEvent mouseEvent) {
         if (!txtCont.getText().isEmpty()){
-            setContenido(txtCont.getText());
+            tcm.setContenido(txtCont.getText());
         }
         closeStage(stage);
     }
@@ -38,7 +40,8 @@ public class UpdateContenidoController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
     }
 
-    public void openScene() throws IOException {
+    public void openScene(TabCalendarMaster tcm) throws IOException {
+        this.tcm = tcm;
         root = FXMLLoader.load(getClass().getResource("/view/popUp/intUpdateCont.fxml"));
         stage = new Stage(StageStyle.DECORATED);
         stage.setTitle("Editar Contenido");
