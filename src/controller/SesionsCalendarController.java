@@ -27,16 +27,20 @@ import static utilities.VariablesAndMethodsUtils.*;
 public class SesionsCalendarController implements Initializable {
 
     @FXML
-    GridPane gp_calendar1;
+    GridPane gp_calendar1
+            , gp_calendar2;
 
     @FXML
-    Label lblYear1, lblMonth1;
+    Label lblYear1, lblMonth1,
+            lblYear2, lblMonth2;
 
     @FXML
-    SplitMenuButton smb_menuOption1;
+    SplitMenuButton smb_menuOption1,
+                smb_menuOption2;;
 
     @FXML
-    MenuItem menuOpt1_1, menuOpt2_1, menuOpt3_1, menuOpt4_1, menuOpt5_1, menuOpt6_1, menuOpt7_1, menuOpt8_1, menuOpt9_1, menuOpt10_1;
+    MenuItem menuOpt1_1, menuOpt2_1, menuOpt3_1, menuOpt4_1, menuOpt5_1, menuOpt6_1, menuOpt7_1, menuOpt8_1, menuOpt9_1, menuOpt10_1,
+            menuOpt1_2, menuOpt2_2, menuOpt3_2, menuOpt4_2, menuOpt5_2, menuOpt6_2, menuOpt7_2, menuOpt8_2, menuOpt9_2, menuOpt10_2;;
 
     private ArrayList<MenuItem> aSplitMenuButton;
     public static Master master_current;
@@ -50,6 +54,7 @@ public class SesionsCalendarController implements Initializable {
         addOptionsToSplitMenu();
         configSplitMenuButton();
         tcm1 = new TabCalendarMaster(gp_calendar1, master1, smb_menuOption1, lblYear1, lblMonth1);
+        tcm2 = new TabCalendarMaster(gp_calendar2, master2, smb_menuOption2, lblYear2, lblMonth2);
     }
 
     /**
