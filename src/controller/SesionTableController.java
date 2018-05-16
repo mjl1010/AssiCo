@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -21,7 +22,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import static controller.SesionsCalendarController.master_current1;
 import static utilities.VariablesAndMethodsUtils.*;
 
 public class SesionTableController implements Initializable {
@@ -125,11 +125,11 @@ public class SesionTableController implements Initializable {
                 if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY
                         && event.getClickCount() == 2) {
                     SesionTableRow objSesionTableRow = row.getItem();
-                    registredSesion(objSesionTableRow, tcm.aGridSesions);
                     setObjSesion(objSesionTableRow);
+                    registredSesion(objSesionTableRow, tcm.getaGridSesions());
                     tcm.desmarcarGridWaiting();
                     closeStage(stage);
-                    printSesionReg();
+                    printSesionReg_TEST();
                 }
             });
             return row;
@@ -154,7 +154,7 @@ public class SesionTableController implements Initializable {
     private void registredSesion(SesionTableRow obj,
                                  ArrayList<GridSesion> aGridSesions) {
         for (GridSesion gs : aGridSesions) {
-            if (gs.getMiniGrid().equals(gp_waiting)) {
+            if (gs.getMiniGrid().equals(tcm.getGp_waiting())) {
                 gs.getLblAsign().setText(obj.getAsignatura());
                 gs.getLblContenido().setText(obj.getContenido());
                 gs.getLblJuntSep().setText(getValueJunSep(obj));
@@ -163,16 +163,33 @@ public class SesionTableController implements Initializable {
                 gs.getCbo_doc1().setValue(getValueDoc(obj, 1));
                 gs.getCbo_doc2().setValue(getValueDoc(obj, 2));
                 gs.setSesionID(Integer.parseInt(obj.getSesionID()));
+                gs.setVisibleComboBoxs(true);
                 if (obj.getMaster1().length() > 0)
-                    addSesionToPlanifList(
-                            getSesion(Integer.parseInt(obj.getSesionID())), getCalBasID(gs.getLblDateID().getText()),
+                    addSesionToPlanifList(getSesion(Integer.parseInt(obj.getSesionID())), getCalBasID(gs.getLblDateID().getText()),
                             master1);
                 if (obj.getMaster2().length() > 0)
-                    addSesionToPlanifList(
-                            getSesion(Integer.parseInt(obj.getSesionID())), getCalBasID(gs.getLblDateID().getText()),
+                    addSesionToPlanifList(getSesion(Integer.parseInt(obj.getSesionID())), getCalBasID(gs.getLblDateID().getText()),
                             master2);
-                gs.setVisibleComboBoxs(true);
+                if (!obj.getMaster1().isEmpty() &&
+                        !obj.getMaster2().isEmpty())
+                    registedSesionInCalendarVinculado(gs.getLblDateID(), obj);
                 break;
+            }
+        }
+    }
+
+    private void registedSesionInCalendarVinculado(Label lblDateID, SesionTableRow obj) {
+        for (GridSesion gd : tcm.getTcm_vinculado().getaGridSesions()) {
+            if (gd.getLblDateID().getText().equals(lblDateID.getText())){
+                gd.getLblAsign().setText(obj.getAsignatura());
+                gd.getLblContenido().setText(obj.getContenido());
+                gd.getLblJuntSep().setText(getValueJunSep(obj));
+                gd.getLblAula().setText(obj.getAula());
+                gd.getCbo_tipoAula().setValue(getValueTipoAula(obj));
+                gd.getCbo_doc1().setValue(getValueDoc(obj, 1));
+                gd.getCbo_doc2().setValue(getValueDoc(obj, 2));
+                gd.setSesionID(Integer.parseInt(obj.getSesionID()));
+                gd.setVisibleComboBoxs(true);
             }
         }
     }

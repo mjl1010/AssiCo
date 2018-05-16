@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import model.GridSesion;
 import model.TabCalendarMaster;
 
 import java.io.IOException;
@@ -16,6 +17,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import static utilities.VariablesAndMethodsUtils.closeStage;
+import static utilities.VariablesAndMethodsUtils.getSesion;
 
 /**
  * Created by Michael
@@ -31,10 +33,26 @@ public class UpdateAsignController implements Initializable {
 
 
     public void savedAsig(MouseEvent mouseEvent) {
-        if (!txtAsign.getText().isEmpty()){
-            tcm.setAsign(txtAsign.getText());
+        if (!txtAsign.getText().isEmpty()) tcm.setAsign(txtAsign.getText());
+        for (GridSesion gs : tcm.getaGridSesions()) {
+            if (gs.getMiniGrid().equals(tcm.getGp_waiting())){
+                if (getSesion(gs.getSesionID()).getMaster1() != null &&
+                        getSesion(gs.getSesionID()).getMaster2() != null)
+                setValorInCalendarVinculado(gs.getLblDateID().getText(), txtAsign.getText());
+                break;
+            }
         }
         closeStage(stage);
+    }
+
+    private void setValorInCalendarVinculado(String date, String newAsign) {
+        for (GridSesion gs : tcm.getTcm_vinculado().getaGridSesions()) {
+            if (gs.getLblDateID().getText().equals(date)){
+                System.out.println("SE CAMBIA ASIGNATURA EN OTRO CALENDARIO");
+                gs.getLblAsign().setText(newAsign);
+                break;
+            }
+        }
     }
 
     @Override

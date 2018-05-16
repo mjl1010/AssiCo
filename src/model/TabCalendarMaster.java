@@ -30,7 +30,9 @@ public class TabCalendarMaster {
     public Master master_current;
     private ArrayList<DiaPlanificado> aPlanCalCurrentMonth;
 
-    public ArrayList<GridSesion> aGridSesions;
+    private ArrayList<GridSesion> aGridSesions;
+    private GridPane gp_waiting;
+    private TabCalendarMaster tcm_vinculado;
 
     /**
      * Método constructor
@@ -60,7 +62,6 @@ public class TabCalendarMaster {
      * add event to calendar
      */
     private void addEventCalendars() {
-        GridPane gp = new GridPane();
         for (int i = 0; i < gp_calendar.getChildren().size() - 1; i++) {
             if (gp_calendar.getChildren().get(i) instanceof javafx.scene.Group) continue;
             gp_calendar.getChildren().get(i).addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
@@ -78,7 +79,6 @@ public class TabCalendarMaster {
      * @param miniGrid
      */
     private void marcarGrid(GridPane miniGrid) {
-//        smb_menuOption_st = smb_menuOption;
         if (gp_waiting != null) desmarcarGridWaiting();
         gp_waiting = miniGrid;
         gp_waiting.setStyle("-fx-border-color: #A9D0F5;" + "-fx-border-style: solid inside;" + "-fx-border-width: 2;" + "-fx-border-insets: 5;" + "-fx-border-radius: 5;");
@@ -321,6 +321,24 @@ public class TabCalendarMaster {
         }
     }
 
+    /**
+     * syncroniza el gp_witing en función
+     * al dia que reciba
+     * @param dia_gpWaiting
+     */
+    public void synchronizeSesion(String dia_gpWaiting){
+        for (GridSesion gridSesion:
+             aGridSesions) {
+            if (gridSesion.getLblDateID().getText()
+                    .equals(dia_gpWaiting)){
+                gp_waiting = gridSesion.getMiniGrid();
+                break;
+            }
+        }
+    }
+
+
+
     // Getters and Setters
 
     public GridPane getGp_calendar() {
@@ -345,5 +363,21 @@ public class TabCalendarMaster {
 
     public void setaGridSesions(ArrayList<GridSesion> aGridSesions) {
         this.aGridSesions = aGridSesions;
+    }
+
+    public GridPane getGp_waiting() {
+        return gp_waiting;
+    }
+
+    public void setGp_waiting(GridPane gp_waiting) {
+        this.gp_waiting = gp_waiting;
+    }
+
+    public TabCalendarMaster getTcm_vinculado() {
+        return tcm_vinculado;
+    }
+
+    public void setTcm_vinculado(TabCalendarMaster tcm_vinculado) {
+        this.tcm_vinculado = tcm_vinculado;
     }
 }

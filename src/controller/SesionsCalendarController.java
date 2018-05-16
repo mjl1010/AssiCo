@@ -8,7 +8,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import model.TabCalendarMaster;
@@ -51,6 +50,8 @@ public class SesionsCalendarController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         tcm1 = new TabCalendarMaster(gp_calendar1, master1, smb_menuOption1, lblYear1, lblMonth1);
         tcm2 = new TabCalendarMaster(gp_calendar2, master2, smb_menuOption2, lblYear2, lblMonth2);
+        tcm1.setTcm_vinculado(tcm2);
+        tcm2.setTcm_vinculado(tcm1);
         addOptionsToSplitMenu();
         configSplitMenuButton(aSplitMenuButton1, tcm1);
         configSplitMenuButton(aSplitMenuButton2, tcm2);
@@ -109,7 +110,7 @@ public class SesionsCalendarController implements Initializable {
                             // Quitar sesión
                             tcm.outSesion();
                             tcm.updateCalendar();
-                            printSesionReg();
+                            printSesionReg_TEST();
                             break;
                         case "menuOpt3":
                             // Intercambio de Sesión

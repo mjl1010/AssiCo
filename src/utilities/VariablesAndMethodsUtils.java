@@ -43,7 +43,6 @@ public class VariablesAndMethodsUtils {
     private static final ArrayList<String> aTipoSession = new ArrayList<>();
 
     // var crud ses
-    public static GridPane gp_waiting;
 
 
     /**
@@ -53,6 +52,7 @@ public class VariablesAndMethodsUtils {
         uni = new Universidad(1, "uoc");
         master1 = new Master(1, "M01", "master1");
         master2 = new Master(2, "M02", "master2");
+        master1.setMasterVinculado(master2);
         aTiposAula = FXCollections.observableArrayList(
                 "A", "M", "P", "T", "V"
         );
@@ -114,7 +114,7 @@ public class VariablesAndMethodsUtils {
             aPlanifCalend) {
             if (dp.getMaster().equals(master) &&
                     dp.getCalendarioBase().getDia() == calBaseID) {
-                dp.setSesion(sesion); //TODO validar sesiones comunes
+                dp.setSesion(sesion);
                 break;
             }
         }
@@ -333,7 +333,7 @@ public class VariablesAndMethodsUtils {
         }
     }
 
-    public static void printSesionReg(){
+    public static void printSesionReg_TEST(){
         System.out.println("/**** LISTA DE SESIONES RERIGSTRADAS *****/");
         for (DiaPlanificado dp :
                 aPlanifCalend) {

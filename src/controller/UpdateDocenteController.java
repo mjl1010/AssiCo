@@ -79,8 +79,8 @@ public class UpdateDocenteController implements Initializable {
      * @param numDocente
      */
     private void setDocente(String value, int numDocente) {
-        for (GridSesion gs : tcm.aGridSesions) {
-            if (gs.getMiniGrid().equals(gp_waiting)) {
+        for (GridSesion gs : tcm.getaGridSesions()) {
+            if (gs.getMiniGrid().equals(tcm.getGp_waiting())) {
                 switch (numDocente) {
                     case 1:
                         getSesion(gs.getSesionID()).setDocente1(findNewDocente(value));
