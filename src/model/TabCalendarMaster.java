@@ -32,7 +32,10 @@ public class TabCalendarMaster {
 
     private ArrayList<GridSesion> aGridSesions;
     private GridPane gp_waiting;
+    private GridPane gp_exchange;
     private TabCalendarMaster tcm_vinculado;
+
+    private boolean ischange;
 
     /**
      * Método constructor
@@ -80,9 +83,32 @@ public class TabCalendarMaster {
      */
     private void marcarGrid(GridPane miniGrid) {
         if (gp_waiting != null) desmarcarGridWaiting();
-        gp_waiting = miniGrid;
-        gp_waiting.setStyle("-fx-border-color: #A9D0F5;" + "-fx-border-style: solid inside;" + "-fx-border-width: 2;" + "-fx-border-insets: 5;" + "-fx-border-radius: 5;");
+        if (!ischange) {
+            gp_waiting = miniGrid;
+            gp_waiting.setStyle("-fx-border-color: #A9D0F5;" + "-fx-border-style: solid inside;" + "-fx-border-width: 2;" + "-fx-border-insets: 5;" + "-fx-border-radius: 5;");
+        } else {
+            gp_exchange = miniGrid;
+            gp_exchange.setStyle("-fx-border-color: #A9D0F5;" + "-fx-border-style: solid inside;" + "-fx-border-width: 2;" + "-fx-border-insets: 5;" + "-fx-border-radius: 5;");
+            generarCambio();
+        }
         smb_menuOption.setDisable(false);
+    }
+
+    private void generarCambio() {
+        String date1 = getDate(gp_waiting);
+        String date2 = getDate(gp_exchange);
+        SesionsExchange.change(this, getDate(gp_waiting), getDate(gp_exchange));
+    }
+
+    private String getDate(GridPane gridPane) {
+        String date = "";
+        for (GridSesion gs : aGridSesions) {
+            if (gs.getMiniGrid().equals(gridPane)){
+                date = gs.getLblDateID().getText();
+                break;
+            }
+        }
+        return date;
     }
 
     public void desmarcarGridWaiting() {
@@ -284,12 +310,13 @@ public class TabCalendarMaster {
     public void outSesion() {
         for (GridSesion gs : aGridSesions) {
             if (gs.getMiniGrid().equals(gp_waiting)) {
-                System.out.println("gs.getSesionID() : " + gs.getSesionID());
-                System.out.println("getSesion(gs.getSesionID()) : " + getSesion(gs.getSesionID()));
                 if (getSesion(gs.getSesionID()).getMaster1() != null)
                     removeSesionToPlanifList(getCalBasID(gs.getLblDateID().getText()), master1);
                 if (getSesion(gs.getSesionID()).getMaster2() != null)
                     removeSesionToPlanifList(getCalBasID(gs.getLblDateID().getText()), master2);
+                if (getSesion(gs.getSesionID()).getMaster1() != null &&
+                        getSesion(gs.getSesionID()).getMaster2() != null)
+                    tcm_vinculado.updateCalendar();
                 setActiveValueSesion(gs.getSesionID());
                 break;
             }
@@ -369,5 +396,13 @@ public class TabCalendarMaster {
 
     public void setTcm_vinculado(TabCalendarMaster tcm_vinculado) {
         this.tcm_vinculado = tcm_vinculado;
+    }
+
+    public boolean isIschange() {
+        return ischange;
+    }
+
+    public void setIschange(boolean ischange) {
+        this.ischange = ischange;
     }
 }

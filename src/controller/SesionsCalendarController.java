@@ -5,18 +5,23 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.stage.Window;
 import model.TabCalendarMaster;
+import utilities.AlertHelper;
 
+import javax.swing.text.Utilities;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import static utilities.AlertHelper.showAlert;
 import static utilities.VariablesAndMethodsUtils.*;
 
 /**
@@ -110,10 +115,13 @@ public class SesionsCalendarController implements Initializable {
                             // Quitar sesión
                             tcm.outSesion();
                             tcm.updateCalendar();
-                            printSesionReg_TEST();
                             break;
                         case "menuOpt3":
                             // Intercambio de Sesión
+                            Window owner = smb_menuOption1.getScene().getWindow();
+                            showAlert(Alert.AlertType.INFORMATION, owner, "Intercambio de Sesiones",
+                                    "Seleccione con doble Click la sesión que desea cambiar");
+                            tcm.setIschange(true);
                             break;
                         case "menuOpt4":
                             // Editar Practica 1
