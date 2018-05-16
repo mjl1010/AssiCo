@@ -48,7 +48,6 @@ public class UpdateAsignController implements Initializable {
     private void setValorInCalendarVinculado(String date, String newAsign) {
         for (GridSesion gs : tcm.getTcm_vinculado().getaGridSesions()) {
             if (gs.getLblDateID().getText().equals(date)){
-                System.out.println("SE CAMBIA ASIGNATURA EN OTRO CALENDARIO");
                 gs.getLblAsign().setText(newAsign);
                 break;
             }

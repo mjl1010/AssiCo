@@ -9,6 +9,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import model.GridSesion;
 import model.TabCalendarMaster;
 
 import java.io.IOException;
@@ -17,6 +18,7 @@ import java.util.ResourceBundle;
 
 import static utilities.VariablesAndMethodsUtils.aTiposAula;
 import static utilities.VariablesAndMethodsUtils.closeStage;
+import static utilities.VariablesAndMethodsUtils.getSesion;
 
 /**
  * Created by MIchael
@@ -41,8 +43,31 @@ public class UpdateTipoAulaController implements Initializable {
     }
 
     public void savedTipoAula(MouseEvent mouseEvent) {
-        tcm.setTipoAulaSet(cbo_tipoAula.getValue().toString());
+        if (!cbo_tipoAula.getValue().equals(cbo_tipoAula.getItems().get(0)))
+        setTipoAulaSet(cbo_tipoAula.getValue().toString());
         closeStage(stage);
+    }
+
+    public void setTipoAulaSet(String newTipAul) {
+        for (GridSesion gs : tcm.getaGridSesions()) {
+            if (gs.getMiniGrid().equals(tcm.getGp_waiting())) {
+                getSesion(gs.getSesionID()).setTipoAula(newTipAul);
+                gs.getCbo_tipoAula().setValue((newTipAul));
+                if (getSesion(gs.getSesionID()).getMaster1() != null &&
+                        getSesion(gs.getSesionID()).getMaster2() != null)
+                    setCboTipoAulaInCalendarVinculado(gs.getLblDateID().getText(), newTipAul);
+                break;
+            }
+        }
+    }
+
+    private void setCboTipoAulaInCalendarVinculado(String date, String newTipAul) {
+        for (GridSesion gs : tcm.getTcm_vinculado().getaGridSesions()) {
+            if (gs.getLblDateID().getText().equals(date)){
+                gs.getCbo_tipoAula().setValue(newTipAul);
+                break;
+            }
+        }
     }
 
     public void openScene(TabCalendarMaster tcm) throws IOException {

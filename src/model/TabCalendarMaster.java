@@ -231,16 +231,6 @@ public class TabCalendarMaster {
 
     // metodos de grid
 
-    public void setTipoAulaSet(String newTipAul) {
-        for (GridSesion gs : aGridSesions) {
-            if (gs.getMiniGrid().equals(gp_waiting)) {
-                getSesion(gs.getSesionID()).setTipoAula(newTipAul);
-                gs.getCbo_tipoAula().setValue((newTipAul));
-                break;
-            }
-        }
-    }
-
 
     /**
      * Set Contenido of sesion
