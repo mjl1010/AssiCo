@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import model.GridSesion;
 
 import java.time.LocalDate;
@@ -30,7 +31,7 @@ public class VariablesAndMethodsUtils {
     public static ArrayList<String> aMonths = new ArrayList<>();
     private static final DateTimeFormatter FORMATTER2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static ArrayList<String> aListAsignaturas = new ArrayList<>();
-    private static ArrayList<Docente> aDocentes = new ArrayList<>();
+    public static ArrayList<Docente> aDocentes = new ArrayList<>();
     public static ObservableList<String> aDocentesID = FXCollections.observableArrayList();
     public static String PATH_PROPERTIES = "config.properties";
     public static Universidad uni;
@@ -42,8 +43,6 @@ public class VariablesAndMethodsUtils {
     private static final ArrayList<String> aTipoSession = new ArrayList<>();
 
     // var crud ses
-    public static ArrayList<GridSesion> aGridSesions;
-    public static GridPane gp_waiting;
 
 
     /**
@@ -53,6 +52,7 @@ public class VariablesAndMethodsUtils {
         uni = new Universidad(1, "uoc");
         master1 = new Master(1, "M01", "master1");
         master2 = new Master(2, "M02", "master2");
+        master1.setMasterVinculado(master2);
         aTiposAula = FXCollections.observableArrayList(
                 "A", "M", "P", "T", "V"
         );
@@ -87,12 +87,21 @@ public class VariablesAndMethodsUtils {
     /**** Métodos ******/
 
 
+
     /**
      * close stage
      * @param stage
      */
     public static void closeStage(Stage stage){
         stage.close();
+    }
+
+    /**
+     * close stage
+     * @param stage
+     */
+    public static void closeStage(Window stage){
+        ((Stage) stage).close();
     }
 
     /**
@@ -105,11 +114,22 @@ public class VariablesAndMethodsUtils {
             aPlanifCalend) {
             if (dp.getMaster().equals(master) &&
                     dp.getCalendarioBase().getDia() == calBaseID) {
-                System.out.println("se reristró correctamente en el array");
-                dp.setSesion(sesion); //TODO validar sesiones comunes
+                dp.setSesion(sesion);
                 break;
             }
         }
+    }
+
+    /**
+     *
+     * @param masterID
+     * @return
+     */
+    public static Master getMasterSes(String masterID) {
+        Master m;
+        if (master1.getCode().equals(masterID)) m = master1;
+        else m = master2;
+        return m;
     }
 
     /**
@@ -121,7 +141,10 @@ public class VariablesAndMethodsUtils {
         Sesion ses = null;
         for (Sesion s :
                 aSession) {
-            if (s.getId() == sesionID) ses = s;
+            if (s.getId() == sesionID){
+                ses = s;
+                break;
+            }
         }
         return ses;
     }
@@ -310,7 +333,7 @@ public class VariablesAndMethodsUtils {
         }
     }
 
-    public static void printSesionReg(){
+    public static void printSesionReg_TEST(){
         System.out.println("/**** LISTA DE SESIONES RERIGSTRADAS *****/");
         for (DiaPlanificado dp :
                 aPlanifCalend) {

@@ -19,36 +19,32 @@ import java.util.ResourceBundle;
 import static utilities.VariablesAndMethodsUtils.closeStage;
 import static utilities.VariablesAndMethodsUtils.getSesion;
 
-/**
- * Created by Michael
- */
-public class UpdateAsignController implements Initializable {
-
+public class UpdateAulaController implements Initializable {
     private static Parent root;
     private static Stage stage;
     private static TabCalendarMaster tcm;
 
     @FXML
-    TextField txtAsign;
-
+    TextField txtAula;
 
     public void savedAsig(MouseEvent mouseEvent) {
-        if (!txtAsign.getText().isEmpty()) tcm.setAsign(txtAsign.getText());
+        if (!txtAula.getText().isEmpty()) tcm.setAulaSes(Integer.parseInt(txtAula.getText()));
         for (GridSesion gs : tcm.getaGridSesions()) {
             if (gs.getMiniGrid().equals(tcm.getGp_waiting())){
                 if (getSesion(gs.getSesionID()).getMaster1() != null &&
                         getSesion(gs.getSesionID()).getMaster2() != null)
-                setValorInCalendarVinculado(gs.getLblDateID().getText(), txtAsign.getText());
+                    setValorInCalendarVinculado(gs.getLblDateID().getText(), txtAula.getText());
                 break;
             }
         }
+
         closeStage(stage);
     }
 
-    private void setValorInCalendarVinculado(String date, String newAsign) {
+    private void setValorInCalendarVinculado(String date, String newaula) {
         for (GridSesion gs : tcm.getTcm_vinculado().getaGridSesions()) {
             if (gs.getLblDateID().getText().equals(date)){
-                gs.getLblAsign().setText(newAsign);
+                gs.getLblAula().setText(newaula);
                 break;
             }
         }
@@ -60,11 +56,10 @@ public class UpdateAsignController implements Initializable {
 
     public void openScene(TabCalendarMaster tcm) throws IOException {
         this.tcm = tcm;
-        root = FXMLLoader.load(getClass().getResource("/view/popUp/intUpdateAsig.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/view/popUp/intUpdateAula.fxml"));
         stage = new Stage(StageStyle.DECORATED);
-        stage.setTitle("Editar Asignaturas");
+        stage.setTitle("Editar Aula");
         stage.setScene(new Scene(root, 329, 70));
         stage.show();
     }
-
 }

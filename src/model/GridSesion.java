@@ -1,6 +1,5 @@
 package model;
 
-import entity.Sesion;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.control.ComboBox;
@@ -22,7 +21,7 @@ public class GridSesion {
     private HBox hBox_doc;
     private ComboBox cbo_tipoAula, cbo_doc1, cbo_doc2;
     private int indexRow, indexColum;
-    private int sesionID;
+    private int sesionID = -1;
 
     public GridSesion() {
     }
@@ -172,7 +171,7 @@ public class GridSesion {
      */
     private void settingMiniGrid() {
         miniGrid = new GridPane();
-        miniGrid.gridLinesVisibleProperty().setValue(true);
+        miniGrid.gridLinesVisibleProperty().setValue(false);
 
         miniGrid.getColumnConstraints().add(0, new ColumnConstraints());
         miniGrid.getColumnConstraints().add(1, new ColumnConstraints(100));
@@ -182,10 +181,12 @@ public class GridSesion {
         miniGrid.getRowConstraints().add(1, new RowConstraints(27));
         miniGrid.getRowConstraints().add(2, new RowConstraints(27));
 
+        //miniGrid.setStyle("-fx-background-color: #cccccc");
+
         lblDateID.setPrefHeight(26);
 
-        if (lblContenido.getText().isEmpty()) lblDateID.setStyle("-fx-background-color: #FFFFFF");
-        else lblDateID.setStyle("-fx-background-color: #BE81F7");
+        if (lblContenido.getText().isEmpty()) lblDateID.setStyle("-fx-background-color: #cccccc");
+        else lblDateID.setStyle("-fx-background-color: #aa0000");
         lblDateID.setTextFill(Paint.valueOf("#f2efef"));
         lblDateID.setFont(new Font("System Bold", 8));
         lblAsign.setFont(new Font(9));
@@ -211,15 +212,28 @@ public class GridSesion {
         miniGrid.getColumnConstraints().get(2).setHalignment(HPos.CENTER);
 
         cbo_tipoAula.getItems().addAll(aTiposAula);
+        cbo_tipoAula.setStyle("-fx-font: 10px \"Serif\";");
+
         cbo_doc1.getItems().addAll(aDocentesID);
         cbo_doc1.setPrefHeight(20);
+        cbo_doc1.setStyle("-fx-font: 9px \"Serif\";");
+
         cbo_doc2.getItems().addAll(aDocentesID);
         cbo_doc2.setPrefHeight(20);
-
-        cbo_tipoAula.setStyle("-fx-font: 10px \"Serif\";");
-        cbo_doc1.setStyle("-fx-font: 9px \"Serif\";");
         cbo_doc2.setStyle("-fx-font: 9px \"Serif\";");
 
+        setVisibleComboBoxs(false);
+
+    }
+
+    /**
+     *
+     * @param val
+     */
+    public void setVisibleComboBoxs(boolean val){
+        cbo_tipoAula.setVisible(val);
+        cbo_doc1.setVisible(val);
+        cbo_doc2.setVisible(val);
     }
 
     @Override

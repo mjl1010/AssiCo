@@ -14,6 +14,7 @@ import model.TabCalendarMaster;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import static utilities.VariablesAndMethodsUtils.closeStage;
@@ -22,33 +23,31 @@ import static utilities.VariablesAndMethodsUtils.getSesion;
 /**
  * Created by Michael
  */
-public class UpdateAsignController implements Initializable {
-
+public class UpdateContenidoController implements Initializable {
     private static Parent root;
     private static Stage stage;
     private static TabCalendarMaster tcm;
 
     @FXML
-    TextField txtAsign;
-
+    TextField txtCont;
 
     public void savedAsig(MouseEvent mouseEvent) {
-        if (!txtAsign.getText().isEmpty()) tcm.setAsign(txtAsign.getText());
+        if (!txtCont.getText().isEmpty()) tcm.setContenido(txtCont.getText());
         for (GridSesion gs : tcm.getaGridSesions()) {
             if (gs.getMiniGrid().equals(tcm.getGp_waiting())){
                 if (getSesion(gs.getSesionID()).getMaster1() != null &&
                         getSesion(gs.getSesionID()).getMaster2() != null)
-                setValorInCalendarVinculado(gs.getLblDateID().getText(), txtAsign.getText());
+                    setValorInCalendarVinculado(gs.getLblDateID().getText(), txtCont.getText());
                 break;
             }
         }
         closeStage(stage);
     }
 
-    private void setValorInCalendarVinculado(String date, String newAsign) {
+    private void setValorInCalendarVinculado(String date, String newCont) {
         for (GridSesion gs : tcm.getTcm_vinculado().getaGridSesions()) {
             if (gs.getLblDateID().getText().equals(date)){
-                gs.getLblAsign().setText(newAsign);
+                gs.getLblContenido().setText(newCont);
                 break;
             }
         }
@@ -60,11 +59,10 @@ public class UpdateAsignController implements Initializable {
 
     public void openScene(TabCalendarMaster tcm) throws IOException {
         this.tcm = tcm;
-        root = FXMLLoader.load(getClass().getResource("/view/popUp/intUpdateAsig.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/view/popUp/intUpdateCont.fxml"));
         stage = new Stage(StageStyle.DECORATED);
-        stage.setTitle("Editar Asignaturas");
+        stage.setTitle("Editar Contenido");
         stage.setScene(new Scene(root, 329, 70));
         stage.show();
     }
-
 }
