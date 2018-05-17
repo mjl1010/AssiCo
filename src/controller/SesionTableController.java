@@ -155,15 +155,15 @@ public class SesionTableController implements Initializable {
                                  ArrayList<GridSesion> aGridSesions) {
         for (GridSesion gs : aGridSesions) {
             if (gs.getMiniGrid().equals(tcm.getGp_waiting())) {
-                gs.getLblAsign().setText(obj.getAsignatura());
-                gs.getLblContenido().setText(obj.getContenido());
-                gs.getLblJuntSep().setText(getValueJunSep(obj));
-                gs.getLblAula().setText(obj.getAula());
-                gs.getCbo_tipoAula().setValue(getValueTipoAula(obj));
-                gs.getCbo_doc1().setValue(getValueDoc(obj, 1));
-                gs.getCbo_doc2().setValue(getValueDoc(obj, 2));
-                gs.setSesionID(Integer.parseInt(obj.getSesionID()));
-                gs.setVisibleComboBoxs(true);
+//                gs.getLblAsign().setText(obj.getAsignatura());
+//                gs.getLblContenido().setText(obj.getContenido());
+//                gs.getLblJuntSep().setText(getValueJunSep(obj));
+//                gs.getLblAula().setText(obj.getAula());
+//                gs.getCbo_tipoAula().setValue(getValueTipoAula(obj));
+//                gs.getCbo_doc1().setValue(getValueDoc(obj, 1));
+//                gs.getCbo_doc2().setValue(getValueDoc(obj, 2));
+//                gs.setSesionID(Integer.parseInt(obj.getSesionID()));
+//                gs.setVisibleComboBoxs(true);
                 if (obj.getMaster1().length() > 0)
                     addSesionToPlanifList(getSesion(Integer.parseInt(obj.getSesionID())), getCalBasID(gs.getLblDateID().getId()),
                             master1);
@@ -173,6 +173,7 @@ public class SesionTableController implements Initializable {
                 if (!obj.getMaster1().isEmpty() &&
                         !obj.getMaster2().isEmpty())
                     registedSesionInCalendarVinculado(gs.getLblDateID(), obj);
+                tcm.updateCalendar();
                 break;
             }
         }

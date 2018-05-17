@@ -14,6 +14,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Window;
 import model.TabCalendarMaster;
 import utilities.AlertHelper;
+import utilities.TextResponsive;
 
 import javax.swing.text.Utilities;
 import java.io.IOException;
@@ -28,6 +29,7 @@ import static utilities.VariablesAndMethodsUtils.*;
  * Created by Michael
  */
 public class SesionsCalendarController implements Initializable {
+    private static SesionsCalendarController main;
 
     @FXML
     GridPane gp_calendar1, gp_calendar2;
@@ -52,6 +54,7 @@ public class SesionsCalendarController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        main = this;
         tcm1 = new TabCalendarMaster(gp_calendar1, master1, smb_menuOption1, lblYear1, lblMonth1);
         tcm2 = new TabCalendarMaster(gp_calendar2, master2, smb_menuOption2, lblYear2, lblMonth2);
         tcm1.setTcm_vinculado(tcm2);
@@ -59,6 +62,7 @@ public class SesionsCalendarController implements Initializable {
         addOptionsToSplitMenu();
         configSplitMenuButton(aSplitMenuButton1, tcm1);
         configSplitMenuButton(aSplitMenuButton2, tcm2);
+        refreshText();
     }
 
     /**
@@ -162,10 +166,25 @@ public class SesionsCalendarController implements Initializable {
      */
     public void updateMonth1(MouseEvent mouseEvent) {
         tcm1.updateMonth(mouseEvent);
+        if (tcm2 != null) tcm2.updateMonth(mouseEvent);
+
     }
 
     public void updateMonth2(MouseEvent mouseEvent) {
+        tcm1.updateMonth(mouseEvent);
         tcm2.updateMonth(mouseEvent);
+    }
+
+    public static void refreshText() {
+        if (main == null) return;
+
+        main.lblYear1.setStyle(TextResponsive.getFontStyle("h3"));
+        main.lblYear2.setStyle(TextResponsive.getFontStyle("h3"));
+        main.lblMonth1.setStyle(TextResponsive.getFontStyle("h3"));
+        main.lblMonth2.setStyle(TextResponsive.getFontStyle("h3"));
+
+        tcm1.updateCalendar();
+        tcm2.updateCalendar();
     }
 }
 

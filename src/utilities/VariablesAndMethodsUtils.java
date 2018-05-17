@@ -77,8 +77,12 @@ public class VariablesAndMethodsUtils {
         aMonths.add("November");
         aMonths.add("December");
 
-        addData();
+        //addData();
 
+    }
+
+    public static void init() {
+        addData();
     }
 
     /**** Métodos ******/

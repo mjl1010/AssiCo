@@ -105,5 +105,7 @@ public class FooterController implements Initializable {
         SelectCourse.refreshText();
         SelectMaster.refreshText();
         CourseRangeController.refreshText();
+        HolydayCalendarController.refreshText();
+        SesionsCalendarController.refreshText();
     }
 }

@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
 public class SelectCourse implements Initializable {
     private static SelectCourse main;
 
-    public static String postSelectMaster;
+    static String postSelectMaster;
 
     @FXML
     VBox curso_col_1;

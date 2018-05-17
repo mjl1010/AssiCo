@@ -16,14 +16,20 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SesionsCalendarController">
-
+<AnchorPane minHeight="600.0" minWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SesionsCalendarController">
     <children>
-        <HBox layoutX="4.0" layoutY="12.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <children>
+        <HBox alignment="TOP_CENTER">
             <children>
-                <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" tabClosingPolicy="UNAVAILABLE" HBox.hgrow="ALWAYS">
+                <fx:include source="intHeader.fxml" />
+            </children>
+        </HBox>
+        <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+            <children>
+                <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-effect: null;" tabClosingPolicy="UNAVAILABLE" HBox.hgrow="ALWAYS">
                     <tabs>
-                        <Tab fx:id="tab_m1" id="tab_m1" text="Master 1">
+                        <Tab id="tab_m1" fx:id="tab_m1" text="Master 1">
                             <content>
                                 <AnchorPane>
                                     <children>
@@ -177,7 +183,16 @@
                     </tabs>
                 </TabPane>
             </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" top="20.0" />
+               </VBox.margin>
+        </HBox>
+        <HBox alignment="BOTTOM_CENTER">
+            <children>
+                <fx:include source="intFooter.fxml" />
+            </children>
         </HBox>
     </children>
-
+    </VBox>
+    </children>
 </AnchorPane>

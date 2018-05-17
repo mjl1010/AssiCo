@@ -49,7 +49,7 @@ public class GridSesion {
         hBox_doc = new HBox();
         this.indexRow = indexRow;
         this.indexColum = indexColum;
-        backgroundColor = "#eeeeee";
+        backgroundColor = "#f5f5f5";
         textColor = "#000000";
         settingMiniGrid();
     }
@@ -178,6 +178,7 @@ public class GridSesion {
 
     public void setBackgroundColor(String backgroundColor) {
         this.backgroundColor = backgroundColor;
+        System.out.println(":D");
     }
 
     public String getTextColor() {

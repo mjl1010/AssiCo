@@ -1,5 +1,6 @@
 package controller;
 
+import entity.DiaPlanificado;
 import entity.Master;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,6 +16,7 @@ import model.DatosModel;
 import start.MainLogin;
 import utilities.AlertHelper;
 import utilities.TextResponsive;
+import utilities.VariablesAndMethodsUtils;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -22,6 +24,8 @@ import java.util.ResourceBundle;
 
 public class SelectMaster implements Initializable {
     private static SelectMaster main;
+
+    public static ArrayList<DiaPlanificado> planificacionCalendario;
 
     @FXML
     VBox smaster_col_1;
@@ -56,8 +60,18 @@ public class SelectMaster implements Initializable {
                 btn.setAlignment(Pos.CENTER);
                 btn.setWrapText(true);
 
+                Master m1 = masters.get(i);
+                Master m2 = masters.get(i).getMasterVinculado();
+
                 if (SelectCourse.postSelectMaster != null) {
                     btn.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                        DatosModel.connect(null);
+                        planificacionCalendario = DatosModel.getPlanificacionCalendarios(LoginController.token.getUsuario(), SelectCourse.postSelectMaster, m1, m2);
+                        DatosModel.closeConnection();
+
+                        // TODO Pasárle planificacion y parametrizar
+                        VariablesAndMethodsUtils.init();
+
                         MainLogin.openStage(getClass().getResource("/view/intSesionsCalendar.fxml"), "Planificaciones - Calendario " + SelectCourse.postSelectMaster, null);
                         ((Stage) main.smaster_atras.getScene().getWindow()).close();
                     });

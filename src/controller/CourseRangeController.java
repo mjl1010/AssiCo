@@ -6,10 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import entity.CalendarioBase;
@@ -40,10 +37,13 @@ public class CourseRangeController implements Initializable {
     private static CourseRangeController main;
 
     @FXML
+    TextField nameCurso;
+
+    @FXML
     DatePicker initCurso, endCurso, initVacations, endVacations;
 
     @FXML
-    Label courseRange1, courseRange2, courseRange3, courseRange4;
+    Label courseRange0, courseRange1, courseRange2, courseRange3, courseRange4;
 
     @FXML
     Button generarCurso, generarCursoBack;
@@ -154,9 +154,11 @@ public class CourseRangeController implements Initializable {
      * @return obj CalendarBase
      */
     public static CalendarioBase generarObjectCalendarBase(LocalDate date_temp) {
-        return new CalendarioBase(Integer.parseInt(date_temp.format(DateTimeFormatter.BASIC_ISO_DATE)),
+        CalendarioBase cb = new CalendarioBase(Integer.parseInt(date_temp.format(DateTimeFormatter.BASIC_ISO_DATE)),
                 VariablesAndMethodsUtils.uni, DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).format(date_temp),
-                 date_temp.getDayOfWeek().getValue(), date_temp.format(FORMATTER), "");
+                date_temp.getDayOfWeek().getValue(), date_temp.format(FORMATTER), (date_temp.getYear()-1) + "-" + date_temp.getYear());
+
+        return cb;
     }
 
 
@@ -213,11 +215,13 @@ public class CourseRangeController implements Initializable {
     public static void refreshText() {
         if (main == null) return;
 
+        main.nameCurso.setStyle(TextResponsive.getFontStyle("h5"));
         main.initCurso.setStyle(TextResponsive.getFontStyle("h5"));
         main.endCurso.setStyle(TextResponsive.getFontStyle("h5"));
         main.initVacations.setStyle(TextResponsive.getFontStyle("h5"));
         main.endVacations.setStyle(TextResponsive.getFontStyle("h5"));
 
+        main.courseRange0.setStyle(TextResponsive.getFontStyle("h4"));
         main.courseRange1.setStyle(TextResponsive.getFontStyle("h4"));
         main.courseRange2.setStyle(TextResponsive.getFontStyle("h4"));
         main.courseRange3.setStyle(TextResponsive.getFontStyle("h4"));
