@@ -3,10 +3,9 @@ package utilities;
 import entity.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import model.GridSesion;
+import model.TabCalendarMaster;
 import start.MainLogin;
 
 import java.time.LocalDate;
@@ -42,9 +41,6 @@ public class VariablesAndMethodsUtils {
 
     private static int sesionID = 0;
     private static final ArrayList<String> aTipoSession = new ArrayList<>();
-
-    // var crud ses
-
 
     /**
      * static function
@@ -87,7 +83,16 @@ public class VariablesAndMethodsUtils {
 
     /**** Métodos ******/
 
-
+    public static DiaPlanificado getDiaPlanificado(String date, TabCalendarMaster tcm){
+        DiaPlanificado dpl = null;
+        for (DiaPlanificado dp : aPlanifCalend) {
+            if (dp.getMaster().equals(tcm.getMaster())){
+                dpl = dp;
+                break;
+            }
+        }
+        return dpl;
+    }
 
     /**
      * close stage
