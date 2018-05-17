@@ -5,7 +5,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import model.TabCalendarMaster;
 import start.MainLogin;
 
 import java.time.LocalDate;
@@ -90,7 +89,8 @@ public class VariablesAndMethodsUtils {
     public static DiaPlanificado getDiaPlanificado(String date, TabCalendarMaster tcm){
         DiaPlanificado dpl = null;
         for (DiaPlanificado dp : aPlanifCalend) {
-            if (dp.getMaster().equals(tcm.getMaster())){
+            if (dp.getMaster().equals(tcm.getMaster()) &&
+                    dp.getCalendarioBase().getIdDate().equals(date)){
                 dpl = dp;
                 break;
             }
@@ -177,7 +177,7 @@ public class VariablesAndMethodsUtils {
      * remove sesion into PlanificacionList
      * @param calBaseID
      */
-    public static void removeSesionToPlanifList(int calBaseID, Master master){
+    public static void removeSesion_PlanifList(int calBaseID, Master master){
         for (DiaPlanificado dp :
                 aPlanifCalend) {
             if (dp.getMaster().equals(master) &&

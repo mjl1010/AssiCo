@@ -1,4 +1,4 @@
-package model;
+package utilities;
 
 import controller.*;
 import entity.DiaPlanificado;
@@ -9,7 +9,6 @@ import javafx.scene.control.SplitMenuButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import utilities.TextResponsive;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -33,12 +32,15 @@ public class TabCalendarMaster {
 
     private ArrayList<GridSesion> aGridSesions;
     private GridPane gp_waiting;
+    private String date_exchange1;
+    private GridPane gp_exchange2;
     private String gp_waiting_style;
     private GridPane gp_exchange;
     private String gp_exchange_style;
     private TabCalendarMaster tcm_vinculado;
 
     private boolean ischange;
+    private int contTest = 0;
 
     /**
      * Método constructor
@@ -70,12 +72,24 @@ public class TabCalendarMaster {
     private void addEventCalendars() {
         for (int i = 0; i < gp_calendar.getChildren().size() - 1; i++) {
             if (gp_calendar.getChildren().get(i) instanceof javafx.scene.Group) continue;
-            String sesion = aGridSesions.get(i).getLblDateID().getId();
+            //String sesion = aGridSesions.get(i).getLblDateID().getId();
             gp_calendar.getChildren().get(i).addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+
+//                if (event.getClickCount() == 2) {
+//                    if (sesion != null && !sesion.isEmpty()) {
+//                        smb_menuOption.setDisable(false);
+//                        marcarGrid((GridPane) event.getSource());
+//                    }
+//                }
+
                 if (event.getClickCount() == 2) {
-                    if (sesion != null && !sesion.isEmpty()) {
-                        smb_menuOption.setDisable(false);
-                        marcarGrid((GridPane) event.getSource());
+                    smb_menuOption.setDisable(false);
+                    if (!ischange) marcarGrid((GridPane) event.getSource());
+                    else {
+                        gp_exchange2 = (GridPane) event.getSource();
+                        gp_exchange2.setStyle("-fx-border-color: #A9D0F5;" + "-fx-border-style: solid inside;" + "-fx-border-width: 2;" + "-fx-border-insets: 5;" + "-fx-border-radius: 5;");
+                        SesionsExchange.change(this, date_exchange1, getDate(gp_exchange2));
+                        ischange = false;
                     }
                 }
             });
@@ -89,34 +103,34 @@ public class TabCalendarMaster {
      */
     private void marcarGrid(GridPane miniGrid) {
         if (gp_waiting != null) desmarcarGridWaiting();
+        gp_waiting = miniGrid;
+        gp_waiting.setStyle("-fx-border-color: #A9D0F5;" + "-fx-border-style: solid inside;" + "-fx-border-width: 2;" + "-fx-border-insets: 5;" + "-fx-border-radius: 5;");
 
-        if (!ischange) {
-            gp_waiting = miniGrid;
-            gp_waiting_style = gp_waiting.getStyle();
-            gp_waiting.setStyle(gp_waiting_style + "-fx-border-color: #A9D0F5;" + "-fx-border-style: solid inside;" + "-fx-border-width: 5;");
-        } else {
-            gp_exchange = miniGrid;
-            gp_exchange_style = gp_exchange.getStyle();
-            gp_exchange.setStyle(gp_exchange_style + "-fx-border-color: #A9D0F5;" + "-fx-border-style: solid inside;" + "-fx-border-width: 5;");
-            generarCambio();
-        }
+//        if (!ischange) {
+//            gp_waiting = miniGrid;
+//            gp_waiting_style = gp_waiting.getStyle();
+//            gp_waiting.setStyle(gp_waiting_style + "-fx-border-color: #A9D0F5;" + "-fx-border-style: solid inside;" + "-fx-border-width: 5;");
+//        } else {
+//            gp_exchange = miniGrid;
+//            gp_exchange_style = gp_exchange.getStyle();
+//            gp_exchange.setStyle(gp_exchange_style + "-fx-border-color: #A9D0F5;" + "-fx-border-style: solid inside;" + "-fx-border-width: 5;");
+//            generarCambio();
+//        }
+
         smb_menuOption.setDisable(false);
     }
 
-    private void generarCambio() {
-        String date1 = getDate(gp_waiting);
-        String date2 = getDate(gp_exchange);
-        SesionsExchange.change(this, getDate(gp_waiting), getDate(gp_exchange));
-    }
-
-    private String getDate(GridPane gridPane) {
-        String date = "";
+    public String getDate(GridPane gridPane) {
+        System.out.println("contTest : " + ++contTest);
+        String date = null;
         for (GridSesion gs : aGridSesions) {
-            if (gs.getMiniGrid().equals(gridPane)){
-                date = gs.getLblDateID().getText();
+            if (gs.getMiniGrid().equals(gridPane)) {
+                System.out.println("se encuentra gridxD");
+                date = gs.getLblDateID().getId();
                 break;
             }
         }
+        System.out.println("return date : " + date);
         return date;
     }
 
@@ -326,15 +340,15 @@ public class TabCalendarMaster {
 
     /**
      * sesion sube
-     * al limpio
+     * al limbo
      */
     public void outSesion() {
         for (GridSesion gs : aGridSesions) {
             if (gs.getMiniGrid().equals(gp_waiting)) {
                 if (getSesion(gs.getSesionID()).getMaster1() != null)
-                    removeSesionToPlanifList(getCalBasID(gs.getLblDateID().getId()), master1);
+                    removeSesion_PlanifList(getCalBasID(gs.getLblDateID().getId()), master1);
                 if (getSesion(gs.getSesionID()).getMaster2() != null)
-                    removeSesionToPlanifList(getCalBasID(gs.getLblDateID().getId()), master2);
+                    removeSesion_PlanifList(getCalBasID(gs.getLblDateID().getId()), master2);
                 if (getSesion(gs.getSesionID()).getMaster1() != null &&
                         getSesion(gs.getSesionID()).getMaster2() != null)
                     tcm_vinculado.updateCalendar();
@@ -358,23 +372,6 @@ public class TabCalendarMaster {
             }
         }
     }
-
-    /**
-     * syncroniza el gp_witing en función
-     * al dia que reciba
-     * @param dia_gpWaiting
-     */
-    public void synchronizeSesion(String dia_gpWaiting){
-        for (GridSesion gridSesion:
-             aGridSesions) {
-            if (gridSesion.getLblDateID().getId()
-                    .equals(dia_gpWaiting)){
-                gp_waiting = gridSesion.getMiniGrid();
-                break;
-            }
-        }
-    }
-
 
 
     // Getters and Setters
@@ -425,5 +422,21 @@ public class TabCalendarMaster {
 
     public void setIschange(boolean ischange) {
         this.ischange = ischange;
+    }
+
+    public String getDate_exchange1() {
+        return date_exchange1;
+    }
+
+    public void setDate_exchange1(String date_exchange1) {
+        this.date_exchange1 = date_exchange1;
+    }
+
+    public GridPane getGp_exchange2() {
+        return gp_exchange2;
+    }
+
+    public void setGp_exchange2(GridPane gp_exchange2) {
+        this.gp_exchange2 = gp_exchange2;
     }
 }
