@@ -1,4 +1,4 @@
-package model;
+package utilities;
 
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;

@@ -9,8 +9,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import model.GridSesion;
-import model.TabCalendarMaster;
+import utilities.GridSesion;
+import utilities.TabCalendarMaster;
 
 import java.io.IOException;
 import java.net.URL;

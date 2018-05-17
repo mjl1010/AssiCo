@@ -13,8 +13,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import model.GridSesion;
-import model.TabCalendarMaster;
+import utilities.GridSesion;
+import utilities.TabCalendarMaster;
 import utilities.SesionTableRow;
 
 import java.io.IOException;

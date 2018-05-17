@@ -12,10 +12,8 @@ import javafx.scene.control.SplitMenuButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Window;
-import model.TabCalendarMaster;
-import utilities.AlertHelper;
+import utilities.TabCalendarMaster;
 
-import javax.swing.text.Utilities;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -40,8 +38,7 @@ public class SesionsCalendarController implements Initializable {
     ;
 
     @FXML
-    MenuItem menuOpt1_1, menuOpt2_1, menuOpt3_1, menuOpt4_1, menuOpt5_1, menuOpt6_1, menuOpt7_1, menuOpt8_1, menuOpt9_1, menuOpt10_1,
-            menuOpt1_2, menuOpt2_2, menuOpt3_2, menuOpt4_2, menuOpt5_2, menuOpt6_2, menuOpt7_2, menuOpt8_2, menuOpt9_2, menuOpt10_2;
+    MenuItem menuOpt1_1, menuOpt2_1, menuOpt3_1, menuOpt4_1, menuOpt5_1, menuOpt6_1, menuOpt7_1, menuOpt8_1, menuOpt9_1, menuOpt10_1, menuOpt1_2, menuOpt2_2, menuOpt3_2, menuOpt4_2, menuOpt5_2, menuOpt6_2, menuOpt7_2, menuOpt8_2, menuOpt9_2, menuOpt10_2;
 
 
     private ArrayList<MenuItem> aSplitMenuButton1;
@@ -104,49 +101,40 @@ public class SesionsCalendarController implements Initializable {
                         e.printStackTrace();
                     }
                 }
+
                 private void gestionarOpcion(String id) throws IOException {
                     id = id.substring(0, id.length() - 2);
                     switch (id) {
-                        case "menuOpt1":
-                            // agrega sesión
+                        case "menuOpt1":// agrega sesión
                             new SesionTableController().openScene(tcm);
                             break;
-                        case "menuOpt2":
-                            // Quitar sesión
+                        case "menuOpt2":// Quitar sesión
                             tcm.outSesion();
                             tcm.updateCalendar();
                             break;
-                        case "menuOpt3":
-                            // Intercambio de Sesión
+                        case "menuOpt3":// Intercambio de Sesión
                             Window owner = smb_menuOption1.getScene().getWindow();
-                            showAlert(Alert.AlertType.INFORMATION, owner, "Intercambio de Sesiones",
-                                    "Seleccione con doble Click la sesión que desea cambiar");
+                            showAlert(Alert.AlertType.INFORMATION, owner, "Intercambio de Sesiones", "Seleccione con doble Click la sesión que desea cambiar");
+                            tcm.setDate_exchange1(tcm.getDate(tcm.getGp_waiting()));
                             tcm.setIschange(true);
                             break;
-                        case "menuOpt4":
-                            // Editar Practica 1
+                        case "menuOpt4":// Editar Practica 1
                             break;
-                        case "menuOpt5":
-                            // Editar Practica 2
+                        case "menuOpt5":// Editar Practica 2
                             break;
-                        case "menuOpt6":
-                            // Editar de Asignatura
+                        case "menuOpt6":// Editar de Asignatura
                             new UpdateAsignController().openScene(tcm);
                             break;
-                        case "menuOpt7":
-                            // Editar Contenido
+                        case "menuOpt7":// Editar Contenido
                             new UpdateContenidoController().openScene(tcm);
                             break;
-                        case "menuOpt8":
-                            // Editar Profesor(s)
+                        case "menuOpt8":// Editar Profesor(s)
                             new UpdateDocenteController().openScene(tcm);
                             break;
-                        case "menuOpt9":
-                            // Editar Tipo de Aula
+                        case "menuOpt9":// Editar Tipo de Aula
                             new UpdateTipoAulaController().openScene(tcm);
                             break;
-                        case "menuOpt10":
-                            // Editar Aula
+                        case "menuOpt10":// Editar Aula
                             new UpdateAulaController().openScene(tcm);
                             break;
                     }

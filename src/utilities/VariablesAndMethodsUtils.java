@@ -3,11 +3,8 @@ package utilities;
 import entity.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import model.GridSesion;
-import model.TabCalendarMaster;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -87,7 +84,8 @@ public class VariablesAndMethodsUtils {
     public static DiaPlanificado getDiaPlanificado(String date, TabCalendarMaster tcm){
         DiaPlanificado dpl = null;
         for (DiaPlanificado dp : aPlanifCalend) {
-            if (dp.getMaster().equals(tcm.getMaster())){
+            if (dp.getMaster().equals(tcm.getMaster()) &&
+                    dp.getCalendarioBase().getIdDate().equals(date)){
                 dpl = dp;
                 break;
             }
@@ -174,7 +172,7 @@ public class VariablesAndMethodsUtils {
      * remove sesion into PlanificacionList
      * @param calBaseID
      */
-    public static void removeSesionToPlanifList(int calBaseID, Master master){
+    public static void removeSesion_PlanifList(int calBaseID, Master master){
         for (DiaPlanificado dp :
                 aPlanifCalend) {
             if (dp.getMaster().equals(master) &&
