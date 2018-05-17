@@ -28,7 +28,7 @@ public class HeaderController implements Initializable {
     protected static HeaderController main;
 
     @FXML
-    private Button menu_btn;
+    Button menu_btn;
 
     @FXML
     Label titulo;
@@ -73,7 +73,7 @@ public class HeaderController implements Initializable {
     public static void refreshText() {
         if (main == null) return;
         if (main.titulo != null) main.titulo.setStyle(TextResponsive.getFontStyle("h3"));
-        if (main.menu_btn != null) main.menu_btn.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #b8ffb4; -fx-border-color: #b8ffb4; -fx-border-radius: 4px; -fx-background-radius: 4px;");
-        if (main.logout_btn != null) main.logout_btn.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #d8bff4; -fx-border-color: #d8bff4; -fx-border-radius: 4px; -fx-background-radius: 4px;");
+        if (main.menu_btn != null) main.menu_btn.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #ffffff; -fx-background-color: #026aff; -fx-border-color: #026aff; -fx-border-radius: 4px; -fx-background-radius: 4px;");
+        if (main.logout_btn != null) main.logout_btn.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #FF9702; -fx-border-color: #FF9702; -fx-border-radius: 4px; -fx-background-radius: 4px;");
     }
 }

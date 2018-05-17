@@ -8,16 +8,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="700.0" minWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SelectMaster">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SelectMaster">
     <children>
         <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <HBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
+                <HBox alignment="TOP_CENTER">
                     <children>
                         <fx:include source="intHeader.fxml" />
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" maxWidth="1000.0" VBox.vgrow="ALWAYS">
+                <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="960.0" VBox.vgrow="ALWAYS">
                     <children>
                         <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
                             <content>
@@ -41,7 +41,7 @@
                                 </AnchorPane>
                             </content>
                             <HBox.margin>
-                                <Insets left="20.0" />
+                                <Insets />
                             </HBox.margin>
                         </ScrollPane>
                         <VBox alignment="TOP_RIGHT" minWidth="200.0" spacing="20.0">
@@ -56,14 +56,14 @@
                                 </Button>
                             </children>
                             <HBox.margin>
-                                <Insets right="20.0" />
+                                <Insets />
                             </HBox.margin>
                         </VBox>
                     </children>
                     <VBox.margin>
                         <Insets bottom="20.0" top="20.0" />
                     </VBox.margin></HBox>
-                <HBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS">
+                <HBox alignment="BOTTOM_CENTER">
                     <children>
                         <fx:include source="intFooter.fxml" />
                     </children>

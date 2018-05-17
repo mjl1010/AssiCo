@@ -4,11 +4,14 @@ import controller.LoginController;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import model.DatosModel;
 import utilities.AlertHelper;
@@ -26,11 +29,14 @@ public class MainLogin extends Application {
 
     private static Parent root;
     private static Stage stage;
-
+    public static Screen screen;
     private static boolean maximized = false;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        stage = primaryStage;
+        screen = Screen.getPrimary();
+
         VariablesAndMethodsUtils.PATH_PROPERTIES = "assiconfig.properties";
 
         Properties p = new Properties();
@@ -88,12 +94,42 @@ public class MainLogin extends Application {
 
     public static void openStage(URL url, String title, Stage primaryStage) {
         try {root = FXMLLoader.load(url);} catch (IOException e) {e.printStackTrace();}
-        stage = primaryStage != null ? primaryStage : new Stage();
-        stage.getIcons().add(new Image("/view/res/AssiCoLogo@0,1x.png"));
-        stage.setTitle("AssiCo - " + title);
-        stage.setScene(new Scene(root));
-        stage.setMaximized(maximized);
-        stage.show();
-        stage.maximizedProperty().addListener((ov, t, t1) -> maximized = t1);
+        Stage miniStage = primaryStage != null ? primaryStage : new Stage();
+        miniStage.getIcons().add(new Image("/view/res/AssiCoLogoMini.png"));
+        miniStage.setTitle("AssiCo - " + title);
+        miniStage.setScene(new Scene(root));
+
+        // When window is maximized
+        miniStage.maximizedProperty().addListener((ov, t, t1) -> maximized = t1);
+
+        // Calculate the center position of the parent Stage
+        double centerXPosition = stage.getX() + stage.getWidth()/2d;
+        double centerYPosition = stage.getY() + stage.getHeight()/2d;
+
+        // Relocate the Stage
+        miniStage.setOnShown(ev -> {
+            if (maximized) setMaximized(miniStage);
+            else {
+                miniStage.setX(centerXPosition - miniStage.getWidth() / 2d);
+                miniStage.setY(centerYPosition - miniStage.getHeight() / 2d);
+            }
+            miniStage.show();
+        });
+
+        miniStage.show();
+        stage = miniStage;
+    }
+
+    public static void setMaximized(Stage miniStage) {
+        // Get current screen of the stage
+        if (screen == null) screen = Screen.getScreensForRectangle(miniStage.getX(), miniStage.getY(), miniStage.getWidth(), miniStage.getHeight()).get(0);
+
+        // Change stage properties
+        Rectangle2D bounds = screen.getVisualBounds();
+        miniStage.setX(bounds.getMinX());
+        miniStage.setY(bounds.getMinY());
+        miniStage.setWidth(bounds.getWidth());
+        miniStage.setHeight(bounds.getHeight());
+        miniStage.setMaximized(true);
     }
 }

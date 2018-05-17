@@ -9,24 +9,39 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="1000.0" style="-fx-background-image: '../res/AssiCoLogo.png';" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuController">
+<AnchorPane prefHeight="500.0" prefWidth="1000.0" style="-fx-background-image: url(/view/res/Menu.png); -fx-background-position: center; -fx-background-repeat: no-repeat;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuController">
    <children>
       <VBox alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
+            <HBox alignment="TOP_CENTER">
                <children>
                    <fx:include source="intHeader.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </HBox>
-                <HBox alignment="CENTER">
+                <HBox alignment="CENTER" maxWidth="960.0" style="-fx-background-color: rgba(0, 0, 0, 0.1);-fx-background-radius: 5px;" VBox.vgrow="ALWAYS">
                <children>
                   <VBox alignment="CENTER_RIGHT" spacing="40.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button fx:id="menu_planificacion" ellipsisString="" minWidth="280.0" mnemonicParsing="false" onAction="#irPlanificacion" prefHeight="80.0" style="-fx-text-fill: #000000; -fx-background-color: #0ab4c8; -fx-border-color: #0ab4c8; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Planificaciones" textOverrun="CLIP" wrapText="true">
+                        <Button fx:id="menu_planificacion" ellipsisString="" mnemonicParsing="false" onAction="#irPlanificacion" style="-fx-text-fill: #000000; -fx-background-color: #0ab4c8; -fx-border-color: #0ab4c8; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Planificaciones" textOverrun="CLIP" wrapText="true">
                            <font>
                               <Font size="24.0" />
                            </font>
+                           <padding>
+                              <Insets bottom="30.0" left="39.0" right="39.0" top="30.0" />
+                           </padding>
                         </Button>
+                        <MenuButton fx:id="menu_cuentas" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" mnemonicParsing="false" style="-fx-text-fill: #000000; -fx-background-color: #0bd500; -fx-border-color: #0bd500; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Cuentas" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+                          <items>
+                            <MenuItem fx:id="menu_config" mnemonicParsing="false" onAction="#irConfig" text="Configuración" />
+                            <MenuItem fx:id="menu_gestion" mnemonicParsing="false" onAction="#irGestion" text="Gestión" />
+                          </items>
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="22.0" left="42.0" right="42.0" top="22.0" />
+                           </padding>
+                        </MenuButton>
                      </children>
                      <HBox.margin>
                         <Insets right="20.0" />
@@ -37,28 +52,30 @@
                         <Insets left="20.0" />
                      </HBox.margin>
                      <children>
-                        <Button fx:id="menu_masters" mnemonicParsing="false" onAction="#irMasters" prefHeight="60.0" prefWidth="200.0" style="-fx-text-fill: #000000; -fx-background-color: #ffd600; -fx-border-color: #ffd600; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Másters">
+                        <Button fx:id="menu_masters" mnemonicParsing="false" onAction="#irMasters" style="-fx-text-fill: #000000; -fx-background-color: #ffd600; -fx-border-color: #ffd600; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Másters" wrapText="true">
                            <font>
                               <Font size="24.0" />
                            </font>
+                           <padding>
+                              <Insets bottom="30.0" left="75.0" right="75.0" top="30.0" />
+                           </padding>
                         </Button>
-                        <MenuButton fx:id="menu_cuentas" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" mnemonicParsing="false" prefHeight="60.0" prefWidth="200.0" style="-fx-text-fill: #000000; -fx-background-color: #0bd500; -fx-border-color: #0bd500; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Cuentas" textAlignment="CENTER" textOverrun="CLIP">
-                          <items>
-                            <MenuItem fx:id="menu_config" mnemonicParsing="false" onAction="#irConfig" text="Configuración" />
-                            <MenuItem fx:id="menu_gestion" mnemonicParsing="false" onAction="#irGestion" text="Gestión" />
-                          </items>
+                        <Button fx:id="menu_docentes" layoutX="10.0" layoutY="70.0" mnemonicParsing="false" onAction="#irDocentes" style="-fx-text-fill: #000000; -fx-background-color: #ff1b78; -fx-border-color: #ff1b78; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Docentes" wrapText="true">
                            <font>
-                              <Font size="26.0" />
+                              <Font size="24.0" />
                            </font>
-                        </MenuButton>
+                           <padding>
+                              <Insets bottom="30.0" left="67.0" right="67.0" top="30.0" />
+                           </padding>
+                        </Button>
                      </children>
                   </VBox>
                </children>
                <VBox.margin>
-                  <Insets />
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin>
             </HBox>
-            <HBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS">
+            <HBox alignment="BOTTOM_CENTER">
                <children>
                    <fx:include source="intFooter.fxml" />
                </children>

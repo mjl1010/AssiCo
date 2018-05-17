@@ -21,10 +21,7 @@ public class MenuController implements Initializable {
     private static MenuController main;
 
     @FXML
-    private Button menu_planificacion;
-
-    @FXML
-    private Button menu_masters;
+    private Button menu_planificacion, menu_masters, menu_docentes;
 
     @FXML
     private MenuButton menu_cuentas;
@@ -39,7 +36,8 @@ public class MenuController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         main = this;
         refreshText();
-        HeaderController.main.titulo.setText("Menú");
+        HeaderController.main.titulo.setText("Menú principal");
+        HeaderController.main.menu_btn.setVisible(false);
     }
 
     @FXML
@@ -56,6 +54,11 @@ public class MenuController implements Initializable {
     }
 
     @FXML
+    private void irDocentes() {
+
+    }
+
+    @FXML
     private void irConfig() {
 
     }
@@ -67,10 +70,11 @@ public class MenuController implements Initializable {
 
     public static void refreshText() {
         if (main == null) return;
-        if (main.menu_planificacion != null) main.menu_planificacion.setStyle(TextResponsive.getFontStyle("h2") + " -fx-text-fill: #000000; -fx-background-color: #0ab4c8; -fx-border-color: #0ab4c8; -fx-border-radius: 4px; -fx-background-radius: 4px;");
-        if (main.menu_masters != null) main.menu_masters.setStyle(TextResponsive.getFontStyle("h3") + " -fx-text-fill: #000000; -fx-background-color: #ffd600; -fx-border-color: #ffd600; -fx-border-radius: 4px; -fx-background-radius: 4px;");
-        if (main.menu_cuentas != null) main.menu_cuentas.setStyle(TextResponsive.getFontStyle("h3") + " -fx-text-fill: #000000; -fx-background-color: #0bd500; -fx-border-color: #0bd500; -fx-border-radius: 4px; -fx-background-radius: 4px;");
-        if (main.menu_config != null) main.menu_config.setStyle(TextResponsive.getFontStyle("h3"));
-        if (main.menu_gestion != null) main.menu_gestion.setStyle(TextResponsive.getFontStyle("h3"));
+        main.menu_planificacion.setStyle(TextResponsive.getFontStyle("h2") + " -fx-text-fill: #000000; -fx-background-color: #0ab4c8; -fx-border-color: #0ab4c8; -fx-border-radius: 4px; -fx-background-radius: 4px;");
+        main.menu_masters.setStyle(TextResponsive.getFontStyle("h2") + " -fx-text-fill: #000000; -fx-background-color: #ffd600; -fx-border-color: #ffd600; -fx-border-radius: 4px; -fx-background-radius: 4px;");
+        main.menu_cuentas.setStyle(TextResponsive.getFontStyle("h2") + " -fx-text-fill: #000000; -fx-background-color: #0bd500; -fx-border-color: #0bd500; -fx-border-radius: 4px; -fx-background-radius: 4px;");
+        main.menu_docentes.setStyle(TextResponsive.getFontStyle("h2") + " -fx-text-fill: #ffffff; -fx-background-color: #ff1b78; -fx-border-color: #ff1b78; -fx-border-radius: 4px; -fx-background-radius: 4px;");
+        main.menu_config.setStyle(TextResponsive.getFontStyle("h3"));
+        main.menu_gestion.setStyle(TextResponsive.getFontStyle("h3"));
     }
 }
