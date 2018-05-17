@@ -6,4 +6,19 @@
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
+  <component name="UMLDiagramComponent">
+    <diagram name="entity">
+      <command command-class="de.frag.umlplugin.uml.command.AddClassCommand" psi-class="entity.CalendarioBase" />
+      <command command-class="de.frag.umlplugin.uml.command.AddClassCommand" psi-class="entity.DiaPlanificado" />
+      <command command-class="de.frag.umlplugin.uml.command.AddClassCommand" psi-class="entity.Docente" />
+      <command command-class="de.frag.umlplugin.uml.command.AddClassCommand" psi-class="entity.Usuario" />
+      <command command-class="de.frag.umlplugin.uml.command.AddClassCommand" psi-class="entity.Master" />
+      <command command-class="de.frag.umlplugin.uml.command.AddClassCommand" psi-class="entity.Token" />
+      <command command-class="de.frag.umlplugin.uml.command.AddClassCommand" psi-class="entity.Sesion" />
+      <command command-class="de.frag.umlplugin.uml.command.AddClassCommand" psi-class="entity.Roles" />
+      <command command-class="de.frag.umlplugin.uml.command.AddClassCommand" psi-class="entity.Practica" />
+      <command command-class="de.frag.umlplugin.uml.command.AddClassCommand" psi-class="entity.Universidad" />
+      <compartment-visibility />
+    </diagram>
+  </component>
 </project>

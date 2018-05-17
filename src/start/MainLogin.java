@@ -2,6 +2,8 @@ package start;
 
 import controller.LoginController;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -24,6 +26,8 @@ public class MainLogin extends Application {
 
     private static Parent root;
     private static Stage stage;
+
+    private static boolean maximized = false;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -88,7 +92,8 @@ public class MainLogin extends Application {
         stage.getIcons().add(new Image("/view/res/AssiCoLogo@0,1x.png"));
         stage.setTitle("AssiCo - " + title);
         stage.setScene(new Scene(root));
-        stage.setMaximized(true);
+        stage.setMaximized(maximized);
         stage.show();
+        stage.maximizedProperty().addListener((ov, t, t1) -> maximized = t1);
     }
 }

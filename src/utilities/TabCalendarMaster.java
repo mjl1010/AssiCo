@@ -104,21 +104,8 @@ public class TabCalendarMaster {
     private void marcarGrid(GridPane miniGrid) {
         if (gp_waiting != null) desmarcarGridWaiting();
         gp_waiting = miniGrid;
-
+        gp_waiting_style = gp_waiting.getStyle();
         gp_waiting.setStyle(gp_waiting_style + "-fx-border-color: #A9D0F5;" + "-fx-border-style: solid inside;" + "-fx-border-width: 5;");
-
-//        gp_waiting.setStyle("-fx-border-color: #A9D0F5;" + "-fx-border-style: solid inside;" + "-fx-border-width: 2;" + "-fx-border-insets: 5;" + "-fx-border-radius: 5;");
-
-//        if (!ischange) {
-//            gp_waiting = miniGrid;
-//            gp_waiting_style = gp_waiting.getStyle();
-//            gp_waiting.setStyle(gp_waiting_style + "-fx-border-color: #A9D0F5;" + "-fx-border-style: solid inside;" + "-fx-border-width: 5;");
-//        } else {
-//            gp_exchange = miniGrid;
-//            gp_exchange_style = gp_exchange.getStyle();
-//            gp_exchange.setStyle(gp_exchange_style + "-fx-border-color: #A9D0F5;" + "-fx-border-style: solid inside;" + "-fx-border-width: 5;");
-//            generarCambio();
-//        }
 
         smb_menuOption.setDisable(false);
     }

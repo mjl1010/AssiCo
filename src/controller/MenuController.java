@@ -67,9 +67,9 @@ public class MenuController implements Initializable {
 
     public static void refreshText() {
         if (main == null) return;
-        if (main.menu_planificacion != null) main.menu_planificacion.setStyle(TextResponsive.getFontStyle("h2") + " -fx-text-fill: #000000; -fx-background-color: #78a199; -fx-border-color: #78a199; -fx-border-radius: 4px; -fx-background-radius: 4px;");
-        if (main.menu_masters != null) main.menu_masters.setStyle(TextResponsive.getFontStyle("h3") + " -fx-text-fill: #000000; -fx-background-color: #ffb84c; -fx-border-color: #ffb84c; -fx-border-radius: 4px; -fx-background-radius: 4px;");
-        if (main.menu_cuentas != null) main.menu_cuentas.setStyle(TextResponsive.getFontStyle("h3") + " -fx-text-fill: #000000; -fx-background-color: #9fdaf5; -fx-border-color: #9fdaf5; -fx-border-radius: 4px; -fx-background-radius: 4px;");
+        if (main.menu_planificacion != null) main.menu_planificacion.setStyle(TextResponsive.getFontStyle("h2") + " -fx-text-fill: #000000; -fx-background-color: #0ab4c8; -fx-border-color: #0ab4c8; -fx-border-radius: 4px; -fx-background-radius: 4px;");
+        if (main.menu_masters != null) main.menu_masters.setStyle(TextResponsive.getFontStyle("h3") + " -fx-text-fill: #000000; -fx-background-color: #ffd600; -fx-border-color: #ffd600; -fx-border-radius: 4px; -fx-background-radius: 4px;");
+        if (main.menu_cuentas != null) main.menu_cuentas.setStyle(TextResponsive.getFontStyle("h3") + " -fx-text-fill: #000000; -fx-background-color: #0bd500; -fx-border-color: #0bd500; -fx-border-radius: 4px; -fx-background-radius: 4px;");
         if (main.menu_config != null) main.menu_config.setStyle(TextResponsive.getFontStyle("h3"));
         if (main.menu_gestion != null) main.menu_gestion.setStyle(TextResponsive.getFontStyle("h3"));
     }

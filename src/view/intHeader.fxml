@@ -14,7 +14,7 @@
          <children>
             <VBox spacing="40.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Button fx:id="menu_btn" mnemonicParsing="false" onAction="#irMenu" style="-fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Menú">
+                  <Button fx:id="menu_btn" mnemonicParsing="false" onAction="#irMenu" style="-fx-text-fill: #000000; -fx-background-color: #b8ffb4; -fx-border-color: #b8ffb4; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Menú">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -41,7 +41,7 @@
             </VBox>
             <VBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
                <children>
-                  <Button fx:id="logout_btn" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#logout" style="-fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Cerrar sesión">
+                  <Button fx:id="logout_btn" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#logout" style="-fx-text-fill: #000000; -fx-background-color: #d8bff4; -fx-border-color: #d8bff4; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Cerrar sesión">
                      <font>
                         <Font size="16.0" />
                      </font>
