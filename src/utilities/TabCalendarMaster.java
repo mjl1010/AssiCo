@@ -87,7 +87,7 @@ public class TabCalendarMaster {
                     if (!ischange) marcarGrid((GridPane) event.getSource());
                     else {
                         gp_exchange2 = (GridPane) event.getSource();
-                        gp_exchange2.setStyle("-fx-border-color: #A9D0F5;" + "-fx-border-style: solid inside;" + "-fx-border-width: 2;" + "-fx-border-insets: 5;" + "-fx-border-radius: 5;");
+                        gp_exchange2.setStyle("-fx-border-color: #A9D0F5;" + "-fx-border-style: solid inside;" + "-fx-border-width: 5;");
                         SesionsExchange.change(this, date_exchange1, getDate(gp_exchange2));
                         ischange = false;
                     }
@@ -104,7 +104,10 @@ public class TabCalendarMaster {
     private void marcarGrid(GridPane miniGrid) {
         if (gp_waiting != null) desmarcarGridWaiting();
         gp_waiting = miniGrid;
-        gp_waiting.setStyle("-fx-border-color: #A9D0F5;" + "-fx-border-style: solid inside;" + "-fx-border-width: 2;" + "-fx-border-insets: 5;" + "-fx-border-radius: 5;");
+
+        gp_waiting.setStyle(gp_waiting_style + "-fx-border-color: #A9D0F5;" + "-fx-border-style: solid inside;" + "-fx-border-width: 5;");
+
+//        gp_waiting.setStyle("-fx-border-color: #A9D0F5;" + "-fx-border-style: solid inside;" + "-fx-border-width: 2;" + "-fx-border-insets: 5;" + "-fx-border-radius: 5;");
 
 //        if (!ischange) {
 //            gp_waiting = miniGrid;
@@ -200,7 +203,6 @@ public class TabCalendarMaster {
     private void registredGridSessions() {
         aGridSesions = new ArrayList<>();
         GridSesion gs;
-        int index = -1;
         for (int i = 0; i < 6; i++)
             for (int j = 0; j < 5; j++) {
                 gs = new GridSesion(new String(), i, j);

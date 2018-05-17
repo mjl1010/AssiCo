@@ -174,6 +174,7 @@ public class SesionTableController implements Initializable {
                         !obj.getMaster2().isEmpty())
                     registedSesionInCalendarVinculado(gs.getLblDateID(), obj);
                 tcm.updateCalendar();
+                tcm.getTcm_vinculado().updateCalendar();
                 break;
             }
         }
