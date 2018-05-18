@@ -73,7 +73,7 @@ public class HeaderController implements Initializable {
     public static void refreshText() {
         if (main == null) return;
         if (main.titulo != null) main.titulo.setStyle(TextResponsive.getFontStyle("h3"));
-        if (main.menu_btn != null) main.menu_btn.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #ffffff; -fx-background-color: #026aff; -fx-border-color: #026aff; -fx-border-radius: 4px; -fx-background-radius: 4px;");
-        if (main.logout_btn != null) main.logout_btn.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #FF9702; -fx-border-color: #FF9702; -fx-border-radius: 4px; -fx-background-radius: 4px;");
+        if (main.menu_btn != null) main.menu_btn.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #3f9eff; -fx-border-color: #3f9eff; -fx-border-radius: 4px; -fx-background-radius: 4px;");
+        if (main.logout_btn != null) main.logout_btn.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #ff9f3f; -fx-border-color: #ff9f3f; -fx-border-radius: 4px; -fx-background-radius: 4px;");
     }
 }

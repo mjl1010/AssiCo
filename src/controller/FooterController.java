@@ -1,17 +1,11 @@
 package controller;
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.effect.ColorAdjust;
-import javafx.scene.effect.Effect;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.HBox;
 import javafx.stage.Screen;
 import start.MainLogin;
@@ -52,16 +46,6 @@ public class FooterController implements Initializable {
                     l.setStyle("-fx-background-image: url(/view/res/computer-screen-selected.png); -fx-background-repeat: no-repeat;");
                     MainLogin.screen = Screen.getScreens().get(finalI);
                 });
-
-//                ImageView img = new ImageView("/view/res/computer-screen.png");
-//                img.setFitWidth(25);
-//                img.setFitHeight(25);
-//                img.setOnMouseClicked(t -> {
-//                    ColorAdjust blackout = new ColorAdjust();
-//                    blackout.setBrightness(1.0);
-//                    MainLogin.screen = s;
-//                    img.setEffect(blackout);
-//                });
 
                 screen.getChildren().add(l);
             }

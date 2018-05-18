@@ -18,7 +18,7 @@
                    <fx:include source="intHeader.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </HBox>
-                <HBox alignment="CENTER" maxWidth="960.0" style="-fx-background-color: rgba(0, 0, 0, 0.1);-fx-background-radius: 5px;" VBox.vgrow="ALWAYS">
+                <HBox alignment="CENTER" maxWidth="960.0" style="-fx-background-color: rgba(0, 0, 0, 0.07);-fx-background-radius: 5px;" VBox.vgrow="ALWAYS">
                <children>
                   <VBox alignment="CENTER_RIGHT" spacing="40.0" HBox.hgrow="ALWAYS">
                      <children>
@@ -74,6 +74,9 @@
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
             </HBox>
             <HBox alignment="BOTTOM_CENTER">
                <children>

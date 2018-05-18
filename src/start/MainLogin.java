@@ -36,41 +36,46 @@ public class MainLogin extends Application {
     public void start(Stage primaryStage) throws Exception {
         stage = primaryStage;
         screen = Screen.getPrimary();
+        String error = null;
 
         VariablesAndMethodsUtils.PATH_PROPERTIES = "assiconfig.properties";
 
-        Properties p = new Properties();
-        File f = new File(VariablesAndMethodsUtils.PATH_PROPERTIES);
-        if (!f.exists()) {
-            f.createNewFile();
-            p.load(new FileReader(VariablesAndMethodsUtils.PATH_PROPERTIES));
-            p.setProperty("token", "");
-            p.setProperty("curso", "");
-            p.setProperty("year", "");
-            p.setProperty("month", "");
-            p.store(new FileWriter(VariablesAndMethodsUtils.PATH_PROPERTIES), "Config generated");
-        }
-
         try {
-            p.load(new FileReader(VariablesAndMethodsUtils.PATH_PROPERTIES));
-            String stoken = p.getProperty("token");
+            Properties p = new Properties();
+            File f = new File(VariablesAndMethodsUtils.PATH_PROPERTIES);
+            if (!f.exists()) {
+                f.createNewFile();
+                p.load(new FileReader(VariablesAndMethodsUtils.PATH_PROPERTIES));
+                p.setProperty("token", "");
+                p.setProperty("curso", "");
+                p.setProperty("year", "");
+                p.setProperty("month", "");
+                p.store(new FileWriter(VariablesAndMethodsUtils.PATH_PROPERTIES), "Config generated");
+            }
 
-            DatosModel.connect(null, null);
-            LoginController.token = DatosModel.getToken(stoken);
-            DatosModel.closeConnection();
+            try {
+                p.load(new FileReader(VariablesAndMethodsUtils.PATH_PROPERTIES));
+                String stoken = p.getProperty("token");
 
-            if (!stoken.isEmpty() && LoginController.token != null && LoginController.token.isActivo()) {
-                openStage(getClass().getResource("/view/intMenu.fxml"), "Menú", primaryStage);
-                return;
-            } else if (!stoken.isEmpty()) {
-                AlertHelper.showAlert(Alert.AlertType.ERROR, null, "Error - AssiCo", "No se ha podido verificar la sesión anterior, por favor, accede de nuevo.");
+                DatosModel.connect(null, null);
+                LoginController.token = DatosModel.getToken(stoken);
+                DatosModel.closeConnection();
+
+                if (!stoken.isEmpty() && LoginController.token != null && LoginController.token.isActivo()) {
+                    openStage(getClass().getResource("/view/intMenu.fxml"), "Menú", primaryStage);
+                    return;
+                } else if (!stoken.isEmpty()) {
+                    error = "Error 503. No se ha podido verificar la sesión anterior, por favor, accede de nuevo.";
+                }
+            } catch (Exception e) {
+                error = "Error 504. No se ha podido establecer conexión con el servidor.";
             }
         } catch (Exception e) {
-            //AlertHelper.showAlert(Alert.AlertType.ERROR, null, "Error - AssiCo", "Hay un problema entre la pantalla y la silla. Vuelve a intentarlo.");
-            //e.printStackTrace();
+            error = "Error 403. No se ha podido abrir el programa por falta de permisos. O versión de java obsoleta >1.8.";
         }
 
         openStage(getClass().getResource("/view/intLogin.fxml"), "Asistente de Coordinación Academica", primaryStage);
+        if (error != null) AlertHelper.showAlert(Alert.AlertType.ERROR, null, "AssiCo - Error", error);
     }
 
     public static Stage getStage() {

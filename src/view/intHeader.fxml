@@ -10,11 +10,11 @@
 
 <AnchorPane fx:id="header" minWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HeaderController">
    <children>
-      <HBox alignment="TOP_CENTER" spacing="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="TOP_CENTER" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox spacing="40.0" HBox.hgrow="ALWAYS">
+            <VBox minWidth="150.0" spacing="20.0">
                <children>
-                  <Button fx:id="menu_btn" mnemonicParsing="false" onAction="#irMenu" style="-fx-text-fill: #ffffff; -fx-background-color: #026aff; -fx-border-color: #026aff; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Menú">
+                  <Button fx:id="menu_btn" mnemonicParsing="false" onAction="#irMenu" style="-fx-text-fill: #000000; -fx-background-color: #3f9eff; -fx-border-color: #3f9eff; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Menú principal">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -39,9 +39,9 @@
                   <Insets top="20.0" />
                </HBox.margin>
             </VBox>
-            <VBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
+            <VBox alignment="TOP_RIGHT" minWidth="150.0" spacing="20.0">
                <children>
-                  <Button fx:id="logout_btn" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#logout" style="-fx-text-fill: #000000; -fx-background-color: #FF9702; -fx-border-color: #FF9702; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Cerrar sesión">
+                  <Button fx:id="logout_btn" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#logout" style="-fx-text-fill: #000000; -fx-background-color: #ff9f3f; -fx-border-color: #ff9f3f; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Cerrar sesión">
                      <font>
                         <Font size="16.0" />
                      </font>
