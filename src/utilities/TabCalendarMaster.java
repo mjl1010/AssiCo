@@ -65,34 +65,28 @@ public class TabCalendarMaster {
         addEventCalendars();
     }
 
-
     /**
      * add event to calendar
      */
     private void addEventCalendars() {
         for (int i = 0; i < gp_calendar.getChildren().size() - 1; i++) {
             if (gp_calendar.getChildren().get(i) instanceof javafx.scene.Group) continue;
-            //String sesion = aGridSesions.get(i).getLblDateID().getId();
-            gp_calendar.getChildren().get(i).addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-
-//                if (event.getClickCount() == 2) {
-//                    if (sesion != null && !sesion.isEmpty()) {
-//                        smb_menuOption.setDisable(false);
-//                        marcarGrid((GridPane) event.getSource());
-//                    }
-//                }
-
-                if (event.getClickCount() == 2) {
-                    smb_menuOption.setDisable(false);
-                    if (!ischange) marcarGrid((GridPane) event.getSource());
-                    else {
-                        gp_exchange2 = (GridPane) event.getSource();
-                        gp_exchange2.setStyle("-fx-border-color: #A9D0F5;" + "-fx-border-style: solid inside;" + "-fx-border-width: 5;");
-                        SesionsExchange.change(this, date_exchange1, getDate(gp_exchange2));
-                        ischange = false;
+            GridPane gp_aux = (GridPane) gp_calendar.getChildren().get(i);
+            Label lbl_aux = (Label) gp_aux.getChildren().get(0);
+            if (!lbl_aux.getText().isEmpty()) {
+                gp_calendar.getChildren().get(i).addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                    if (event.getClickCount() == 2) {
+                        smb_menuOption.setDisable(false);
+                        if (!ischange) marcarGrid((GridPane) event.getSource());
+                        else {
+                            gp_exchange2 = (GridPane) event.getSource();
+                            gp_exchange2.setStyle("-fx-border-color: #A9D0F5;" + "-fx-border-style: solid inside;" + "-fx-border-width: 5;");
+                            SesionsExchange.change(this, date_exchange1, getDate(gp_exchange2));
+                            ischange = false;
+                        }
                     }
-                }
-            });
+                });
+            }
         }
     }
 
@@ -280,7 +274,6 @@ public class TabCalendarMaster {
 
 
     // metodos de grid
-
 
     /**
      * Set Contenido of sesion
