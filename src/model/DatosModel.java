@@ -44,8 +44,8 @@ public class DatosModel {
         window = owner;
         token = toke;
         try {
-            socket = new Socket("skimdoo.ddns.jazztel.es", 9090);
-            //socket = new Socket("localhost", 9090);
+            //socket = new Socket("skimdoo.ddns.jazztel.es", 9090);
+            socket = new Socket("localhost", 9090);
             dos = new ObjectOutputStream(socket.getOutputStream());
             dis = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
