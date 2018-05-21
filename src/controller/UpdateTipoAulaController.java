@@ -44,11 +44,11 @@ public class UpdateTipoAulaController implements Initializable {
 
     public void savedTipoAula(MouseEvent mouseEvent) {
         if (!cbo_tipoAula.getValue().equals(cbo_tipoAula.getItems().get(0)))
-        setTipoAulaSet(cbo_tipoAula.getValue().toString());
+        setTipoAula(cbo_tipoAula.getValue().toString());
         closeStage(stage);
     }
 
-    public void setTipoAulaSet(String newTipAul) {
+    public void setTipoAula(String newTipAul) {
         for (GridSesion gs : tcm.getaGridSesions()) {
             if (gs.getMiniGrid().equals(tcm.getGp_waiting())) {
                 getSesion(gs.getSesionID()).setTipoAula(newTipAul);

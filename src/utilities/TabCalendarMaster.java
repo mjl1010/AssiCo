@@ -99,6 +99,7 @@ public class TabCalendarMaster {
     private void marcarGrid(GridPane miniGrid) {
         if (gp_waiting != null) desmarcarGridWaiting();
         gp_waiting = miniGrid;
+        gp_waiting_style = gp_waiting.getStyle();
         gp_waiting.setStyle(gp_waiting_style + "-fx-border-color: #A9D0F5;" + "-fx-border-style: solid inside;" + "-fx-border-width: 5;");
         smb_menuOption.setDisable(false);
     }
