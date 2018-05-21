@@ -41,6 +41,8 @@ public class VariablesAndMethodsUtils {
     private static int sesionID = 0;
     private static final ArrayList<String> aTipoSession = new ArrayList<>();
 
+    public static ArrayList<String> aColumnNametvSes = new ArrayList<>();
+
     public static void init(ArrayList<DiaPlanificado> planificacionCalendario) {
         for (DiaPlanificado dia : planificacionCalendario) if (!aCalendarioBase.contains(dia.getCalendarioBase())) aCalendarioBase.add(dia.getCalendarioBase());
         init();
@@ -78,6 +80,17 @@ public class VariablesAndMethodsUtils {
         aMonths.add("October");
         aMonths.add("November");
         aMonths.add("December");
+
+        aColumnNametvSes.add("sesionID");
+        aColumnNametvSes.add("master1");
+        aColumnNametvSes.add("master2");
+        aColumnNametvSes.add("asignatura");
+        aColumnNametvSes.add("contenido");
+        aColumnNametvSes.add("docentet1");
+        aColumnNametvSes.add("docentet2");
+        aColumnNametvSes.add("TipoAula");
+        aColumnNametvSes.add("Aula");
+        aColumnNametvSes.add("nota");
 
         addData();
     }

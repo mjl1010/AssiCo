@@ -1,16 +1,19 @@
 package controller;
 
 import entity.Sesion;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import utilities.GridSesion;
@@ -24,6 +27,9 @@ import java.util.ResourceBundle;
 
 import static utilities.VariablesAndMethodsUtils.*;
 
+/**
+ * Created By Michael
+ */
 public class SesionTableController implements Initializable {
 
     private static Parent root;
@@ -31,15 +37,96 @@ public class SesionTableController implements Initializable {
     private static Scene scene;
     private static TabCalendarMaster tcm;
 
+    private ObservableList<Sesion> masterData = FXCollections.observableArrayList();
+    private ObservableList<Sesion> filteredData = FXCollections.observableArrayList();
+
     @FXML
     TableView<SesionTableRow> tv_session;
 
+    @FXML
+    TextField txtValor;
+
+    @FXML
+    ComboBox cbo_field;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         settingsTable();
+        fillComboBox();
+        fillDataMaster();
+        addEventTxt();
         printDataInTable();
     }
+
+    private void fillComboBox() {
+        cbo_field.getItems().addAll(aColumnNametvSes);
+    }
+
+    private void addEventTxt() {
+        txtValor.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable,
+                                String oldValue, String newValue) {
+                updateFilteredData(newValue);
+            }
+        });
+    }
+
+    private void updateFilteredData(String newValue) {
+        filteredData.clear();
+        for (Sesion s : masterData) if (matchesFilter(s, newValue)) filteredData.add(s);
+        tv_session.getItems().clear();
+        printDataInTable();
+    }
+
+    private boolean matchesFilter(Sesion s, String newValue) {
+        boolean ret = false;
+        String opt = aColumnNametvSes.get(0);
+        if (cbo_field.getValue() != null) opt = (String) cbo_field.getValue();
+        newValue = newValue.toLowerCase();
+        switch (opt.toLowerCase()){
+            case "sesionid":
+                if (String.valueOf(s.getId()).toLowerCase().startsWith(newValue)) ret = true;
+                break;
+            case "master1":
+                if (s.getMaster1().getCode().toLowerCase().startsWith(newValue)) ret = true;
+                break;
+            case "master2":
+                if (s.getMaster2().getCode().toLowerCase().startsWith(newValue)) ret = true;
+                break;
+            case "asignatura":
+                if (s.getAsignatura().toLowerCase().startsWith(newValue)) ret = true;
+                break;
+            case "contenido":
+                if (s.getContenidos().toLowerCase().startsWith(newValue)) ret = true;
+                break;
+            case "docentet1":
+                if (s.getDocente1().getCode().toLowerCase().startsWith(newValue)) ret = true;
+                break;
+            case "docentet2":
+                if (s.getDocente2().getCode().toLowerCase().startsWith(newValue)) ret = true;
+                break;
+            case "tipoaula":
+                System.out.println(s.getTipoAula() + " vs " + newValue);
+                if (s.getTipoAula().equalsIgnoreCase(newValue)) ret = true;
+                break;
+            case "aula":
+                if (s.getAula().toLowerCase().startsWith(newValue)) ret = true;
+                break;
+            case "nota":
+                if (s.getNota0().toLowerCase().startsWith(newValue)) ret = true;
+                break;
+        }
+        return ret;
+    }
+
+    private void fillDataMaster() {
+        for (Sesion s : aSession) {
+            masterData.add(s);
+        }
+        filteredData.addAll(masterData);
+    }
+
 
     public void openScene(TabCalendarMaster tcm) throws IOException {
         this.tcm = tcm;
@@ -64,10 +151,11 @@ public class SesionTableController implements Initializable {
      * printM1
      */
     private void printM1() {
-        for (int i = 0; i < aSession.size(); i++) {
-            if (aSession.get(i).getMaster1() != null
-                    && aSession.get(i).getMaster1().equals(tcm.getMaster())
-                    && !aSession.get(i).isActivo()) addSesionInTable(aSession.get(i));
+        for (int i = 0; i < filteredData.size(); i++) {
+            if (filteredData.get(i).getMaster1() != null
+                    && filteredData.get(i).getMaster1().equals(tcm.getMaster())
+                    && !filteredData.get(i).isActivo()) addSesionInTable(filteredData.get(i));
+
         }
     }
 
@@ -75,10 +163,10 @@ public class SesionTableController implements Initializable {
      * printM2
      */
     private void printM2() {
-        for (int i = 0; i < aSession.size(); i++) {
-            if (aSession.get(i).getMaster2() != null
-                    && aSession.get(i).getMaster2().equals(tcm.getMaster())
-                    && !aSession.get(i).isActivo()) addSesionInTable(aSession.get(i));
+        for (int i = 0; i < filteredData.size(); i++) {
+            if (filteredData.get(i).getMaster2() != null
+                    && filteredData.get(i).getMaster2().equals(tcm.getMaster())
+                    && !filteredData.get(i).isActivo()) addSesionInTable(filteredData.get(i));
         }
     }
 
@@ -108,16 +196,17 @@ public class SesionTableController implements Initializable {
      * settingsTable
      */
     private void settingsTable() {
-        tv_session.getColumns().addAll(generarColumn("sesionID"),
-                generarColumn("master1"),
-                generarColumn("master2"),
-                generarColumn("asignatura"),
-                generarColumn("contenido"),
-                generarColumn("docentet1"),
-                generarColumn("docentet2"),
-                generarColumn("TipoAula"),
-                generarColumn("Aula"),
-                generarColumn("nota")
+        int cont_tvSesColName = -1;
+        tv_session.getColumns().addAll(generarColumn(aColumnNametvSes.get(++cont_tvSesColName)),
+                generarColumn(aColumnNametvSes.get(++cont_tvSesColName)),
+                generarColumn(aColumnNametvSes.get(++cont_tvSesColName)),
+                generarColumn(aColumnNametvSes.get(++cont_tvSesColName)),
+                generarColumn(aColumnNametvSes.get(++cont_tvSesColName)),
+                generarColumn(aColumnNametvSes.get(++cont_tvSesColName)),
+                generarColumn(aColumnNametvSes.get(++cont_tvSesColName)),
+                generarColumn(aColumnNametvSes.get(++cont_tvSesColName)),
+                generarColumn(aColumnNametvSes.get(++cont_tvSesColName)),
+                generarColumn(aColumnNametvSes.get(++cont_tvSesColName))
         );
         tv_session.setRowFactory(tv -> {
             TableRow<SesionTableRow> row = new TableRow<>();
@@ -155,15 +244,6 @@ public class SesionTableController implements Initializable {
                                  ArrayList<GridSesion> aGridSesions) {
         for (GridSesion gs : aGridSesions) {
             if (gs.getMiniGrid().equals(tcm.getGp_waiting())) {
-//                gs.getLblAsign().setText(obj.getAsignatura());
-//                gs.getLblContenido().setText(obj.getContenido());
-//                gs.getLblJuntSep().setText(getValueJunSep(obj));
-//                gs.getLblAula().setText(obj.getAula());
-//                gs.getCbo_tipoAula().setValue(getValueTipoAula(obj));
-//                gs.getCbo_doc1().setValue(getValueDoc(obj, 1));
-//                gs.getCbo_doc2().setValue(getValueDoc(obj, 2));
-//                gs.setSesionID(Integer.parseInt(obj.getSesionID()));
-//                gs.setVisibleComboBoxs(true);
                 if (obj.getMaster1().length() > 0)
                     addSesionToPlanifList(getSesion(Integer.parseInt(obj.getSesionID())), getCalBasID(gs.getLblDateID().getId()),
                             master1);
@@ -272,5 +352,9 @@ public class SesionTableController implements Initializable {
                 break;
         }
         return t;
+    }
+
+    public void clickBuscar(MouseEvent mouseEvent) {
+        updateFilteredData(txtValor.getText());
     }
 }

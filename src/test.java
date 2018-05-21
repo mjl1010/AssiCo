@@ -7,6 +7,7 @@ public class test {
 
         String f = "menuOpt1_1";
 
-        System.out.println(f.substring(0, f.length()-2));
+        System.out.println(f.toLowerCase()
+                .indexOf("men"));
     }
 }
