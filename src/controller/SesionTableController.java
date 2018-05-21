@@ -107,7 +107,6 @@ public class SesionTableController implements Initializable {
                 if (s.getDocente2().getCode().toLowerCase().startsWith(newValue)) ret = true;
                 break;
             case "tipoaula":
-                System.out.println(s.getTipoAula() + " vs " + newValue);
                 if (s.getTipoAula().equalsIgnoreCase(newValue)) ret = true;
                 break;
             case "aula":
