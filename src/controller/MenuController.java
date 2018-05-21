@@ -30,10 +30,7 @@ public class MenuController implements Initializable {
     private MenuButton menu_cuentas;
 
     @FXML
-    private MenuItem menu_config;
-
-    @FXML
-    private MenuItem menu_gestion;
+    private MenuItem menu_config, menu_gestion;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -73,10 +70,10 @@ public class MenuController implements Initializable {
 
     public static void refreshText() {
         if (main == null) return;
-        main.menu_planificacion.setStyle(TextResponsive.getFontStyle("h2") + " -fx-text-fill: #000000; -fx-background-color: #0ab4c8; -fx-border-color: #0ab4c8; -fx-border-radius: 4px; -fx-background-radius: 4px;");
-        main.menu_masters.setStyle(TextResponsive.getFontStyle("h2") + " -fx-text-fill: #000000; -fx-background-color: #ffd600; -fx-border-color: #ffd600; -fx-border-radius: 4px; -fx-background-radius: 4px;");
-        main.menu_cuentas.setStyle(TextResponsive.getFontStyle("h2") + " -fx-text-fill: #000000; -fx-background-color: #0bd500; -fx-border-color: #0bd500; -fx-border-radius: 4px; -fx-background-radius: 4px;");
-        main.menu_docentes.setStyle(TextResponsive.getFontStyle("h2") + " -fx-text-fill: #000000; -fx-background-color: #ff76ae; -fx-border-color: #ff76ae; -fx-border-radius: 4px; -fx-background-radius: 4px;");
+        main.menu_planificacion.setStyle(TextResponsive.getFontStyle("h2") + " -fx-text-fill: #000000; -fx-background-color: #0ab4c8; -fx-border-color: transparent; -fx-background-radius: 4px;");
+        main.menu_masters.setStyle(TextResponsive.getFontStyle("h2") + " -fx-text-fill: #000000; -fx-background-color: #ffd600; -fx-border-color: transparent; -fx-background-radius: 4px;");
+        main.menu_cuentas.setStyle(TextResponsive.getFontStyle("h2") + "-fx-mark-color: #0bd500; -fx-background-color: #0bd500; -fx-border-color: transparent; -fx-background-radius: 4px;");
+        main.menu_docentes.setStyle(TextResponsive.getFontStyle("h2") + " -fx-text-fill: #000000; -fx-background-color: #ff76ae; -fx-border-color: transparent; -fx-background-radius: 4px;");
         main.menu_config.setStyle(TextResponsive.getFontStyle("h3"));
         main.menu_gestion.setStyle(TextResponsive.getFontStyle("h3"));
 

@@ -9,16 +9,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="1000.0" style="-fx-background-image: url(/view/res/Menu.png); -fx-background-position: center; -fx-background-repeat: no-repeat;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuController">
+<AnchorPane prefHeight="500.0" prefWidth="1000.0" style="-fx-background-image: url(/view/res/Fondo3.png); -fx-background-position: center; -fx-background-repeat: no-repeat;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuController">
    <children>
       <VBox alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="TOP_CENTER">
-               <children>
-                   <fx:include source="intHeader.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </HBox>
-                <HBox alignment="CENTER" maxWidth="960.0" style="-fx-background-color: rgba(0, 0, 0, 0.07);-fx-background-radius: 5px;" VBox.vgrow="ALWAYS">
+            <fx:include source="intHeader.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                <HBox alignment="CENTER" maxWidth="960.0" style="-fx-background-color: rgba(0, 0, 0, 0.05);-fx-background-radius: 5px;" VBox.vgrow="ALWAYS">
                <children>
                   <VBox alignment="CENTER_RIGHT" spacing="40.0" HBox.hgrow="ALWAYS">
                      <children>
@@ -27,7 +23,7 @@
                               <Font size="24.0" />
                            </font>
                         </Button>
-                        <MenuButton fx:id="menu_cuentas" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" mnemonicParsing="false" prefHeight="130.0" prefWidth="330.0" style="-fx-text-fill: #000000; -fx-background-color: #0bd500; -fx-border-color: #0bd500; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Cuentas" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+                        <MenuButton fx:id="menu_cuentas" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" mnemonicParsing="false" prefHeight="130.0" prefWidth="330.0" style="-fx-mark-color: black; -fx-background-color: #0bd500; -fx-border-color: transparent; -fx-background-radius: 4px;" text="Cuentas" textAlignment="CENTER" textFill="#000000" textOverrun="CLIP" wrapText="true">
                           <items>
                             <MenuItem fx:id="menu_config" mnemonicParsing="false" onAction="#irConfig" text="Configuración" />
                             <MenuItem fx:id="menu_gestion" mnemonicParsing="false" onAction="#irGestion" text="Gestión" />
@@ -66,11 +62,7 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
             </HBox>
-            <HBox alignment="BOTTOM_CENTER">
-               <children>
-                   <fx:include source="intFooter.fxml" />
-               </children>
-            </HBox>
+            <fx:include source="intFooter.fxml" />
          </children>
       </VBox>
    </children>

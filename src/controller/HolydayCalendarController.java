@@ -38,10 +38,7 @@ public class HolydayCalendarController implements Initializable {
     TableView<WeekDates> tvCalendar;
 
     @FXML
-    Button generar;
-
-    @FXML
-    Button back;
+    Button generar,  back;
 
     private int cont_aListDate = -1;
     private ArrayList<String> celdasSeleccionadas = new ArrayList<>();
@@ -56,6 +53,8 @@ public class HolydayCalendarController implements Initializable {
         main = this;
 
         HeaderController.main.titulo.setText("Selecciona los días festivos");
+
+        refreshText();
 
         fillCeldasVacations();
         columnsSetting();
@@ -121,7 +120,7 @@ public class HolydayCalendarController implements Initializable {
                 protected void updateItem(String item, boolean empty) {
                     super.updateItem(item, empty);
                     setText(empty ? null : item);
-                    setStyle(TextResponsive.getFontStyle("h4"));
+                    setStyle(TextResponsive.getFontStyle("h6"));
 
                     if ((item != null && celdasVacations.contains(item)))
                         setStyle(CELL_BG_LIGHTGREY);
@@ -140,7 +139,7 @@ public class HolydayCalendarController implements Initializable {
                     celdasSeleccionadas.add(cell.getText());
                 } else if (cell.getStyle().equals(CELL_BG_RED)) {
                     celdasSeleccionadas.remove(cell.getText());
-                    cell.setStyle(TextResponsive.getFontStyle("h4"));
+                    cell.setStyle(TextResponsive.getFontStyle("h6"));
                 }
             });
             return cell;
@@ -252,7 +251,6 @@ public class HolydayCalendarController implements Initializable {
 
     private void openIntCalendarSession() {
         MainLogin.openStage(getClass().getResource("/view/intSesionsCalendar.fxml"), "Planificaciones - Calendario " + cursoAcademico, null);
-
         VariablesAndMethodsUtils.closeStage(tvCalendar.getScene().getWindow());
     }
 
@@ -267,6 +265,7 @@ public class HolydayCalendarController implements Initializable {
 
         createPlanificacionObjects();
 
+        // TODO Mandar a guardar el curso generado
 //        ClientExt.connect();
 //        ClientExt. send_firstListBaseCalendar(CourseRangeController.getaListCalBase());
 //        ClientExt.closeConnection();
@@ -280,30 +279,32 @@ public class HolydayCalendarController implements Initializable {
 
     @FXML
     private void back() {
-
+        MainLogin.openStage(getClass().getResource("/view/intCourseRange.fxml"), "Planificaciones - Nuevo curso", null);
+        VariablesAndMethodsUtils.closeStage(tvCalendar.getScene().getWindow());
     }
 
     public static void refreshText() {
         if (main == null) return;
 
         main.tvCalendar.setStyle(TextResponsive.getFontStyle("h6"));
-        main.generar.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;");
-        main.back.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;");
+        main.generar.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #9fff3f; -fx-border-color: transparent; -fx-background-radius: 4px;");
+        main.back.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #ff5959; -fx-border-color: transparent; -fx-background-radius: 4px;");
 
         if (main.tvCalendar != null)
             for (Node node : main.tvCalendar.getChildrenUnmodifiable()) {
                 if (node instanceof Text) {
                     String addStyle = "-fx-background-color: transparent;";
                     if (node.getStyle().contains("ff0000")) {
-                        CELL_BG_RED = TextResponsive.getFontStyle("h4") + "-fx-background-color: #ff0000;";
+                        CELL_BG_RED = TextResponsive.getFontStyle("h6") + "-fx-background-color: #ff0000;";
                         node.setStyle(CELL_BG_RED);
                     } else if (node.getStyle().contains("cccccc")) {
-                        CELL_BG_LIGHTGREY = TextResponsive.getFontStyle("h4") + "-fx-background-color: #cccccc;";
+                        CELL_BG_LIGHTGREY = TextResponsive.getFontStyle("h6") + "-fx-background-color: #cccccc;";
                         node.setStyle(CELL_BG_LIGHTGREY);
                     } else {
-                        node.setStyle(TextResponsive.getFontStyle("h4") + "-fx-background-color: transparent;");
+                        node.setStyle(TextResponsive.getFontStyle("h6"));
                     }
-
+                } else {
+                    System.out.println(node.getClass().getName());
                 }
             }
     }

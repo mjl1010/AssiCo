@@ -39,7 +39,7 @@ public class SelectMaster implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         main = this;
-        if (HeaderController.main.titulo != null) HeaderController.main.titulo.setText("Seleccione un máster");
+        if (HeaderController.main.titulo != null) HeaderController.main.titulo.setText("Seleccione un máster del curso " + SelectCourse.postSelectMaster);
         generarMasters();
     }
 
@@ -54,8 +54,8 @@ public class SelectMaster implements Initializable {
                 if (masters.get(i).getMasterVinculado() != null) btn.setText(masters.get(i).getNombre() + "\n" + masters.get(i).getMasterVinculado().getNombre());
                 else btn.setText(masters.get(i).getNombre());
                 btn.setMinHeight(60);
-                btn.setMinWidth(360);
-                btn.setMaxWidth(360);
+                btn.setMinWidth(363);
+                btn.setMaxWidth(363);
                 btn.setTextAlignment(TextAlignment.CENTER);
                 btn.setAlignment(Pos.CENTER);
                 btn.setWrapText(true);
@@ -70,7 +70,8 @@ public class SelectMaster implements Initializable {
                         DatosModel.closeConnection();
 
                         // TODO Pasárle planificacion y parametrizar
-                        VariablesAndMethodsUtils.init();
+                        VariablesAndMethodsUtils.init(planificacionCalendario);
+                        SesionsCalendarController.nombre_curso = SelectCourse.postSelectMaster;
 
                         MainLogin.openStage(getClass().getResource("/view/intSesionsCalendar.fxml"), "Planificaciones - Calendario " + SelectCourse.postSelectMaster, null);
                         ((Stage) main.smaster_atras.getScene().getWindow()).close();
@@ -93,12 +94,12 @@ public class SelectMaster implements Initializable {
     public static void refreshText() {
         if (main == null) return;
 
-        if (main.smaster_atras != null) main.smaster_atras.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;");
+        if (main.smaster_atras != null) main.smaster_atras.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #ff5959; -fx-border-color: transparent; -fx-background-radius: 4px;");
 
         if (main.smaster_col_1 != null)
         for (Node node : main.smaster_col_1.getChildren()) {
             if (node instanceof Button) {
-                node.setStyle(TextResponsive.getFontStyle("h3") + " -fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;");
+                node.setStyle(TextResponsive.getFontStyle("h3") + " -fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: transparent; -fx-background-radius: 4px;");
                 //((Button)node).setWrapText(true);
             }
         }
@@ -106,7 +107,7 @@ public class SelectMaster implements Initializable {
         if (main.smaster_col_2 != null)
         for (Node node : main.smaster_col_2.getChildren()) {
             if (node instanceof Button) {
-                node.setStyle(TextResponsive.getFontStyle("h3") + " -fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;");
+                node.setStyle(TextResponsive.getFontStyle("h3") + " -fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: transparent; -fx-background-radius: 4px;");
                 //((Button)node).setWrapText(true);
             }
         }

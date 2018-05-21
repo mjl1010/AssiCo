@@ -28,7 +28,7 @@ public class VariablesAndMethodsUtils {
     public static ObservableList<String> aTiposAula;
     public static ArrayList<String> aDays = new ArrayList<>();
     public static ArrayList<String> aMonths = new ArrayList<>();
-    private static final DateTimeFormatter FORMATTER2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    public static final DateTimeFormatter FORMATTER2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static ArrayList<String> aListAsignaturas = new ArrayList<>();
     public static ArrayList<Docente> aDocentes = new ArrayList<>();
     public static ObservableList<String> aDocentesID = FXCollections.observableArrayList();
@@ -41,10 +41,13 @@ public class VariablesAndMethodsUtils {
     private static int sesionID = 0;
     private static final ArrayList<String> aTipoSession = new ArrayList<>();
 
-    /**
-     * static function
-     */
-    static {
+    public static void init(ArrayList<DiaPlanificado> planificacionCalendario) {
+        for (DiaPlanificado dia : planificacionCalendario) if (!aCalendarioBase.contains(dia.getCalendarioBase())) aCalendarioBase.add(dia.getCalendarioBase());
+        init();
+    }
+
+    public static void init() {
+        curso = "Testing 2018-2019";
         uni = new Universidad(1, "uoc");
         master1 = new Master(1, "M01", "master1");
         master2 = new Master(2, "M02", "master2");
@@ -76,11 +79,6 @@ public class VariablesAndMethodsUtils {
         aMonths.add("November");
         aMonths.add("December");
 
-        //addData();
-
-    }
-
-    public static void init() {
         addData();
     }
 

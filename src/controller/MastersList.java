@@ -33,7 +33,7 @@ public class MastersList implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         main = this;
-        if (HeaderController.main.titulo != null) HeaderController.main.titulo.setText("Seleccione un curso");
+        if (HeaderController.main.titulo != null) HeaderController.main.titulo.setText("Seleccione un máster");
         generarMasters();
     }
 
@@ -47,7 +47,8 @@ public class MastersList implements Initializable {
                 Button btn = new Button();
                 btn.setText(masters.get(i).getNombre());
                 btn.setMinHeight(60);
-                btn.setMinWidth(200);
+                btn.setMinWidth(363);
+                btn.setMaxWidth(363);
                 btn.setTextAlignment(TextAlignment.CENTER);
                 btn.setAlignment(Pos.CENTER);
                 btn.setWrapText(true);
@@ -68,19 +69,19 @@ public class MastersList implements Initializable {
     public static void refreshText() {
         if (main == null) return;
 
-        if (main.master_agregar != null) main.master_agregar.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;");
+        if (main.master_agregar != null) main.master_agregar.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #9fff3f; -fx-border-color: transparent; -fx-background-radius: 4px;");
 
         if (main.master_col_1 != null)
             for (Node node : main.master_col_1.getChildren()) {
                 if (node instanceof Button) {
-                    node.setStyle(TextResponsive.getFontStyle("h3") + " -fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;");
+                    node.setStyle(TextResponsive.getFontStyle("h3") + " -fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: transparent; -fx-background-radius: 4px;");
                 }
             }
 
         if (main.master_col_2 != null)
             for (Node node : main.master_col_2.getChildren()) {
                 if (node instanceof Button) {
-                    node.setStyle(TextResponsive.getFontStyle("h3") + " -fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;");
+                    node.setStyle(TextResponsive.getFontStyle("h3") + " -fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: transparent; -fx-background-radius: 4px;");
                 }
             }
     }

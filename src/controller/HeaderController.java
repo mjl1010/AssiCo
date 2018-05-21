@@ -6,9 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import model.DatosModel;
@@ -34,7 +32,10 @@ public class HeaderController implements Initializable {
     Label titulo;
 
     @FXML
-    private Button logout_btn;
+    private MenuButton mi_cuenta;
+
+    @FXML
+    private MenuItem ver_cuenta, ajustes_cuenta, logout_btn;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -52,7 +53,7 @@ public class HeaderController implements Initializable {
     @FXML
     private void logout(ActionEvent event) throws IOException {
         // Cerrar sesión, abrir login y cerrar parent
-        Window owner = logout_btn.getScene().getWindow();
+        Window owner = menu_btn.getScene().getWindow();
         DatosModel.connect(owner);
 
         if (DatosModel.logoutToken(LoginController.token)) {
@@ -70,10 +71,20 @@ public class HeaderController implements Initializable {
         DatosModel.closeConnection();
     }
 
+    @FXML
+    private void verCuenta(ActionEvent event) {
+
+    }
+
+    @FXML
+    private void irAjustes(ActionEvent event) {
+
+    }
+
     public static void refreshText() {
         if (main == null) return;
         if (main.titulo != null) main.titulo.setStyle(TextResponsive.getFontStyle("h3"));
-        if (main.menu_btn != null) main.menu_btn.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #3f9eff; -fx-border-color: #3f9eff; -fx-border-radius: 4px; -fx-background-radius: 4px;");
-        if (main.logout_btn != null) main.logout_btn.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #ff9f3f; -fx-border-color: #ff9f3f; -fx-border-radius: 4px; -fx-background-radius: 4px;");
+        if (main.menu_btn != null) main.menu_btn.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #3f9eff; -fx-border-color: transparent; -fx-background-radius: 4px;");
+        if (main.mi_cuenta != null) main.mi_cuenta.setStyle(TextResponsive.getFontStyle("h5") + " -fx-mark-color: #ff9f3f; -fx-background-color: #ff9f3f; -fx-border-color: transparent; -fx-background-radius: 4px;");
     }
 }

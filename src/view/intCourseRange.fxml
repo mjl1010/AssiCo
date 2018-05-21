@@ -14,11 +14,7 @@
     <children>
         <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <HBox alignment="TOP_CENTER">
-                    <children>
-                        <fx:include source="intHeader.fxml" />
-                    </children>
-                </HBox>
+                <fx:include source="intHeader.fxml" />
                 <HBox alignment="CENTER" maxWidth="960.0" VBox.vgrow="ALWAYS">
                     <children>
                           <AnchorPane nodeOrientation="LEFT_TO_RIGHT" HBox.hgrow="ALWAYS">
@@ -131,7 +127,7 @@
                           </AnchorPane>
                         <VBox alignment="TOP_RIGHT" minWidth="-Infinity" spacing="20.0">
                             <children>
-                                <Button fx:id="generarCurso" ellipsisString="" mnemonicParsing="false" onAction="#generarCurso" style="-fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Generar curso" textOverrun="CLIP" wrapText="true" VBox.vgrow="ALWAYS">
+                                <Button fx:id="generarCurso" ellipsisString="" mnemonicParsing="false" onAction="#generarCurso" style="-fx-text-fill: #000000; -fx-background-color: #9fff3f; -fx-border-color: transparent; -fx-background-radius: 4px;" text="Generar curso" textOverrun="CLIP" wrapText="true" VBox.vgrow="ALWAYS">
                                     <font>
                                         <Font size="16.0" />
                                     </font>
@@ -139,7 +135,7 @@
                                         <Insets />
                                     </VBox.margin>
                                 </Button>
-                                <Button fx:id="generarCursoBack" ellipsisString="" mnemonicParsing="false" onAction="#back" style="-fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Atrás" textOverrun="CLIP" wrapText="true" VBox.vgrow="ALWAYS">
+                                <Button fx:id="generarCursoBack" ellipsisString="" mnemonicParsing="false" onAction="#back" style="-fx-text-fill: #000000; -fx-background-color: #ff5959; -fx-border-color: transparent; -fx-background-radius: 4px;" text="Atrás" textOverrun="CLIP" wrapText="true" VBox.vgrow="ALWAYS">
                                     <font>
                                         <Font size="16.0" />
                                     </font>
@@ -155,12 +151,9 @@
                     </children>
                     <VBox.margin>
                         <Insets bottom="20.0" top="20.0" />
-                    </VBox.margin></HBox>
-                <HBox alignment="BOTTOM_CENTER">
-                    <children>
-                        <fx:include source="intFooter.fxml" />
-                    </children>
+                    </VBox.margin>
                 </HBox>
+                <fx:include source="intFooter.fxml" />
             </children>
         </VBox>
     </children>

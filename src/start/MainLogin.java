@@ -17,6 +17,7 @@ import model.DatosModel;
 import utilities.AlertHelper;
 import utilities.VariablesAndMethodsUtils;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -34,6 +35,15 @@ public class MainLogin extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        root = FXMLLoader.load(getClass().getResource("/view/intLoading.fxml"));
+        Dimension d= Toolkit.getDefaultToolkit().getScreenSize();
+        primaryStage.getIcons().add(new Image("/view/res/AssiCoLogoMini.png"));
+        primaryStage.setTitle("AssiCo - Cargando");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+        primaryStage.setX(d.width/2-(1000/2));
+        primaryStage.setY(d.height/2-(600/2));
+
         stage = primaryStage;
         screen = Screen.getPrimary();
         String error = null;

@@ -7,11 +7,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FooterController">
-    <children>
-        <HBox alignment="BOTTOM_CENTER" spacing="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<HBox alignment="BOTTOM_CENTER" maxWidth="1000.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FooterController">
             <children>
-                <VBox alignment="BOTTOM_LEFT" minWidth="200.0">
+                <VBox alignment="BOTTOM_LEFT" minWidth="150.0">
                     <opaqueInsets>
                         <Insets />
                     </opaqueInsets>
@@ -24,7 +22,7 @@
                 </VBox>
                 <VBox alignment="BOTTOM_CENTER" HBox.hgrow="ALWAYS">
                     <children>
-                        <Label alignment="BOTTOM_CENTER" text="© 2018 AssiCo" VBox.vgrow="ALWAYS">
+                        <Label alignment="BOTTOM_CENTER" ellipsisString="" text="© 2018 AssiCo" textOverrun="CLIP" VBox.vgrow="ALWAYS">
                             <font>
                                 <Font size="16.0" />
                             </font>
@@ -34,7 +32,7 @@
                   <Insets bottom="20.0" />
                </HBox.margin>
                 </VBox>
-                <VBox alignment="BOTTOM_RIGHT" minWidth="200.0">
+                <VBox alignment="BOTTOM_RIGHT" minWidth="150.0">
                <HBox.margin>
                   <Insets bottom="20.0" right="20.0" />
                </HBox.margin>
@@ -62,5 +60,3 @@
                 </VBox>
             </children>
         </HBox>
-    </children>
-</AnchorPane>

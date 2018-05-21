@@ -14,6 +14,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Window;
 import utilities.TabCalendarMaster;
 import utilities.TextResponsive;
+import utilities.VariablesAndMethodsUtils;
 
 import java.io.IOException;
 import java.net.URL;
@@ -41,17 +42,24 @@ public class SesionsCalendarController implements Initializable {
     @FXML
     MenuItem menuOpt1_1, menuOpt2_1, menuOpt3_1, menuOpt4_1, menuOpt5_1, menuOpt6_1, menuOpt7_1, menuOpt8_1, menuOpt9_1, menuOpt10_1, menuOpt1_2, menuOpt2_2, menuOpt3_2, menuOpt4_2, menuOpt5_2, menuOpt6_2, menuOpt7_2, menuOpt8_2, menuOpt9_2, menuOpt10_2;
 
-
     private ArrayList<MenuItem> aSplitMenuButton1;
     private ArrayList<MenuItem> aSplitMenuButton2;
     public static Master master_current1;
-
+    public static String nombre_curso;
 
     private static TabCalendarMaster tcm1, tcm2;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         main = this;
+
+        if (nombre_curso == null) {
+            VariablesAndMethodsUtils.init();
+            nombre_curso = VariablesAndMethodsUtils.curso;
+        }
+
+        if (HeaderController.main.titulo != null) HeaderController.main.titulo.setText(nombre_curso + " : " + master1.getNombre() + (master2 != null ? " / " + master2.getNombre() : ""));
+
         tcm1 = new TabCalendarMaster(gp_calendar1, master1, smb_menuOption1, lblYear1, lblMonth1);
         tcm2 = new TabCalendarMaster(gp_calendar2, master2, smb_menuOption2, lblYear2, lblMonth2);
         tcm1.setTcm_vinculado(tcm2);

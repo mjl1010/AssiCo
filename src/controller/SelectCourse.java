@@ -50,8 +50,8 @@ public class SelectCourse implements Initializable {
                 Button btn = new Button();
                 btn.setText(cursos.get(i));
                 btn.setMinHeight(60);
-                btn.setMinWidth(360);
-                btn.setMaxWidth(360);
+                btn.setMinWidth(363);
+                btn.setMaxWidth(363);
                 btn.setTextAlignment(TextAlignment.CENTER);
                 btn.setAlignment(Pos.CENTER);
                 btn.setWrapText(true);
@@ -79,7 +79,7 @@ public class SelectCourse implements Initializable {
     public static void refreshText() {
         if (main == null) return;
 
-        if (main.select_course_nuevo != null) main.select_course_nuevo.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;");
+        if (main.select_course_nuevo != null) main.select_course_nuevo.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #9fff3f; -fx-border-color: transparent; -fx-background-radius: 4px;");
 
         if (main.curso_col_1 != null)
             for (Node node : main.curso_col_1.getChildren()) {
