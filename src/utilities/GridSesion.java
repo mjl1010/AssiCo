@@ -7,6 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
+import start.MainLogin;
+import utilities.TextResponsive;
+
 import static utilities.VariablesAndMethodsUtils.aDocentesID;
 import static utilities.VariablesAndMethodsUtils.aTiposAula;
 
@@ -22,6 +25,7 @@ public class GridSesion {
     private ComboBox cbo_tipoAula, cbo_doc1, cbo_doc2;
     private int indexRow, indexColum;
     private int sesionID = -1;
+    private String backgroundColor, textColor;
 
     public GridSesion() {
     }
@@ -32,6 +36,7 @@ public class GridSesion {
      */
     public GridSesion(String dateID, int indexRow, int indexColum) {
         lblDateID = new Label(dateID);
+        lblDateID.setId(dateID);
         lblAux1 = new Label();
         lblAux2 = new Label();
         lblAsign = new Label();
@@ -44,6 +49,8 @@ public class GridSesion {
         hBox_doc = new HBox();
         this.indexRow = indexRow;
         this.indexColum = indexColum;
+        backgroundColor = "#f5f5f5";
+        textColor = "#000000";
         settingMiniGrid();
     }
 
@@ -53,6 +60,7 @@ public class GridSesion {
     public GridSesion(String dateID, String aux1, String aux2, String Asign, String conten,
                       String juntSep, String aula) {
         lblDateID = new Label(dateID);
+        lblDateID.setId(dateID);
         lblAux1 = new Label(aux1);
         lblAux2 = new Label(aux2);
         lblAsign = new Label(Asign);
@@ -164,6 +172,23 @@ public class GridSesion {
         this.sesionID = sesionID;
     }
 
+    public String getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    public void setBackgroundColor(String backgroundColor) {
+        this.backgroundColor = backgroundColor;
+        System.out.println(":D");
+    }
+
+    public String getTextColor() {
+        return textColor;
+    }
+
+    public void setTextColor(String textColor) {
+        this.textColor = textColor;
+    }
+
     /**** Métodos Agregados ****/
 
     /**
@@ -181,14 +206,11 @@ public class GridSesion {
         miniGrid.getRowConstraints().add(1, new RowConstraints(27));
         miniGrid.getRowConstraints().add(2, new RowConstraints(27));
 
-        //miniGrid.setStyle("-fx-background-color: #cccccc");
-
         lblDateID.setPrefHeight(26);
+        miniGrid.setStyle("-fx-background-color: " + backgroundColor + ";");
 
-        if (lblContenido.getText().isEmpty()) lblDateID.setStyle("-fx-background-color: #cccccc");
-        else lblDateID.setStyle("-fx-background-color: #aa0000");
-        lblDateID.setTextFill(Paint.valueOf("#f2efef"));
-        lblDateID.setFont(new Font("System Bold", 8));
+        lblDateID.setStyle("-fx-background-color: " + backgroundColor + "; -fx-font: " + TextResponsive.getH6() + " \"System Bold\"; -fx-text-fill: " + textColor + ";");
+
         lblAsign.setFont(new Font(9));
         lblContenido.setFont(new Font(9));
 

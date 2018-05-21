@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="700.0" minWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MastersList">
+<AnchorPane minHeight="700.0" minWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SelectMaster">
     <children>
         <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -25,12 +25,12 @@
                                     <children>
                                         <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <children>
-                                                <VBox fx:id="master_col_1" alignment="CENTER_RIGHT" spacing="20.0">
+                                                <VBox fx:id="smaster_col_1" alignment="CENTER_RIGHT" spacing="20.0">
                                                     <HBox.margin>
                                                         <Insets right="10.0" />
                                                     </HBox.margin>
                                                 </VBox>
-                                                <VBox fx:id="master_col_2" alignment="CENTER_LEFT" spacing="20.0">
+                                                <VBox fx:id="smaster_col_2" alignment="CENTER_LEFT" spacing="20.0">
                                                     <HBox.margin>
                                                         <Insets left="10.0" />
                                                     </HBox.margin>
@@ -46,7 +46,7 @@
                         </ScrollPane>
                         <VBox alignment="TOP_RIGHT" minWidth="200.0" spacing="20.0">
                             <children>
-                                <Button fx:id="master_agregar" ellipsisString="" mnemonicParsing="false" onAction="#newMaster" style="-fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Crear nuevo" textOverrun="CLIP" wrapText="true" VBox.vgrow="ALWAYS">
+                                <Button fx:id="smaster_atras" ellipsisString="" mnemonicParsing="false" onAction="#back" style="-fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Atrás" textOverrun="CLIP" wrapText="true" VBox.vgrow="ALWAYS">
                                     <font>
                                         <Font size="16.0" />
                                     </font>

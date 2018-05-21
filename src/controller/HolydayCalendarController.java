@@ -4,12 +4,17 @@ import entity.DiaPlanificado;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import entity.CalendarioBase;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import start.MainLogin;
+import utilities.AlertHelper;
+import utilities.TextResponsive;
 import utilities.VariablesAndMethodsUtils;
 import utilities.WeekDates;
 
@@ -27,19 +32,31 @@ import static utilities.VariablesAndMethodsUtils.*;
  * Created by Michael and modified by Manel
  */
 public class HolydayCalendarController implements Initializable {
+    private static HolydayCalendarController main;
 
     @FXML
     TableView<WeekDates> tvCalendar;
 
+    @FXML
+    Button generar;
+
+    @FXML
+    Button back;
+
     private int cont_aListDate = -1;
     private ArrayList<String> celdasSeleccionadas = new ArrayList<>();
     private ArrayList<String> celdasVacations = new ArrayList<>();
-    private static final String CELL_BG_RED = "-fx-background-color: red";
-    private static final String CELL_BG_LIGHTGREY = "-fx-background-color: LIGHTGREY";
+    private static String CELL_BG_RED = TextResponsive.getFontStyle("h6") + "-fx-background-color: #ff0000;";
+    private static String CELL_BG_LIGHTGREY = TextResponsive.getFontStyle("h6") + "-fx-background-color: #dddddd;";
     private static final DateTimeFormatter FORMATTER2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private String cursoAcademico;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        main = this;
+
+        HeaderController.main.titulo.setText("Selecciona los días festivos");
+
         fillCeldasVacations();
         columnsSetting();
         fillTableView();
@@ -104,7 +121,7 @@ public class HolydayCalendarController implements Initializable {
                 protected void updateItem(String item, boolean empty) {
                     super.updateItem(item, empty);
                     setText(empty ? null : item);
-                    setStyle("");
+                    setStyle(TextResponsive.getFontStyle("h4"));
 
                     if ((item != null && celdasVacations.contains(item)))
                         setStyle(CELL_BG_LIGHTGREY);
@@ -123,7 +140,7 @@ public class HolydayCalendarController implements Initializable {
                     celdasSeleccionadas.add(cell.getText());
                 } else if (cell.getStyle().equals(CELL_BG_RED)) {
                     celdasSeleccionadas.remove(cell.getText());
-                    cell.setStyle("");
+                    cell.setStyle(TextResponsive.getFontStyle("h4"));
                 }
             });
             return cell;
@@ -137,7 +154,7 @@ public class HolydayCalendarController implements Initializable {
      * cells vacations list
      */
     private void fillCeldasVacations() {
-        Iterator it = VacationsRangeController.getHsVacations().iterator();
+        Iterator it = CourseRangeController.getHsVacations().iterator();
         while (it.hasNext()) {
             celdasVacations.add(String.valueOf(it.next()));
         }
@@ -209,7 +226,7 @@ public class HolydayCalendarController implements Initializable {
      */
     private void incompletWeekRegistred() {
 
-        ArrayList<String> dates = new ArrayList<String>();
+        ArrayList<String> dates = new ArrayList<>();
 
         while (aCalendarioBase.get(++cont_aListDate)
                 .getWeekDay() != 1)
@@ -221,10 +238,27 @@ public class HolydayCalendarController implements Initializable {
         tvCalendar.getItems().add(tb);
     }
 
-    /**
-     * saveBtnEvent
-     */
-    public void saveBtnEvent() throws IOException {
+    private void createPlanificacionObjects() {
+        CalendarioBase pc;
+        for (int i = 0; i < aCalendarioBase.size(); i++) {
+            pc = aCalendarioBase.get(i);
+            cursoAcademico = pc.getCursoAcademico();
+            aPlanifCalend.add(new DiaPlanificado(pc, pc.getDia(), VariablesAndMethodsUtils.uni,
+                    VariablesAndMethodsUtils.master1));
+            aPlanifCalend.add(new DiaPlanificado(pc, pc.getDia(), VariablesAndMethodsUtils.uni,
+                    VariablesAndMethodsUtils.master2));
+        }
+    }
+
+    private void openIntCalendarSession() {
+        MainLogin.openStage(getClass().getResource("/view/intSesionsCalendar.fxml"), "Planificaciones - Calendario " + cursoAcademico, null);
+
+        VariablesAndMethodsUtils.closeStage(tvCalendar.getScene().getWindow());
+    }
+
+    @FXML
+    private void generar() {
+        VariablesAndMethodsUtils.init();
 
         for (CalendarioBase cb : aCalendarioBase) {
             if (celdasSeleccionadas.contains(cb.getIdDate()))
@@ -237,49 +271,40 @@ public class HolydayCalendarController implements Initializable {
 //        ClientExt. send_firstListBaseCalendar(CourseRangeController.getaListCalBase());
 //        ClientExt.closeConnection();
 
-        openIntCalendarSession();
-
-    }
-
-    private void createPlanificacionObjects() {
-        CalendarioBase pc;
-        for (int i = 0; i < aCalendarioBase.size(); i++) {
-            pc = aCalendarioBase.get(i);
-            aPlanifCalend.add(new DiaPlanificado(pc, pc.getDia(), VariablesAndMethodsUtils.uni,
-                    VariablesAndMethodsUtils.master1));
-            aPlanifCalend.add(new DiaPlanificado(pc, pc.getDia(), VariablesAndMethodsUtils.uni,
-                    VariablesAndMethodsUtils.master2));
+        try {
+            openIntCalendarSession();
+        } catch (Exception e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, null, "Error - AssiCo", "No se ha podido generar la planificación");
         }
-        System.out.println("se registró todo correctamente !!");
     }
 
-    private void openIntCalendarSession() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/intSesionsCalendar.fxml"));
-        Stage stage = new Stage(StageStyle.DECORATED);
-        stage.setTitle("Sessions Calendar");
-        stage.setScene(new Scene(root, 1120 , 650));
-        stage.show();
-        VariablesAndMethodsUtils.closeStage(tvCalendar.getScene().getWindow());
-    }
-
-    /**
-     * editBtnEvent
-     */
-    public void editBtnEvent() {
+    @FXML
+    private void back() {
 
     }
 
-    /**
-     * cancelBtnEvent
-     */
-    public void cancelBtnEvent() {
+    public static void refreshText() {
+        if (main == null) return;
 
-    }
+        main.tvCalendar.setStyle(TextResponsive.getFontStyle("h6"));
+        main.generar.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;");
+        main.back.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;");
 
-    /**
-     * backBtnEvent
-     */
-    public void backBtnEvent() {
+        if (main.tvCalendar != null)
+            for (Node node : main.tvCalendar.getChildrenUnmodifiable()) {
+                if (node instanceof Text) {
+                    String addStyle = "-fx-background-color: transparent;";
+                    if (node.getStyle().contains("ff0000")) {
+                        CELL_BG_RED = TextResponsive.getFontStyle("h4") + "-fx-background-color: #ff0000;";
+                        node.setStyle(CELL_BG_RED);
+                    } else if (node.getStyle().contains("cccccc")) {
+                        CELL_BG_LIGHTGREY = TextResponsive.getFontStyle("h4") + "-fx-background-color: #cccccc;";
+                        node.setStyle(CELL_BG_LIGHTGREY);
+                    } else {
+                        node.setStyle(TextResponsive.getFontStyle("h4") + "-fx-background-color: transparent;");
+                    }
 
+                }
+            }
     }
 }

@@ -36,7 +36,7 @@ public class UpdateContenidoController implements Initializable {
             if (gs.getMiniGrid().equals(tcm.getGp_waiting())){
                 if (getSesion(gs.getSesionID()).getMaster1() != null &&
                         getSesion(gs.getSesionID()).getMaster2() != null)
-                    setValorInCalendarVinculado(gs.getLblDateID().getText(), txtCont.getText());
+                    setValorInCalendarVinculado(gs.getLblDateID().getId(), txtCont.getText());
                 break;
             }
         }
@@ -45,7 +45,7 @@ public class UpdateContenidoController implements Initializable {
 
     private void setValorInCalendarVinculado(String date, String newCont) {
         for (GridSesion gs : tcm.getTcm_vinculado().getaGridSesions()) {
-            if (gs.getLblDateID().getText().equals(date)){
+            if (gs.getLblDateID().getId().equals(date)){
                 gs.getLblContenido().setText(newCont);
                 break;
             }

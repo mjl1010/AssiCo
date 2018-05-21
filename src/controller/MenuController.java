@@ -50,6 +50,7 @@ public class MenuController implements Initializable {
 
     @FXML
     private void irMasters() throws IOException {
+        SelectCourse.postSelectMaster = null;
         MainLogin.openStage(getClass().getResource("/view/intMasters.fxml"), "Másters", null);
         ((Stage) menu_masters.getScene().getWindow()).close();
     }

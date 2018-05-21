@@ -27,6 +27,9 @@ public class MastersList implements Initializable {
     @FXML
     VBox master_col_2;
 
+    @FXML
+    Button master_agregar;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         main = this;
@@ -64,6 +67,8 @@ public class MastersList implements Initializable {
 
     public static void refreshText() {
         if (main == null) return;
+
+        if (main.master_agregar != null) main.master_agregar.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;");
 
         if (main.master_col_1 != null)
             for (Node node : main.master_col_1.getChildren()) {

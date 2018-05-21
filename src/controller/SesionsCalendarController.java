@@ -13,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Window;
 import utilities.TabCalendarMaster;
+import utilities.TextResponsive;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,6 +27,7 @@ import static utilities.VariablesAndMethodsUtils.*;
  * Created by Michael
  */
 public class SesionsCalendarController implements Initializable {
+    private static SesionsCalendarController main;
 
     @FXML
     GridPane gp_calendar1, gp_calendar2;
@@ -35,7 +37,6 @@ public class SesionsCalendarController implements Initializable {
 
     @FXML
     SplitMenuButton smb_menuOption1, smb_menuOption2;
-    ;
 
     @FXML
     MenuItem menuOpt1_1, menuOpt2_1, menuOpt3_1, menuOpt4_1, menuOpt5_1, menuOpt6_1, menuOpt7_1, menuOpt8_1, menuOpt9_1, menuOpt10_1, menuOpt1_2, menuOpt2_2, menuOpt3_2, menuOpt4_2, menuOpt5_2, menuOpt6_2, menuOpt7_2, menuOpt8_2, menuOpt9_2, menuOpt10_2;
@@ -50,6 +51,7 @@ public class SesionsCalendarController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        main = this;
         tcm1 = new TabCalendarMaster(gp_calendar1, master1, smb_menuOption1, lblYear1, lblMonth1);
         tcm2 = new TabCalendarMaster(gp_calendar2, master2, smb_menuOption2, lblYear2, lblMonth2);
         tcm1.setTcm_vinculado(tcm2);
@@ -57,6 +59,7 @@ public class SesionsCalendarController implements Initializable {
         addOptionsToSplitMenu();
         configSplitMenuButton(aSplitMenuButton1, tcm1);
         configSplitMenuButton(aSplitMenuButton2, tcm2);
+        refreshText();
     }
 
     /**
@@ -151,10 +154,25 @@ public class SesionsCalendarController implements Initializable {
      */
     public void updateMonth1(MouseEvent mouseEvent) {
         tcm1.updateMonth(mouseEvent);
+        if (tcm2 != null) tcm2.updateMonth(mouseEvent);
+
     }
 
     public void updateMonth2(MouseEvent mouseEvent) {
+        tcm1.updateMonth(mouseEvent);
         tcm2.updateMonth(mouseEvent);
+    }
+
+    public static void refreshText() {
+        if (main == null) return;
+
+        main.lblYear1.setStyle(TextResponsive.getFontStyle("h3"));
+        main.lblYear2.setStyle(TextResponsive.getFontStyle("h3"));
+        main.lblMonth1.setStyle(TextResponsive.getFontStyle("h3"));
+        main.lblMonth2.setStyle(TextResponsive.getFontStyle("h3"));
+
+        tcm1.updateCalendar();
+        tcm2.updateCalendar();
     }
 }
 

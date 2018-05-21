@@ -55,7 +55,7 @@ public class UpdateTipoAulaController implements Initializable {
                 gs.getCbo_tipoAula().setValue((newTipAul));
                 if (getSesion(gs.getSesionID()).getMaster1() != null &&
                         getSesion(gs.getSesionID()).getMaster2() != null)
-                    setCboTipoAulaInCalendarVinculado(gs.getLblDateID().getText(), newTipAul);
+                    setCboTipoAulaInCalendarVinculado(gs.getLblDateID().getId(), newTipAul);
                 break;
             }
         }
@@ -63,7 +63,7 @@ public class UpdateTipoAulaController implements Initializable {
 
     private void setCboTipoAulaInCalendarVinculado(String date, String newTipAul) {
         for (GridSesion gs : tcm.getTcm_vinculado().getaGridSesions()) {
-            if (gs.getLblDateID().getText().equals(date)){
+            if (gs.getLblDateID().getId().equals(date)){
                 gs.getCbo_tipoAula().setValue(newTipAul);
                 break;
             }

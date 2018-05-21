@@ -11,18 +11,18 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
                <children>
-                   <fx:include source="intHeader.fxml" />
+                   <fx:include source="intHeader.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </HBox>
                 <HBox alignment="CENTER">
                <children>
                   <VBox alignment="CENTER_RIGHT" spacing="40.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button fx:id="menu_planificacion" mnemonicParsing="false" onAction="#irPlanificacion" prefHeight="80.0" prefWidth="250.0" style="-fx-text-fill: #000000; -fx-background-color: #78a199; -fx-border-color: #78a199; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Planificaciones">
+                        <Button fx:id="menu_planificacion" ellipsisString="" minWidth="280.0" mnemonicParsing="false" onAction="#irPlanificacion" prefHeight="80.0" style="-fx-text-fill: #000000; -fx-background-color: #78a199; -fx-border-color: #78a199; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Planificaciones" textOverrun="CLIP" wrapText="true">
                            <font>
                               <Font size="24.0" />
                            </font>
