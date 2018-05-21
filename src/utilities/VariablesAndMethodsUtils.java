@@ -172,6 +172,24 @@ public class VariablesAndMethodsUtils {
     }
 
     /**
+     * sesion is comun
+     * @param sesion
+     * @return
+     */
+    public static boolean isSesionComun(Sesion sesion){
+        boolean ret = false;
+        for (Sesion s : aSession) {
+            if (s.equals(sesion)){
+                if (s.getMaster1() != null && s.getMaster2() != null){
+                    ret = true;
+                    break;
+                }
+            }
+        }
+        return  ret;
+    }
+
+    /**
      * remove sesion into PlanificacionList
      * @param calBaseID
      */
