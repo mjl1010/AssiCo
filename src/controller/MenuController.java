@@ -3,9 +3,11 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBase;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
@@ -15,31 +17,27 @@ import utilities.TextResponsive;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MenuController implements Initializable {
     private static MenuController main;
 
     @FXML
-    private Button menu_planificacion;
-
-    @FXML
-    private Button menu_masters;
+    private Button menu_planificacion, menu_masters, menu_docentes;
 
     @FXML
     private MenuButton menu_cuentas;
 
     @FXML
-    private MenuItem menu_config;
-
-    @FXML
-    private MenuItem menu_gestion;
+    private MenuItem menu_config, menu_gestion;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         main = this;
         refreshText();
-        HeaderController.main.titulo.setText("Menú");
+        HeaderController.main.titulo.setText("Menú principal");
+        HeaderController.main.menu_btn.setVisible(false);
     }
 
     @FXML
@@ -56,6 +54,11 @@ public class MenuController implements Initializable {
     }
 
     @FXML
+    private void irDocentes() {
+
+    }
+
+    @FXML
     private void irConfig() {
 
     }
@@ -67,10 +70,24 @@ public class MenuController implements Initializable {
 
     public static void refreshText() {
         if (main == null) return;
-        if (main.menu_planificacion != null) main.menu_planificacion.setStyle(TextResponsive.getFontStyle("h2") + " -fx-text-fill: #000000; -fx-background-color: #78a199; -fx-border-color: #78a199; -fx-border-radius: 4px; -fx-background-radius: 4px;");
-        if (main.menu_masters != null) main.menu_masters.setStyle(TextResponsive.getFontStyle("h3") + " -fx-text-fill: #000000; -fx-background-color: #ffb84c; -fx-border-color: #ffb84c; -fx-border-radius: 4px; -fx-background-radius: 4px;");
-        if (main.menu_cuentas != null) main.menu_cuentas.setStyle(TextResponsive.getFontStyle("h3") + " -fx-text-fill: #000000; -fx-background-color: #9fdaf5; -fx-border-color: #9fdaf5; -fx-border-radius: 4px; -fx-background-radius: 4px;");
-        if (main.menu_config != null) main.menu_config.setStyle(TextResponsive.getFontStyle("h3"));
-        if (main.menu_gestion != null) main.menu_gestion.setStyle(TextResponsive.getFontStyle("h3"));
+        main.menu_planificacion.setStyle(TextResponsive.getFontStyle("h2") + " -fx-text-fill: #000000; -fx-background-color: #0ab4c8; -fx-border-color: transparent; -fx-background-radius: 4px;");
+        main.menu_masters.setStyle(TextResponsive.getFontStyle("h2") + " -fx-text-fill: #000000; -fx-background-color: #ffd600; -fx-border-color: transparent; -fx-background-radius: 4px;");
+        main.menu_cuentas.setStyle(TextResponsive.getFontStyle("h2") + "-fx-mark-color: #0bd500; -fx-background-color: #0bd500; -fx-border-color: transparent; -fx-background-radius: 4px;");
+        main.menu_docentes.setStyle(TextResponsive.getFontStyle("h2") + " -fx-text-fill: #000000; -fx-background-color: #ff76ae; -fx-border-color: transparent; -fx-background-radius: 4px;");
+        main.menu_config.setStyle(TextResponsive.getFontStyle("h3"));
+        main.menu_gestion.setStyle(TextResponsive.getFontStyle("h3"));
+
+        ArrayList<Node> botones = new ArrayList<>();
+        botones.add(main.menu_planificacion);
+        botones.add(main.menu_cuentas);
+        botones.add(main.menu_masters);
+        botones.add(main.menu_docentes);
+
+        for (Node n : botones) {
+            if (n instanceof ButtonBase) {
+                ((ButtonBase) n).setPrefHeight(90*(TextResponsive.getH1()/26.));
+                ((ButtonBase) n).setPrefWidth(250*(TextResponsive.getH1()/26.));
+            }
+        }
     }
 }

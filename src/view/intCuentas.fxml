@@ -8,18 +8,22 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SelectCourse">
+<AnchorPane minHeight="700.0" minWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SelectCourse">
    <children>
       <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-             <fx:include source="intHeader.fxml" />
-             <HBox alignment="CENTER" maxWidth="960.0" VBox.vgrow="ALWAYS">
+             <HBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
+                 <children>
+                     <fx:include source="intHeader.fxml" />
+                 </children>
+             </HBox>
+             <HBox alignment="CENTER" maxWidth="1000.0" VBox.vgrow="ALWAYS">
                <children>
-                  <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+                  <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
                     <content>
-                      <AnchorPane maxHeight="-Infinity" maxWidth="765.0" minHeight="-Infinity" style="-fx-background-image: url(/view/res/Fondo3.png); -fx-background-position: center; -fx-background-repeat: no-repeat;" nodeOrientation="LEFT_TO_RIGHT">
+                      <AnchorPane maxHeight="-Infinity" maxWidth="760.0" minHeight="-Infinity" nodeOrientation="LEFT_TO_RIGHT">
                            <children>
-                              <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                      <VBox fx:id="curso_col_1" alignment="CENTER_RIGHT" spacing="20.0">
                                        <HBox.margin>
@@ -37,12 +41,12 @@
                         </AnchorPane>
                     </content>
                      <HBox.margin>
-                        <Insets left="-1.0" />
+                        <Insets left="20.0" />
                      </HBox.margin>
                   </ScrollPane>
                    <VBox alignment="TOP_RIGHT" minWidth="200.0" spacing="20.0">
                        <children>
-                           <Button fx:id="select_course_nuevo" ellipsisString="" mnemonicParsing="false" onAction="#newCurso" style="-fx-text-fill: #000000; -fx-background-color: #9fff3f; -fx-border-color: transparent; -fx-background-radius: 4px;" text="Crear nuevo" textOverrun="CLIP" wrapText="true" VBox.vgrow="ALWAYS">
+                           <Button fx:id="select_course_nuevo" ellipsisString="" mnemonicParsing="false" onAction="#newCurso" style="-fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Crear nuevo" textOverrun="CLIP" wrapText="true" VBox.vgrow="ALWAYS">
                                <font>
                                    <Font size="16.0" />
                                </font>
@@ -52,15 +56,18 @@
                            </Button>
                        </children>
                        <HBox.margin>
-                           <Insets />
+                           <Insets right="20.0" />
                        </HBox.margin>
                    </VBox>
                </children>
                <VBox.margin>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </VBox.margin>
+                  <Insets bottom="20.0" top="20.0" />
+               </VBox.margin></HBox>
+             <HBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS">
+                 <children>
+                     <fx:include source="intFooter.fxml" />
+                 </children>
              </HBox>
-             <fx:include source="intFooter.fxml" />
          </children>
       </VBox>
    </children>

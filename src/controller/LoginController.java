@@ -48,7 +48,7 @@ public class LoginController implements Initializable {
     Hyperlink olvido;
 
     @FXML
-    private Label legal;
+    private Label desc, legal;
 
     public static Token token;
 
@@ -104,10 +104,11 @@ public class LoginController implements Initializable {
 
     public static void refreshText() {
         if (main == null) return;
+        if (main.desc != null) main.desc.setStyle(TextResponsive.getFontStyle("h4"));
         if (main.usuario != null) main.usuario.setStyle(TextResponsive.getFontStyle("h5"));
         if (main.clave != null) main.clave.setStyle(TextResponsive.getFontStyle("h5"));
         if (main.olvido != null) main.olvido.setStyle(TextResponsive.getFontStyle("h6"));
-        if (main.acceder != null)main.acceder.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #cccccc; -fx-border-radius: 4px; -fx-background-radius: 4px;");
+        if (main.acceder != null)main.acceder.setStyle(TextResponsive.getFontStyle("h4") + " -fx-text-fill: #000000; -fx-background-color: #eeeeee; -fx-border-color: transparent; -fx-background-radius: 4px;");
         if (main.legal != null) main.legal.setStyle(TextResponsive.getFontStyle("h6"));
     }
 }

@@ -2,8 +2,13 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.stage.Screen;
+import start.MainLogin;
 import utilities.TextResponsive;
 
 import java.net.URL;
@@ -13,20 +18,38 @@ public class FooterController implements Initializable {
     protected static FooterController main;
 
     @FXML
-    Label zoom;
+    private Label zoom, zoom_menos, zoom_mas;
 
     @FXML
-    private Label zoom_menos;
+    private HBox screen;
 
-    @FXML
-    private Label zoom_mas;
-
-    public static int zoom_value = 100;
+    private static int zoom_value = 100;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         main = this;
         if (zoom != null) zoom.setText(zoom_value + "%");
+
+        if (Screen.getScreens().size() > 1) {
+            for (int i = 0; i<Screen.getScreens().size(); i++) {
+                Label l = new Label();
+                l.setPrefHeight(25);
+                l.setPrefWidth(25);
+                l.setText(String.valueOf(i+1));
+                l.setAlignment(Pos.CENTER);
+                if (!Screen.getScreens().get(i).equals(MainLogin.screen)) l.setStyle("-fx-background-image: url(/view/res/computer-screen.png); -fx-background-repeat: no-repeat;");
+                else l.setStyle("-fx-background-image: url(/view/res/computer-screen-selected.png); -fx-background-repeat: no-repeat;");
+
+                int finalI = i;
+                l.setOnMouseClicked(t -> {
+                    for (Node node : screen.getChildren()) node.setStyle("-fx-background-image: url(/view/res/computer-screen.png); -fx-background-repeat: no-repeat;");
+                    l.setStyle("-fx-background-image: url(/view/res/computer-screen-selected.png); -fx-background-repeat: no-repeat;");
+                    MainLogin.screen = Screen.getScreens().get(finalI);
+                });
+
+                screen.getChildren().add(l);
+            }
+        }
     }
 
     @FXML
@@ -52,44 +75,44 @@ public class FooterController implements Initializable {
     private void applyZoom() {
         switch (zoom_value) {
             case 80:
-                TextResponsive.setH1("22px");
-                TextResponsive.setH2("18px");
-                TextResponsive.setH3("16px");
-                TextResponsive.setH4("14px");
-                TextResponsive.setH5("12px");
-                TextResponsive.setH6("10px");
+                TextResponsive.setH1(22);
+                TextResponsive.setH2(18);
+                TextResponsive.setH3(16);
+                TextResponsive.setH4(14);
+                TextResponsive.setH5(12);
+                TextResponsive.setH6(10);
                 break;
             case 90:
-                TextResponsive.setH1("24px");
-                TextResponsive.setH2("20px");
-                TextResponsive.setH3("18px");
-                TextResponsive.setH4("16px");
-                TextResponsive.setH5("14px");
-                TextResponsive.setH6("12px");
+                TextResponsive.setH1(24);
+                TextResponsive.setH2(20);
+                TextResponsive.setH3(18);
+                TextResponsive.setH4(16);
+                TextResponsive.setH5(14);
+                TextResponsive.setH6(12);
                 break;
             case 100:
-                TextResponsive.setH1("26px");
-                TextResponsive.setH2("24px");
-                TextResponsive.setH3("20px");
-                TextResponsive.setH4("18px");
-                TextResponsive.setH5("16px");
-                TextResponsive.setH6("14px");
+                TextResponsive.setH1(26);
+                TextResponsive.setH2(24);
+                TextResponsive.setH3(20);
+                TextResponsive.setH4(18);
+                TextResponsive.setH5(16);
+                TextResponsive.setH6(14);
                 break;
             case 110:
-                TextResponsive.setH1("30px");
-                TextResponsive.setH2("26px");
-                TextResponsive.setH3("24px");
-                TextResponsive.setH4("20px");
-                TextResponsive.setH5("18px");
-                TextResponsive.setH6("16px");
+                TextResponsive.setH1(30);
+                TextResponsive.setH2(26);
+                TextResponsive.setH3(24);
+                TextResponsive.setH4(20);
+                TextResponsive.setH5(18);
+                TextResponsive.setH6(16);
                 break;
             case 120:
-                TextResponsive.setH1("36px");
-                TextResponsive.setH2("30px");
-                TextResponsive.setH3("26px");
-                TextResponsive.setH4("24px");
-                TextResponsive.setH5("20px");
-                TextResponsive.setH6("18px");
+                TextResponsive.setH1(36);
+                TextResponsive.setH2(30);
+                TextResponsive.setH3(26);
+                TextResponsive.setH4(24);
+                TextResponsive.setH5(20);
+                TextResponsive.setH6(18);
                 break;
         }
 

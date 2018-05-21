@@ -1,14 +1,9 @@
 package controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import entity.CalendarioBase;
 import start.MainLogin;
 import utilities.AlertHelper;
@@ -22,10 +17,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Properties;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import static utilities.VariablesAndMethodsUtils.PATH_PROPERTIES;
 import static utilities.VariablesAndMethodsUtils.aCalendarioBase;
@@ -59,6 +51,8 @@ public class CourseRangeController implements Initializable {
     public static LocalDate endDay;
     private Properties p;
 
+    private static Map<String, Object> datosForm = new HashMap<>();
+
     private static HashSet<String> hsVacations = new HashSet<>();
     private int cont_vacation_day = 0;
 
@@ -83,6 +77,14 @@ public class CourseRangeController implements Initializable {
      */
     @FXML
     private void generarCurso() throws IOException {
+        datosForm.put("nameCurso", nameCurso.getText());
+
+        datosForm.put("initCurso", initCurso.getValue());
+
+        datosForm.put("initVacations", initVacations.getValue());
+        datosForm.put("endVacations", endVacations.getValue());
+
+        datosForm.put("endCurso", endCurso.getValue());
 
         try {
             LocalDate init = initCurso.getValue();
@@ -195,6 +197,7 @@ public class CourseRangeController implements Initializable {
      * open Calendar Holy Days
      */
     private void openCalendarHolydays() throws IOException {
+        SesionsCalendarController.nombre_curso = nameCurso.getText();
         MainLogin.openStage(getClass().getResource("/view/intHolydaysCalendar.fxml"), "Planificaciones - Selector de días festivos", null);
         ((Stage) generarCurso.getScene().getWindow()).close();
     }
@@ -203,11 +206,29 @@ public class CourseRangeController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         main = this;
         if (HeaderController.main.titulo != null) HeaderController.main.titulo.setText("Rangos de fechas del curso y vacaciones");
+
+        if (!datosForm.isEmpty()) {
+            nameCurso.setText((String) datosForm.get("nameCurso"));
+            initCurso.setValue((LocalDate) datosForm.get("initCurso"));
+            initVacations.setValue((LocalDate) datosForm.get("initVacations"));
+            endVacations.setValue((LocalDate) datosForm.get("endVacations"));
+            endCurso.setValue((LocalDate) datosForm.get("endCurso"));
+        }
+
         refreshText();
     }
 
     @FXML
     private void back() {
+        datosForm.put("nameCurso", nameCurso.getText());
+
+        datosForm.put("initCurso", initCurso.getValue());
+
+        datosForm.put("initVacations", initVacations.getValue());
+        datosForm.put("endVacations", endVacations.getValue());
+
+        datosForm.put("endCurso", endCurso.getValue());
+
         MainLogin.openStage(getClass().getResource("/view/intSelectCourse.fxml"), "Planificaciones - Selector de cursos", null);
         ((Stage) generarCurso.getScene().getWindow()).close();
     }
@@ -227,8 +248,8 @@ public class CourseRangeController implements Initializable {
         main.courseRange3.setStyle(TextResponsive.getFontStyle("h4"));
         main.courseRange4.setStyle(TextResponsive.getFontStyle("h4"));
 
-        main.generarCurso.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;");
-        main.generarCursoBack.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #dddddd; -fx-border-color: #dddddd; -fx-border-radius: 4px; -fx-background-radius: 4px;");
+        main.generarCurso.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #9fff3f; -fx-border-color: transparent; -fx-background-radius: 4px;");
+        main.generarCursoBack.setStyle(TextResponsive.getFontStyle("h5") + " -fx-text-fill: #000000; -fx-background-color: #ff5959; -fx-border-color: transparent; -fx-background-radius: 4px;");
 
     }
 }

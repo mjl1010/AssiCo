@@ -91,6 +91,7 @@ public class TabCalendarMaster {
         }
     }
 
+
     /**
      * tratamiento de grid seleccionado
      *
@@ -142,11 +143,11 @@ public class TabCalendarMaster {
             if (aGridSesions.get(i).getIndexRow() == indexRow && aGridSesions.get(i).getIndexColum() == indexColumn) {
                 aGridSesions.get(i).getLblDateID().setId(pc.getCalendarioBase().getIdDate());
                 aGridSesions.get(i).getLblDateID().setText(pc.getCalendarioBase().getIdDate().split("/")[0]);
-                aGridSesions.get(i).getLblDateID().setStyle("-fx-text-fill: #000000;");
+                aGridSesions.get(i).getLblDateID().setStyle("-fx-text-fill: #000000; " + TextResponsive.getFontStyle("h4"));
                 aGridSesions.get(i).getMiniGrid().setStyle("-fx-border-color: #dddddd;" + "-fx-border-style: solid inside;" + "-fx-border-width: 1;");
-//                if (pc.getCalendarioBase().isFestivo()) aGridSesions.get(i).getMiniGrid().setStyle("-fx-background-color: #dddddd;");
-//                if (pc.getCalendarioBase().isSummer()) aGridSesions.get(i).getMiniGrid().setStyle("-fx-background-color: #cccccc;");
-//                if (!pc.getCalendarioBase().isActive()) aGridSesions.get(i).getMiniGrid().setStyle("-fx-background-color: #f5f5f5;");
+                if (pc.getCalendarioBase().isFestivo()) aGridSesions.get(i).getMiniGrid().setStyle("-fx-background-color: #dddddd;");
+                if (pc.getCalendarioBase().isSummer()) aGridSesions.get(i).getMiniGrid().setStyle("-fx-background-color: #cccccc;");
+                if (!pc.getCalendarioBase().isActive()) aGridSesions.get(i).getMiniGrid().setStyle("-fx-background-color: #f5f5f5;");
                 if (pc.getSesion() != null) regDatosSesion(aGridSesions.get(i), pc.getSesion());
                 break;
             }
