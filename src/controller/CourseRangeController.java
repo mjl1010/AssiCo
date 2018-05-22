@@ -19,8 +19,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.*;
 
-import static utilities.VariablesAndMethodsUtils.PATH_PROPERTIES;
-import static utilities.VariablesAndMethodsUtils.aCalendarioBase;
+import static utilities.VariablesAndMethodsUtils.*;
 
 /**
  * Created by Michael
@@ -47,11 +46,9 @@ public class CourseRangeController implements Initializable {
 //    private static ArrayList<CalendarioBase> aListCalBase;
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/YYYY");
 
-    public static LocalDate firtDay;
-    public static LocalDate endDay;
     private Properties p;
 
-    private static Map<String, Object> datosForm = new HashMap<>();
+    public static Map<String, Object> datosForm = new HashMap<>();
 
     private static HashSet<String> hsVacations = new HashSet<>();
     private int cont_vacation_day = 0;
@@ -110,7 +107,6 @@ public class CourseRangeController implements Initializable {
                 contWeeks++;
             }
             endDay = date_temp.minusDays(1);
-            updateInitData();
 
             init = initVacations.getValue();
             end = endVacations.getValue();
@@ -132,23 +128,7 @@ public class CourseRangeController implements Initializable {
     /**
      * update properti
      */
-    private void updateInitData()  {
-        p = new Properties();
-        VariablesAndMethodsUtils.curso = CourseRangeController.firtDay.getYear() + "-"
-                + CourseRangeController.endDay.getYear();
 
-        try {
-            p.load(new FileReader(VariablesAndMethodsUtils.PATH_PROPERTIES));
-            p.setProperty("curso", VariablesAndMethodsUtils.curso);
-            p.setProperty("year", String.valueOf(CourseRangeController.firtDay.getYear()));
-            p.setProperty("month", String.valueOf(CourseRangeController.firtDay.getMonth().name()));
-            p.store(new FileWriter(PATH_PROPERTIES), "Update because new course");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println(e.getCause() + "&" + e.getMessage());
-        }
-    }
 
     /**
      *

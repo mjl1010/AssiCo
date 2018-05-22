@@ -1,5 +1,8 @@
 package utilities;
 
+import controller.CourseRangeController;
+import controller.SelectCourse;
+import controller.SesionsCalendarController;
 import entity.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -7,12 +10,13 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import start.MainLogin;
 
+import javax.swing.*;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by Michael
@@ -29,6 +33,7 @@ public class VariablesAndMethodsUtils {
     public static ArrayList<String> aDays = new ArrayList<>();
     public static ArrayList<String> aMonths = new ArrayList<>();
     public static final DateTimeFormatter FORMATTER2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    public static final DateTimeFormatter FORMATTER3 = DateTimeFormatter.ofPattern("yyyyMMdd");
     private static ArrayList<String> aListAsignaturas = new ArrayList<>();
     public static ArrayList<Docente> aDocentes = new ArrayList<>();
     public static ObservableList<String> aDocentesID = FXCollections.observableArrayList();
@@ -43,16 +48,75 @@ public class VariablesAndMethodsUtils {
 
     public static ArrayList<String> aColumnNametvSes = new ArrayList<>();
 
+    public static LocalDate firtDay;
+    public static LocalDate endDay;
+
     public static void init(ArrayList<DiaPlanificado> planificacionCalendario) {
-        for (DiaPlanificado dia : planificacionCalendario) if (!aCalendarioBase.contains(dia.getCalendarioBase())) aCalendarioBase.add(dia.getCalendarioBase());
-        init();
+        aPlanifCalend = planificacionCalendario;
+        firtDay = LocalDate.parse(String.valueOf(planificacionCalendario.get(0).getDia()), FORMATTER3);
+
+        for (DiaPlanificado dia : planificacionCalendario) {
+            if (!aCalendarioBase.contains(dia.getCalendarioBase())) aCalendarioBase.add(dia.getCalendarioBase());
+        }
+
+//        int d = Integer.parseInt(String.valueOf(planificacionCalendario.get(planificacionCalendario.size()-1).getDia()).substring(0, 2));
+//        int m = Integer.parseInt(String.valueOf(planificacionCalendario.get(planificacionCalendario.size()-1).getDia()).substring(2, 4));
+//        int y = Integer.parseInt(String.valueOf(planificacionCalendario.get(planificacionCalendario.size()-1).getDia()).substring(4, 5));
+        endDay = LocalDate.parse(String.valueOf(planificacionCalendario.get(planificacionCalendario.size()-1).getDia()), FORMATTER3);
+
+        curso = SesionsCalendarController.nombre_curso != null ? SesionsCalendarController.nombre_curso : String.valueOf(CourseRangeController.datosForm.get("nameCurso"));
+        uni = planificacionCalendario.get(0).getUniversidad();
+        master1 = planificacionCalendario.get(0).getMaster();
+        master2 = planificacionCalendario.get(0).getMaster().getMasterVinculado();
+        master1.setMasterVinculado(master2);
+        aTiposAula = FXCollections.observableArrayList(
+                "A", "M", "P", "T", "V"
+        );
+        aTipoSession.add("J");
+        aTipoSession.add("S");
+
+        aDays.add("Lunes");
+        aDays.add("Martes");
+        aDays.add("Miercoles");
+        aDays.add("Jueves");
+        aDays.add("Viernes");
+        aDays.add("Sabado");
+        aDays.add("Domingo");
+
+        aMonths.add("January");
+        aMonths.add("February");
+        aMonths.add("March");
+        aMonths.add("April");
+        aMonths.add("May");
+        aMonths.add("June");
+        aMonths.add("July");
+        aMonths.add("August");
+        aMonths.add("September");
+        aMonths.add("October");
+        aMonths.add("November");
+        aMonths.add("December");
+
+        aColumnNametvSes.add("sesionID");
+        aColumnNametvSes.add("master1");
+        aColumnNametvSes.add("master2");
+        aColumnNametvSes.add("asignatura");
+        aColumnNametvSes.add("contenido");
+        aColumnNametvSes.add("docentet1");
+        aColumnNametvSes.add("docentet2");
+        aColumnNametvSes.add("TipoAula");
+        aColumnNametvSes.add("Aula");
+        aColumnNametvSes.add("nota");
+
+        updateInitData();
+        addData();
+
     }
 
     public static void init() {
         curso = "Testing 2018-2019";
         uni = new Universidad(1, "uoc");
-        master1 = new Master(1, "M01", "master1");
-        master2 = new Master(2, "M02", "master2");
+        master1 = new Master(1, "eng", "engineria");
+        master2 = new Master(2, "med", "medicina");
         master1.setMasterVinculado(master2);
         aTiposAula = FXCollections.observableArrayList(
                 "A", "M", "P", "T", "V"
@@ -389,6 +453,24 @@ public class VariablesAndMethodsUtils {
                 aPlanifCalend) {
             if (dp.getSesion() != null)
                 System.out.println("dp : " + dp);
+        }
+    }
+
+    private static void updateInitData()  {
+        Properties p = new Properties();
+        if (VariablesAndMethodsUtils.curso == null) VariablesAndMethodsUtils.curso = firtDay.getYear() + "-"
+                + endDay.getYear();
+
+        try {
+            p.load(new FileReader(PATH_PROPERTIES));
+            p.setProperty("curso", curso);
+            p.setProperty("year", String.valueOf(firtDay.getYear()));
+            p.setProperty("month", String.valueOf(firtDay.getMonth().name()));
+            p.store(new FileWriter(PATH_PROPERTIES), "Update because read course");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println(e.getCause() + "&" + e.getMessage());
         }
     }
 

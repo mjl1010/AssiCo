@@ -41,8 +41,8 @@ public class MainLogin extends Application {
         primaryStage.setTitle("AssiCo - Cargando");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-        primaryStage.setX(d.width/2-(1000/2));
-        primaryStage.setY(d.height/2-(600/2));
+        primaryStage.setX(d.width/2-1000/1.2);
+        primaryStage.setY(d.height/2-600/1.2);
 
         stage = primaryStage;
         screen = Screen.getPrimary();

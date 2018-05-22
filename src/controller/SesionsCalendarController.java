@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Window;
 import utilities.TabCalendarMaster;
+import utilities.TabConfirmaciones;
 import utilities.TextResponsive;
 import utilities.VariablesAndMethodsUtils;
 
@@ -48,24 +49,27 @@ public class SesionsCalendarController implements Initializable {
     @FXML
     Button btnGuardarCambios_1, btnGuardarCambios_2;
 
+    @FXML
+    TableView tv_conf;
+
+    @FXML
+    GridPane gp_m1, gp_m2;
+
     private ArrayList<MenuItem> aSplitMenuButton1;
     private ArrayList<MenuItem> aSplitMenuButton2;
-    public static Master master_current1;
     public static String nombre_curso;
 
     private static TabCalendarMaster tcm1, tcm2;
+    private static TabConfirmaciones tcnf;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         main = this;
-
         if (nombre_curso == null) {
             VariablesAndMethodsUtils.init();
             nombre_curso = VariablesAndMethodsUtils.curso;
         }
-
         if (HeaderController.main.titulo != null) HeaderController.main.titulo.setText(nombre_curso + " : " + master1.getNombre() + (master2 != null ? " / " + master2.getNombre() : ""));
-
         tcm1 = new TabCalendarMaster(gp_calendar1, master1, smb_menuOption1, lblYear1, lblMonth1, iv_seguro_1, btnGuardarCambios_1);
         tcm2 = new TabCalendarMaster(gp_calendar2, master2, smb_menuOption2, lblYear2, lblMonth2, iv_seguro_2, btnGuardarCambios_2);
         tcm1.setTcm_vinculado(tcm2);
@@ -74,6 +78,8 @@ public class SesionsCalendarController implements Initializable {
         configSplitMenuButton(aSplitMenuButton1, tcm1);
         configSplitMenuButton(aSplitMenuButton2, tcm2);
         refreshText();
+
+//        tcnf = new TabConfirmaciones(tv_conf, gp_m1, gp_m2);
     }
 
     /**

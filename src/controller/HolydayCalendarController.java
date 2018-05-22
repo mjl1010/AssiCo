@@ -59,11 +59,6 @@ public class HolydayCalendarController implements Initializable {
         fillCeldasVacations();
         columnsSetting();
         fillTableView();
-
-//        for (int i = 0; i < CourseRangeController.getaListCalBase().size(); i++) {
-//            System.out.println(CourseRangeController.getaListCalBase().get(i));
-//        }
-
     }
 
     /**

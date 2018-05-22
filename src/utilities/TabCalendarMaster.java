@@ -258,7 +258,7 @@ public class TabCalendarMaster {
         for (int i = 0; i < aMonths.size(); i++) {
             if (aMonths.get(i).equalsIgnoreCase(lblMonth.getText())) {
                 if (iv.getId().equalsIgnoreCase("flechaLeft")) {
-                    if (lblMonth.getText().equalsIgnoreCase(CourseRangeController.firtDay.getMonth().name()) && lblYear.getText().equalsIgnoreCase(String.valueOf(CourseRangeController.firtDay.getYear())))
+                    if (lblMonth.getText().equalsIgnoreCase(VariablesAndMethodsUtils.firtDay.getMonth().name()) && lblYear.getText().equalsIgnoreCase(String.valueOf(VariablesAndMethodsUtils.firtDay.getYear())))
                         break;
                     if (i == 0) {
                         lblMonth.setText(aMonths.get(aMonths.size() - 1));
@@ -266,7 +266,7 @@ public class TabCalendarMaster {
                         lblYear.setText(yearInit);
                     } else lblMonth.setText(aMonths.get(--i));
                 } else { // flechaRigth
-                    if (lblMonth.getText().equalsIgnoreCase(CourseRangeController.endDay.getMonth().name()) && lblYear.getText().equalsIgnoreCase(String.valueOf(CourseRangeController.endDay.getYear())))
+                    if (lblMonth.getText().equalsIgnoreCase(VariablesAndMethodsUtils.endDay.getMonth().name()) && lblYear.getText().equalsIgnoreCase(String.valueOf(VariablesAndMethodsUtils.endDay.getYear())))
                         break;
                     if (i == aMonths.size() - 1) {
                         lblMonth.setText(aMonths.get(0));
