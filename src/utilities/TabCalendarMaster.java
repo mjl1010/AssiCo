@@ -4,8 +4,11 @@ import controller.*;
 import entity.DiaPlanificado;
 import entity.Master;
 import entity.Sesion;
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitMenuButton;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -42,6 +45,11 @@ public class TabCalendarMaster {
     private boolean ischange;
     private int contTest = 0;
 
+    private ImageView iv_seguro;
+    private Button btnGuardarCambios;
+
+    private boolean isEditable_seguro;
+
     /**
      * Método constructor
      *
@@ -51,12 +59,14 @@ public class TabCalendarMaster {
      * @param lblYear
      * @param lblMonth
      */
-    public TabCalendarMaster(GridPane gp_calendar, Master master, SplitMenuButton smb_menuOption, Label lblYear, Label lblMonth) {
+    public TabCalendarMaster(GridPane gp_calendar, Master master, SplitMenuButton smb_menuOption, Label lblYear, Label lblMonth, ImageView iv_seguro, Button btnGuardarCambios) {
         this.gp_calendar = gp_calendar;
         this.master = master;
         this.smb_menuOption = smb_menuOption;
         this.lblYear = lblYear;
         this.lblMonth = lblMonth;
+        this.iv_seguro = iv_seguro;
+        this.btnGuardarCambios = btnGuardarCambios;
         extraerValoresProperties();
         asignarValoresLabel();
         updateListsCurrentMonth();
@@ -84,6 +94,8 @@ public class TabCalendarMaster {
                             gp_exchange2.setStyle("-fx-border-color: #A9D0F5;" + "-fx-border-style: solid inside;" + "-fx-border-width: 5;");
                             SesionsExchange.change(this, date_exchange1, getDate(gp_exchange2));
                             ischange = false;
+                            iv_seguro.setImage(new Image("view/res/open.png"));
+                            isEditable_seguro = false;
                         }
                     }
                 });
@@ -145,9 +157,12 @@ public class TabCalendarMaster {
                 aGridSesions.get(i).getLblDateID().setText(pc.getCalendarioBase().getIdDate().split("/")[0]);
                 aGridSesions.get(i).getLblDateID().setStyle("-fx-text-fill: #000000; " + TextResponsive.getFontStyle("h4"));
                 aGridSesions.get(i).getMiniGrid().setStyle("-fx-border-color: #dddddd;" + "-fx-border-style: solid inside;" + "-fx-border-width: 1;");
-                if (pc.getCalendarioBase().isFestivo()) aGridSesions.get(i).getMiniGrid().setStyle("-fx-background-color: #dddddd;");
-                if (pc.getCalendarioBase().isSummer()) aGridSesions.get(i).getMiniGrid().setStyle("-fx-background-color: #cccccc;");
-                if (!pc.getCalendarioBase().isActive()) aGridSesions.get(i).getMiniGrid().setStyle("-fx-background-color: #f5f5f5;");
+                if (pc.getCalendarioBase().isFestivo())
+                    aGridSesions.get(i).getMiniGrid().setStyle("-fx-background-color: #dddddd;");
+                if (pc.getCalendarioBase().isSummer())
+                    aGridSesions.get(i).getMiniGrid().setStyle("-fx-background-color: #cccccc;");
+                if (!pc.getCalendarioBase().isActive())
+                    aGridSesions.get(i).getMiniGrid().setStyle("-fx-background-color: #f5f5f5;");
                 if (pc.getSesion() != null) regDatosSesion(aGridSesions.get(i), pc.getSesion());
                 break;
             }
@@ -333,8 +348,7 @@ public class TabCalendarMaster {
                     removeSesion_PlanifList(getCalBasID(gs.getLblDateID().getId()), master1);
                 if (getSesion(gs.getSesionID()).getMaster2() != null)
                     removeSesion_PlanifList(getCalBasID(gs.getLblDateID().getId()), master2);
-                if (getSesion(gs.getSesionID()).getMaster1() != null &&
-                        getSesion(gs.getSesionID()).getMaster2() != null)
+                if (getSesion(gs.getSesionID()).getMaster1() != null && getSesion(gs.getSesionID()).getMaster2() != null)
                     tcm_vinculado.updateCalendar();
                 setActiveValueSesion(gs.getSesionID());
                 break;
@@ -355,6 +369,19 @@ public class TabCalendarMaster {
                 break;
             }
         }
+    }
+
+    public void addEventSeguro() {
+        iv_seguro.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (isEditable_seguro()) {
+                    if (iv_seguro.getImage().impl_getUrl().endsWith("open.png"))
+                        iv_seguro.setImage(new Image("view/res/close.png"));
+                    else iv_seguro.setImage(new Image("view/res/open.png"));
+                }
+            }
+        });
     }
 
 
@@ -422,5 +449,29 @@ public class TabCalendarMaster {
 
     public void setGp_exchange2(GridPane gp_exchange2) {
         this.gp_exchange2 = gp_exchange2;
+    }
+
+    public ImageView getIv_seguro() {
+        return iv_seguro;
+    }
+
+    public void setIv_seguro(ImageView iv_seguro) {
+        this.iv_seguro = iv_seguro;
+    }
+
+    public Button getBtnGuardarCambios() {
+        return btnGuardarCambios;
+    }
+
+    public void setBtnGuardarCambios(Button btnGuardarCambios) {
+        this.btnGuardarCambios = btnGuardarCambios;
+    }
+
+    public boolean isEditable_seguro() {
+        return isEditable_seguro;
+    }
+
+    public void setEditable_seguro(boolean editable_seguro) {
+        this.isEditable_seguro = editable_seguro;
     }
 }

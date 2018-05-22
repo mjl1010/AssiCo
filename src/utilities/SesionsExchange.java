@@ -42,8 +42,8 @@ public class SesionsExchange {
      * @param date2
      */
     private static void validarChangeInMasterVinculado(String date1, String date2) {
-        if (isSesionComun(dp_exch1.getSesion()) ||
-                isSesionComun(dp_exch2.getSesion())){
+        if ((isSesionComun(dp_exch1.getSesion()) || isSesionComun(dp_exch2.getSesion())) ||
+                tcm_current.getIv_seguro().getImage().impl_getUrl().endsWith("close.png")){
             dp_exch1_mv = getDiaPlanificado(date1, tcm_current.getTcm_vinculado());
             dp_exch2_mv = getDiaPlanificado(date2, tcm_current.getTcm_vinculado());
             ses_aux = dp_exch1_mv.getSesion();

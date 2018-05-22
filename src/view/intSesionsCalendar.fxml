@@ -88,12 +88,12 @@
                                                                         <Font size="14.0" />
                                                                     </font>
                                                                 </SplitMenuButton>
-                                                <ImageView fitHeight="56.0" fitWidth="50.0" layoutX="817.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fx:id="iv_seguro_1" accessibleRole="BUTTON" fitHeight="56.0" fitWidth="50.0" layoutX="826.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@res/close.png" />
+                                                      <Image url="@res/open.png" />
                                                    </image>
                                                 </ImageView>
-                                                <Button layoutX="906.0" layoutY="23.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="155.0" text="Guardar Cambios">
+                                                <Button fx:id="btnGuardarCambios_1" layoutX="973.0" layoutY="23.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="155.0" text="Guardar Cambios">
                                                    <font>
                                                       <Font size="17.0" />
                                                    </font>
@@ -171,6 +171,16 @@
                                                                         <Font size="14.0" />
                                                                     </font>
                                                                 </SplitMenuButton>
+                                                                <ImageView fx:id="iv_seguro_2" fitHeight="56.0" fitWidth="50.0" layoutX="826.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                                                                    <image>
+                                                                        <Image url="@res/open.png" />
+                                                                    </image>
+                                                                </ImageView>
+                                                                <Button fx:id="btnGuardarCambios_2" layoutX="973.0" layoutY="23.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="155.0" text="Guardar Cambios">
+                                                                    <font>
+                                                                        <Font size="17.0" />
+                                                                    </font>
+                                                                </Button>
                                                             </children>
                                                             <VBox.margin>
                                                                 <Insets left="20.0" right="20.0" />

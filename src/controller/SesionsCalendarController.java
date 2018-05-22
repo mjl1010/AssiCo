@@ -5,10 +5,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.SplitMenuButton;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Window;
@@ -23,6 +22,7 @@ import java.util.ResourceBundle;
 
 import static utilities.AlertHelper.showAlert;
 import static utilities.VariablesAndMethodsUtils.*;
+import static utilities.VariablesAndMethodsUtils.getDiaPlanificado;
 
 /**
  * Created by Michael
@@ -42,6 +42,12 @@ public class SesionsCalendarController implements Initializable {
     @FXML
     MenuItem menuOpt1_1, menuOpt2_1, menuOpt3_1, menuOpt4_1, menuOpt5_1, menuOpt6_1, menuOpt7_1, menuOpt8_1, menuOpt9_1, menuOpt10_1, menuOpt1_2, menuOpt2_2, menuOpt3_2, menuOpt4_2, menuOpt5_2, menuOpt6_2, menuOpt7_2, menuOpt8_2, menuOpt9_2, menuOpt10_2;
 
+    @FXML
+    ImageView iv_seguro_1, iv_seguro_2;
+
+    @FXML
+    Button btnGuardarCambios_1, btnGuardarCambios_2;
+
     private ArrayList<MenuItem> aSplitMenuButton1;
     private ArrayList<MenuItem> aSplitMenuButton2;
     public static Master master_current1;
@@ -60,8 +66,8 @@ public class SesionsCalendarController implements Initializable {
 
         if (HeaderController.main.titulo != null) HeaderController.main.titulo.setText(nombre_curso + " : " + master1.getNombre() + (master2 != null ? " / " + master2.getNombre() : ""));
 
-        tcm1 = new TabCalendarMaster(gp_calendar1, master1, smb_menuOption1, lblYear1, lblMonth1);
-        tcm2 = new TabCalendarMaster(gp_calendar2, master2, smb_menuOption2, lblYear2, lblMonth2);
+        tcm1 = new TabCalendarMaster(gp_calendar1, master1, smb_menuOption1, lblYear1, lblMonth1, iv_seguro_1, btnGuardarCambios_1);
+        tcm2 = new TabCalendarMaster(gp_calendar2, master2, smb_menuOption2, lblYear2, lblMonth2, iv_seguro_2, btnGuardarCambios_2);
         tcm1.setTcm_vinculado(tcm2);
         tcm2.setTcm_vinculado(tcm1);
         addOptionsToSplitMenu();
@@ -128,6 +134,11 @@ public class SesionsCalendarController implements Initializable {
                             showAlert(Alert.AlertType.INFORMATION, owner, "Intercambio de Sesiones", "Seleccione con doble Click la sesión que desea cambiar");
                             tcm.setDate_exchange1(tcm.getDate(tcm.getGp_waiting()));
                             tcm.setIschange(true);
+                            tcm.addEventSeguro();
+                            if (isSesionComun(getDiaPlanificado(tcm.getDate_exchange1(), tcm).getSesion())){
+                                tcm.getIv_seguro().setImage(new Image("view/res/close.png"));
+                                tcm.setEditable_seguro(false);
+                            } else tcm.setEditable_seguro(true);
                             break;
                         case "menuOpt4":// Editar Practica 1
                             break;
@@ -181,6 +192,10 @@ public class SesionsCalendarController implements Initializable {
 
         tcm1.updateCalendar();
         tcm2.updateCalendar();
+    }
+
+    public void clickLock(MouseEvent mouseEvent) {
+
     }
 }
 
