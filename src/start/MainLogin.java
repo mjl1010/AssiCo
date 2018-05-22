@@ -41,8 +41,12 @@ public class MainLogin extends Application {
         primaryStage.setTitle("AssiCo - Cargando");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-        primaryStage.setX(d.width/2-1000/1.2);
-        primaryStage.setY(d.height/2-600/1.2);
+
+        double centerXPosition = d.getWidth()/2d;
+        double centerYPosition = d.getHeight()/2d;
+
+        primaryStage.setX(centerXPosition - 1000 / 2d);
+        primaryStage.setY(centerYPosition - 540 / 2d);
 
         stage = primaryStage;
         screen = Screen.getPrimary();
@@ -72,7 +76,7 @@ public class MainLogin extends Application {
                 DatosModel.closeConnection();
 
                 if (!stoken.isEmpty() && LoginController.token != null && LoginController.token.isActivo()) {
-                    openStage(getClass().getResource("/view/intMenu.fxml"), "Menú", primaryStage);
+                    openStage(getClass().getResource("/view/intMenu.fxml"), "Menú principal", primaryStage);
                     return;
                 } else if (!stoken.isEmpty()) {
                     error = "Error 503. No se ha podido verificar la sesión anterior, por favor, accede de nuevo.";

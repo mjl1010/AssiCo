@@ -46,7 +46,7 @@ public class HeaderController implements Initializable {
     @FXML
     private void irMenu(ActionEvent event) throws IOException {
         // Abrir menú y cerrar parent
-        MainLogin.openStage(getClass().getResource("/view/intMenu.fxml"), "Menú", null);
+        MainLogin.openStage(getClass().getResource("/view/intMenu.fxml"), "Menú principal", null);
         ((Stage) menu_btn.getScene().getWindow()).close();
     }
 
