@@ -1,6 +1,5 @@
 package controller;
 
-import entity.Master;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -12,7 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Window;
 import utilities.TabCalendarMaster;
-import utilities.TabConfirmaciones;
+import utilities.TabHistorial;
 import utilities.TextResponsive;
 import utilities.VariablesAndMethodsUtils;
 
@@ -50,17 +49,17 @@ public class SesionsCalendarController implements Initializable {
     Button btnGuardarCambios_1, btnGuardarCambios_2;
 
     @FXML
-    TableView tv_conf;
+    TableView tv_historial;
 
     @FXML
-    GridPane gp_m1, gp_m2;
+    ComboBox cbo_master;
 
     private ArrayList<MenuItem> aSplitMenuButton1;
     private ArrayList<MenuItem> aSplitMenuButton2;
     public static String nombre_curso;
 
     private static TabCalendarMaster tcm1, tcm2;
-    private static TabConfirmaciones tcnf;
+    private static TabHistorial th;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -79,7 +78,7 @@ public class SesionsCalendarController implements Initializable {
         configSplitMenuButton(aSplitMenuButton2, tcm2);
         refreshText();
 
-//        tcnf = new TabConfirmaciones(tv_conf, gp_m1, gp_m2);
+        th = new TabHistorial(tv_historial, cbo_master);
     }
 
     /**
