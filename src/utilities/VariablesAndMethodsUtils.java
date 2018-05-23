@@ -112,11 +112,6 @@ public class VariablesAndMethodsUtils {
 
         updateInitData();
         addData();
-
-        aMaster = new ArrayList<>();
-        if (master1 != null) aMaster.add(master1.getCode());
-        if (master2 != null) aMaster.add(master2.getCode());
-
     }
 
     public static void init() {
@@ -164,6 +159,10 @@ public class VariablesAndMethodsUtils {
         aColumnNametvSes.add("Aula");
         aColumnNametvSes.add("nota");
         addData();
+
+        aMaster = new ArrayList<>();
+        if (master1 != null) aMaster.add(master1.getCode());
+        if (master2 != null) aMaster.add(master2.getCode());
     }
 
     /**** Métodos ******/

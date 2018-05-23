@@ -1,5 +1,6 @@
 package utilities;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
@@ -31,17 +32,19 @@ public class HistoryTableRow {
      * @param dateOrigen
      * @param dateDestino
      */
-    public HistoryTableRow(StringProperty fechaInter, StringProperty horaInter, StringProperty masterID, StringProperty sesionID, StringProperty asignatura, StringProperty contenido, StringProperty doc1, StringProperty doc2, StringProperty dateOrigen, StringProperty dateDestino) {
-        this.fechaInter = fechaInter;
-        this.horaInter = horaInter;
-        this.masterID = masterID;
-        this.sesionID = sesionID;
-        this.asignatura = asignatura;
-        this.contenido = contenido;
-        this.doc1 = doc1;
-        this.doc2 = doc2;
-        this.dateOrigen = dateOrigen;
-        this.dateDestino = dateDestino;
+    public HistoryTableRow(String fechaInter, String horaInter, String masterID, String sesionID,
+                           String asignatura, String contenido, String doc1, String doc2, String dateOrigen,
+                           String dateDestino) {
+        this.fechaInter = new SimpleStringProperty(fechaInter);
+        this.horaInter = new SimpleStringProperty(horaInter);
+        this.masterID = new SimpleStringProperty(masterID);
+        this.sesionID = new SimpleStringProperty(sesionID);
+        this.asignatura = new SimpleStringProperty(asignatura);
+        this.contenido = new SimpleStringProperty(contenido);
+        this.doc1 = new SimpleStringProperty(doc1);
+        this.doc2 = new SimpleStringProperty(doc2);
+        this.dateOrigen = new SimpleStringProperty(dateOrigen);
+        this.dateDestino = new SimpleStringProperty(dateDestino);
     }
 
     /*** Getters and Setters ****/
