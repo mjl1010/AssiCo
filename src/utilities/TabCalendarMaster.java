@@ -220,8 +220,13 @@ public class TabCalendarMaster {
         for (int i = 0; i < aPlanifCalend.size(); i++) {
             String date = String.valueOf(aPlanifCalend.get(i).getCalendarioBase().getDia());
             LocalDate ld = LocalDate.parse(date, DateTimeFormatter.BASIC_ISO_DATE);
-            if (String.valueOf(ld.getYear()).equalsIgnoreCase(lblYear.getText()) && ld.getMonth().name().equalsIgnoreCase(lblMonth.getText()) && aPlanifCalend.get(i).getMaster().equals(master))
-                if (!aPlanifCalend.get(i).getCalendarioBase().isFestivo() && !aPlanifCalend.get(i).getCalendarioBase().isSummer() && aPlanifCalend.get(i).getCalendarioBase().isActive()) {
+            if (String.valueOf(ld.getYear()).equalsIgnoreCase(lblYear.getText())
+                    && ld.getMonth().name().equalsIgnoreCase(lblMonth.getText())
+                    && aPlanifCalend.get(i).getMaster()
+                    .equals(master))
+                if (!aPlanifCalend.get(i).getCalendarioBase().isFestivo()
+                        && !aPlanifCalend.get(i).getCalendarioBase().isSummer()
+                        && aPlanifCalend.get(i).getCalendarioBase().isActive()) {
                     aPlanCalCurrentMonth.add(aPlanifCalend.get(i));
                 }
         }

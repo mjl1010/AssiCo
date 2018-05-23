@@ -70,8 +70,9 @@ public class VariablesAndMethodsUtils {
         curso = SesionsCalendarController.nombre_curso != null ? SesionsCalendarController.nombre_curso : String.valueOf(CourseRangeController.datosForm.get("nameCurso"));
         uni = planificacionCalendario.get(0).getUniversidad();
         master1 = planificacionCalendario.get(0).getMaster();
-        master2 = planificacionCalendario.get(0).getMaster().getMasterVinculado();
+        if (master1.getMasterVinculado() != null) master2 = planificacionCalendario.get(0).getMaster().getMasterVinculado();
         master1.setMasterVinculado(master2);
+        if (master1.getMasterVinculado() != null) master2.setMasterVinculado(master1);
         aTiposAula = FXCollections.observableArrayList(
                 "A", "M", "P", "T", "V"
         );
@@ -163,6 +164,8 @@ public class VariablesAndMethodsUtils {
         aMaster = new ArrayList<>();
         if (master1 != null) aMaster.add(master1.getCode());
         if (master2 != null) aMaster.add(master2.getCode());
+
+        updateInitData();
     }
 
     /**** Métodos ******/
