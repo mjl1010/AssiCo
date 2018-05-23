@@ -81,8 +81,6 @@ public class RecordHistoryManager {
             } finally {
                 fileWriter.close();
             }
-
-
         }
     }
 
