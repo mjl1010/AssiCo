@@ -11,10 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Window;
-import utilities.TabCalendarMaster;
-import utilities.TabHistorial;
-import utilities.TextResponsive;
-import utilities.VariablesAndMethodsUtils;
+import utilities.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -207,6 +204,10 @@ public class SesionsCalendarController implements Initializable {
 
     public void genReport(MouseEvent mouseEvent) throws IOException {
         printReport();
+    }
+
+    public void btnSaveBD(MouseEvent mouseEvent) {
+        AlertHelper.showAlert(Alert.AlertType.INFORMATION, null, "Guardar DB", "se ha guardado correctamente en DB");
     }
 }
 
