@@ -52,12 +52,14 @@ public class VariablesAndMethodsUtils {
     public static LocalDate endDay;
 
     public static void init(ArrayList<DiaPlanificado> planificacionCalendario) {
+        for (DiaPlanificado dia : planificacionCalendario) {
+            dia.getCalendarioBase().setIdDate(LocalDate.parse(String.valueOf(dia.getDia()), FORMATTER3).format(FORMATTER2));
+            if (!aCalendarioBase.contains(dia.getCalendarioBase())) aCalendarioBase.add(dia.getCalendarioBase());
+            if (!aSession.contains(dia.getSesion()) && dia.getSesion() != null) aSession.add(dia.getSesion());
+        }
+
         aPlanifCalend = planificacionCalendario;
         firtDay = LocalDate.parse(String.valueOf(planificacionCalendario.get(0).getDia()), FORMATTER3);
-
-        for (DiaPlanificado dia : planificacionCalendario) {
-            if (!aCalendarioBase.contains(dia.getCalendarioBase())) aCalendarioBase.add(dia.getCalendarioBase());
-        }
 
 //        int d = Integer.parseInt(String.valueOf(planificacionCalendario.get(planificacionCalendario.size()-1).getDia()).substring(0, 2));
 //        int m = Integer.parseInt(String.valueOf(planificacionCalendario.get(planificacionCalendario.size()-1).getDia()).substring(2, 4));
@@ -324,7 +326,7 @@ public class VariablesAndMethodsUtils {
     public static void addData() {
         regDocentes();
         regAsignaturas();
-        regSesiones();
+        //regSesiones();
         sortListSession();
     }
 

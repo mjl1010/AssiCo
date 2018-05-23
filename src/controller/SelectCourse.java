@@ -17,6 +17,8 @@ import utilities.TextResponsive;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
 public class SelectCourse implements Initializable {
@@ -46,6 +48,8 @@ public class SelectCourse implements Initializable {
         DatosModel.closeConnection();
 
         if (cursos != null) {
+            cursos.sort((s, t1) -> t1.compareToIgnoreCase(s));
+
             for (int i = 0; i<cursos.size(); i++) {
                 Button btn = new Button();
                 btn.setText(cursos.get(i));
@@ -66,6 +70,7 @@ public class SelectCourse implements Initializable {
                 if (i%2 == 0) curso_col_1.getChildren().add(btn);
                 else curso_col_2.getChildren().add(btn);
             }
+
             refreshText();
         } else AlertHelper.showAlert(Alert.AlertType.ERROR, null, "Error - AssiCo", "En esta universidad no hay cursos :/");
     }

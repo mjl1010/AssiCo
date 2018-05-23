@@ -46,13 +46,21 @@ public class SelectMaster implements Initializable {
     private void generarMasters() {
         DatosModel.connect(null);
         ArrayList<Master> masters = DatosModel.getMasters(LoginController.token.getUsuario().getUniversidad());
+        ArrayList<Master> mastersLeidos = new ArrayList<>();
         DatosModel.closeConnection();
 
         if (masters != null) {
-            for (int i = 0; i<masters.size(); i++) {
+            masters.sort((s, t1) -> t1.getNombre().compareToIgnoreCase(s.getNombre()));
+
+            int i = 0;
+            for (Master master : masters) {
+                if (mastersLeidos.contains(master) || (master.getMasterVinculado() != null && mastersLeidos.contains(master.getMasterVinculado()))) continue;
+                mastersLeidos.add(master);
+                if (master.getMasterVinculado() != null) mastersLeidos.add(master.getMasterVinculado());
+
                 Button btn = new Button();
-                if (masters.get(i).getMasterVinculado() != null) btn.setText(masters.get(i).getNombre() + "\n" + masters.get(i).getMasterVinculado().getNombre());
-                else btn.setText(masters.get(i).getNombre());
+                if (master.getMasterVinculado() != null) btn.setText(master.getNombre() + "\n\n" + master.getMasterVinculado().getNombre());
+                else btn.setText(master.getNombre());
                 btn.setMinHeight(60);
                 btn.setMinWidth(363);
                 btn.setMaxWidth(363);
@@ -60,18 +68,14 @@ public class SelectMaster implements Initializable {
                 btn.setAlignment(Pos.CENTER);
                 btn.setWrapText(true);
 
-                Master m1 = masters.get(i);
-                Master m2 = masters.get(i).getMasterVinculado();
-
                 if (SelectCourse.postSelectMaster != null) {
                     btn.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
                         DatosModel.connect(null);
-                        planificacionCalendario = DatosModel.getPlanificacionCalendarios(LoginController.token.getUsuario(), SelectCourse.postSelectMaster, m1, m2);
+                        planificacionCalendario = DatosModel.getPlanificacionCalendarios(LoginController.token.getUsuario(), SelectCourse.postSelectMaster, master, master.getMasterVinculado());
                         DatosModel.closeConnection();
 
-                        // TODO Pasárle planificacion y parametrizar
-                        VariablesAndMethodsUtils.init(planificacionCalendario);
                         SesionsCalendarController.nombre_curso = SelectCourse.postSelectMaster;
+                        VariablesAndMethodsUtils.init(planificacionCalendario);
 
                         MainLogin.openStage(getClass().getResource("/view/intSesionsCalendar.fxml"), "Planificaciones - Calendario " + SelectCourse.postSelectMaster, null);
                         ((Stage) main.smaster_atras.getScene().getWindow()).close();
@@ -80,6 +84,8 @@ public class SelectMaster implements Initializable {
 
                 if (i%2 == 0) smaster_col_1.getChildren().add(btn);
                 else smaster_col_2.getChildren().add(btn);
+
+                i++;
             }
             refreshText();
         } else AlertHelper.showAlert(Alert.AlertType.ERROR, null, "Error - AssiCo", "En esta universidad no hay cursos :/");
