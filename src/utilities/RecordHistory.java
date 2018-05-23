@@ -2,7 +2,6 @@ package utilities;
 
 import entity.Master;
 import entity.Sesion;
-import sun.plugin2.util.SystemUtil;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
