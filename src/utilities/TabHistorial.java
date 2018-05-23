@@ -3,66 +3,81 @@ package utilities;
 
 import javafx.scene.control.*;
 
+import static utilities.VariablesAndMethodsUtils.aMaster;
+
 /**
  * Created by Michael
  */
 public class TabHistorial {
 
-    private TableView tv_historial;
+    private TableView<HistoryTableRow> tv_historial;
     private ComboBox cbo_master;
+    private Button btnGenerarTxt;
 
 
     /**
      * Método Constructor
+     *
      * @param tv_historial
      */
-    public TabHistorial(TableView tv_historial, ComboBox cbo_master) {
+    public TabHistorial(TableView tv_historial, ComboBox cbo_master, Button btnGenerarTxt) {
         this.tv_historial = tv_historial;
         this.cbo_master = cbo_master;
+        this.btnGenerarTxt = btnGenerarTxt;
+        columnsSetting();
+    }
+
+    public void fillCombobox() {
+        cbo_master.getItems().addAll(aMaster);
     }
 
     private void columnsSetting() {
         tv_historial.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         tv_historial.getSelectionModel().setCellSelectionEnabled(true);
-        tv_historial.getColumns().addAll(generarColumna("Lunes"),
-                generarColumna("Martes"),
-                generarColumna("Miércoles"),
-                generarColumna("Jueves"),
-                generarColumna("Viernes"),
-                generarColumna("Sábado"),
-                generarColumna("Domingo"));
+        tv_historial.getColumns().addAll(generarColumna("fechaInter"),
+                generarColumna("horaInter"),
+                generarColumna("masterID"),
+                generarColumna("sesionID"),
+                generarColumna("asignatura"),
+                generarColumna("contenido"),
+                generarColumna("doc1"),
+                generarColumna("doc2"),
+                generarColumna("dateOrigen"),
+                generarColumna("dateDestino"));
     }
 
-    private TableColumn<WeekDates, String> generarColumna(String diaSemana) {
-        TableColumn<WeekDates, String> t = new TableColumn<>(diaSemana);
-
+    private TableColumn<HistoryTableRow, String> generarColumna(String diaSemana) {
+        TableColumn<HistoryTableRow, String> t = new TableColumn<>(diaSemana);
         switch (diaSemana) {
-            case "Lunes":
-                t.setCellValueFactory(cellData -> cellData.getValue().mondayProperty());
+            case "fechaInter":
+                t.setCellValueFactory(cellData -> cellData.getValue().fechaInterProperty());
                 break;
-
-            case "Martes":
-                t.setCellValueFactory(cellData -> cellData.getValue().tuesdayProperty());
+            case "horaInter":
+                t.setCellValueFactory(cellData -> cellData.getValue().horaInterProperty());
                 break;
-
-            case "Miércoles":
-                t.setCellValueFactory(cellData -> cellData.getValue().wednesdayProperty());
+            case "masterID":
+                t.setCellValueFactory(cellData -> cellData.getValue().masterIDProperty());
                 break;
-
-            case "Jueves":
-                t.setCellValueFactory(cellData -> cellData.getValue().thursDayProperty());
+            case "sesionID":
+                t.setCellValueFactory(cellData -> cellData.getValue().sesionIDProperty());
                 break;
-
-            case "Viernes":
-                t.setCellValueFactory(cellData -> cellData.getValue().fridayProperty());
+            case "asignatura":
+                t.setCellValueFactory(cellData -> cellData.getValue().asignaturaProperty());
                 break;
-
-            case "Sábado":
-                t.setCellValueFactory(cellData -> cellData.getValue().saturdayProperty());
+            case "contenido":
+                t.setCellValueFactory(cellData -> cellData.getValue().contenidoProperty());
                 break;
-
-            case "Domingo":
-                t.setCellValueFactory(cellData -> cellData.getValue().sundayProperty());
+            case "doc1":
+                t.setCellValueFactory(cellData -> cellData.getValue().doc1Property());
+                break;
+            case "doc2":
+                t.setCellValueFactory(cellData -> cellData.getValue().doc2Property());
+                break;
+            case "dateOrigen":
+                t.setCellValueFactory(cellData -> cellData.getValue().dateOrigenProperty());
+                break;
+            case "dateDestino":
+                t.setCellValueFactory(cellData -> cellData.getValue().dateDestinoProperty());
                 break;
         }
         return t;
@@ -82,5 +97,13 @@ public class TabHistorial {
 
     public void setCbo_master(ComboBox cbo_master) {
         this.cbo_master = cbo_master;
+    }
+
+    public Button getBtnGenerarTxt() {
+        return btnGenerarTxt;
+    }
+
+    public void setBtnGenerarTxt(Button btnGenerarTxt) {
+        this.btnGenerarTxt = btnGenerarTxt;
     }
 }

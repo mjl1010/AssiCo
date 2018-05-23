@@ -92,7 +92,11 @@ public class TabCalendarMaster {
                         else {
                             gp_exchange2 = (GridPane) event.getSource();
                             gp_exchange2.setStyle("-fx-border-color: #A9D0F5;" + "-fx-border-style: solid inside;" + "-fx-border-width: 5;");
-                            SesionsExchange.change(this, date_exchange1, getDate(gp_exchange2));
+                            try {
+                                SesionsExchange.change(this, date_exchange1, getDate(gp_exchange2));
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                             ischange = false;
                             iv_seguro.setImage(new Image("view/res/open.png"));
                             isEditable_seguro = false;

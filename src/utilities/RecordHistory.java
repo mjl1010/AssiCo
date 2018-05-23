@@ -2,8 +2,10 @@ package utilities;
 
 import entity.Master;
 import entity.Sesion;
+import sun.plugin2.util.SystemUtil;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Created by Michael
@@ -12,34 +14,29 @@ public class RecordHistory {
 
     private LocalDateTime ldt_changeDate;
     private Master master;
-    private Sesion sesion_1;
-    private String originalDate_1;
-    private String destinationDate_1;
-    private Sesion sesion_2;
-    private String originalDate_2;
-    private String destinationDate_2;
+    private Sesion sesion;
+    private String originalDate;
+    private String destinationDate;
+
+    private static String SALTO_LINEA = "\n";
+    private static String SPACE = " ";
+    private static String FORMATTER_TIME = "HH:mm:ss";
 
     /**
      * Método Cosntructor
      * @param ldt_changeDate
      * @param master
-     * @param sesion_1
-     * @param originalDate_1
-     * @param destinationDate_1
-     * @param sesion_2
-     * @param originalDate_2
-     * @param destinationDate_2
+     * @param sesion
+     * @param originalDate
+     * @param destinationDate
      */
-    public RecordHistory(LocalDateTime ldt_changeDate, entity.Master master, Sesion sesion_1, String originalDate_1, String destinationDate_1,
-                         Sesion sesion_2, String originalDate_2, String destinationDate_2) {
+    public RecordHistory(LocalDateTime ldt_changeDate, entity.Master master, Sesion sesion,
+                         String originalDate, String destinationDate) {
         this.ldt_changeDate = ldt_changeDate;
         this.master = master;
-        this.sesion_1 = sesion_1;
-        this.originalDate_1 = originalDate_1;
-        this.destinationDate_1 = destinationDate_1;
-        this.sesion_2 = sesion_2;
-        this.originalDate_2 = originalDate_2;
-        this.destinationDate_2 = destinationDate_2;
+        this.sesion = sesion;
+        this.originalDate = originalDate;
+        this.destinationDate = destinationDate;
     }
 
     /**** Getters and Setters ****/
@@ -60,51 +57,66 @@ public class RecordHistory {
         this.master = master;
     }
 
-    public Sesion getSesion_1() {
-        return sesion_1;
+    public Sesion getSesion() {
+        return sesion;
     }
 
-    public void setSesion_1(Sesion sesion_1) {
-        this.sesion_1 = sesion_1;
+    public void setSesion(Sesion sesion) {
+        this.sesion = sesion;
     }
 
-    public String getOriginalDate_1() {
-        return originalDate_1;
+    public String getOriginalDate() {
+        return originalDate;
     }
 
-    public void setOriginalDate_1(String originalDate_1) {
-        this.originalDate_1 = originalDate_1;
+    public void setOriginalDate(String originalDate) {
+        this.originalDate = originalDate;
     }
 
-    public String getDestinationDate_1() {
-        return destinationDate_1;
+    public String getDestinationDate() {
+        return destinationDate;
     }
 
-    public void setDestinationDate_1(String destinationDate_1) {
-        this.destinationDate_1 = destinationDate_1;
+    public void setDestinationDate(String destinationDate) {
+        this.destinationDate = destinationDate;
     }
 
-    public Sesion getSesion_2() {
-        return sesion_2;
-    }
+    /**
+     *
+     * @return
+     */
+    public StringBuilder getRowForRegistredFile() {
+//        System.out.println("ENTRO AQUI");
+        StringBuilder sb = new StringBuilder();
+        String doc1_aux = "", doc2_aux = "";
+//        System.out.println("sesion : " + sesion);
+//        System.out.println(sesion.getDocente1() == null);
+//        System.out.println(sesion.getDocente2() == null);
 
-    public void setSesion_2(Sesion sesion_2) {
-        this.sesion_2 = sesion_2;
-    }
-
-    public String getOriginalDate_2() {
-        return originalDate_2;
-    }
-
-    public void setOriginalDate_2(String originalDate_2) {
-        this.originalDate_2 = originalDate_2;
-    }
-
-    public String getDestinationDate_2() {
-        return destinationDate_2;
-    }
-
-    public void setDestinationDate_2(String destinationDate_2) {
-        this.destinationDate_2 = destinationDate_2;
+        if (sesion != null){
+            if (sesion.getDocente1() != null) doc1_aux = sesion.getDocente1().getCode();
+            if (sesion.getDocente2() != null) doc1_aux = sesion.getDocente2().getCode();
+            sb.append(ldt_changeDate.format(DateTimeFormatter.ISO_LOCAL_DATE))
+                    .append(SPACE)
+                    .append(ldt_changeDate.format(DateTimeFormatter.ofPattern(FORMATTER_TIME)))
+                    .append(SPACE)
+                    .append(master.getCode())
+                    .append(SPACE)
+                    .append(sesion.getId())
+                    .append(SPACE)
+                    .append(sesion.getAsignatura())
+                    .append(SPACE)
+                    .append(sesion.getContenidos())
+                    .append(SPACE)
+                    .append(doc1_aux)
+                    .append(SPACE)
+                    .append(doc2_aux)
+                    .append(SPACE)
+                    .append(originalDate)
+                    .append(SPACE)
+                    .append(destinationDate)
+                    .append(SALTO_LINEA);
+        }
+        return sb;
     }
 }

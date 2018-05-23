@@ -1,6 +1,7 @@
 package controller;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import static utilities.AlertHelper.showAlert;
+import static utilities.RecordHistoryManager.validatCreateFileHistory;
 import static utilities.VariablesAndMethodsUtils.*;
 import static utilities.VariablesAndMethodsUtils.getDiaPlanificado;
 
@@ -48,11 +50,14 @@ public class SesionsCalendarController implements Initializable {
     @FXML
     Button btnGuardarCambios_1, btnGuardarCambios_2;
 
-    @FXML
-    TableView tv_historial;
-
-    @FXML
-    ComboBox cbo_master;
+//    @FXML
+//    TableView tv_historial;
+//
+//    @FXML
+//    ComboBox cbo_master;
+//
+//    @FXML
+//    Button btnGenerarTxt;
 
     private ArrayList<MenuItem> aSplitMenuButton1;
     private ArrayList<MenuItem> aSplitMenuButton2;
@@ -78,7 +83,8 @@ public class SesionsCalendarController implements Initializable {
         configSplitMenuButton(aSplitMenuButton2, tcm2);
         refreshText();
 
-        th = new TabHistorial(tv_historial, cbo_master);
+//        th = new TabHistorial(tv_historial, cbo_master, btnGenerarTxt);
+
     }
 
     /**
@@ -202,6 +208,7 @@ public class SesionsCalendarController implements Initializable {
     public void clickLock(MouseEvent mouseEvent) {
 
     }
+
 }
 
 

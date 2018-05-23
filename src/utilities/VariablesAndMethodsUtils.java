@@ -42,6 +42,7 @@ public class VariablesAndMethodsUtils {
     public static String curso;
     public static Master master1;
     public static Master master2;
+    public static ArrayList<String> aMaster;
 
     private static int sesionID = 0;
     private static final ArrayList<String> aTipoSession = new ArrayList<>();
@@ -112,6 +113,10 @@ public class VariablesAndMethodsUtils {
         updateInitData();
         addData();
 
+        aMaster = new ArrayList<>();
+        if (master1 != null) aMaster.add(master1.getCode());
+        if (master2 != null) aMaster.add(master2.getCode());
+
     }
 
     public static void init() {
@@ -120,6 +125,7 @@ public class VariablesAndMethodsUtils {
         master1 = new Master(1, "eng", "engineria");
         master2 = new Master(2, "med", "medicina");
         master1.setMasterVinculado(master2);
+        master2.setMasterVinculado(master1);
         aTiposAula = FXCollections.observableArrayList(
                 "A", "M", "P", "T", "V"
         );
@@ -157,7 +163,6 @@ public class VariablesAndMethodsUtils {
         aColumnNametvSes.add("TipoAula");
         aColumnNametvSes.add("Aula");
         aColumnNametvSes.add("nota");
-
         addData();
     }
 
@@ -326,7 +331,7 @@ public class VariablesAndMethodsUtils {
     public static void addData() {
         regDocentes();
         regAsignaturas();
-        //regSesiones();
+        regSesiones();
         sortListSession();
     }
 

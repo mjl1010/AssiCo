@@ -150,6 +150,8 @@ public class SesionTableController implements Initializable {
      * printM1
      */
     private void printM1() {
+        System.out.println("aSesion.size : " + aSession.size());
+        System.out.println("filteredData.size : " + filteredData.size());
         for (int i = 0; i < filteredData.size(); i++) {
             if (filteredData.get(i).getMaster1() != null
                     && filteredData.get(i).getMaster1().equals(tcm.getMaster())
@@ -217,7 +219,6 @@ public class SesionTableController implements Initializable {
                     registredSesion(objSesionTableRow, tcm.getaGridSesions());
                     tcm.desmarcarGridWaiting();
                     closeStage(stage);
-                    printSesionReg_TEST();
                 }
             });
             return row;
