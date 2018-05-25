@@ -18,6 +18,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import static model.DatosModel.send_ListPlanif;
 import static utilities.AlertHelper.showAlert;
 import static utilities.RecordHistoryManager.printReport;
 import static utilities.VariablesAndMethodsUtils.*;
@@ -67,7 +68,6 @@ public class SesionsCalendarController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         main = this;
         if (nombre_curso == null) {
-            VariablesAndMethodsUtils.init();
             nombre_curso = VariablesAndMethodsUtils.curso;
         }
         if (HeaderController.main.titulo != null) HeaderController.main.titulo.setText(nombre_curso + " : " + master1.getNombre() + (master2 != null ? " / " + master2.getNombre() : ""));
@@ -79,7 +79,6 @@ public class SesionsCalendarController implements Initializable {
         configSplitMenuButton(aSplitMenuButton1, tcm1);
         configSplitMenuButton(aSplitMenuButton2, tcm2);
         refreshText();
-
         th = new TabHistorial(tv_historial, cbo_master, btnGenerarTxt);
 
     }
@@ -206,7 +205,8 @@ public class SesionsCalendarController implements Initializable {
         printReport();
     }
 
-    public void btnSaveBD(MouseEvent mouseEvent) {
+    public void btnSaveBDdata(MouseEvent mouseEvent) {
+        send_ListPlanif(aPlanifCalend);
         AlertHelper.showAlert(Alert.AlertType.INFORMATION, null, "Guardar DB", "se ha guardado correctamente en DB");
     }
 }

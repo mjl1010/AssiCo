@@ -24,6 +24,9 @@ import java.util.Properties;
 
 import static utilities.VariablesAndMethodsUtils.*;
 
+/**
+ * Created by Michael
+ */
 public class TabCalendarMaster {
 
     private GridPane gp_calendar;
@@ -124,16 +127,13 @@ public class TabCalendarMaster {
     }
 
     public String getDate(GridPane gridPane) {
-        System.out.println("contTest : " + ++contTest);
         String date = null;
         for (GridSesion gs : aGridSesions) {
             if (gs.getMiniGrid().equals(gridPane)) {
-                System.out.println("se encuentra gridxD");
                 date = gs.getLblDateID().getId();
                 break;
             }
         }
-        System.out.println("return date : " + date);
         return date;
     }
 
@@ -194,7 +194,6 @@ public class TabCalendarMaster {
         gs.getCbo_tipoAula().setValue(s.getTipoAula());
         gs.setSesionID(s.getId());
         gs.setVisibleComboBoxs(true);
-
         gs.getMiniGrid().setStyle("-fx-background-color: " + s.getColorFondo() + ";");
         gs.getLblDateID().setStyle("-fx-background-color: " + s.getColorFondo() + "; -fx-font: " + TextResponsive.getH6() + " \"System Bold\"; -fx-text-fill: " + s.getColorTexto() + ";");
 
@@ -217,7 +216,7 @@ public class TabCalendarMaster {
     /**
      * updateListsCurrentMonth
      */
-    private void updateListsCurrentMonth() { //de momento siempre master1 está en tab1, TODO validar break;
+    private void updateListsCurrentMonth() { //validar break;
         aPlanCalCurrentMonth = new ArrayList<>();
         for (int i = 0; i < aPlanifCalend.size(); i++) {
             String date = String.valueOf(aPlanifCalend.get(i).getCalendarioBase().getDia());

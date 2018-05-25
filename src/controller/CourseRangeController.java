@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import entity.CalendarioBase;
+import model.DatosModel;
 import start.MainLogin;
 import utilities.AlertHelper;
 import utilities.TextResponsive;
@@ -39,19 +40,31 @@ public class CourseRangeController implements Initializable {
     @FXML
     Button generarCurso, generarCursoBack;
 
+
     private static String firstDayName;
 
     private static int contWeeks;
     private int cont_day = 0;
-//    private static ArrayList<CalendarioBase> aListCalBase;
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/YYYY");
-
     private Properties p;
-
     public static Map<String, Object> datosForm = new HashMap<>();
-
     private static HashSet<String> hsVacations = new HashSet<>();
     private int cont_vacation_day = 0;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        main = this;
+        if (HeaderController.main.titulo != null) HeaderController.main.titulo.setText("Rangos de fechas del curso y vacaciones");
+        if (!datosForm.isEmpty()) {
+            nameCurso.setText((String) datosForm.get("nameCurso"));
+            initCurso.setValue((LocalDate) datosForm.get("initCurso"));
+            initVacations.setValue((LocalDate) datosForm.get("initVacations"));
+            endVacations.setValue((LocalDate) datosForm.get("endVacations"));
+            endCurso.setValue((LocalDate) datosForm.get("endCurso"));
+        }
+        refreshText();
+    }
+
 
 
     /***** Gettes and Setters ****/
@@ -75,12 +88,9 @@ public class CourseRangeController implements Initializable {
     @FXML
     private void generarCurso() throws IOException {
         datosForm.put("nameCurso", nameCurso.getText());
-
         datosForm.put("initCurso", initCurso.getValue());
-
         datosForm.put("initVacations", initVacations.getValue());
         datosForm.put("endVacations", endVacations.getValue());
-
         datosForm.put("endCurso", endCurso.getValue());
 
         try {
@@ -136,11 +146,16 @@ public class CourseRangeController implements Initializable {
      * @return obj CalendarBase
      */
     public static CalendarioBase generarObjectCalendarBase(LocalDate date_temp) {
-        CalendarioBase cb = new CalendarioBase(Integer.parseInt(date_temp.format(DateTimeFormatter.BASIC_ISO_DATE)),
-                VariablesAndMethodsUtils.uni, DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).format(date_temp),
-                date_temp.getDayOfWeek().getValue(), date_temp.format(FORMATTER), (date_temp.getYear()-1) + "-" + date_temp.getYear());
-
-        return cb;
+        return new CalendarioBase(Integer.parseInt(date_temp.format(DateTimeFormatter.BASIC_ISO_DATE)),
+                uni,
+                DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).format(date_temp),
+                DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).format(date_temp),
+                date_temp.getDayOfWeek().getValue(),
+                false,
+                false,
+                true,
+                (date_temp.getYear()-1) + "-" + date_temp.getYear(),
+                date_temp.format(FORMATTER));
     }
 
 
@@ -182,33 +197,14 @@ public class CourseRangeController implements Initializable {
         ((Stage) generarCurso.getScene().getWindow()).close();
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        main = this;
-        if (HeaderController.main.titulo != null) HeaderController.main.titulo.setText("Rangos de fechas del curso y vacaciones");
-
-        if (!datosForm.isEmpty()) {
-            nameCurso.setText((String) datosForm.get("nameCurso"));
-            initCurso.setValue((LocalDate) datosForm.get("initCurso"));
-            initVacations.setValue((LocalDate) datosForm.get("initVacations"));
-            endVacations.setValue((LocalDate) datosForm.get("endVacations"));
-            endCurso.setValue((LocalDate) datosForm.get("endCurso"));
-        }
-
-        refreshText();
-    }
 
     @FXML
     private void back() {
         datosForm.put("nameCurso", nameCurso.getText());
-
         datosForm.put("initCurso", initCurso.getValue());
-
         datosForm.put("initVacations", initVacations.getValue());
         datosForm.put("endVacations", endVacations.getValue());
-
         datosForm.put("endCurso", endCurso.getValue());
-
         MainLogin.openStage(getClass().getResource("/view/intSelectCourse.fxml"), "Planificaciones - Selector de cursos", null);
         ((Stage) generarCurso.getScene().getWindow()).close();
     }

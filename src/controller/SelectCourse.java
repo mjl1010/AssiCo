@@ -1,11 +1,15 @@
 package controller;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
@@ -35,11 +39,23 @@ public class SelectCourse implements Initializable {
     @FXML
     Button select_course_nuevo;
 
+    @FXML
+    VBox vb_linksCalendar;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         main = this;
         if (HeaderController.main.titulo != null) HeaderController.main.titulo.setText("Seleccione un curso");
         generarMasters();
+        Hyperlink link = new Hyperlink();
+        link.setText("http://example.com");
+        link.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                System.out.println("This link is clicked");
+            }
+        });
+        vb_linksCalendar.getChildren().add(link);
     }
 
     private void generarMasters() {
@@ -77,8 +93,9 @@ public class SelectCourse implements Initializable {
 
     @FXML
     private void newCurso() {
-        MainLogin.openStage(getClass().getResource("/view/intCourseRange.fxml"), "Planificaciones - Nuevo curso", null);
         ((Stage) select_course_nuevo.getScene().getWindow()).close();
+        MainLogin.openStage(getClass().getResource("/view/intCourseRange.fxml"), "Planificaciones - Nuevo curso", null);
+
     }
 
     public static void refreshText() {
