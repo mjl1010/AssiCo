@@ -20,12 +20,15 @@ import utilities.WeekDates;
 
 import java.io.IOException;
 import java.net.URL;
+import java.security.acl.Owner;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.ResourceBundle;
 
+import static model.DatosModel.connect;
+import static model.DatosModel.sendInitialDateCalendar;
 import static utilities.VariablesAndMethodsUtils.*;
 
 /**
@@ -51,11 +54,8 @@ public class HolydayCalendarController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         main = this;
-
         HeaderController.main.titulo.setText("Selecciona los días festivos");
-
         refreshText();
-
         fillCeldasVacations();
         columnsSetting();
         fillTableView();
@@ -159,9 +159,6 @@ public class HolydayCalendarController implements Initializable {
      */
     private void fillTableView() {
         int contWeeksReg = 0;
-
-        System.out.println("numero de semanas : " + CourseRangeController.getContWeeks());
-
         if (!CourseRangeController.getFirstDayName().equals("MONDAY")) {
             incompletWeekRegistred();
             cont_aListDate--;
@@ -176,21 +173,17 @@ public class HolydayCalendarController implements Initializable {
      * end Week Registred
      */
     private void endWeekRegistred() {
-
         ArrayList<String> dates = new ArrayList<String>();
         int cont = -1;
         LocalDate aux_localDate;
-
         do {
             dates.add(aCalendarioBase.get(++cont_aListDate).getIdDate());
             aux_localDate = LocalDate.parse(aCalendarioBase.get(cont_aListDate)
             .getIdDate(), FORMATTER2);
 
         } while (!aux_localDate.isAfter(CourseRangeController.getEndDay().minusDays(1)));
-
         int aux = 7 - dates.size();
         for (int i = 0; i < aux; i++) dates.add("");
-
         WeekDates tb = new WeekDates(dates.get(++cont), dates.get(++cont), dates.get(++cont), dates.get(++cont),
                 dates.get(++cont), dates.get(++cont), dates.get(++cont));
 
@@ -201,7 +194,6 @@ public class HolydayCalendarController implements Initializable {
      * week Registred
      */
     private void completWeekRegistred() {
-
         WeekDates wd = new WeekDates(
                 String.valueOf(aCalendarioBase.get(++cont_aListDate).getIdDate()),
                 String.valueOf(aCalendarioBase.get(++cont_aListDate).getIdDate()),
@@ -211,7 +203,6 @@ public class HolydayCalendarController implements Initializable {
                 String.valueOf(aCalendarioBase.get(++cont_aListDate).getIdDate()),
                 String.valueOf(aCalendarioBase.get(++cont_aListDate).getIdDate())
         );
-
         tvCalendar.getItems().add(wd);
     }
 
@@ -219,14 +210,11 @@ public class HolydayCalendarController implements Initializable {
      * incompletWeekRegistred()
      */
     private void incompletWeekRegistred() {
-
         ArrayList<String> dates = new ArrayList<>();
-
         while (aCalendarioBase.get(++cont_aListDate)
                 .getWeekDay() != 1)
             dates.add(String.valueOf(aCalendarioBase
                     .get(cont_aListDate).getIdDate()));
-
         WeekDates tb = new WeekDates();
         tb.completeWeek(CourseRangeController.getFirstDayName(), dates);
         tvCalendar.getItems().add(tb);
@@ -251,21 +239,13 @@ public class HolydayCalendarController implements Initializable {
 
     @FXML
     private void generar() {
-        VariablesAndMethodsUtils.init();
-
-        for (CalendarioBase cb : aCalendarioBase) {
-            if (celdasSeleccionadas.contains(cb.getIdDate()))
+        for (CalendarioBase cb : aCalendarioBase) if (celdasSeleccionadas.contains(cb.getIdDate()))
                 cb.setFestivo(true);
-        }
-
         createPlanificacionObjects();
-
-        // TODO Mandar a guardar el curso generado
-//        ClientExt.connect();
-//        ClientExt. send_firstListBaseCalendar(CourseRangeController.getaListCalBase());
-//        ClientExt.closeConnection();
-
+        connect(back.getScene().getWindow());
+        sendInitialDateCalendar(aCalendarioBase, aPlanifCalend);
         try {
+            updateInitData();
             openIntCalendarSession();
         } catch (Exception e) {
             AlertHelper.showAlert(Alert.AlertType.ERROR, null, "Error - AssiCo", "No se ha podido generar la planificación");

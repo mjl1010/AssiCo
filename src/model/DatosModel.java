@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static utilities.VariablesAndMethodsUtils.uni;
+
 /**
  * @apiNote Para usar los métodos de esta clase hay que conectarse, usar el método y desconectarse
  * @author mjl1010
@@ -44,8 +46,8 @@ public class DatosModel {
         window = owner;
         token = toke;
         try {
-            socket = new Socket("skimdoo.ddns.jazztel.es", 9090);
-            //socket = new Socket("localhost", 9090);
+//            socket = new Socket("skimdoo.ddns.jazztel.es", 9090);
+            socket = new Socket("192.168.1.37", 9090);
             dos = new ObjectOutputStream(socket.getOutputStream());
             dis = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
@@ -176,7 +178,7 @@ public class DatosModel {
      * obtenerCalendario
      */
     public static ArrayList<String> getCursos(Universidad universidad) {
-        if (!comprobarToken()) return null;
+//        if (!comprobarToken()) return null;
 
         Dato dato = new Dato("getCursos", universidad);
         try {
@@ -205,25 +207,41 @@ public class DatosModel {
     }
 
     /**
-     * send_firstListBaseCalendar()
-     * **TODO add PlanificaciosList
-     * @param data
+     * sendInitialDateCalendar()
+     * @param aCalBase, aPlanifDia
      */
-    public static void send_firstListBaseCalendar(ArrayList<CalendarioBase> data) {
-        Dato dato = new Dato("firstListBaseCalendar", data);
+    public static void sendInitialDateCalendar(ArrayList<CalendarioBase> aCalBase,
+                                               ArrayList<DiaPlanificado> aPlanifDia) {
+        HashMap<String, ArrayList> hmFirstDateCalendar = new HashMap<>();
+        hmFirstDateCalendar.put("calendarioBase", aCalBase);
+        hmFirstDateCalendar.put("planificacionDia", aPlanifDia);
+        Dato dato = new Dato("firstListBaseCalendar", hmFirstDateCalendar);
+        try {
+            System.out.println("antes de enviar : " + aPlanifDia.get(0));
+            dos.writeObject(dato);
+            dato = (Dato) dis.readObject();
+            boolean result = (boolean) dato.getObject();
+            closeConnection();
+            connect(window);
+        } catch (Exception e) {
+           e.printStackTrace();
+        }
+    }
+
+    /**
+     * send planificacion master list
+     */
+    public static void send_ListPlanif(ArrayList<DiaPlanificado> aDiaPlanif) {
+
+        Dato dato = new Dato("updatePlanificacionCalendar", aDiaPlanif);
         try {
             dos.writeObject(dato);
-
-            dato = null;
-            dato = (Dato) dis.readObject(); // while hasta que responda
-
-            System.out.printf("Servidor devuelve : MessageCode =  %s , Dato = %s", dato.getMessageCode()
-                    , dato.getObject());
-
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
+        boolean result = (boolean) dato.getObject();
+        closeConnection();
+        connect(window);
+
     }
 }

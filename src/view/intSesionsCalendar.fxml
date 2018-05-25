@@ -95,7 +95,7 @@
                                                       <Image url="@res/open.png" />
                                                    </image>
                                                 </ImageView>
-                                                <Button id="btnGuardarCambios1" onMouseClicked="#btnSaveBD" fx:id="btnGuardarCambios_1" layoutX="973.0" layoutY="23.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="155.0" text="Guardar Cambios">
+                                                <Button id="btnGuardarCambios1" onMouseClicked="#btnSaveBDdata" fx:id="btnGuardarCambios_1" layoutX="973.0" layoutY="23.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="155.0" text="Guardar Cambios">
                                                    <font>
                                                       <Font size="17.0" />
                                                    </font>
@@ -178,7 +178,7 @@
                                                                         <Image url="@res/open.png" />
                                                                     </image>
                                                                 </ImageView>
-                                                                <Button id="btnGuardarCambios2" onMouseClicked="#btnSaveBD" fx:id="btnGuardarCambios_2" layoutX="973.0" layoutY="23.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="155.0" text="Guardar Cambios">
+                                                                <Button id="btnGuardarCambios2" onMouseClicked="#btnSaveBDdata" fx:id="btnGuardarCambios_2" layoutX="973.0" layoutY="23.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="155.0" text="Guardar Cambios">
                                                                     <font>
                                                                         <Font size="17.0" />
                                                                     </font>

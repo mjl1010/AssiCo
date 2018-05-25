@@ -37,7 +37,7 @@ public class VariablesAndMethodsUtils {
     private static ArrayList<String> aListAsignaturas = new ArrayList<>();
     public static ArrayList<Docente> aDocentes = new ArrayList<>();
     public static ObservableList<String> aDocentesID = FXCollections.observableArrayList();
-    public static String PATH_PROPERTIES = "config.properties";
+    public static String PATH_PROPERTIES = "assiconfig.properties";
     public static Universidad uni;
     public static String curso;
     public static Master master1;
@@ -52,70 +52,11 @@ public class VariablesAndMethodsUtils {
     public static LocalDate firtDay;
     public static LocalDate endDay;
 
-    public static void init(ArrayList<DiaPlanificado> planificacionCalendario) {
-        for (DiaPlanificado dia : planificacionCalendario) {
-            dia.getCalendarioBase().setIdDate(LocalDate.parse(String.valueOf(dia.getDia()), FORMATTER3).format(FORMATTER2));
-            if (!aCalendarioBase.contains(dia.getCalendarioBase())) aCalendarioBase.add(dia.getCalendarioBase());
-            if (!aSession.contains(dia.getSesion()) && dia.getSesion() != null) aSession.add(dia.getSesion());
-        }
-
-        aPlanifCalend = planificacionCalendario;
-        firtDay = LocalDate.parse(String.valueOf(planificacionCalendario.get(0).getDia()), FORMATTER3);
-
-//        int d = Integer.parseInt(String.valueOf(planificacionCalendario.get(planificacionCalendario.size()-1).getDia()).substring(0, 2));
-//        int m = Integer.parseInt(String.valueOf(planificacionCalendario.get(planificacionCalendario.size()-1).getDia()).substring(2, 4));
-//        int y = Integer.parseInt(String.valueOf(planificacionCalendario.get(planificacionCalendario.size()-1).getDia()).substring(4, 5));
-        endDay = LocalDate.parse(String.valueOf(planificacionCalendario.get(planificacionCalendario.size()-1).getDia()), FORMATTER3);
-
-        curso = SesionsCalendarController.nombre_curso != null ? SesionsCalendarController.nombre_curso : String.valueOf(CourseRangeController.datosForm.get("nameCurso"));
-        uni = planificacionCalendario.get(0).getUniversidad();
-        master1 = planificacionCalendario.get(0).getMaster();
-        if (master1.getMasterVinculado() != null) master2 = planificacionCalendario.get(0).getMaster().getMasterVinculado();
-        master1.setMasterVinculado(master2);
-        if (master1.getMasterVinculado() != null) master2.setMasterVinculado(master1);
-        aTiposAula = FXCollections.observableArrayList(
-                "A", "M", "P", "T", "V"
-        );
-        aTipoSession.add("J");
-        aTipoSession.add("S");
-
-        aDays.add("Lunes");
-        aDays.add("Martes");
-        aDays.add("Miercoles");
-        aDays.add("Jueves");
-        aDays.add("Viernes");
-        aDays.add("Sabado");
-        aDays.add("Domingo");
-
-        aMonths.add("January");
-        aMonths.add("February");
-        aMonths.add("March");
-        aMonths.add("April");
-        aMonths.add("May");
-        aMonths.add("June");
-        aMonths.add("July");
-        aMonths.add("August");
-        aMonths.add("September");
-        aMonths.add("October");
-        aMonths.add("November");
-        aMonths.add("December");
-
-        aColumnNametvSes.add("sesionID");
-        aColumnNametvSes.add("master1");
-        aColumnNametvSes.add("master2");
-        aColumnNametvSes.add("asignatura");
-        aColumnNametvSes.add("contenido");
-        aColumnNametvSes.add("docentet1");
-        aColumnNametvSes.add("docentet2");
-        aColumnNametvSes.add("TipoAula");
-        aColumnNametvSes.add("Aula");
-        aColumnNametvSes.add("nota");
-
-        updateInitData();
-        addData();
-    }
-
-    public static void init() {
+    /**
+     *
+     */
+    static {
+        PATH_PROPERTIES = "assiconfig.properties";
         curso = "Testing 2018-2019";
         uni = new Universidad(1, "uoc");
         master1 = new Master(1, "eng", "engineria");
@@ -127,7 +68,6 @@ public class VariablesAndMethodsUtils {
         );
         aTipoSession.add("J");
         aTipoSession.add("S");
-
         aDays.add("Lunes");
         aDays.add("Martes");
         aDays.add("Miercoles");
@@ -135,7 +75,6 @@ public class VariablesAndMethodsUtils {
         aDays.add("Viernes");
         aDays.add("Sabado");
         aDays.add("Domingo");
-
         aMonths.add("January");
         aMonths.add("February");
         aMonths.add("March");
@@ -148,7 +87,6 @@ public class VariablesAndMethodsUtils {
         aMonths.add("October");
         aMonths.add("November");
         aMonths.add("December");
-
         aColumnNametvSes.add("sesionID");
         aColumnNametvSes.add("master1");
         aColumnNametvSes.add("master2");
@@ -159,13 +97,10 @@ public class VariablesAndMethodsUtils {
         aColumnNametvSes.add("TipoAula");
         aColumnNametvSes.add("Aula");
         aColumnNametvSes.add("nota");
-        addData();
-
         aMaster = new ArrayList<>();
         if (master1 != null) aMaster.add(master1.getCode());
         if (master2 != null) aMaster.add(master2.getCode());
-
-        updateInitData();
+        addData();
     }
 
     /**** Métodos ******/
@@ -465,7 +400,7 @@ public class VariablesAndMethodsUtils {
         }
     }
 
-    private static void updateInitData()  {
+    public static void updateInitData()  {
         Properties p = new Properties();
         if (VariablesAndMethodsUtils.curso == null) VariablesAndMethodsUtils.curso = firtDay.getYear() + "-"
                 + endDay.getYear();
@@ -481,6 +416,69 @@ public class VariablesAndMethodsUtils {
             e.printStackTrace();
             System.out.println(e.getCause() + "&" + e.getMessage());
         }
+    }
+
+    public static void updateMasterString(ArrayList<Master> data){
+        aMaster = new ArrayList<>();
+        for (Master master : data) {
+            aMaster.add(master.getCode());
+        }
+    }
+
+    public static void init(ArrayList<DiaPlanificado> planificacionCalendario) {
+        for (DiaPlanificado dia : planificacionCalendario) {
+            dia.getCalendarioBase().setIdDate(LocalDate.parse(String.valueOf(dia.getDia()), FORMATTER3).format(FORMATTER2));
+            if (!aCalendarioBase.contains(dia.getCalendarioBase())) aCalendarioBase.add(dia.getCalendarioBase());
+            if (!aSession.contains(dia.getSesion()) && dia.getSesion() != null) aSession.add(dia.getSesion());
+        }
+        aPlanifCalend = planificacionCalendario;
+        firtDay = LocalDate.parse(String.valueOf(planificacionCalendario.get(0).getDia()), FORMATTER3);
+        endDay = LocalDate.parse(String.valueOf(planificacionCalendario.get(planificacionCalendario.size()-1).getDia()), FORMATTER3);
+        curso = SesionsCalendarController.nombre_curso != null ? SesionsCalendarController.nombre_curso : String.valueOf(CourseRangeController.datosForm.get("nameCurso"));
+        uni = planificacionCalendario.get(0).getUniversidad();
+        master1 = planificacionCalendario.get(0).getMaster();
+        master2 = planificacionCalendario.get(0).getMaster().getMasterVinculado();
+        master1.setMasterVinculado(master2);
+        aTiposAula = FXCollections.observableArrayList(
+                "A", "M", "P", "T", "V"
+        );
+        aTipoSession.add("J");
+        aTipoSession.add("S");
+
+        aDays.add("Lunes");
+        aDays.add("Martes");
+        aDays.add("Miercoles");
+        aDays.add("Jueves");
+        aDays.add("Viernes");
+        aDays.add("Sabado");
+        aDays.add("Domingo");
+
+        aMonths.add("January");
+        aMonths.add("February");
+        aMonths.add("March");
+        aMonths.add("April");
+        aMonths.add("May");
+        aMonths.add("June");
+        aMonths.add("July");
+        aMonths.add("August");
+        aMonths.add("September");
+        aMonths.add("October");
+        aMonths.add("November");
+        aMonths.add("December");
+
+        aColumnNametvSes.add("sesionID");
+        aColumnNametvSes.add("master1");
+        aColumnNametvSes.add("master2");
+        aColumnNametvSes.add("asignatura");
+        aColumnNametvSes.add("contenido");
+        aColumnNametvSes.add("docentet1");
+        aColumnNametvSes.add("docentet2");
+        aColumnNametvSes.add("TipoAula");
+        aColumnNametvSes.add("Aula");
+        aColumnNametvSes.add("nota");
+
+        updateInitData();
+        addData();
     }
 
 }
