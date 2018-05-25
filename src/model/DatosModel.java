@@ -4,7 +4,9 @@ import entity.*;
 import javafx.scene.control.Alert;
 import javafx.stage.Window;
 import utilities.AlertHelper;
+import utilities.VariablesAndMethodsUtils;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -12,6 +14,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 import static utilities.VariablesAndMethodsUtils.uni;
 
@@ -46,8 +49,12 @@ public class DatosModel {
         window = owner;
         token = toke;
         try {
-//            socket = new Socket("skimdoo.ddns.jazztel.es", 9090);
-            socket = new Socket("192.168.1.37", 9090);
+            Properties p = new Properties();
+            p.load(new FileReader(VariablesAndMethodsUtils.PATH_PROPERTIES));
+            String server = p.getProperty("server");
+            // HAY QUE PONER LA DIRECCIÓN IP DEL SERVIDOR
+            socket = new Socket(server, 9090);
+            //socket = new Socket("192.168.1.37", 9090);
             dos = new ObjectOutputStream(socket.getOutputStream());
             dis = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {

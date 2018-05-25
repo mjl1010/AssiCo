@@ -60,6 +60,7 @@ public class MainLogin extends Application {
             if (!f.exists()) {
                 f.createNewFile();
                 p.load(new FileReader(VariablesAndMethodsUtils.PATH_PROPERTIES));
+                p.setProperty("server", "skimdoo.ddns.jazztel.es");
                 p.setProperty("token", "");
                 p.setProperty("curso", "");
                 p.setProperty("year", "");
